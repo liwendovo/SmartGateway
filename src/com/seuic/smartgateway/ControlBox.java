@@ -14,9 +14,7 @@ public class ControlBox extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.controlbox);
-		
-
+		setContentView(R.layout.controlbox);	
 		Intent intent=getIntent();
 		String uid1=intent.getStringExtra("uid");	
 		Toast toast = Toast.makeText(ControlBox.this, uid1, Toast.LENGTH_SHORT);
@@ -28,7 +26,7 @@ public class ControlBox extends Activity {
 		host.setup();
 
 		TabHost.TabSpec irSpec = host.newTabSpec("IR");        //This param will be used as tabId.
-		irSpec.setIndicator(null,         //This param will diplay as title. 
+		irSpec.setIndicator(null,         					//This param will diplay as title. 
 		getResources().getDrawable(R.drawable.ir));
 		irSpec.setContent(R.id.tabir);
 		host.addTab(irSpec);
@@ -44,7 +42,7 @@ public class ControlBox extends Activity {
 		host.addTab(thSpec);
 		
 		TabHost.TabSpec setSpec = host.newTabSpec("SET");
-		setSpec.setIndicator(null, getResources().getDrawable(R.drawable.set));
+		setSpec.setIndicator(null, getResources().getDrawable(R.drawable.setp));
 		setSpec.setContent(R.id.tabset);
 		host.addTab(setSpec);
 	}

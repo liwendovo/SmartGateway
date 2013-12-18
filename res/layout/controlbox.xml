@@ -1,85 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/tabhost"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
+    android:id="@+id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <!-- set the tab title attributes and set the title align the bottom -->
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" >
+        </TabWidget>
+        <!-- set the tab body attributes -->
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <!-- the first tab tabir -->
+
+            <RelativeLayout
+                android:id="@+id/tabir"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-                <!-- set the tab title attributes and set the title align the bottom -->
-                <TabWidget
-                        android:id="@android:id/tabs"
-                        android:layout_alignParentBottom="true"  
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-                </TabWidget>
-                <!-- set the tab body attributes -->
-                <FrameLayout
-                        android:id="@android:id/tabcontent"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                       
-						<!-- the first tab tabir  -->
-                        <RelativeLayout
-                            android:id="@+id/tabir"
-                            android:layout_width="fill_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:paddingTop="20dip" >
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="20dip" >
 
-                            <ListView
-                                android:id="@+id/listView1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_centerHorizontal="true" >
-                            </ListView>
+                <Button
+                    android:id="@+id/addIRBtn"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Button" />
 
-                        </RelativeLayout>
-                        <!-- the second tab tabrf  -->
-                        <RelativeLayout
-                                android:id="@+id/tabrf"
-                                android:orientation="vertical"
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:paddingTop="20dip">                                
-                             <ListView
-                                android:id="@+id/listView2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_centerHorizontal="true" >
-                            </ListView>
-                        </RelativeLayout>
-                        <!-- the third tab tabth  -->
-                        <RelativeLayout
-                                android:id="@+id/tabth"
-                                android:orientation="vertical"
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:paddingTop="20dip">                               
-                               <TextView
-					            android:id="@+id/textView3"
-					            android:layout_width="wrap_content"
-					            android:layout_height="wrap_content"
-					            android:text="Tab3"
-					            android:textAppearance="?android:attr/textAppearanceLarge" />
-                        </RelativeLayout>
-                        <!-- the forth tab tabset  -->
-                        <RelativeLayout
-                                android:id="@+id/tabset"
-                                android:orientation="vertical"
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:paddingTop="20dip">                               
-                               <TextView
-					            android:id="@+id/textView3"
-					            android:layout_width="wrap_content"
-					            android:layout_height="wrap_content"
-					            android:text="Tab4"
-					            android:textAppearance="?android:attr/textAppearanceLarge" />
-                        </RelativeLayout>
-                </FrameLayout>
-        </RelativeLayout>
+                <ListView
+                    android:id="@+id/listViewIR"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/button3"
+                    android:layout_marginTop="25dp" >
+                </ListView>
+
+            </RelativeLayout>
+            <!-- the second tab tabrf -->
+
+            <RelativeLayout
+                android:id="@+id/tabrf"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:paddingTop="20dip" >
+
+              <Button
+                    android:id="@+id/addRFBtn"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Button" />
+
+                <ListView
+                    android:id="@+id/listViewRF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/button3"
+                    android:layout_marginTop="25dp" >
+                </ListView>
+            </RelativeLayout>
+            <!-- the third tab tabth -->
+
+            <RelativeLayout
+                android:id="@+id/tabth"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:paddingTop="20dip" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tab3"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </RelativeLayout>
+            <!-- the forth tab tabset -->
+
+            <RelativeLayout
+                android:id="@+id/tabset"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:paddingTop="20dip" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tab4"
+                    android:layout_centerInParent="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView3"
+                    android:text="Restart App" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                     android:layout_below="@+id/button1"
+                    android:text="About us" />
+            </RelativeLayout>
+        </FrameLayout>
+    </RelativeLayout>
+
 </TabHost>
-

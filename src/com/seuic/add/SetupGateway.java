@@ -4,6 +4,8 @@
  * */
 package com.seuic.add;
 
-public class SetupGateway {
+import android.app.Activity;
+
+public class SetupGateway extends Activity{
 
 }

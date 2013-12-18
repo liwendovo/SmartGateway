@@ -40,8 +40,7 @@ public class DevSetup extends Activity {
 		setContentView(R.layout.activity_dev);
 		mSQLHelper = new SQLiteHelper(this,"smartgateway.db",1); //Êý¾Ý¿â
 		readDB=mSQLHelper.getReadableDatabase();
-		listView = (ListView)findViewById(R.id.devListView);	
-		
+		listView = (ListView)findViewById(R.id.devListView);			
 		addDevBtn=(Button)findViewById(R.id.addDevBtn);
 		addDevBtn.setOnClickListener(new OnClickListener()
 		{		

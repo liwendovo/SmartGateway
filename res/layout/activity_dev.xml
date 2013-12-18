@@ -7,16 +7,55 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DevSetup" >
-    <ListView
+
+    <ListView
         android:id="@+id/devListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/addDevBtn" >
+        android:layout_below="@+id/textView2" >
 
     </ListView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/devListView"
+        android:layout_below="@+id/SetupBtn"
+        android:text="Devices"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/SetupBtn"
+        android:layout_alignBottom="@+id/SetupBtn"
+        android:layout_alignLeft="@+id/textView1"
+        android:text="Your SSID"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/SetupBtn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/addDevBtn"
+        android:layout_below="@+id/addDevBtn"
+        android:text="Setup" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/addDevBtn"
+        android:layout_alignBottom="@+id/addDevBtn"
+        android:layout_alignParentLeft="true"
+        android:text="Router Setup"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
         android:id="@+id/addDevBtn"
@@ -25,6 +64,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/devListView"
-        android:text="Button" />
+        android:text="ADD" />
 
 </RelativeLayout>
