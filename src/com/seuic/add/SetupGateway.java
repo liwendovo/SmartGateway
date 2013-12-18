@@ -4,6 +4,6 @@
  * */
 package com.seuic.add;
 
-public class AddGateway {
+public class SetupGateway {
 
 }

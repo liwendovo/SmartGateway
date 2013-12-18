@@ -27,6 +27,7 @@ public class AddDev extends Activity {
 				//≤Â»Î ˝æ›ø‚ø‚
 				writeDB=DevSetup.mSQLHelper.getWritableDatabase();
 				DevSetup.mSQLHelper.insertSetup(writeDB, UID, "Devices", "1");
+				finish();
 			}			
 		});	
 	}

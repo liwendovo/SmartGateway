@@ -21,24 +21,57 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int cam=0x7f020000;
+        public static final int close=0x7f020001;
+        public static final int code=0x7f020002;
+        public static final int curtain=0x7f020003;
+        public static final int dianshan=0x7f020004;
+        public static final int dvd=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int ir=0x7f020007;
+        public static final int kt=0x7f020008;
+        public static final int lamp=0x7f020009;
+        public static final int logo=0x7f02000a;
+        public static final int on_off=0x7f02000b;
+        public static final int qrcode=0x7f02000c;
+        public static final int rf=0x7f02000d;
+        public static final int rsq=0x7f02000e;
+        public static final int set=0x7f02000f;
+        public static final int setp=0x7f020010;
+        public static final int setup=0x7f020011;
+        public static final int stu=0x7f020012;
+        public static final int tem1=0x7f020013;
+        public static final int temp=0x7f020014;
+        public static final int th=0x7f020015;
+        public static final int tv=0x7f020016;
+        public static final int up_down=0x7f020017;
+        public static final int volume=0x7f020018;
+        public static final int water=0x7f020019;
     }
     public static final class id {
-        public static final int action_settings=0x7f080008;
-        public static final int addDevBtn=0x7f080002;
-        public static final int button1=0x7f080001;
-        public static final int content=0x7f080007;
+        public static final int action_settings=0x7f08000f;
+        public static final int addDevBtn=0x7f080001;
+        public static final int content=0x7f08000e;
         public static final int devListView=0x7f080000;
-        public static final int textView1=0x7f080005;
-        public static final int textView2=0x7f080004;
-        public static final int title=0x7f080006;
-        public static final int uidEditText=0x7f080003;
+        public static final int listView1=0x7f080007;
+        public static final int listView2=0x7f080009;
+        public static final int tabhost=0x7f080005;
+        public static final int tabir=0x7f080006;
+        public static final int tabrf=0x7f080008;
+        public static final int tabset=0x7f08000c;
+        public static final int tabth=0x7f08000a;
+        public static final int textView1=0x7f080004;
+        public static final int textView2=0x7f080003;
+        public static final int textView3=0x7f08000b;
+        public static final int title=0x7f08000d;
+        public static final int uidEditText=0x7f080002;
     }
     public static final class layout {
         public static final int activity_dev=0x7f030000;
         public static final int adddev=0x7f030001;
-        public static final int devlist=0x7f030002;
+        public static final int controlbox=0x7f030002;
         public static final int line=0x7f030003;
+        public static final int list=0x7f030004;
     }
     public static final class menu {
         public static final int dev=0x7f070000;

@@ -16,6 +16,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -28,8 +30,10 @@ import com.seuic.sqlite.SQLiteHelper;
 public class DevSetup extends Activity {
 	ListView listView;
 	Button addDevBtn;
+	List<Map<String,String>> listItems;
 	public static SQLiteHelper mSQLHelper;
 	public SQLiteDatabase readDB;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,6 +41,7 @@ public class DevSetup extends Activity {
 		mSQLHelper = new SQLiteHelper(this,"smartgateway.db",1); //Êý¾Ý¿â
 		readDB=mSQLHelper.getReadableDatabase();
 		listView = (ListView)findViewById(R.id.devListView);	
+		
 		addDevBtn=(Button)findViewById(R.id.addDevBtn);
 		addDevBtn.setOnClickListener(new OnClickListener()
 		{		
@@ -48,7 +53,20 @@ public class DevSetup extends Activity {
 					startActivity(intent);				
 			}			
 		});	
-	 
+		
+		listView.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				 String uid=listItems.get(arg2).get("title");			
+				 Intent intent = new Intent(DevSetup.this, ControlBox.class);				 
+				 intent.putExtra("uid", uid);
+				 startActivity(intent);		
+				 
+			}
+		});
     }
 
 	@Override
@@ -59,8 +77,10 @@ public class DevSetup extends Activity {
 		if(0==cur.getCount()){
 			return;	
 		}	
-		
-		List<Map<String,String>> listItems=new ArrayList<Map<String,String>>();
+		if(listItems!=null){
+			listItems.clear();
+		}
+        listItems=new ArrayList<Map<String,String>>();		
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
 			Map<String,String> listItem =new HashMap<String,String>();
 			listItem.put("title", cur.getString(0));
