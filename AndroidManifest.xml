@@ -22,13 +22,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-       	<activity android:name="com.seuic.add.AddDev" 			
-			android:label="ADD">
-		</activity> 
-          	<activity android:name="com.seuic.smartgateway.ControlBox" 			
-			android:label="设备">
-		</activity> 
-        
+        <activity
+            android:name="com.seuic.add.AddDev"
+            android:label="ADD" >
+        </activity>
+        <activity
+            android:name="com.seuic.smartgateway.ControlBox"
+            android:label="设备" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.Media"
+            android:label="@string/title_activity_media" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.Fan"
+            android:label="@string/title_activity_fan" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.Selfdefine1"
+            android:label="@string/title_activity_selfdefine1" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.Selfdefine2"
+            android:label="@string/title_activity_selfdefine2" >
+        </activity>
     </application>
 
 </manifest>
