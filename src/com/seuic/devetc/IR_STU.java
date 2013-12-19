@@ -5,13 +5,13 @@ import android.os.Bundle;
 
 import com.seuic.smartgateway.R;
 
-public class STU extends Activity {
+public class IR_STU extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.stu);
+		setContentView(R.layout.ir_stu);
 	}
 
 }

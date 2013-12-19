@@ -22,23 +22,33 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.seuic.add.AddEtc;
-import com.seuic.devetc.AC;
-import com.seuic.devetc.DVD;
-import com.seuic.devetc.FAN;
-import com.seuic.devetc.Media;
-import com.seuic.devetc.STU;
-import com.seuic.devetc.Selfdefine1;
-import com.seuic.devetc.Selfdefine2;
-import com.seuic.devetc.TV;
-import com.seuic.devetc.WH;
+import com.seuic.devetc.IR_AC;
+import com.seuic.devetc.IR_DVD;
+import com.seuic.devetc.IR_FAN;
+import com.seuic.devetc.IR_Media;
+import com.seuic.devetc.IR_STU;
+import com.seuic.devetc.IR_Selfdefine1;
+import com.seuic.devetc.IR_Selfdefine2;
+import com.seuic.devetc.IR_TV;
+import com.seuic.devetc.IR_WH;
+import com.seuic.devetc.RF_Curtain;
+import com.seuic.devetc.RF_Lamp;
+import com.seuic.devetc.RF_Selfdefine1;
+import com.seuic.devetc.RF_Selfdefine2;
+import com.seuic.devetc.RF_Switch;
+import com.seuic.devetc.RF_WH;
 
 public class ControlBox extends Activity {
+	public final static CharSequence[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"}; 
+	public final static CharSequence[] itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
 	TextView tv1; 
 	Button addIRBtn,addRFBtn;
 	String mUid;
 	List<Map<String,String>> listItemsIR,listItemsRF;
 	ListView listViewIR;
 	ListView listViewRF;
+	
+	
 	public SQLiteDatabase readDB;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -112,23 +122,23 @@ public class ControlBox extends Activity {
 				 String type=listItemsIR.get(arg2).get("content");
 				 Intent intent ;
 				 if(type.equals("TV")){
-					 intent = new Intent(ControlBox.this,TV.class);	
+					 intent = new Intent(ControlBox.this,IR_TV.class);	
 				 }else if(type.equals("AC")){
-					 intent = new Intent(ControlBox.this,AC.class);
-				 }else if(type.equals("Meida")){
-					 intent = new Intent(ControlBox.this,Media.class);
+					 intent = new Intent(ControlBox.this,IR_AC.class);
+				 }else if(type.equals("Media")){
+					 intent = new Intent(ControlBox.this,IR_Media.class);
 				 }else if(type.equals("STU")){
-					 intent = new Intent(ControlBox.this,STU.class);
+					 intent = new Intent(ControlBox.this,IR_STU.class);
 				 }else if(type.equals("WH")){
-					 intent = new Intent(ControlBox.this,WH.class);
+					 intent = new Intent(ControlBox.this,IR_WH.class);
 				 }else if(type.equals("DVD")){
-					 intent = new Intent(ControlBox.this,DVD.class);
+					 intent = new Intent(ControlBox.this,IR_DVD.class);
 				 }else if(type.equals("FAN")){
-					 intent = new Intent(ControlBox.this,FAN.class);
-				 }else if(type.equals("Selfdefine1")){
-					 intent = new Intent(ControlBox.this,Selfdefine1.class);
+					 intent = new Intent(ControlBox.this,IR_FAN.class);
+				 }else if(type.equals("自定义1")){
+					 intent = new Intent(ControlBox.this,IR_Selfdefine1.class);
 				 }else {
-					 intent = new Intent(ControlBox.this,Selfdefine2.class);
+					 intent = new Intent(ControlBox.this,IR_Selfdefine2.class);
 				 }						 
 				// intent.putExtra("uid", uid);
 				 startActivity(intent);		
@@ -142,31 +152,26 @@ public class ControlBox extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-//				 String type=listItemsRF.get(arg2).get("content");
-//				 Intent intent ;
-//				 if(type.equals("Switch")){
-//					 intent = new Intent(ControlBox.this,Switch.class);
-//				 }else if(type.equals("WH")){
-//					 intent = new Intent(ControlBox.this,WH.class);
-//				 }else if(type.equals("Lamp")){
-//					 intent = new Intent(ControlBox.this,Lamp.class);
-//				 }else if(type.equals("Curtain")){
-//					 intent = new Intent(ControlBox.this,Curtain.class);				 
-//				 }else if(type.equals("Selfdefine1")){
-//					 intent = new Intent(ControlBox.this,Selfdefine1.class);
-//				 }else {
-//					 intent = new Intent(ControlBox.this,Selfdefine2.class);
-//				 }						 
-//				// intent.putExtra("uid", uid);
-//				 startActivity(intent);		
-//				 
+				 String type=listItemsRF.get(arg2).get("content");
+				 Intent intent ;
+				 if(type.equals(itemsRF[0])){
+					 intent = new Intent(ControlBox.this,RF_Switch.class);
+				 }else if(type.equals(itemsRF[1])){
+					 intent = new Intent(ControlBox.this,RF_WH.class);
+				 }else if(type.equals(itemsRF[2])){
+					 intent = new Intent(ControlBox.this,RF_Lamp.class);
+				 }else if(type.equals(itemsRF[3])){
+					 intent = new Intent(ControlBox.this,RF_Curtain.class);				 
+				 }else if(type.equals(itemsRF[4])){
+					 intent = new Intent(ControlBox.this,RF_Selfdefine1.class);
+				 }else {
+					 intent = new Intent(ControlBox.this,RF_Selfdefine2.class);
+				 }						 
+				// intent.putExtra("uid", uid);
+				 startActivity(intent);		
+				 
 			}
 		});
-		
-		
-		
-		
-		
 		
 		
 	}

@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class Media extends Activity {
+public class RF_Curtain extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.media);
+		setContentView(R.layout.rf_curtain);
 	}
 
 	

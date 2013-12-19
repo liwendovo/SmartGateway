@@ -31,34 +31,58 @@
         <activity android:name="com.seuic.smartgateway.ControlBox" 			
 			android:label="设备">
 		</activity> 
-         <activity android:name="com.seuic.devetc.TV" 			
+         <activity android:name="com.seuic.devetc.IR_TV" 			
 			android:label="TV">
 		</activity> 
-		   <activity android:name="com.seuic.devetc.AC" 			
+		   <activity android:name="com.seuic.devetc.IR_AC" 			
 			android:label="AC">
 		</activity> 
-		   <activity android:name="com.seuic.devetc.Media" 			
+		   <activity android:name="com.seuic.devetc.IR_Media" 			
 			android:label="Media">
 		</activity> 
-		   <activity android:name="com.seuic.devetc.STU" 			
+		   <activity android:name="com.seuic.devetc.IR_STU" 			
 			android:label="STU">
 		</activity> 
-		   <activity android:name="com.seuic.devetc.WH" 			
+		   <activity android:name="com.seuic.devetc.IR_WH" 			
 			android:label="WH">
 		</activity> 
-		   <activity android:name="com.seuic.devetc.DVD" 			
+		   <activity android:name="com.seuic.devetc.IR_DVD" 			
 			android:label="DVD">
 		</activity> 
-		   <activity android:name="com.seuic.devetc.FAN" 			
+		   <activity android:name="com.seuic.devetc.IR_FAN" 			
 			android:label="Fan">
+		</activity> 		
+		<activity android:name="com.seuic.devetc.IR_Selfdefine1" 			
+			android:label="IR_Selfdefine1">
+		</activity> 
+		<activity android:name="com.seuic.devetc.IR_Selfdefine2" 			
+			android:label="IR_Selfdefine2">
 		</activity> 
 		
-		<activity android:name="com.seuic.devetc.Selfdefine1" 			
-			android:label="Selfdefine1">
+		
+		
+		<activity android:name="com.seuic.devetc.RF_Switch" 			
+			android:label="RF_Switch">
 		</activity> 
-		<activity android:name="com.seuic.devetc.Selfdefine2" 			
-			android:label="Selfdefine2">
+		<activity android:name="com.seuic.devetc.RF_WH" 			
+			android:label="RF_WH">
 		</activity> 
+		<activity android:name="com.seuic.devetc.RF_Lamp" 			
+			android:label="RF_Lamp">
+		</activity> 	
+			<activity android:name="com.seuic.devetc.RF_Curtain" 			
+			android:label="RF_Curtain">
+		</activity> 		
+		<activity android:name="com.seuic.devetc.RF_Selfdefine1" 			
+			android:label="RF_Selfdefine1">
+		</activity> 
+		<activity android:name="com.seuic.devetc.RF_Selfdefine2" 			
+			android:label="RF_Selfdefine2">
+		</activity> 
+		
+		
+		
+		
     </application>
 
 </manifest>

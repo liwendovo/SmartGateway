@@ -5,13 +5,13 @@ import android.os.Bundle;
 
 import com.seuic.smartgateway.R;
 
-public class TV extends Activity {
+public class IR_DVD extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.tv);
+		setContentView(R.layout.ir_dvd);
 	}
 
 }

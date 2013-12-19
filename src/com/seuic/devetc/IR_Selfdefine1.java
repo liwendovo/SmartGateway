@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class Selfdefine1 extends Activity {
+public class IR_Selfdefine1 extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.selfdefine1);
+		setContentView(R.layout.ir_selfdefine1);
 	}
 
 	

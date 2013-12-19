@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.seuic.smartgateway.ControlBox;
 import com.seuic.smartgateway.DevSetup;
 import com.seuic.smartgateway.R;
 
@@ -52,16 +53,15 @@ public class AddEtc extends Activity {
 			
 			//	Toast.makeText(getApplicationContext(), "Onlick", Toast.LENGTH_SHORT).show(); 
 			//	Log.e("leewoo", "listBtn -------  onClick");	
-				final CharSequence[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"}; 
-				final CharSequence[] itemsRF = {"SWitch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
+			
 				
 				final CharSequence[] items;
 				if(mType.equals("ir")){
 					builder.setTitle("IR Name"); 
-					items=itemsIR;
+					items=ControlBox.itemsIR;
 				}else{
 					builder.setTitle("RF Name"); 
-					items=itemsRF;
+					items=ControlBox.itemsRF;
 				}
 				builder.setItems(items, new DialogInterface.OnClickListener() { 
 				    public void onClick(DialogInterface dialog, int item) { 
