@@ -36,7 +36,11 @@ public class AddEtc extends Activity {
 		
 		okBtn=(Button)findViewById(R.id.okBtn);
 		listBtn=(Button)findViewById(R.id.listBtn);
-		
+		if(mType.equals("ir")){
+			listBtn.setText("TV");
+		}else{
+			listBtn.setText("Switch");
+		}
 		final AlertDialog.Builder builder = new AlertDialog.Builder(this); 
 		
 	
@@ -47,26 +51,23 @@ public class AddEtc extends Activity {
 				// TODO Auto-generated method stub		
 			
 			//	Toast.makeText(getApplicationContext(), "Onlick", Toast.LENGTH_SHORT).show(); 
-			//	Log.e("leewoo", "listBtn -------  onClick");
-				final CharSequence[] items = {"TV", "TH", "DVD"}; 
+			//	Log.e("leewoo", "listBtn -------  onClick");	
+				final CharSequence[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"}; 
+				final CharSequence[] itemsRF = {"SWitch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
 				
-				builder.setTitle("Pick a device"); 
+				final CharSequence[] items;
+				if(mType.equals("ir")){
+					builder.setTitle("IR Name"); 
+					items=itemsIR;
+				}else{
+					builder.setTitle("RF Name"); 
+					items=itemsRF;
+				}
 				builder.setItems(items, new DialogInterface.OnClickListener() { 
 				    public void onClick(DialogInterface dialog, int item) { 
-				    	Log.e("leewoo", "listBtn -------  onClick:"+item);
+				      Log.e("leewoo", "listBtn -------  onClick:"+item);
 				      Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show(); 				        
-				      switch(item)
-				      {
-				      	case 0:
-				      		listBtn.setText("TV");
-				      		break;
-				      	case 1:
-				      		listBtn.setText("TH");
-				      		break;
-				      	case 2:
-				      		listBtn.setText("DVD");
-				      		break;								
-				      }	
+				      listBtn.setText(items[item]);
 				    } 
 				}); 
 				builder.create().show();				

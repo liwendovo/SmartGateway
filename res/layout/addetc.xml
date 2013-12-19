@@ -44,7 +44,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView2"
-        android:text="TV" />
+       />
 
     <Button
         android:id="@+id/okBtn"

@@ -11,17 +11,26 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.seuic.add.AddEtc;
+import com.seuic.devetc.AC;
+import com.seuic.devetc.DVD;
+import com.seuic.devetc.FAN;
+import com.seuic.devetc.Media;
+import com.seuic.devetc.STU;
+import com.seuic.devetc.Selfdefine1;
+import com.seuic.devetc.Selfdefine2;
+import com.seuic.devetc.TV;
+import com.seuic.devetc.WH;
 
 public class ControlBox extends Activity {
 	TextView tv1; 
@@ -93,6 +102,72 @@ public class ControlBox extends Activity {
 				 startActivity(intent);		
 			}			
 		});	
+		
+		listViewIR.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				 String type=listItemsIR.get(arg2).get("content");
+				 Intent intent ;
+				 if(type.equals("TV")){
+					 intent = new Intent(ControlBox.this,TV.class);	
+				 }else if(type.equals("AC")){
+					 intent = new Intent(ControlBox.this,AC.class);
+				 }else if(type.equals("Meida")){
+					 intent = new Intent(ControlBox.this,Media.class);
+				 }else if(type.equals("STU")){
+					 intent = new Intent(ControlBox.this,STU.class);
+				 }else if(type.equals("WH")){
+					 intent = new Intent(ControlBox.this,WH.class);
+				 }else if(type.equals("DVD")){
+					 intent = new Intent(ControlBox.this,DVD.class);
+				 }else if(type.equals("FAN")){
+					 intent = new Intent(ControlBox.this,FAN.class);
+				 }else if(type.equals("Selfdefine1")){
+					 intent = new Intent(ControlBox.this,Selfdefine1.class);
+				 }else {
+					 intent = new Intent(ControlBox.this,Selfdefine2.class);
+				 }						 
+				// intent.putExtra("uid", uid);
+				 startActivity(intent);		
+				 
+			}
+		});
+		
+		listViewRF.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+//				 String type=listItemsRF.get(arg2).get("content");
+//				 Intent intent ;
+//				 if(type.equals("Switch")){
+//					 intent = new Intent(ControlBox.this,Switch.class);
+//				 }else if(type.equals("WH")){
+//					 intent = new Intent(ControlBox.this,WH.class);
+//				 }else if(type.equals("Lamp")){
+//					 intent = new Intent(ControlBox.this,Lamp.class);
+//				 }else if(type.equals("Curtain")){
+//					 intent = new Intent(ControlBox.this,Curtain.class);				 
+//				 }else if(type.equals("Selfdefine1")){
+//					 intent = new Intent(ControlBox.this,Selfdefine1.class);
+//				 }else {
+//					 intent = new Intent(ControlBox.this,Selfdefine2.class);
+//				 }						 
+//				// intent.putExtra("uid", uid);
+//				 startActivity(intent);		
+//				 
+			}
+		});
+		
+		
+		
+		
+		
+		
 		
 	}
 	@Override

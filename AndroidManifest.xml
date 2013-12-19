@@ -31,7 +31,34 @@
         <activity android:name="com.seuic.smartgateway.ControlBox" 			
 			android:label="设备">
 		</activity> 
-        
+         <activity android:name="com.seuic.devetc.TV" 			
+			android:label="TV">
+		</activity> 
+		   <activity android:name="com.seuic.devetc.AC" 			
+			android:label="AC">
+		</activity> 
+		   <activity android:name="com.seuic.devetc.Media" 			
+			android:label="Media">
+		</activity> 
+		   <activity android:name="com.seuic.devetc.STU" 			
+			android:label="STU">
+		</activity> 
+		   <activity android:name="com.seuic.devetc.WH" 			
+			android:label="WH">
+		</activity> 
+		   <activity android:name="com.seuic.devetc.DVD" 			
+			android:label="DVD">
+		</activity> 
+		   <activity android:name="com.seuic.devetc.FAN" 			
+			android:label="Fan">
+		</activity> 
+		
+		<activity android:name="com.seuic.devetc.Selfdefine1" 			
+			android:label="Selfdefine1">
+		</activity> 
+		<activity android:name="com.seuic.devetc.Selfdefine2" 			
+			android:label="Selfdefine2">
+		</activity> 
     </application>
 
 </manifest>

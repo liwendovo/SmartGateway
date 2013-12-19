@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class Fan extends Activity {
+public class FAN extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
