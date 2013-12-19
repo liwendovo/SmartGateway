@@ -28,10 +28,10 @@ public class SQLiteHelper extends SQLiteOpenHelper
     		 " ( " + Uid + " VHARCHAR, " + Name + " VHARCHAR, " + Type + " VHARCHAR );";
 	final String CREATE_LIST_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_List + 
-    		 " ( " + DevID + " VHARCHAR, " + Name + " VHARCHAR, " + Other + " VHARCHAR, "+ Type + " VHARCHAR );";
+    		 " ( " + DevID + " VHARCHAR, " + Name + " VHARCHAR, " + Type + " VHARCHAR, "+  Other+ " VHARCHAR );";
 	final String CREATE_ETC_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_Etc + 
-    		 " ( " + EtcID + " VHARCHAR, " + Name + " VHARCHAR, " + Other + " VHARCHAR, "+ Type + " VHARCHAR );";
+    		 " ( " + EtcID + " VHARCHAR, " + Name + " VHARCHAR, " + Type + " VHARCHAR, "+ Other+ " VHARCHAR );";
 		
 		
 	@Override
@@ -55,6 +55,14 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		
 	public void insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Name, String Tag_Type) {
 		String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Name + "\',\'" + Tag_Type + "\');";
+		db.execSQL(sql);
+	}
+	public void insertList(SQLiteDatabase db, String Tag_Uid, String Tag_Name, String Tag_Type, String Tag_Other) {
+		String sql = "INSERT INTO " + Table_Name_List + " Values(\'" + Tag_Uid + "\',\'" + Tag_Name + "\',\'" + Tag_Type + "\',\'"+ Tag_Other + "\');";
+		db.execSQL(sql);
+	}
+	public void insertEtc (SQLiteDatabase db, String Tag_Uid, String Tag_Name, String Tag_Type, String Tag_Other) {
+		String sql = "INSERT INTO " + Table_Name_Etc  + " Values(\'" + Tag_Uid + "\',\'" + Tag_Name + "\',\'" + Tag_Type + "\',\'"+ Tag_Other + "\');";
 		db.execSQL(sql);
 	}
 	public void deleteSetup(SQLiteDatabase db, String Tag_Uid) {

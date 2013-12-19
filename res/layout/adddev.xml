@@ -8,31 +8,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AddDev" >
 
-    <Button
-        android:id="@+id/addDevBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="ADD" />
-
-    <EditText
-        android:id="@+id/uidEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/addDevBtn"
-        android:layout_alignBottom="@+id/addDevBtn"
-        android:layout_toLeftOf="@+id/addDevBtn"
-        android:layout_toRightOf="@+id/textView2"
-        android:ems="10"
-       />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/addDevBtn"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginBottom="14dp"
         android:text="Please input or scan your uid"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -43,9 +24,30 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/uidEditText"
         android:layout_alignBottom="@+id/uidEditText"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignParentLeft="true"
         android:text="UID"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <EditText
+        android:id="@+id/uidEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/addDevBtn"
+        android:layout_alignBottom="@+id/addDevBtn"
+        android:layout_toLeftOf="@+id/addDevBtn"
+        android:layout_toRightOf="@+id/textView2"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/addDevBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="14dp"
+        android:text="ADD" />
 
 </RelativeLayout>

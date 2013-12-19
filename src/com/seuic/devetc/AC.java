@@ -1,5 +1,7 @@
 package com.seuic.devetc;
 
-public class AC {
+import android.app.Activity;
+
+public class AC extends Activity  {
 
 }

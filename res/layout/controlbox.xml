@@ -28,7 +28,7 @@
             <RelativeLayout
                 android:id="@+id/tabir"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"
+                android:layout_height="411dp"
                 android:orientation="vertical"
                 android:paddingTop="20dip" >
 
@@ -39,16 +39,16 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:text="Button" />
+                    android:text="AddIR" />
 
                 <ListView
                     android:id="@+id/listViewIR"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/button3"
-                    android:layout_marginTop="25dp" >
+                    android:layout_below="@+id/addIRBtn" 
+                    android:paddingBottom="50dip">
+
                 </ListView>
 
             </RelativeLayout>
@@ -68,16 +68,16 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:text="Button" />
-
+                    android:text="AddRF" />
+ 
                 <ListView
                     android:id="@+id/listViewRF"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_height="wrap_content"                  
                     android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/button3"
-                    android:layout_marginTop="25dp" >
+                    android:layout_below="@+id/addRFBtn" 
+                   android:paddingBottom="50dip"
+                    >
                 </ListView>
             </RelativeLayout>
             <!-- the third tab tabth -->
@@ -96,8 +96,8 @@
                     android:text="Tab3"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </RelativeLayout>
+            
             <!-- the forth tab tabset -->
-
             <RelativeLayout
                 android:id="@+id/tabset"
                 android:layout_width="fill_parent"
@@ -127,6 +127,8 @@
                      android:layout_below="@+id/button1"
                     android:text="About us" />
             </RelativeLayout>
+            
+            
         </FrameLayout>
     </RelativeLayout>
 

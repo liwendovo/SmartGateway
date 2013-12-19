@@ -18,11 +18,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.SimpleCursorAdapter;
 
 import com.seuic.add.AddDev;
 import com.seuic.sqlite.SQLiteHelper;
@@ -32,7 +30,7 @@ public class DevSetup extends Activity {
 	Button addDevBtn;
 	List<Map<String,String>> listItems;
 	public static SQLiteHelper mSQLHelper;
-	public SQLiteDatabase readDB;
+	public static SQLiteDatabase readDB;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
