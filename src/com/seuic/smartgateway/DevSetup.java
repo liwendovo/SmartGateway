@@ -24,11 +24,13 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.seuic.add.AddDev;
+import com.seuic.net.SetupAp;
 import com.seuic.sqlite.SQLiteHelper;
 
 public class DevSetup extends Activity {
 	ListView listView;
 	Button addDevBtn;
+	Button setupBtn;
 	List<Map<String,String>> listItems;
 	public static SQLiteHelper mSQLHelper;
 	public static SQLiteDatabase readDB;
@@ -42,6 +44,7 @@ public class DevSetup extends Activity {
 		readDB=mSQLHelper.getReadableDatabase();
 		listView = (ListView)findViewById(R.id.devListView);			
 		addDevBtn=(Button)findViewById(R.id.addDevBtn);
+		setupBtn=(Button)findViewById(R.id.SetupBtn);
 		addDevBtn.setOnClickListener(new OnClickListener()
 		{		
 			public void onClick(View source)
@@ -52,7 +55,16 @@ public class DevSetup extends Activity {
 					startActivity(intent);				
 			}			
 		});	
-		
+		setupBtn.setOnClickListener(new OnClickListener()
+		{		
+			public void onClick(View source)
+			{
+				Intent intent = new Intent(DevSetup.this
+						, SetupAp.class);					
+					//Æô¶¯Activity
+					startActivity(intent);				
+			}			
+		});	
 		listView.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
