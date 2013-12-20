@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/addIRBtn" 
-                    android:paddingBottom="50dip">
+                    >
 
                 </ListView>
 
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"                  
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/addRFBtn" 
-                   android:paddingBottom="50dip"
+                   
                     >
                 </ListView>
             </RelativeLayout>
