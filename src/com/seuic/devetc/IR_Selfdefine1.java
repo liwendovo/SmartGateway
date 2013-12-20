@@ -1,12 +1,10 @@
 package com.seuic.devetc;
 
-import com.seuic.smartgateway.R;
-import com.seuic.smartgateway.R.layout;
-
-import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.Window;
+
+import com.seuic.smartgateway.R;
 
 public class IR_Selfdefine1 extends Activity {
 

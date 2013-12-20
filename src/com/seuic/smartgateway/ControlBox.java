@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,6 +25,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 
 import com.seuic.add.AddEtc;
@@ -44,15 +48,17 @@ import com.seuic.devetc.RF_WH;
 public class ControlBox extends Activity {
 	public final static CharSequence[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"}; 
 	public final static CharSequence[] itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
+	
 	TextView tv1; 
 	Button addIRBtn,addRFBtn;
+	Button titleBtn;
 	String mUid;
 	List<Map<String, Object>> listItemsIR;
 	List<Map<String, Object>> listItemsRF;
 	ListView listViewIR;
 	ListView listViewRF;
-	
-	
+	TextView devClass;
+	String TabID;
 	public SQLiteDatabase readDB;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,12 @@ public class ControlBox extends Activity {
 		
 		listViewIR = (ListView)findViewById(R.id.listViewIR);
 		listViewRF = (ListView)findViewById(R.id.listViewRF);
+		
+		devClass   = (TextView)findViewById(R.id.devClass);
+		devClass   = (TextView)findViewById(R.id.devClass);
+		
+		titleBtn=(Button)findViewById(R.id.titleBtn);
+		
 		
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");	
@@ -93,7 +105,52 @@ public class ControlBox extends Activity {
 		setSpec.setIndicator(null, getResources().getDrawable(R.drawable.setp));
 		setSpec.setContent(R.id.tabset);
 		host.addTab(setSpec);
+		host.getId();
+		// 就是从一个标签切换到另外一个标签会触发的事件
+		host.setOnTabChangedListener(new OnTabChangeListener() {
+                public void onTabChanged(String tabId) {
+                	devClass.setText(tabId);
+                	TabID=tabId;
+                	titleBtn.setVisibility(Button.VISIBLE);
+                	if(tabId.equals("IR")){                	
+                		titleBtn.setText("ADD");
+                	}else if(tabId.equals("RF")){
+                	//	titleBtn.setVisibility(Button.VISIBLE);
+                		titleBtn.setText("ADD");
+                	}else if(tabId.equals("TH")){
+                	//	titleBtn.setVisibility(Button.VISIBLE);
+                		titleBtn.setText("Chart");
+                	}else {
+                		titleBtn.setVisibility(Button.INVISIBLE);
+                    }
+                }
+        });
 		
+	
+		titleBtn.setOnClickListener(new OnClickListener()
+		{		
+			public void onClick(View source){
+					
+				 ;
+				if(TabID.equals("IR")){                	
+					Intent intent = new Intent(ControlBox.this, AddEtc.class);	
+					 intent.putExtra("uid", mUid);
+					 intent.putExtra("type", "ir");
+					 startActivity(intent);	
+            	}else if(TabID.equals("RF")){
+            	//	titleBtn.setVisibility(Button.VISIBLE);
+            		Intent intent = new Intent(ControlBox.this, AddEtc.class);	
+            		 intent.putExtra("uid", mUid);
+    				 intent.putExtra("type", "rf");
+    				 startActivity(intent);	
+            	}else{
+            		
+            		
+            	}
+			
+				
+			}			
+		});	
 		
 		addIRBtn=(Button)findViewById(R.id.addIRBtn);		
 		addRFBtn=(Button)findViewById(R.id.addRFBtn);
