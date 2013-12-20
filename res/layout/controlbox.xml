@@ -17,9 +17,43 @@
             android:layout_alignParentBottom="true" >
         </TabWidget>
         <!-- set the tab body attributes -->
+ <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/tabtitle"
+        android:background="#7A7A7A" >
+        
+         <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="Back" />
 
+        <TextView
+            android:id="@+id/devClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="ADD" />
+
+    </RelativeLayout>
         <FrameLayout
             android:id="@android:id/tabcontent"
+             android:layout_below="@+id/tabtitle" 
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
@@ -89,12 +123,13 @@
                 android:orientation="vertical"
                 android:paddingTop="20dip" >
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tab3"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+             <ImageView
+		        android:id="@+id/imageView1"
+		        android:layout_width="320dp"
+		        android:layout_height="640dp"		        
+		        android:layout_centerHorizontal="true"		       
+		        android:src="@drawable/temp" />
+
             </RelativeLayout>
             
             <!-- the forth tab tabset -->
