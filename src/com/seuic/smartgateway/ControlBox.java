@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -53,6 +54,7 @@ public class ControlBox extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.controlbox);	
 		
 		listViewIR = (ListView)findViewById(R.id.listViewIR);
@@ -195,12 +197,12 @@ public class ControlBox extends Activity {
 			Map<String,String> listItem =new HashMap<String,String>();
 			
 		
-			listItem.put("title", cur.getString(1));
-			listItem.put("content", cur.getString(3));
-			String mtype=cur.getString(2);
-			if(mtype.equals("ir")){
+			listItem.put("title", cur.getString(3));
+			listItem.put("content", cur.getString(2));
+			String mClass=cur.getString(1);
+			if(mClass.equals("ir")){
 			listItemsIR.add(listItem);	
-			}else if(mtype.equals("rf")){
+			}else if(mClass.equals("rf")){
 				listItemsRF.add(listItem);	
 			}
 			

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,24 +21,25 @@ import com.seuic.smartgateway.R;
 public class AddEtc extends Activity {
 	Button okBtn;
 	Button listBtn;
-	String mUid,mType;
+	String mUid,mClass;
 	public SQLiteDatabase writeDB;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.addetc);
 		
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");	
-		mType=intent.getStringExtra("type");	
-		Log.e("leewoo", "AddEtc -------  onCreate"+mUid+"   "+mType);
+		mClass=intent.getStringExtra("type");	
+		Log.e("leewoo", "AddEtc -------  onCreate"+mUid+"   "+mClass);
 	
 		
 		
 		okBtn=(Button)findViewById(R.id.okBtn);
 		listBtn=(Button)findViewById(R.id.listBtn);
-		if(mType.equals("ir")){
+		if(mClass.equals("ir")){
 			listBtn.setText("TV");
 		}else{
 			listBtn.setText("Switch");
@@ -56,7 +58,7 @@ public class AddEtc extends Activity {
 			
 				
 				final CharSequence[] items;
-				if(mType.equals("ir")){
+				if(mClass.equals("ir")){
 					builder.setTitle("IR Name"); 
 					items=ControlBox.itemsIR;
 				}else{
@@ -80,8 +82,8 @@ public class AddEtc extends Activity {
 				String name = ((EditText)findViewById(R.id.devName)).getText().toString();
 				//≤Â»Î ˝æ›ø‚ø‚				
 				writeDB=DevSetup.mSQLHelper.getWritableDatabase();
-				DevSetup.mSQLHelper.insertList(writeDB, mUid, name, mType,listBtn.getText().toString());
-				Log.e("leewoo", mUid+" "+name+" "+mType+" "+listBtn.getText().toString());
+				DevSetup.mSQLHelper.insertList(writeDB, mUid, mClass, listBtn.getText().toString(), name, "0","0");
+				Log.e("leewoo", mUid+" "+name+" "+mClass+" "+listBtn.getText().toString());
 				finish();
 			}			
 		});	

@@ -20,15 +20,17 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	private final static String EtcID = "etcid";	
 	private final static String Name = "name";
 	private final static String Type = "type";
+	private final static String Class = "class";
+	private final static String Status = "status";
 	private final static String Other = "other";
 	
 	
     final String CREATE_SETUP_TABLE_SQL =
     		 "CREATE TABLE IF NOT EXISTS " + Table_Name_Setup + 
-    		 " ( " + Uid + " VHARCHAR, " + Name + " VHARCHAR, " + Type + " VHARCHAR );";
+    		 " ( " + Uid + " VHARCHAR, " + Type  + " VHARCHAR, " + Name + " VHARCHAR );";
 	final String CREATE_LIST_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_List + 
-    		 " ( " + DevID + " VHARCHAR, " + Name + " VHARCHAR, " + Type + " VHARCHAR, "+  Other+ " VHARCHAR );";
+    		 " ( " + DevID + " VHARCHAR, " + Class + " VHARCHAR, " + Type + " VHARCHAR, "+Name + " VHARCHAR, " + Status + " VHARCHAR, "+ Other+ " VHARCHAR );";
 	final String CREATE_ETC_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_Etc + 
     		 " ( " + EtcID + " VHARCHAR, " + Name + " VHARCHAR, " + Type + " VHARCHAR, "+ Other+ " VHARCHAR );";
@@ -53,12 +55,12 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		super(context, name, null, version);
 	}
 		
-	public void insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Name, String Tag_Type) {
-		String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Name + "\',\'" + Tag_Type + "\');";
+	public void insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, String Tag_Name) {
+		String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\');";
 		db.execSQL(sql);
 	}
-	public void insertList(SQLiteDatabase db, String Tag_Uid, String Tag_Name, String Tag_Type, String Tag_Other) {
-		String sql = "INSERT INTO " + Table_Name_List + " Values(\'" + Tag_Uid + "\',\'" + Tag_Name + "\',\'" + Tag_Type + "\',\'"+ Tag_Other + "\');";
+	public void insertList(SQLiteDatabase db, String Tag_Uid, String Tag_Class, String Tag_Type, String Tag_Name, String Tag_Status, String Tag_Other) {
+		String sql = "INSERT INTO " + Table_Name_List + " Values(\'" + Tag_Uid + "\',\'" + Tag_Class + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',\'"  + Tag_Status + "\',\'"+ Tag_Other + "\');";
 		db.execSQL(sql);
 	}
 	public void insertEtc (SQLiteDatabase db, String Tag_Uid, String Tag_Name, String Tag_Type, String Tag_Other) {
