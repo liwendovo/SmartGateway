@@ -47,7 +47,8 @@ public class ControlBox extends Activity {
 	TextView tv1; 
 	Button addIRBtn,addRFBtn;
 	String mUid;
-	List<Map<String,String>> listItemsIR,listItemsRF;
+	List<Map<String, Object>> listItemsIR;
+	List<Map<String, Object>> listItemsRF;
 	ListView listViewIR;
 	ListView listViewRF;
 	
@@ -123,7 +124,7 @@ public class ControlBox extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				 String type=listItemsIR.get(arg2).get("content");
+				 String type=(String)listItemsIR.get(arg2).get("content");
 				 Intent intent ;
 				 if(type.equals("TV")){
 					 intent = new Intent(ControlBox.this,IR_TV.class);	
@@ -156,7 +157,7 @@ public class ControlBox extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				 String type=listItemsRF.get(arg2).get("content");
+				 String type=(String)listItemsRF.get(arg2).get("content");
 				 Intent intent ;
 				 if(type.equals(itemsRF[0])){
 					 intent = new Intent(ControlBox.this,RF_Switch.class);
@@ -193,10 +194,10 @@ public class ControlBox extends Activity {
 		if(listItemsIR!=null){
 			listItemsIR.clear();
 		}
-		listItemsIR=new ArrayList<Map<String,String>>();		
-		listItemsRF=new ArrayList<Map<String,String>>();	
+		listItemsIR=new ArrayList<Map<String,Object>>();		
+		listItemsRF=new ArrayList<Map<String,Object>>();	
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
-			Map<String,String> listItem =new HashMap<String,String>();	
+			Map<String,Object> listItem =new HashMap<String,Object>();	
 		
 			listItem.put("title", cur.getString(4));
 			listItem.put("content", cur.getString(3));
@@ -208,6 +209,32 @@ public class ControlBox extends Activity {
 			}
 			
 		}
+		
+		
+		
+		//list排序  需要优化
+		if (!listItemsIR.isEmpty()) {    
+	    	 Collections.sort(listItemsIR, new Comparator<Map<String, Object>>() {
+	     	@Override
+	     	public int compare(Map<String, Object> object1,
+	     	Map<String, Object> object2) {
+			//根据文本排序
+	          	return ((String) object1.get("title")).compareTo((String) object2.get("title"));
+	     	}    
+	    	 });    
+	     }	
+		if (!listItemsRF.isEmpty()) {    
+	    	 Collections.sort(listItemsRF, new Comparator<Map<String, Object>>() {
+	     	@Override
+	     	public int compare(Map<String, Object> object1,
+	     	Map<String, Object> object2) {
+			//根据文本排序
+	          	return ((String) object1.get("title")).compareTo((String) object2.get("title"));
+	     	}    
+	    	 });    
+	     }	
+		
+		
 		
 		SimpleAdapter simpleAdapterIR = new SimpleAdapter(this
 				, listItemsIR 
