@@ -2,6 +2,8 @@ package com.seuic.smartgateway;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -194,16 +196,15 @@ public class ControlBox extends Activity {
 		listItemsIR=new ArrayList<Map<String,String>>();		
 		listItemsRF=new ArrayList<Map<String,String>>();	
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
-			Map<String,String> listItem =new HashMap<String,String>();
-			
+			Map<String,String> listItem =new HashMap<String,String>();	
 		
-			listItem.put("title", cur.getString(3));
-			listItem.put("content", cur.getString(2));
-			String mClass=cur.getString(1);
+			listItem.put("title", cur.getString(4));
+			listItem.put("content", cur.getString(3));
+			String mClass=cur.getString(2);
 			if(mClass.equals("ir")){
 			listItemsIR.add(listItem);	
 			}else if(mClass.equals("rf")){
-				listItemsRF.add(listItem);	
+			listItemsRF.add(listItem);	
 			}
 			
 		}
@@ -225,5 +226,23 @@ public class ControlBox extends Activity {
 		listViewRF.setAdapter(simpleAdapterRF);
 		
 	}
-	
+	private List<Map<String, Object>> getData() {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(); 
+		 
+		//add Data ...
+		 
+		//对list进行排序
+		 
+		if (!list.isEmpty()) {    
+		    	 Collections.sort(list, new Comparator<Map<String, Object>>() {
+		     	@Override
+		     	public int compare(Map<String, Object> object1,
+		     	Map<String, Object> object2) {
+				//根据文本排序
+		          	return ((String) object1.get("content")).compareTo((String) object2.get("content"));
+		     	}    
+		    	 });    
+		}		 
+		return list;
+		}
 }
