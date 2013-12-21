@@ -39,13 +39,14 @@ public class AddEtc extends Activity {
 		
 		okBtn=(Button)findViewById(R.id.okBtn);
 		listBtn=(Button)findViewById(R.id.listBtn);
+		
 		if(mClass.equals("ir")){
 			listBtn.setText("TV");
 		}else{
 			listBtn.setText("Switch");
 		}
-		final AlertDialog.Builder builder = new AlertDialog.Builder(this); 
 		
+		final AlertDialog.Builder builder = new AlertDialog.Builder(this); 	
 	
 		listBtn.setOnClickListener(new OnClickListener() {
 			
@@ -83,7 +84,7 @@ public class AddEtc extends Activity {
 				//≤Â»Î ˝æ›ø‚ø‚				
 				writeDB=DevSetup.mSQLHelper.getWritableDatabase();
 				DevSetup.mSQLHelper.insertList(writeDB, mUid, mClass, listBtn.getText().toString(), name, "0","0");
-				Log.e("leewoo", mUid+" "+name+" "+mClass+" "+listBtn.getText().toString());
+				//Log.e("leewoo", mUid+" "+name+" "+mClass+" "+listBtn.getText().toString());
 				finish();
 			}			
 		});	

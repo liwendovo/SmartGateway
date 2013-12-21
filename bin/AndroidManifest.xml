@@ -7,12 +7,12 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="14" />
-
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+       android:theme="@android:style/Theme.NoTitleBar" >
         <activity
             android:name="com.seuic.smartgateway.DevSetup"
             android:label="@string/app_name" >
@@ -22,6 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.seuic.net.SetupAp" 			
+			android:label="SetupAp">
+		</activity> 
        	<activity android:name="com.seuic.add.AddDev" 			
 			android:label="AddDev">
 		</activity> 
@@ -31,7 +34,58 @@
         <activity android:name="com.seuic.smartgateway.ControlBox" 			
 			android:label="设备">
 		</activity> 
-        
+         <activity android:name="com.seuic.devetc.IR_TV" 			
+			android:label="TV">
+		</activity> 
+		   <activity android:name="com.seuic.devetc.IR_AC" 			
+			android:label="AC">
+		</activity> 
+		   <activity android:name="com.seuic.devetc.IR_Media" 			
+			android:label="Media">
+		</activity> 
+		   <activity android:name="com.seuic.devetc.IR_STU" 			
+			android:label="STU">
+		</activity> 
+		   <activity android:name="com.seuic.devetc.IR_WH" 			
+			android:label="WH">
+		</activity> 
+		   <activity android:name="com.seuic.devetc.IR_DVD" 			
+			android:label="DVD">
+		</activity> 
+		   <activity android:name="com.seuic.devetc.IR_FAN" 			
+			android:label="Fan">
+		</activity> 		
+		<activity android:name="com.seuic.devetc.IR_Selfdefine1" 			
+			android:label="IR_Selfdefine1">
+		</activity> 
+		<activity android:name="com.seuic.devetc.IR_Selfdefine2" 			
+			android:label="IR_Selfdefine2">
+		</activity> 
+		
+		
+		
+		<activity android:name="com.seuic.devetc.RF_Switch" 			
+			android:label="RF_Switch">
+		</activity> 
+		<activity android:name="com.seuic.devetc.RF_WH" 			
+			android:label="RF_WH">
+		</activity> 
+		<activity android:name="com.seuic.devetc.RF_Lamp" 			
+			android:label="RF_Lamp">
+		</activity> 	
+			<activity android:name="com.seuic.devetc.RF_Curtain" 			
+			android:label="RF_Curtain">
+		</activity> 		
+		<activity android:name="com.seuic.devetc.RF_Selfdefine1" 			
+			android:label="RF_Selfdefine1">
+		</activity> 
+		<activity android:name="com.seuic.devetc.RF_Selfdefine2" 			
+			android:label="RF_Selfdefine2">
+		</activity> 
+		
+		
+		
+		
     </application>
 
 </manifest>

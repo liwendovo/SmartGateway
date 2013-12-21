@@ -50,7 +50,7 @@ public class ControlBox extends Activity {
 	public final static CharSequence[] itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
 	
 	TextView tv1; 
-	Button addIRBtn,addRFBtn;
+//	Button addIRBtn,addRFBtn;
 	Button titleBtn;
 	String mUid;
 	List<Map<String, Object>> listItemsIR;
@@ -133,13 +133,13 @@ public class ControlBox extends Activity {
 					
 				 ;
 				if(TabID.equals("IR")){                	
-					Intent intent = new Intent(ControlBox.this, AddEtc.class);	
+					 Intent intent = new Intent(ControlBox.this, AddEtc.class);	
 					 intent.putExtra("uid", mUid);
 					 intent.putExtra("type", "ir");
 					 startActivity(intent);	
             	}else if(TabID.equals("RF")){
             	//	titleBtn.setVisibility(Button.VISIBLE);
-            		Intent intent = new Intent(ControlBox.this, AddEtc.class);	
+            		 Intent intent = new Intent(ControlBox.this, AddEtc.class);	
             		 intent.putExtra("uid", mUid);
     				 intent.putExtra("type", "rf");
     				 startActivity(intent);	
@@ -152,28 +152,28 @@ public class ControlBox extends Activity {
 			}			
 		});	
 		
-		addIRBtn=(Button)findViewById(R.id.addIRBtn);		
-		addRFBtn=(Button)findViewById(R.id.addRFBtn);
-		addIRBtn.setOnClickListener(new OnClickListener()
-		{		
-			public void onClick(View source){
-						
-				 Intent intent = new Intent(ControlBox.this, AddEtc.class);	
-				 intent.putExtra("uid", mUid);
-				 intent.putExtra("type", "ir");
-				 startActivity(intent);		
-			}			
-		});	
-		addRFBtn.setOnClickListener(new OnClickListener()
-		{		
-			public void onClick(View source){
-							
-				 Intent intent = new Intent(ControlBox.this, AddEtc.class);	
-				 intent.putExtra("uid", mUid);
-				 intent.putExtra("type", "rf");
-				 startActivity(intent);		
-			}			
-		});	
+//		addIRBtn=(Button)findViewById(R.id.addIRBtn);		
+//		addRFBtn=(Button)findViewById(R.id.addRFBtn);
+//		addIRBtn.setOnClickListener(new OnClickListener()
+//		{		
+//			public void onClick(View source){
+//						
+//				 Intent intent = new Intent(ControlBox.this, AddEtc.class);	
+//				 intent.putExtra("uid", mUid);
+//				 intent.putExtra("type", "ir");
+//				 startActivity(intent);		
+//			}			
+//		});	
+//		addRFBtn.setOnClickListener(new OnClickListener()
+//		{		
+//			public void onClick(View source){
+//							
+//				 Intent intent = new Intent(ControlBox.this, AddEtc.class);	
+//				 intent.putExtra("uid", mUid);
+//				 intent.putExtra("type", "rf");
+//				 startActivity(intent);		
+//			}			
+//		});	
 		
 		listViewIR.setOnItemClickListener(new OnItemClickListener(){
 
@@ -184,6 +184,8 @@ public class ControlBox extends Activity {
 				 String type=(String)listItemsIR.get(arg2).get("content");
 				 Intent intent ;
 				 if(type.equals("TV")){
+//					 intent.putExtra("uid", mUid);
+//    				 intent.putExtra("type", "rf");
 					 intent = new Intent(ControlBox.this,IR_TV.class);	
 				 }else if(type.equals("AC")){
 					 intent = new Intent(ControlBox.this,IR_AC.class);
@@ -310,23 +312,6 @@ public class ControlBox extends Activity {
 		listViewRF.setAdapter(simpleAdapterRF);
 		
 	}
-	private List<Map<String, Object>> getData() {
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(); 
-		 
-		//add Data ...
-		 
-		//对list进行排序
-		 
-		if (!list.isEmpty()) {    
-		    	 Collections.sort(list, new Comparator<Map<String, Object>>() {
-		     	@Override
-		     	public int compare(Map<String, Object> object1,
-		     	Map<String, Object> object2) {
-				//根据文本排序
-		          	return ((String) object1.get("content")).compareTo((String) object2.get("content"));
-		     	}    
-		    	 });    
-		}		 
-		return list;
-		}
+	
+
 }
