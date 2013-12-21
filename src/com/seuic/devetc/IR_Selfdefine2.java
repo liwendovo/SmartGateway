@@ -17,9 +17,11 @@ import com.seuic.smartgateway.R;
 
 public class IR_Selfdefine2 extends Activity implements android.view.View.OnClickListener,OnLongClickListener{
 	Button  backBtn;
-	Button  button1,button2,button3,
-			button4,button5,button6,
-			button7,button8,button9;
+	Button  button1,button2,
+			button3,button4,button5,
+			button6,button7,button8,
+			button9,button10,button11,
+			button12,button13,button14;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,7 +37,11 @@ public class IR_Selfdefine2 extends Activity implements android.view.View.OnClic
 		button7=(Button)findViewById(R.id.button7);		
 		button8=(Button)findViewById(R.id.button8);
 		button9=(Button)findViewById(R.id.button9);
-		
+		button10=(Button)findViewById(R.id.button10);
+		button11=(Button)findViewById(R.id.button11);
+		button12=(Button)findViewById(R.id.button12);
+		button13=(Button)findViewById(R.id.button13);
+		button14=(Button)findViewById(R.id.button14);
 		backBtn.setOnClickListener(this); 
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);  
@@ -55,6 +61,12 @@ public class IR_Selfdefine2 extends Activity implements android.view.View.OnClic
 		button7.setOnLongClickListener(this);
 		button8.setOnLongClickListener(this);
 		button9.setOnLongClickListener(this);
+		button10.setOnLongClickListener(this);
+		button11.setOnLongClickListener(this);
+		button12.setOnLongClickListener(this);
+		button13.setOnLongClickListener(this);
+		button14.setOnLongClickListener(this);
+		
 	
 	}
 	@Override
@@ -98,6 +110,27 @@ public class IR_Selfdefine2 extends Activity implements android.view.View.OnClic
 	        	Log.e("leewoo", "button7 onLongClick");
 	        	dialog();
 	            break;  
+	        case R.id.button10:  
+	        	Log.e("leewoo", "button7 onLongClick");
+	        	dialog();
+	            break;  
+	        case R.id.button11:  
+	        	Log.e("leewoo", "button7 onLongClick");
+	        	dialog();
+	            break;  
+	        case R.id.button12:  
+	        	Log.e("leewoo", "button7 onLongClick");
+	        	dialog();
+	            break;  
+	        case R.id.button13:  
+	        	Log.e("leewoo", "button7 onLongClick");
+	        	dialog();
+	            break;  
+	        case R.id.button14:  
+	        	Log.e("leewoo", "button7 onLongClick");
+	        	dialog();
+	            break;  
+	            
 	        default:  
 	            break;  
 	        }  

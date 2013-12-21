@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +18,7 @@ import android.widget.EditText;
 import com.seuic.smartgateway.R;
 
 public class IR_Selfdefine1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener {
-	Button  backBtn;
+	Button  backBtn,leanrnBtn;
 	Button  button1,button2,button3,
 			button4,button5,button6,
 			button7,button8,button9;
@@ -25,7 +27,8 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ir_selfdefine1);
-		backBtn=(Button)findViewById(R.id.back);		
+		backBtn=(Button)findViewById(R.id.back);
+		leanrnBtn=(Button)findViewById(R.id.titleBtn);
 		button1=(Button)findViewById(R.id.button1);
 		button2=(Button)findViewById(R.id.button2);
 		button3=(Button)findViewById(R.id.button3);		
@@ -55,8 +58,16 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 		button7.setOnLongClickListener(this);
 		button8.setOnLongClickListener(this);
 		button9.setOnLongClickListener(this);
-	
-		
+//保存名字	
+//		SharedPreferences sharedPreferences = getSharedPreferences("itcast", Context.MODE_PRIVATE);
+//		Editor editor = sharedPreferences.edit();//获取编辑器
+//		editor.putString("name", "传智播客");
+//		editor.putInt("age", 4);
+//		editor.commit();
+//		SharedPreferences sharedPreferences = getSharedPreferences("itcast", Context.MODE_PRIVATE);
+//		//getString()第二个参数为缺省值，如果preference中不存在该key，将返回缺省值
+//		String name = sharedPreferences.getString("name", "");
+//		int age = sharedPreferences.getInt("age", 1);
 	}
 	
 	@Override
@@ -66,6 +77,23 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 		switch(v.getId())  
         {  
         case R.id.back: finish();break;
+        case R.id.titleBtn: break;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         default:  
             break;  
         }  
@@ -145,5 +173,11 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 		 builder.create().show();
 	   }
 
-
+//	 public void drawAhade(Canvas canvas) {
+//
+//			Paint shadepaint = new Paint();
+//			shadepaint.setARGB(170, 123, 125, 127);
+//			canvas.drawRect(0, 50, 200, 300, shadepaint);
+//
+//		}
 }

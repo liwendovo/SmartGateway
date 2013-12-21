@@ -6,12 +6,13 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 
 import com.seuic.smartgateway.R;
 
-public class RF_Selfdefine2 extends Activity {
+public class RF_Selfdefine2 extends Activity implements android.view.View.OnClickListener{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,5 +41,11 @@ public class RF_Selfdefine2 extends Activity {
 		 });
 		 builder.create().show();
 	   }
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
