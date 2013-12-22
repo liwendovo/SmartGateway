@@ -8,39 +8,28 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DevSetup" >
 
+    <Spinner
+        android:id="@+id/spinnerSSID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1" />
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ssid"
-        android:layout_alignLeft="@+id/ssid"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:text="Network SSID:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/password"
-        android:layout_alignLeft="@+id/password"
-        android:text="Password:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/pushapBtn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Send to Device" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/pushapBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="18dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2"
         android:ems="10"
         android:hint="Please input password"
         android:maxEms="16"
@@ -49,14 +38,21 @@
         <requestFocus />
     </EditText>
 
-    <EditText
-        android:id="@+id/ssid"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignRight="@+id/pushapBtn"
-        android:ems="10"
-        android:hint="Please input SSID" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spinnerSSID"
+        android:text="Password:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/pushapBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/password"
+        android:text="Send to Device" />
 
 </RelativeLayout>
