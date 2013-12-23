@@ -58,7 +58,7 @@ public class ControlBox extends Activity {
 	ListView listViewIR;
 	ListView listViewRF;
 	TextView devClass;
-	String TabID;
+	String TabID="IR";
 	public SQLiteDatabase readDB;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

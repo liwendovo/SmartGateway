@@ -15,8 +15,9 @@
             android:id="@+id/Btn1"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            
             android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="Logo" />
 
         <TextView
@@ -34,7 +35,8 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+            
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="ADD" />
 
     </RelativeLayout>
@@ -51,7 +53,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#7A7A7A" >
+        android:background="#7A7A7A"
+        android:paddingTop="@dimen/activity_vertical_margin" >
         
         
         <TextView
@@ -68,7 +71,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:text="Setup" />
                      
 
