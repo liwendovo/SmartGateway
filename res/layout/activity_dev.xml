@@ -34,8 +34,7 @@
             android:id="@+id/addDevBtn"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            
+            android:layout_alignParentRight="true"            
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="ADD" />
 
@@ -54,9 +53,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#7A7A7A"
-        android:paddingTop="@dimen/activity_vertical_margin" >
-        
-        
+        android:paddingTop="@dimen/activity_vertical_margin" >        
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
@@ -68,7 +65,7 @@
 
         <Button
             android:id="@+id/SetupBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="Setup" />
@@ -92,6 +89,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:paddingLeft="20dip" 
+        android:paddingRight="20dip"         
         android:layout_below="@+id/textView4" >
 
     </ListView>

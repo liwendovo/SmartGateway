@@ -1,13 +1,11 @@
 package com.seuic.devetc;
 
-import com.seuic.smartgateway.R;
-import com.seuic.smartgateway.R.layout;
-
-import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+
+import com.seuic.smartgateway.R;
 
 public class RF_Lamp extends Activity implements android.view.View.OnClickListener{
 

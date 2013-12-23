@@ -7,18 +7,17 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
+import android.app.AlertDialog.Builder;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -27,7 +26,6 @@ import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
-
 import com.seuic.add.AddEtc;
 import com.seuic.devetc.IR_AC;
 import com.seuic.devetc.IR_DVD;
@@ -50,7 +48,7 @@ public class ControlBox extends Activity {
 	public final static CharSequence[] itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
 	
 	TextView tv1; 
-//	Button addIRBtn,addRFBtn;
+	Button aboutBtn,resetBtn;
 	Button titleBtn;
 	String mUid;
 	List<Map<String, Object>> listItemsIR;
@@ -73,14 +71,13 @@ public class ControlBox extends Activity {
 		devClass   = (TextView)findViewById(R.id.devClass);
 		
 		titleBtn=(Button)findViewById(R.id.titleBtn);
+		aboutBtn=(Button)findViewById(R.id.aboutBtn);
+		resetBtn=(Button)findViewById(R.id.resetBtn);
+		
 		
 		
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");	
-//		Toast toast = Toast.makeText(ControlBox.this, mUid, Toast.LENGTH_SHORT);
-//		toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 50);
-//		toast.show();	
-	
 		
 		TabHost host = (TabHost)findViewById(R.id.tabhost);
 		host.setup();
@@ -130,8 +127,7 @@ public class ControlBox extends Activity {
 		titleBtn.setOnClickListener(new OnClickListener()
 		{		
 			public void onClick(View source){
-					
-				 ;
+				 
 				if(TabID.equals("IR")){                	
 					 Intent intent = new Intent(ControlBox.this, AddEtc.class);	
 					 intent.putExtra("uid", mUid);
@@ -143,37 +139,30 @@ public class ControlBox extends Activity {
             		 intent.putExtra("uid", mUid);
     				 intent.putExtra("type", "rf");
     				 startActivity(intent);	
-            	}else{
-            		
+            	}else if(TabID.equals("TH")){
+            		//charge
             		
             	}
 			
 				
 			}			
 		});	
-		
-//		addIRBtn=(Button)findViewById(R.id.addIRBtn);		
-//		addRFBtn=(Button)findViewById(R.id.addRFBtn);
-//		addIRBtn.setOnClickListener(new OnClickListener()
-//		{		
-//			public void onClick(View source){
-//						
-//				 Intent intent = new Intent(ControlBox.this, AddEtc.class);	
-//				 intent.putExtra("uid", mUid);
-//				 intent.putExtra("type", "ir");
-//				 startActivity(intent);		
-//			}			
-//		});	
-//		addRFBtn.setOnClickListener(new OnClickListener()
-//		{		
-//			public void onClick(View source){
-//							
-//				 Intent intent = new Intent(ControlBox.this, AddEtc.class);	
-//				 intent.putExtra("uid", mUid);
-//				 intent.putExtra("type", "rf");
-//				 startActivity(intent);		
-//			}			
-//		});	
+		aboutBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				aboutus();
+			}
+		});
+		resetBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Log.i("leewoo", "reset");
+			}
+		});
 		
 		listViewIR.setOnItemClickListener(new OnItemClickListener(){
 
@@ -243,7 +232,7 @@ public class ControlBox extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		Cursor cur=DevSetup.mSQLHelper.seleteByDevID(DevSetup.readDB,mUid);
+		Cursor cur=DevSetup.mSQLHelper.seleteByDevID(DevSetup.writeDB,mUid);
 		if(0==cur.getCount()){
 			return;	
 		}	
@@ -312,6 +301,13 @@ public class ControlBox extends Activity {
 		listViewRF.setAdapter(simpleAdapterRF);
 		
 	}
-	
+	 protected void aboutus() {
+		 AlertDialog.Builder builder = new Builder(ControlBox.this);
+		 builder.setMessage("Please input name");
+		 builder.setTitle("About us");
+		 builder.setMessage(this.getString(R.string.aboutus));		
+		 builder.create().show();
+	   }
+
 
 }

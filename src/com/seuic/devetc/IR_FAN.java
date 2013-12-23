@@ -1,14 +1,11 @@
 package com.seuic.devetc;
 
-import com.seuic.smartgateway.R;
-import com.seuic.smartgateway.R.layout;
-import com.seuic.smartgateway.R.menu;
-
-import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+
+import com.seuic.smartgateway.R;
 
 public class IR_FAN extends Activity implements android.view.View.OnClickListener{
 

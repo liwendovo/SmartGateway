@@ -157,6 +157,7 @@ public final class R {
         public static final int selfdefine2=0x7f070004;
     }
     public static final class string {
+        public static final int aboutus=0x7f05000c;
         public static final int action_settings=0x7f050001;
         public static final int add=0x7f05000a;
         public static final int app_name=0x7f050000;

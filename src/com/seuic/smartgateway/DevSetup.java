@@ -10,16 +10,21 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -31,9 +36,9 @@ public class DevSetup extends Activity {
 	ListView listView;
 	Button addDevBtn;
 	Button setupBtn;
-	List<Map<String,String>> listItems;
+	List<Map<String, Object>> listItems;
 	public static SQLiteHelper mSQLHelper;
-	public static SQLiteDatabase readDB;
+	public static SQLiteDatabase writeDB;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,7 @@ public class DevSetup extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_dev);
 		mSQLHelper = new SQLiteHelper(this,"smartgateway.db",1); //数据库
-		readDB=mSQLHelper.getReadableDatabase();
+		writeDB=mSQLHelper.getWritableDatabase();
 		listView = (ListView)findViewById(R.id.devListView);			
 		addDevBtn=(Button)findViewById(R.id.addDevBtn);
 		setupBtn=(Button)findViewById(R.id.SetupBtn);
@@ -71,29 +76,56 @@ public class DevSetup extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				 String uid=listItems.get(arg2).get("title");			
+				 String uid=(String) listItems.get(arg2).get("title");			
 				 Intent intent = new Intent(DevSetup.this, ControlBox.class);				 
 				 intent.putExtra("uid", uid);
 				 startActivity(intent);		
 				 
 			}
 		});
+		
+		onSwipeTouchListener touchListener =
+                new onSwipeTouchListener(
+                        listView,
+                        new onSwipeTouchListener.DismissCallbacks() {
+                            @Override
+                            public boolean canDismiss(int position) {
+                                return true;
+                            }
+
+                            @Override
+                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+                                	Map<String, Object> listItem=listItems.get(position);
+                                	mSQLHelper.deleteSetup(writeDB, listItem.get("title").toString());
+                                	listItems.remove(listItem);
+                                	//数据库删除
+                                	Log.e("leewoo", "swipe->Right");
+                                	
+                                }
+                              //  listItems.notifyDataSetChanged();
+                            }
+                        });
+        listView.setOnTouchListener(touchListener);
+        // Setting this scroll listener is required to ensure that during ListView scrolling,
+        // we don't look for swipes.
+        listView.setOnScrollListener(touchListener.makeScrollListener());
     }
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		Cursor cur=mSQLHelper.seleteByUidALL(readDB);
+		Cursor cur=mSQLHelper.seleteByUidALL(writeDB);
 		if(0==cur.getCount()){
 			return;	
 		}	
 		if(listItems!=null){
 			listItems.clear();
 		}
-        listItems=new ArrayList<Map<String,String>>();		
+        listItems=new ArrayList<Map<String,Object>>();		
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
-			Map<String,String> listItem =new HashMap<String,String>();
+			Map<String, Object> listItem =new HashMap<String,Object>();
 			listItem.put("title", cur.getString(0));
 			listItem.put("content", cur.getString(1));
 			listItems.add(listItem);	
@@ -119,6 +151,8 @@ public class DevSetup extends Activity {
 			mSQLHelper.close();
 		}
 	}
+	
+
 }
 
 
