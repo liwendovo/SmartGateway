@@ -62,21 +62,21 @@
             <RelativeLayout
                 android:id="@+id/tabir"
                 android:layout_width="fill_parent"
-                android:layout_height="411dp"
+                android:layout_height="fill_parent"
                 android:orientation="vertical"
-                android:paddingTop="20dip" >
+                android:paddingTop="20dip" 
+                android:paddingLeft="20dip" 
+                android:paddingRight="20dip"
+                android:layout_marginBottom="50dip">
 
        
 
                 <ListView
                     android:id="@+id/listViewIR"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_height="wrap_content"     
                     android:layout_alignParentLeft="true"
-                   >
-
-                </ListView>
+                 ></ListView>
 
             </RelativeLayout>
             <!-- the second tab tabrf -->
@@ -86,7 +86,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="vertical"
-                android:paddingTop="20dip" >
+                android:paddingTop="20dip" 
+                  android:paddingLeft="20dip" 
+                android:paddingRight="20dip">
 
             
  
@@ -107,7 +109,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="vertical"
-                android:paddingTop="20dip" >
+                android:layout_marginBottom="50dip"
+                android:paddingTop="20dip"
+                  android:paddingLeft="20dip" 
+                android:paddingRight="20dip" >
 
              <ImageView
 		        android:id="@+id/imageView1"
@@ -124,24 +129,23 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="vertical"
-                android:paddingTop="20dip" >
-		 	 <ImageView
+                android:layout_marginBottom="50dip"
+                android:paddingTop="20dip" 
+                android:paddingLeft="20dip" 
+                android:paddingRight="20dip">
+             <TableLayout 
+               android:layout_width="fill_parent" 
+   				 android:layout_height="wrap_content"
+   				 android:stretchColumns="1,2">
+                  <ImageView
 		        android:id="@+id/imageView1"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignParentTop="true"
 		        android:layout_centerHorizontal="true"
 		        android:src="@drawable/littlelogo" />
-		
-		    <LinearLayout
-		        android:id="@+id/linearLayout1"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentLeft="true"
-		        android:layout_below="@+id/imageView1"
-		        android:orientation="horizontal" >
-		
-		        <TextView
+                 <TableRow>
+                   <TextView
 		            android:id="@+id/tmpBtn"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
@@ -157,53 +161,45 @@
 		            android:id="@+id/fBtn"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="F" />
-		    </LinearLayout>
-		
-		    <LinearLayout
-		        android:id="@+id/linearLayout2"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_alignLeft="@+id/linearLayout1"
-		        android:layout_below="@+id/linearLayout1"
-		        android:orientation="horizontal" >
-		        <TextView
+		            android:text="F" />                       
+                 </TableRow>
+                 
+                 <TableRow>
+                   <TextView
 		            android:id="@+id/TextView01"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            android:text="Time Display"
 		            android:textAppearance="?android:attr/textAppearanceLarge" />
 		
-		        <Button
+		       	  <Button
 		            android:id="@+id/Button12"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="12H" />
-		
-		        <Button
+		            android:text="12H" />		
+		          <Button
 		            android:id="@+id/Button24"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="24H" />
-		     </LinearLayout>
-
-
+		            android:text="24H" />                          
+                  </TableRow>
+              
+		 	
                 <Button
                     android:id="@+id/resetBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/linearLayout2"
-     			    android:layout_alignRight="@+id/linearLayout2"
-     			    android:layout_below="@+id/linearLayout2"
+                
+     			
                     android:text="Reset App" />
 
                 <Button
                     android:id="@+id/aboutBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/resetBtn"
+              
                     android:text="About us" />
+                 </TableLayout>
             </RelativeLayout>
             
             
