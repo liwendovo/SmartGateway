@@ -54,9 +54,11 @@ public class SetupAp extends Activity
 			
 		   List<ScanResult> results = wifiManager.getScanResults();  
 		   //String otherwifi ="The existing network SSID is: \n\n"; 
+		   if(!results.isEmpty()){
 		   for (ScanResult result : results) {    	          		   
 	            listSSID.add(result.SSID);	            
-	        }  		   
+	        }  		
+		   }
 			ArrayAdapter<String> _Adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, listSSID);
 			//°ó¶¨ Adapterµ½¿Ø¼þ
 			spinnerSSID.setAdapter(_Adapter);
