@@ -55,10 +55,11 @@
         android:layout_gravity="center"
         android:src="@drawable/curtain" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
+    <TableLayout 
+               android:layout_width="fill_parent" 
+   				 android:layout_height="wrap_content"
+   				 android:stretchColumns="0,1,2">
+        <TableRow>
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
@@ -76,12 +77,10 @@
             android:layout_height="wrap_content"
             android:text="Button" />
 
-    </LinearLayout>
+   </TableRow>
    
     
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <TableRow>
          
         <Button
             android:id="@+id/button6"
@@ -101,7 +100,7 @@
             android:layout_height="wrap_content"
             android:text="Button" />
 
-    </LinearLayout>
-    
+   </TableRow>
+    </TableLayout>
     
      </LinearLayout>

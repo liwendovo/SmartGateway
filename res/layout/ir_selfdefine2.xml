@@ -42,10 +42,11 @@
     </RelativeLayout>
    
    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
+    <TableLayout 
+               android:layout_width="fill_parent" 
+   				 android:layout_height="wrap_content"
+   				 android:stretchColumns="0,1,2">
+<TableRow>
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
@@ -65,11 +66,9 @@
             android:layout_height="wrap_content"
             android:text="Define" />
 
-    </LinearLayout>
+   </TableRow>
     
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+   <TableRow>
 
         <Button
             android:id="@+id/button3"
@@ -89,12 +88,9 @@
             android:layout_height="wrap_content"
             android:text="Define" />
 
-    </LinearLayout>
+   </TableRow>
     
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
+   <TableRow>
         <Button
             android:id="@+id/button6"
             android:layout_width="wrap_content"
@@ -113,10 +109,8 @@
             android:layout_height="wrap_content"
             android:text="Define" />
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+   </TableRow>
+   <TableRow>
 
         <Button
             android:id="@+id/button9"
@@ -136,11 +130,9 @@
             android:layout_height="wrap_content"
             android:text="Define" />
 
-    </LinearLayout>
+   </TableRow>
     
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <TableRow>
 
         <Button
             android:id="@+id/button12"
@@ -160,7 +152,7 @@
             android:layout_height="wrap_content"
             android:text="Define" />
 
-    </LinearLayout>
-    
+    </TableRow>
+    </TableLayout>
     
      </LinearLayout>

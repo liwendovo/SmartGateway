@@ -55,10 +55,11 @@
         android:layout_gravity="center"
         android:src="@drawable/close" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
+    <TableLayout 
+               android:layout_width="fill_parent" 
+   				 android:layout_height="wrap_content"
+   				 android:stretchColumns="0,1,2">
+<TableRow>
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
@@ -77,11 +78,9 @@
             android:layout_height="wrap_content"
             android:text="Define" />
 
-    </LinearLayout>
+    </TableRow>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <TableRow>
 
         <Button
             android:id="@+id/button4"
@@ -101,12 +100,9 @@
             android:layout_height="wrap_content"
             android:text="Define" />
 
-    </LinearLayout>
+   </TableRow>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
+    <TableRow>
         <Button
             android:id="@+id/button7"
             android:layout_width="wrap_content"
@@ -125,7 +121,7 @@
             android:layout_height="wrap_content"
             android:text="Define" />
 
-    </LinearLayout>
-
+   </TableRow>
+</TableLayout>
    
  </LinearLayout>

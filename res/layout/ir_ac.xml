@@ -54,10 +54,11 @@
         android:layout_gravity="center"
         android:src="@drawable/airconditional" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
+    <TableLayout 
+               android:layout_width="fill_parent" 
+   				 android:layout_height="wrap_content"
+   				 android:stretchColumns="0,1,2">
+<TableRow>
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
@@ -79,11 +80,9 @@
             android:layout_alignParentRight="true"
             android:text="Model3" />
 
-    </RelativeLayout>
+    </TableRow>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <TableRow>
 
         <Button
             android:id="@+id/button4"
@@ -106,12 +105,9 @@
             android:layout_alignParentRight="true"
             android:text="Model6" />
 
-    </RelativeLayout>
+   </TableRow>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
+   <TableRow>
         <Button
             android:id="@+id/button7"
             android:layout_width="wrap_content"
@@ -133,7 +129,8 @@
             android:layout_alignParentRight="true"
             android:text="Model9" />
 
-    </RelativeLayout>
+    </TableRow>
+     </TableLayout>
 
     <ImageButton
         android:id="@+id/imageButton1"
