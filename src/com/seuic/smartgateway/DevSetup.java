@@ -113,7 +113,7 @@ public class DevSetup extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		Cursor cur=mSQLHelper.seleteByUidALL(writeDB);
+		Cursor cur=mSQLHelper.seleteSetupALL(writeDB);
 		if(0==cur.getCount()){
 			return;	
 		}	

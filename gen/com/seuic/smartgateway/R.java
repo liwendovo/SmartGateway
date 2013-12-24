@@ -148,6 +148,7 @@ public final class R {
         public static final int rf_switch=0x7f030013;
         public static final int rf_wh=0x7f030014;
         public static final int setupap=0x7f030015;
+        public static final int spinnerlayout=0x7f030016;
     }
     public static final class menu {
         public static final int dev=0x7f070000;

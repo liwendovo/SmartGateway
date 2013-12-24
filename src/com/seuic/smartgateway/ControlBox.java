@@ -232,7 +232,7 @@ public class ControlBox extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		Cursor cur=DevSetup.mSQLHelper.seleteByDevID(DevSetup.writeDB,mUid);
+		Cursor cur=DevSetup.mSQLHelper.seleteList(DevSetup.writeDB,mUid);
 		if(0==cur.getCount()){
 			return;	
 		}	

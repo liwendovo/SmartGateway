@@ -15,15 +15,19 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	private final static String Table_Name_Setup = "devsetup";
 	private final static String Table_Name_List = "devlist";
 	private final static String Table_Name_Etc = "devetc";
-	public final static String Uid = "_id";
+
+	private final static String ID = "_id";
+	public  final static String Uid = "uid";
 	private final static String DevID = "devid";
 	private final static String EtcID = "etcid";	
 	private final static String Name = "name";
 	private final static String Type = "type";
 	private final static String Class = "class";
+	private final static String BtnName = "btn";
 	private final static String Status = "status";
+	
 	private final static String Other = "other";
-	private final static String ID = "_id";
+	
 	
     final String CREATE_SETUP_TABLE_SQL =
     		 "CREATE TABLE IF NOT EXISTS " + Table_Name_Setup + 
@@ -31,10 +35,10 @@ public class SQLiteHelper extends SQLiteOpenHelper
   //_id INTEGER PRIMARY KEY AUTOINCREMENT
 	final String CREATE_LIST_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_List + 
-    		 " ( "+ID+" INTEGER PRIMARY KEY AUTOINCREMENT, " + DevID + " VHARCHAR, " + Class + " VHARCHAR, " + Type + " VHARCHAR, "+Name + " VHARCHAR, " + Status + " VHARCHAR, "+ Other+ " VHARCHAR );";
+    		 " ( "+ DevID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + Uid + " VHARCHAR, " + Class + " VHARCHAR, " + Type + " VHARCHAR, "+Name + " VHARCHAR, " + Status + " VHARCHAR, "+ Other+ " VHARCHAR );";
 	final String CREATE_ETC_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_Etc + 
-    		 " ( " + EtcID + " VHARCHAR, " + Name + " VHARCHAR, " + Type + " VHARCHAR, "+ Other+ " VHARCHAR );";
+    		 " ( "+ DevID + "INTEGER, "+ Uid +" VHARCHAR, " +  Type + " VHARCHAR, "+ BtnName + " VHARCHAR, "+ Name + " VHARCHAR, "+  Other+ " VHARCHAR );";
 		
 		
 	@Override
@@ -63,11 +67,11 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	// 返回值  成功  重复
 	public void insertList(SQLiteDatabase db, String Tag_Uid, String Tag_Class, String Tag_Type, String Tag_Name, String Tag_Status, String Tag_Other) {
 		//插入前查询，查重
-		
+	
 		String sql = "INSERT INTO " + Table_Name_List + " Values(NULL,\'" + Tag_Uid + "\',\'" + Tag_Class + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',\'"  + Tag_Status + "\',\'"+ Tag_Other + "\');";
 		db.execSQL(sql);
 	}
-	public void insertEtc (SQLiteDatabase db, String Tag_Uid, String Tag_Name, String Tag_Type, String Tag_Other) {
+	public void insertEtc(SQLiteDatabase db, String Tag_Uid, String Tag_Name, String Tag_Type, String Tag_Other) {
 		
 		String sql = "INSERT INTO " + Table_Name_Etc  + " Values( \'"+ Tag_Uid + "\',\'" + Tag_Name + "\',\'" + Tag_Type + "\',\'"+ Tag_Other + "\');";
 		db.execSQL(sql);
@@ -79,26 +83,26 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		sql = "DELETE FROM " + Table_Name_List + " WHERE " + Uid + "=\"" + Tag_Uid + "\"";
 		db.execSQL(sql);
 	}
-	public Cursor seleteByUid(SQLiteDatabase db, String Tag_Uid) {
+	public Cursor seleteSetup(SQLiteDatabase db, String Tag_Uid) {
 		String str = "SELECT * FROM " + Table_Name_Setup + " WHERE " +Uid + "=\""+ Tag_Uid + "\"";
 		Cursor ToReturn = db.rawQuery(str, null);
 		ToReturn.moveToFirst();
 		return ToReturn;
 	}
-	public Cursor seleteByUidALL(SQLiteDatabase db) {
+	public Cursor seleteSetupALL(SQLiteDatabase db) {
 		String str = "SELECT * FROM " + Table_Name_Setup ;
 		Cursor ToReturn = db.rawQuery(str, null);
 		ToReturn.moveToFirst();
 		return ToReturn;
 	}
-	public Cursor seleteByDevID(SQLiteDatabase db, String Tag_DevID) {
-		String str = "SELECT * FROM " + Table_Name_List + " WHERE " +DevID + "=\""	+ Tag_DevID + "\"";
+	public Cursor seleteList(SQLiteDatabase db, String Tag_UID) {
+		String str = "SELECT * FROM " + Table_Name_List + " WHERE " +Uid + "=\""	+ Tag_UID + "\"";
 		Cursor ToReturn = db.rawQuery(str, null);
 		ToReturn.moveToFirst();
 		return ToReturn;
 	}
-	public Cursor updateStatusByID(SQLiteDatabase db, String Tag_ID) {
-		String str = "update " + Table_Name_Setup + " set Complain='yes' where " + Uid + "=\"" + Tag_ID + "\"";
+	public Cursor updateListStatus(SQLiteDatabase db, String Tag_ID) {
+		String str = "update " + Table_Name_List + " set Complain='yes' where " + Uid + "=\"" + Tag_ID + "\"";
 		Cursor ToReturn = db.rawQuery(str, null);
 		ToReturn.moveToFirst();
 		return ToReturn;
