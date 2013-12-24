@@ -225,7 +225,60 @@ public class ControlBox extends Activity {
 				 
 			}
 		});
-		
+		onSwipeTouchListener touchListenerIR =
+                new onSwipeTouchListener(
+                        listViewIR,
+                        new onSwipeTouchListener.DismissCallbacks() {
+                            @Override
+                            public boolean canDismiss(int position) {
+                                return true;
+                            }
+
+                            @Override
+                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+                                	Map<String, Object> listItem=listItemsIR.get(position);
+                                	DevSetup.mSQLHelper.deleteSetup(DevSetup.writeDB, listItem.get("title").toString());
+                                	listItemsIR.remove(listItem);
+                                	//数据库删除
+                                	Log.e("leewoo", "swipe->Right");
+                                	
+                                }
+                              //  listItems.notifyDataSetChanged();
+                            }
+                        });
+        listViewIR.setOnTouchListener(touchListenerIR);
+        // Setting this scroll listener is required to ensure that during ListView scrolling,
+        // we don't look for swipes.
+        listViewIR.setOnScrollListener(touchListenerIR.makeScrollListener());
+        
+        
+        onSwipeTouchListener touchListenerRF =
+                new onSwipeTouchListener(
+                        listViewRF,
+                        new onSwipeTouchListener.DismissCallbacks() {
+                            @Override
+                            public boolean canDismiss(int position) {
+                                return true;
+                            }
+
+                            @Override
+                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+                                	Map<String, Object> listItem=listItemsRF.get(position);
+                                	DevSetup.mSQLHelper.deleteSetup(DevSetup.writeDB, listItem.get("title").toString());
+                                	listItemsRF.remove(listItem);
+                                	//数据库删除
+                                	Log.e("leewoo", "swipe->Right");
+                                	
+                                }
+                              //  listItems.notifyDataSetChanged();
+                            }
+                        });
+        listViewRF.setOnTouchListener(touchListenerRF);
+        // Setting this scroll listener is required to ensure that during ListView scrolling,
+        // we don't look for swipes.
+        listViewRF.setOnScrollListener(touchListenerRF.makeScrollListener());
 		
 	}
 	@Override
