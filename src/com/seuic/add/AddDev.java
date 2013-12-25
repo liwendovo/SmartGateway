@@ -49,12 +49,7 @@ public class AddDev extends Activity {
 				DevSetup.mSQLHelper.insertList(writeDB, UID, "rf", ControlBox.itemsRF[4].toString(), "Devices",  "0","0");
 				DevSetup.mSQLHelper.insertList(writeDB, UID, "rf", ControlBox.itemsRF[5].toString(), "Devices",  "0","0");
 				
-				
-				
-				
-				
-				
-				
+				//出入三级表
 				
 				
 				finish();

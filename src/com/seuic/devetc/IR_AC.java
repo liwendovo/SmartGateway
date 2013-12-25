@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.seuic.smartgateway.R;
 
 public class IR_AC extends Activity implements android.view.View.OnClickListener,OnLongClickListener {
-	Button  backBtn;
+	Button  backBtn,leanrnBtn;
 	Button  button1,button2,button3,
 			button4,button5,button6,
 			button7,button8,button9;
@@ -32,6 +32,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		button9=(Button)findViewById(R.id.button9);
 		
 		backBtn.setOnClickListener(this); 
+		leanrnBtn.setOnClickListener(this); 
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);  
 		button3.setOnClickListener(this);  

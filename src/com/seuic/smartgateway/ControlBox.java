@@ -206,6 +206,9 @@ public class ControlBox extends Activity {
 					long arg3) {
 				// TODO Auto-generated method stub
 				 String type=(String)listItemsRF.get(arg2).get("content");
+				 int devid=Integer.parseInt(String.valueOf(listItemsRF.get(arg2).get("devid")));
+				// String id=listItemsRF.get(arg2).get("id");
+				     // Integer.parseInt(String.valueOf(value));
 				 Intent intent ;
 				 if(type.equals(itemsRF[0])){
 					 intent = new Intent(ControlBox.this,RF_Switch.class);
@@ -221,6 +224,7 @@ public class ControlBox extends Activity {
 					 intent = new Intent(ControlBox.this,RF_Selfdefine2.class);
 				 }						 
 				// intent.putExtra("uid", uid);
+				 intent.putExtra("devid", devid);
 				 startActivity(intent);		
 				 
 			}
@@ -238,9 +242,11 @@ public class ControlBox extends Activity {
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
                                 	Map<String, Object> listItem=listItemsIR.get(position);
-                                	DevSetup.mSQLHelper.deleteSetup(DevSetup.writeDB, listItem.get("title").toString());
+                                	 int devid=Integer.parseInt(String.valueOf(listItem.get("devid")));
+                                	 DevSetup.mSQLHelper.deleteList(DevSetup.writeDB,devid);
                                 	listItemsIR.remove(listItem);
                                 	//数据库删除
+                                	
                                 	Log.e("leewoo", "swipe->Right");
                                 	
                                 }
@@ -266,7 +272,9 @@ public class ControlBox extends Activity {
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
                                 	Map<String, Object> listItem=listItemsRF.get(position);
-                                	DevSetup.mSQLHelper.deleteSetup(DevSetup.writeDB, listItem.get("title").toString());
+                                	int devid=Integer.parseInt(String.valueOf(listItem.get("devid")));
+                                	
+                                	DevSetup.mSQLHelper.deleteList(DevSetup.writeDB,devid);
                                 	listItemsRF.remove(listItem);
                                 	//数据库删除
                                 	Log.e("leewoo", "swipe->Right");
@@ -302,6 +310,7 @@ public class ControlBox extends Activity {
 		
 			listItem.put("title", cur.getString(4));
 			listItem.put("content", cur.getString(3));
+			listItem.put("devid", cur.getInt(1));
 			String mClass=cur.getString(2);
 			if(mClass.equals("ir")){
 			listItemsIR.add(listItem);	
@@ -309,9 +318,9 @@ public class ControlBox extends Activity {
 			listItemsRF.add(listItem);	
 			}
 			
-		}
+		}		
 		
-		
+		cur.close();
 		
 		//list排序  需要优化
 		if (!listItemsIR.isEmpty()) {    

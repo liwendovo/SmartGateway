@@ -36,7 +36,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
     		 " ( "+  Uid + " VHARCHAR, "+ DevID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + Class + " VHARCHAR, " + Type + " VHARCHAR, "+Name + " VHARCHAR, " + Status + " VHARCHAR, "+ Other+ " VHARCHAR );";
 	final String CREATE_ETC_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_Etc + 
-    		 " ( "+  Uid +" VHARCHAR, " + DevID + "INTEGER, " + EtcID + " VHARCHAR, "+ Name + " VHARCHAR, "+ Status + " VHARCHAR, "+  Other+ " VHARCHAR );";
+    		 " ( "+  Uid +" VHARCHAR, " + DevID + " INTEGER, " + EtcID + " VHARCHAR, "+ Name + " VHARCHAR, "+ Status + " VHARCHAR, "+  Other+ " VHARCHAR );";
 		
 		
 	@Override
@@ -84,7 +84,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		sql = "DELETE FROM " + Table_Name_Etc   + " WHERE " + Uid + "=\"" + Tag_Uid + "\"";
 		db.execSQL(sql);
 	}
-	public void deleteSetup(SQLiteDatabase db, int Tag_DevID) {
+	public void deleteList(SQLiteDatabase db, int Tag_DevID) {
 		
 		String 	
 		sql = "DELETE FROM " + Table_Name_List  + " WHERE " + DevID + "=\"" + Tag_DevID + "\"";
@@ -123,11 +123,18 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		ToReturn.moveToFirst();
 		return ToReturn;
 	}
-	public Cursor updateListStatus(SQLiteDatabase db, String Tag_ID) {
-		String str = "update " + Table_Name_List + " set Complain='yes' where " + Uid + "=\"" + Tag_ID + "\"";
-		Cursor ToReturn = db.rawQuery(str, null);
-		ToReturn.moveToFirst();
-		return ToReturn;
+	public void updateListStatus(SQLiteDatabase db, String Tag_ID, String Tag_Status) {
+		String str = "update " + Table_Name_List + " set "+ Status+"='"+Tag_Status+"' where " + Uid + "=\"" + Tag_ID + "\"";
+		db.execSQL(str);
+	}
+		
+	public void updateEtcName(SQLiteDatabase db, String Tag_ID) {
+		String str = "update " + Table_Name_Etc + " set "+Name+" ='yes' where " + Uid + "=\"" + Tag_ID + "\"";
+		db.execSQL(str);
+	}
+	public void updateEtcStatus(SQLiteDatabase db, String Tag_ID) {
+		String str = "update " + Table_Name_Etc + " set "+ Status+"='yes' where " + Uid + "=\"" + Tag_ID + "\"";
+		db.execSQL(str);
 	}
 
 	@Override

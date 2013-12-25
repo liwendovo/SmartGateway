@@ -33,6 +33,7 @@ public class DevSetup extends Activity {
 	ListView listView;
 	Button addDevBtn;
 	Button setupBtn;
+	
 	List<Map<String, Object>> listItems;
 	public static SQLiteHelper mSQLHelper;
 	public static SQLiteDatabase writeDB;

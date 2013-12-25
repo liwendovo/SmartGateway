@@ -16,7 +16,7 @@ import android.widget.EditText;
 import com.seuic.smartgateway.R;
 
 public class RF_Selfdefine1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener{
-	Button  backBtn;
+	Button  backBtn,leanrnBtn;
 	Button  button1,button2,button3,
 			button4,button5,button6,
 			button7,button8,button9;
@@ -36,6 +36,7 @@ public class RF_Selfdefine1 extends Activity implements android.view.View.OnClic
 //		int age = sharedPreferences.getInt("age", 1);
 		
 		backBtn=(Button)findViewById(R.id.back);		
+		leanrnBtn=(Button)findViewById(R.id.titleBtn);	
 		button1=(Button)findViewById(R.id.button1);
 		button2=(Button)findViewById(R.id.button2);
 		button3=(Button)findViewById(R.id.button3);		
@@ -47,6 +48,7 @@ public class RF_Selfdefine1 extends Activity implements android.view.View.OnClic
 		button9=(Button)findViewById(R.id.button9);
 		
 		backBtn.setOnClickListener(this); 
+		leanrnBtn.setOnClickListener(this); 
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);  
 		button3.setOnClickListener(this);  
