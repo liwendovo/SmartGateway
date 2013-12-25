@@ -59,7 +59,7 @@
    				 android:stretchColumns="0,1,2">
 <TableRow>
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="On" />
@@ -71,7 +71,7 @@
         android:src="@drawable/lamp" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Off" />
@@ -84,13 +84,13 @@
    				 android:stretchColumns="0,1,2">
 <TableRow>
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="25%" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="50%" />
@@ -100,13 +100,13 @@
       <TableRow>
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/button5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="75%" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/button6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="100%" />
@@ -114,7 +114,7 @@
     </TableRow>
      </TableLayout>
      <Button
-            android:id="@+id/button8"
+            android:id="@+id/button7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

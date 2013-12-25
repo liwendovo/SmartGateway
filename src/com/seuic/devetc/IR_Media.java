@@ -30,7 +30,7 @@ public class IR_Media extends Activity implements android.view.View.OnClickListe
 		button6=(Button)findViewById(R.id.button6);		
 		button7=(Button)findViewById(R.id.button7);		
 		button8=(Button)findViewById(R.id.button8);
-		button9=(Button)findViewById(R.id.button9);
+		
 		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
@@ -42,7 +42,7 @@ public class IR_Media extends Activity implements android.view.View.OnClickListe
 		button6.setOnClickListener(this);  
 		button7.setOnClickListener(this);  
 		button8.setOnClickListener(this);  
-		button9.setOnClickListener(this);  
+		 
 	}
 
 	@Override

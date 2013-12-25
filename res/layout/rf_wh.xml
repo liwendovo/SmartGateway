@@ -92,7 +92,7 @@
    				 android:stretchColumns="0,1,2">
       <TableRow>
        <Button
-            android:id="@+id/button2"
+            android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button" />
@@ -105,7 +105,7 @@
             android:src="@drawable/close" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button" />

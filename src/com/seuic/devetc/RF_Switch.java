@@ -22,25 +22,13 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
 		button1=(Button)findViewById(R.id.button1);
 		button2=(Button)findViewById(R.id.button2);
-		button3=(Button)findViewById(R.id.button3);		
-		button4=(Button)findViewById(R.id.button4);		
-		button5=(Button)findViewById(R.id.button5);
-		button6=(Button)findViewById(R.id.button6);		
-		button7=(Button)findViewById(R.id.button7);		
-		button8=(Button)findViewById(R.id.button8);
-		button9=(Button)findViewById(R.id.button9);
+	
 		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);  
-		button3.setOnClickListener(this);  
-		button4.setOnClickListener(this);  
-		button5.setOnClickListener(this);  
-		button6.setOnClickListener(this);  
-		button7.setOnClickListener(this);  
-		button8.setOnClickListener(this);  
-		button9.setOnClickListener(this);  
+	
 	}
 
 	@Override

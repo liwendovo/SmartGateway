@@ -20,7 +20,8 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ir_ac);
-		backBtn=(Button)findViewById(R.id.back);		
+		backBtn=(Button)findViewById(R.id.back);	
+		leanrnBtn=(Button)findViewById(R.id.titleBtn);	
 		button1=(Button)findViewById(R.id.button1);
 		button2=(Button)findViewById(R.id.button2);
 		button3=(Button)findViewById(R.id.button3);		

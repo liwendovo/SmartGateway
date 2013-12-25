@@ -171,7 +171,7 @@ public class ControlBox extends Activity {
 					long arg3) {
 				// TODO Auto-generated method stub
 				 String type=(String)listItemsIR.get(arg2).get("content");
-				 int devid=Integer.parseInt(String.valueOf(listItemsRF.get(arg2).get("devid")));
+				 int devid=Integer.parseInt(String.valueOf(listItemsIR.get(arg2).get("devid")));
 				 Intent intent ;
 				 if(type.equals("TV")){
 //					 intent.putExtra("uid", mUid);
