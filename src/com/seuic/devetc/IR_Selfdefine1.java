@@ -1,3 +1,4 @@
+
 package com.seuic.devetc;
 
 import android.app.Activity;
@@ -5,13 +6,16 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.seuic.smartgateway.R;
 
@@ -20,6 +24,17 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	Button  button1,button2,button3,
 			button4,button5,button6,
 			button7,button8,button9;
+	static Boolean lenclr=false;
+	static Boolean btnclr1=false;
+	static Boolean btnclr2=false;
+	static Boolean btnclr3=false;
+	static Boolean btnclr4=false;
+	static Boolean btnclr5=false;
+	static Boolean btnclr6=false;
+	static Boolean btnclr7=false;
+	static Boolean btnclr8=false;
+	static Boolean btnclr9=false;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,7 +54,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 		
 		
 		backBtn.setOnClickListener(this); 
-		leanrnBtn.setOnClickListener(this); 
+		leanrnBtn.setOnClickListener(this);
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);  
 		button3.setOnClickListener(this);  
@@ -72,16 +87,213 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	
 	@Override
 	public void onClick(View v) {
+		Toast toast = null;
+
 		// TODO Auto-generated method stub
 //		Log.e("leewoo", "Button id = " + v.getId());  
 		switch(v.getId())  
         {  
         case R.id.back: finish();break;
-        case R.id.titleBtn: break;
+        case R.id.titleBtn:
+        	lenclr=!lenclr;
+        	Log.e("lenclr=",""+lenclr);
+        	if(lenclr==true)
+        		{leanrnBtn.setBackgroundColor(Color.GRAY);
+            		Log.e("leewoo", "clr"+v.getId() ); 
+        		        	       	
+        	if(btnclr1==false)
+               	button1.setBackgroundColor(Color.GRAY);
+        	else button1.setBackgroundColor(Color.YELLOW);
+        	if(btnclr2==false)
+               	button2.setBackgroundColor(Color.GRAY);
+        	else button2.setBackgroundColor(Color.YELLOW);
+        	if(btnclr3==false)
+               	button3.setBackgroundColor(Color.GRAY);
+        	else button3.setBackgroundColor(Color.YELLOW);
+        	if(btnclr4==false)
+               	button4.setBackgroundColor(Color.GRAY);
+        	else button4.setBackgroundColor(Color.YELLOW);
+        	if(btnclr5==false)
+               	button5.setBackgroundColor(Color.GRAY);
+        	else button5.setBackgroundColor(Color.YELLOW);
+        	if(btnclr6==false)
+               	button6.setBackgroundColor(Color.GRAY);
+        	else button6.setBackgroundColor(Color.YELLOW);
+        	if(btnclr7==false)
+               	button7.setBackgroundColor(Color.GRAY);
+        	else button7.setBackgroundColor(Color.YELLOW);
+        	if(btnclr8==false)
+               	button8.setBackgroundColor(Color.GRAY);
+        	else button8.setBackgroundColor(Color.YELLOW);
+        	if(btnclr9==false)
+               	button9.setBackgroundColor(Color.GRAY);
+        	else button9.setBackgroundColor(Color.YELLOW);}
+        	
+        	else {
+        		leanrnBtn.setBackgroundColor(Color.YELLOW);
+        		button1.setBackgroundColor(Color.YELLOW);
+        		button2.setBackgroundColor(Color.YELLOW);
+        		button3.setBackgroundColor(Color.YELLOW);
+        		button4.setBackgroundColor(Color.YELLOW);
+        		button5.setBackgroundColor(Color.YELLOW);
+        		button6.setBackgroundColor(Color.YELLOW);
+        		button7.setBackgroundColor(Color.YELLOW);
+        		button8.setBackgroundColor(Color.YELLOW);
+        		button9.setBackgroundColor(Color.YELLOW);
+        		        	}
+        	break;
+//        	if(btnclr1=false)
+//               	button1.setBackgroundColor(Color.GRAY);
+//        	else button1.setBackgroundColor(Color.GRAY);
+//        	if(btnclr1=false)
+//               	button1.setBackgroundColor(Color.GRAY);
+//        	else button1.setBackgroundColor(Color.GRAY);
+//        	if(btnclr1=false)
+//               	button1.setBackgroundColor(Color.GRAY);
+//        	else button1.setBackgroundColor(Color.GRAY);
+//        	if(btnclr1=false)
+//               	button1.setBackgroundColor(Color.GRAY);
+//        	else button1.setBackgroundColor(Color.GRAY);
+//        	if(btnclr1=false)
+//               	button1.setBackgroundColor(Color.GRAY);
+//        	else button1.setBackgroundColor(Color.GRAY);
+//        	if(btnclr1=false)
+//               	button1.setBackgroundColor(Color.GRAY);
+//        	else button1.setBackgroundColor(Color.GRAY);
+      	
+        	
+//        	button2.setBackgroundColor(Color.GRAY);
+//        	button3.setBackgroundColor(Color.GRAY);    
+//        	button4.setBackgroundColor(Color.GRAY);
+//        	button5.setBackgroundColor(Color.GRAY);
+//        	button6.setBackgroundColor(Color.GRAY); 
+//        	button7.setBackgroundColor(Color.GRAY);
+//        	button8.setBackgroundColor(Color.GRAY);
+//        	button9.setBackgroundColor(Color.GRAY); 
+        	
+        	
+        case R.id.button1:
+        	if(lenclr==true){
+        		
+        	
+        	if(btnclr1==false)
+        	{   toast = Toast.makeText(getApplicationContext(),
+        		     "学习成功", Toast.LENGTH_SHORT);
+        	   toast.setGravity(Gravity.CENTER, 0, 0);
+        	   toast.show();
+
+        		btnclr1=!btnclr1;
+        		button1.setBackgroundColor(Color.YELLOW);
+        		Log.e("btnclr1=",""+btnclr1);
+        	}
+        }
+        	break;
+        case R.id.button2:
+        	if(lenclr==true){
+        	if(btnclr2==false)
+        	{toast = Toast.makeText(getApplicationContext(),
+       		     "学习成功", Toast.LENGTH_SHORT);
+       	   toast.setGravity(Gravity.CENTER, 0, 0);
+       	   toast.show();
+        		btnclr2=!btnclr2;
+        		button2.setBackgroundColor(Color.YELLOW);
+        		Log.e("btnclr2=",""+btnclr2);
+        	}
+        	}
+        	break;
+        case R.id.button3:
+        	if(lenclr==true){
+        	if(btnclr3==false)
+        	{toast = Toast.makeText(getApplicationContext(),
+       		     "学习成功", Toast.LENGTH_SHORT);
+       	   toast.setGravity(Gravity.CENTER, 0, 0);
+       	   toast.show();
+        		btnclr3=!btnclr3;
+        		button3.setBackgroundColor(Color.YELLOW);
+        		Log.e("btnclr3=",""+btnclr3);
+        	}
+        	}
+        	
+        	break;
         
-        
-        
-        
+        case R.id.button4:
+        	if(lenclr==true){
+        	if(btnclr4==false)
+        	{toast = Toast.makeText(getApplicationContext(),
+       		     "学习成功", Toast.LENGTH_SHORT);
+       	   toast.setGravity(Gravity.CENTER, 0, 0);
+       	   toast.show();
+        		btnclr4=!btnclr4;
+        		button4.setBackgroundColor(Color.YELLOW);
+        		Log.e("btnclr4=",""+btnclr4);
+        	}
+        	}
+        	break;
+        case R.id.button5:
+        	if(lenclr==true){
+        	if(btnclr5==false)
+        	{    toast = Toast.makeText(getApplicationContext(),
+       		     "学习成功", Toast.LENGTH_SHORT);
+       	   toast.setGravity(Gravity.CENTER, 0, 0);
+       	   toast.show();
+        		btnclr5=!btnclr5;
+        		button5.setBackgroundColor(Color.YELLOW);
+        		Log.e("btnclr5=",""+btnclr5);
+        	}
+        	}
+        	break;
+        case R.id.button6:
+        	if(lenclr==true){
+        	if(btnclr6==false)
+        	{  toast = Toast.makeText(getApplicationContext(),
+       		     "学习成功", Toast.LENGTH_SHORT);
+       	   toast.setGravity(Gravity.CENTER, 0, 0);
+       	   toast.show();
+        		btnclr6=!btnclr6;
+        		button6.setBackgroundColor(Color.YELLOW);
+        		Log.e("btnclr6=",""+btnclr6);
+        	}
+        	}
+        	break;
+        case R.id.button7:
+        	if(lenclr==true){
+        	if(btnclr7==false)
+        	{  toast = Toast.makeText(getApplicationContext(),
+       		     "学习成功", Toast.LENGTH_SHORT);
+       	   toast.setGravity(Gravity.CENTER, 0, 0);
+       	   toast.show();
+        		btnclr7=!btnclr7;
+        		button7.setBackgroundColor(Color.YELLOW);
+        		Log.e("btnclr7=",""+btnclr7);
+        	}
+        	}
+        	break;
+        case R.id.button8:
+        	if(lenclr==true){
+        	if(btnclr8==false)
+        	{  toast = Toast.makeText(getApplicationContext(),
+       		     "学习成功", Toast.LENGTH_SHORT);
+       	   toast.setGravity(Gravity.CENTER, 0, 0);
+       	   toast.show();
+        		btnclr8=!btnclr8;
+        		button8.setBackgroundColor(Color.YELLOW);
+        		Log.e("btnclr8=",""+btnclr8);
+        	}
+        	}
+        	break;
+        case R.id.button9:
+        	if(lenclr==true){
+        	if(btnclr9==false)
+        	{  toast = Toast.makeText(getApplicationContext(),
+       		     "学习成功", Toast.LENGTH_SHORT);
+       	   toast.setGravity(Gravity.CENTER, 0, 0);
+       	   toast.show();
+        		btnclr9=!btnclr9;
+        		button9.setBackgroundColor(Color.YELLOW);
+        		Log.e("btnclr9=",""+btnclr9);
+        	}
+        	}
+        	break;
         
         
         
@@ -95,6 +307,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
         
         
         default:  
+        	Log.e("leewoo", "Button id =default " ); 
             break;  
         }  
         
@@ -181,3 +394,4 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 //
 //		}
 }
+

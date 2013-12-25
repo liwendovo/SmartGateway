@@ -171,6 +171,7 @@ public class ControlBox extends Activity {
 					long arg3) {
 				// TODO Auto-generated method stub
 				 String type=(String)listItemsIR.get(arg2).get("content");
+				 int devid=Integer.parseInt(String.valueOf(listItemsRF.get(arg2).get("devid")));
 				 Intent intent ;
 				 if(type.equals("TV")){
 //					 intent.putExtra("uid", mUid);
@@ -193,7 +194,8 @@ public class ControlBox extends Activity {
 				 }else {
 					 intent = new Intent(ControlBox.this,IR_Selfdefine2.class);
 				 }						 
-				// intent.putExtra("uid", uid);
+				 intent.putExtra("uid",  mUid);
+				 intent.putExtra("devid", devid);
 				 startActivity(intent);		
 				 
 			}
@@ -223,7 +225,7 @@ public class ControlBox extends Activity {
 				 }else {
 					 intent = new Intent(ControlBox.this,RF_Selfdefine2.class);
 				 }						 
-				// intent.putExtra("uid", uid);
+				 intent.putExtra("uid",  mUid);
 				 intent.putExtra("devid", devid);
 				 startActivity(intent);		
 				 

@@ -84,6 +84,12 @@ public class AddEtc extends Activity {
 				//插入数据库库				
 				writeDB=DevSetup.mSQLHelper.getWritableDatabase();
 				DevSetup.mSQLHelper.insertList(writeDB, mUid, mClass, listBtn.getText().toString(), name, "0","0");
+				//三级页表的创建
+				
+				
+				
+				
+				
 				//Log.e("leewoo", mUid+" "+name+" "+mClass+" "+listBtn.getText().toString());
 				finish();
 			}			

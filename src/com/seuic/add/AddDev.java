@@ -51,7 +51,6 @@ public class AddDev extends Activity {
 				
 				//出入三级表
 				
-				
 				finish();
 			}			
 		});	
