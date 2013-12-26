@@ -51,13 +51,11 @@ public final class R {
     }
     public static final class id {
         public static final int Btn1=0x7f080000;
-        public static final int Button12=0x7f08001c;
-        public static final int Button24=0x7f08001d;
         public static final int LinearLayout1=0x7f080020;
         public static final int SetupBtn=0x7f080005;
         public static final int TextView01=0x7f08001b;
         public static final int aboutBtn=0x7f08001f;
-        public static final int action_settings=0x7f080044;
+        public static final int action_settings=0x7f080043;
         public static final int addDevBtn=0x7f080002;
         public static final int back=0x7f080021;
         public static final int button1=0x7f080024;
@@ -66,10 +64,10 @@ public final class R {
         public static final int button12=0x7f080031;
         public static final int button13=0x7f080032;
         public static final int button14=0x7f080033;
-        public static final int button15=0x7f080039;
-        public static final int button16=0x7f08003a;
-        public static final int button17=0x7f08003b;
-        public static final int button18=0x7f08003c;
+        public static final int button15=0x7f080038;
+        public static final int button16=0x7f080039;
+        public static final int button17=0x7f08003a;
+        public static final int button18=0x7f08003b;
         public static final int button2=0x7f080025;
         public static final int button3=0x7f080026;
         public static final int button4=0x7f080027;
@@ -78,15 +76,13 @@ public final class R {
         public static final int button7=0x7f08002a;
         public static final int button8=0x7f08002b;
         public static final int button9=0x7f08002c;
-        public static final int cBtn=0x7f080019;
         public static final int content=0x7f080035;
         public static final int devClass=0x7f080010;
         public static final int devListView=0x7f080007;
         public static final int devName=0x7f08000a;
-        public static final int editText1=0x7f080037;
-        public static final int editText2=0x7f080038;
-        public static final int editText7=0x7f080040;
-        public static final int fBtn=0x7f08001a;
+        public static final int editText1=0x7f080036;
+        public static final int editText2=0x7f080037;
+        public static final int editText7=0x7f08003f;
         public static final int home=0x7f08000f;
         public static final int imageButton1=0x7f08002d;
         public static final int imageButton2=0x7f08002e;
@@ -96,10 +92,10 @@ public final class R {
         public static final int listViewIR=0x7f080013;
         public static final int listViewRF=0x7f080015;
         public static final int okBtn=0x7f08000c;
-        public static final int password=0x7f080042;
-        public static final int pushapBtn=0x7f080043;
+        public static final int password=0x7f080041;
+        public static final int pushapBtn=0x7f080042;
         public static final int resetBtn=0x7f08001e;
-        public static final int spinnerSSID=0x7f080041;
+        public static final int spinnerSSID=0x7f080040;
         public static final int tabhost=0x7f08000d;
         public static final int tabir=0x7f080012;
         public static final int tabrf=0x7f080014;
@@ -110,14 +106,17 @@ public final class R {
         public static final int textView2=0x7f080003;
         public static final int textView3=0x7f080004;
         public static final int textView4=0x7f080006;
-        public static final int textView6=0x7f08003d;
-        public static final int textView7=0x7f08003f;
+        public static final int textView6=0x7f08003c;
+        public static final int textView7=0x7f08003e;
         public static final int title=0x7f080034;
         public static final int titleBtn=0x7f080011;
         public static final int titleTxt=0x7f080022;
         public static final int tmpBtn=0x7f080018;
-        public static final int toggleButton1=0x7f080036;
-        public static final int toggleButton6=0x7f08003e;
+        public static final int toggleButton1=0x7f080019;
+        public static final int toggleButton2=0x7f08001a;
+        public static final int toggleButton3=0x7f08001c;
+        public static final int toggleButton4=0x7f08001d;
+        public static final int toggleButton6=0x7f08003d;
         public static final int uidEditText=0x7f080008;
     }
     public static final class layout {
@@ -135,15 +134,16 @@ public final class R {
         public static final int ir_tv=0x7f03000b;
         public static final int ir_wh=0x7f03000c;
         public static final int line=0x7f03000d;
-        public static final int list=0x7f03000e;
-        public static final int rf_curtain=0x7f03000f;
-        public static final int rf_lamp=0x7f030010;
-        public static final int rf_selfdefine1=0x7f030011;
-        public static final int rf_selfdefine2=0x7f030012;
-        public static final int rf_switch=0x7f030013;
-        public static final int rf_wh=0x7f030014;
-        public static final int setupap=0x7f030015;
-        public static final int spinnerlayout=0x7f030016;
+        public static final int line2=0x7f03000e;
+        public static final int list=0x7f03000f;
+        public static final int rf_curtain=0x7f030010;
+        public static final int rf_lamp=0x7f030011;
+        public static final int rf_selfdefine1=0x7f030012;
+        public static final int rf_selfdefine2=0x7f030013;
+        public static final int rf_switch=0x7f030014;
+        public static final int rf_wh=0x7f030015;
+        public static final int setupap=0x7f030016;
+        public static final int spinnerlayout=0x7f030017;
     }
     public static final class menu {
         public static final int dev=0x7f070000;

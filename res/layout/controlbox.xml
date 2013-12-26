@@ -153,17 +153,21 @@
 		            android:text="Tempreture"
 		            android:textAppearance="?android:attr/textAppearanceLarge" />
 		
-		        <Button
-		            android:id="@+id/cBtn"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="C" />		
-		        <Button
-		            android:id="@+id/fBtn"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="F" />                       
-                 </TableRow>
+			  		<ToggleButton
+	 			    android:id="@+id/toggleButton1"
+	 			    android:layout_width="wrap_content"
+	 			    android:layout_height="wrap_content" 	
+	 			    android:textOff="C"
+	 			    android:textOn="C" 
+	 			     android:checked="true" />		
+			  	 	<ToggleButton
+	 			    android:id="@+id/toggleButton2"
+	 			    android:layout_width="wrap_content"
+	 			    android:layout_height="wrap_content" 	
+	 			    android:textOff="F"
+	 			    android:textOn="F" 
+	 			    android:checked="false" />                       
+	                 </TableRow>
                  
                  <TableRow>
                    <TextView
@@ -173,16 +177,20 @@
 		            android:text="Time Display"
 		            android:textAppearance="?android:attr/textAppearanceLarge" />
 		
-		       	  <Button
-		            android:id="@+id/Button12"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="12H" />		
-		          <Button
-		            android:id="@+id/Button24"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="24H" />                          
+		     	   <ToggleButton
+	 			    android:id="@+id/toggleButton3"
+	 			    android:layout_width="wrap_content"
+	 			    android:layout_height="wrap_content" 	
+	 			    android:textOff="12H"
+	 			    android:textOn="12H" 
+	 			     android:checked="true" />		
+			  	 	<ToggleButton
+	 			    android:id="@+id/toggleButton4"
+	 			    android:layout_width="wrap_content"
+	 			    android:layout_height="wrap_content" 	
+	 			    android:textOff="24H"
+	 			    android:textOn="24H" 
+	 			    android:checked="false" />                        
                   </TableRow>
               
 		 	
