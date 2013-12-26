@@ -45,8 +45,9 @@ public final class R {
         public static final int temp=0x7f020015;
         public static final int th=0x7f020016;
         public static final int tv=0x7f020017;
-        public static final int up_down=0x7f020018;
-        public static final int water=0x7f020019;
+        public static final int tv2=0x7f020018;
+        public static final int up_down=0x7f020019;
+        public static final int water=0x7f02001a;
     }
     public static final class id {
         public static final int Btn1=0x7f080000;

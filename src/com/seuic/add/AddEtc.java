@@ -22,6 +22,7 @@ public class AddEtc extends Activity {
 	Button okBtn;
 	Button listBtn;
 	String mUid,mClass;
+	int mDevID;
 	public SQLiteDatabase writeDB;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,8 @@ public class AddEtc extends Activity {
 		
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");	
-		mClass=intent.getStringExtra("type");	
+		mClass=intent.getStringExtra("type");
+		
 		Log.e("leewoo", "AddEtc -------  onCreate"+mUid+"   "+mClass);
 	
 		

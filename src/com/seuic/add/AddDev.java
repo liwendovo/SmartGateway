@@ -15,6 +15,7 @@ import com.seuic.smartgateway.R;
 
 public class AddDev extends Activity {
 	Button addDevBtn;
+	String btnDefaults="×Ô¶¨Òå";
 	public SQLiteDatabase writeDB;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,9 @@ public class AddDev extends Activity {
 				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[5].toString(), "Devices",  "0","0");
 				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[6].toString(), "Devices",  "0","0");
 				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[7].toString(), "Devices",  "0","0");
+					
+						//DevSetup.mSQLHelper.insertBtn(writeDB,UID,8, "name" ,btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults+14);
+						//DevSetup.mSQLHelper.insertEtc(writeDB, UID, 8, UID, UID, UID, UID);
 				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[8].toString(), "Devices",  "0","0");
 				
 				DevSetup.mSQLHelper.insertList(writeDB, UID, "rf", ControlBox.itemsRF[0].toString(), "Devices",  "0","0");

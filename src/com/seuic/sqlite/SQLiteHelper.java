@@ -3,10 +3,14 @@
  * copyright@ seuic 
  * */
 package com.seuic.sqlite;
+import android.R.bool;
+import android.R.string;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 
 public class SQLiteHelper extends SQLiteOpenHelper
@@ -15,7 +19,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	private final static String Table_Name_Setup = "devsetup";
 	private final static String Table_Name_List = "devlist";
 	private final static String Table_Name_Etc = "devetc";
-
+	private final static String Table_Name_Btn = "devbtn";
 	
 	public  final static String Uid   = "uid";    //设备ID
 	private final static String DevID = "devid";//遥控器ID
@@ -33,10 +37,13 @@ public class SQLiteHelper extends SQLiteOpenHelper
   //_id INTEGER PRIMARY KEY AUTOINCREMENT
 	final String CREATE_LIST_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_List + 
-    		 " ( "+  Uid + " VHARCHAR, "+ DevID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + Class + " VHARCHAR, " + Type + " VHARCHAR, "+Name + " VHARCHAR, " + Status + " VHARCHAR, "+ Other+ " VHARCHAR );";
+    		 " ( "+  Uid + " VHARCHAR(20), "+ DevID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + Class + " VHARCHAR, " + Type + " VHARCHAR, "+Name + " VHARCHAR, " + Status + " VHARCHAR, "+ Other+ " VHARCHAR );";
 	final String CREATE_ETC_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_Etc + 
-    		 " ( "+  Uid +" VHARCHAR, " + DevID + " INTEGER, " + EtcID + " VHARCHAR, "+ Name + " VHARCHAR, "+ Status + " VHARCHAR, "+  Other+ " VHARCHAR );";
+    		 " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + EtcID + " VHARCHAR, "+ Name + " VHARCHAR, "+ Status + " VHARCHAR, "+  Other+ " VHARCHAR );";
+	final String CREATE_BTN_TABLE_SQL =
+			 "CREATE TABLE IF NOT EXISTS " + Table_Name_Btn + 
+   		     " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + Type + " VHARCHAR,  button1  VHARCHAR, button2 VHARCHAR, button3  VHARCHAR, button4  VHARCHAR, button5  VHARCHAR, button6  VHARCHAR, button7  VHARCHAR,button8  VHARCHAR,button9  VHARCHAR, button10  VHARCHAR, button11  VHARCHAR,button12  VHARCHAR, button13  VHARCHAR,button14  VHARCHAR);";
 		
 		
 	@Override
@@ -45,7 +52,8 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		// 第一个使用数据库时自动建表
 		db.execSQL(CREATE_SETUP_TABLE_SQL);
 		db.execSQL(CREATE_LIST_TABLE_SQL);
-		db.execSQL(CREATE_ETC_TABLE_SQL);
+	//	db.execSQL(CREATE_ETC_TABLE_SQL);
+		db.execSQL(CREATE_BTN_TABLE_SQL);		
 	}
 	
 	/**
@@ -74,6 +82,20 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		String sql = "INSERT INTO " + Table_Name_Etc  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'"+ Tag_EtcID+"\',\'" +Tag_Name + "\',\'" + Tag_Status + "\',\'"+ Tag_Other + "\');";
 		db.execSQL(sql);
 	}
+	public void insertBtn(SQLiteDatabase db, String Tag_Uid, int Tag_DevID, String Tag_Type, String Btn1, String Btn2, String Btn3,String Btn4, String Btn5, String Btn6,String Btn7, String Btn8, String Btn9,String Btn10, String Btn11, String Btn12,String Btn13, String Btn14) {
+		
+		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'"+ Tag_Type+"\',\'"+ Btn1+"\',\'" +Btn2 + "\',\'" + Btn3 + "\',\'"+ Btn4 +"\',\'" +Btn5 +"\',\'" +Btn6 +"\',\'" +Btn7 +"\',\'" +Btn8 +"\',\'" +Btn9 +"\',\'" +Btn10 +"\',\'" +Btn11 +"\',\'" +Btn12 +"\',\'" +Btn13 +"\',\'" +Btn14 + "\');";
+		db.execSQL(sql);
+//		ContentValues cv = new ContentValues();  
+//		cv.put(Uid, Tag_Uid);  
+//		cv.put(DevID, Tag_DevID);
+//		cv.put(Uid, Tag_Type);
+//		cv.put("button1", Btn1);  cv.put("button2", Btn2);  cv.put("button3", Btn3);  cv.put("button4", Btn4);  cv.put("button5", Btn5);  
+//		cv.put("button6", Btn6);  cv.put("button7", Btn7);  cv.put("button8", Btn8);  cv.put("button9", Btn9);  cv.put("button10", Btn10); 
+//		cv.put("button11", Btn11);  cv.put("button12", Btn12);  cv.put("button13", Btn13);  cv.put("button14", Btn14); 
+//		db.insert(Table_Name_Btn, null, cv);
+		//Log.e("leewoo", "insertBtn"+Tag_Uid+Tag_DevID+Tag_Type+Btn1+Btn2+Btn3+Btn4+Btn5+Btn6+Btn7+Btn8+Btn9+Btn10+Btn11+Btn12+Btn13+Btn14);
+	}
 	public void deleteSetup(SQLiteDatabase db, String Tag_Uid) {
 		
 		String 
@@ -83,6 +105,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		db.execSQL(sql);
 		sql = "DELETE FROM " + Table_Name_Etc   + " WHERE " + Uid + "=\"" + Tag_Uid + "\"";
 		db.execSQL(sql);
+		
 	}
 	public void deleteList(SQLiteDatabase db, int Tag_DevID) {
 		
@@ -123,13 +146,27 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		ToReturn.moveToFirst();
 		return ToReturn;
 	}
+	public Cursor seleteBtn(SQLiteDatabase db, int Tag_DevID) {
+		String str = "SELECT * FROM " + Table_Name_Btn + " WHERE " +DevID + "=\""+ Tag_DevID + "\"";
+		Cursor ToReturn = db.rawQuery(str, null);
+		ToReturn.moveToFirst();
+		return ToReturn;
+	}
 	public void updateListStatus(SQLiteDatabase db, String Tag_ID, String Tag_Status) {
 		String str = "update " + Table_Name_List + " set "+ Status+"='"+Tag_Status+"' where " + Uid + "=\"" + Tag_ID + "\"";
 		db.execSQL(str);
 	}
 		
-	public void updateEtcName(SQLiteDatabase db, String Tag_ID) {
-		String str = "update " + Table_Name_Etc + " set "+Name+" ='yes' where " + Uid + "=\"" + Tag_ID + "\"";
+	public void updateBtnName(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID, String Tag_Name) {
+		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+Tag_Name+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
+		
+		db.execSQL(str);
+	}
+	public void updateBtnlearn(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID, Boolean Tag_Learn) {
+		String flag;
+		if(Tag_Learn){flag="true";}else{flag="false";}
+		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+flag+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"learn\"";
+		
 		db.execSQL(str);
 	}
 	public void updateEtcStatus(SQLiteDatabase db, String Tag_ID) {

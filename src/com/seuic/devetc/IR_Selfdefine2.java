@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,10 +14,15 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.seuic.smartgateway.DevSetup;
 import com.seuic.smartgateway.R;
 
 public class IR_Selfdefine2 extends Activity implements android.view.View.OnClickListener,OnLongClickListener{
 	int devid;
+	String learnFalse="false";
+	String learnTrue="true";
+	String btnDefaults="自定义";
+	String mUid;
 	Button  backBtn,leanrnBtn;
 	Button  button1,button2,
 			button3,button4,button5,
@@ -33,12 +39,6 @@ public class IR_Selfdefine2 extends Activity implements android.view.View.OnClic
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ir_selfdefine2);
-		
-		Intent intent=getIntent();
-		devid=intent.getIntExtra("devid", 0);
-		if(devid==0){
-			Log.e("leewoo", "deid error = 0");
-			}
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
 		button1=(Button)findViewById(R.id.button1);
@@ -55,6 +55,64 @@ public class IR_Selfdefine2 extends Activity implements android.view.View.OnClic
 		button12=(Button)findViewById(R.id.button12);
 		button13=(Button)findViewById(R.id.button13);
 		button14=(Button)findViewById(R.id.button14);
+		
+		Intent intent=getIntent();
+		mUid=intent.getStringExtra("uid");
+		devid=intent.getIntExtra("devid", 0);
+		if(devid==0){
+			Log.e("leewoo", "deid error = 0");
+			}
+		
+		Cursor cursor=DevSetup.mSQLHelper.seleteBtn(DevSetup.writeDB,devid);
+		Log.e("leewoo", "cur: "+cursor.getCount());
+		if(cursor.getCount()>0){
+			//已初始化
+			if(cursor.getCount()!=2){Log.e("leewoo", "cur不足2");}
+			    
+			    Log.e("leewoo", "cur "+cursor.getString(2));
+				if(cursor.getString(2).equals("learn"))
+				{
+				//学习
+				//	Log.e("leewoo", "cur learn");
+					
+					
+					
+					
+					
+					
+					
+					
+				}
+				cursor.moveToNext();
+				Log.e("leewoo", "cur "+cursor.getString(2));
+				if(cursor.getString(2).equals("name"))
+				{
+				button1.setText(cursor.getString(1+2));
+				button2.setText(cursor.getString(2+2));
+				button3.setText(cursor.getString(3+2));
+				button4.setText(cursor.getString(4+2));
+				button5.setText(cursor.getString(5+2));
+				button6.setText(cursor.getString(6+2));			
+				button7.setText(cursor.getString(7+2));
+				button8.setText(cursor.getString(8+2));
+				button9.setText(cursor.getString(9+2));
+				button10.setText(cursor.getString(10+2));
+				button11.setText(cursor.getString(11+2));
+				button12.setText(cursor.getString(12+2));
+				button13.setText(cursor.getString(13+2));
+				button14.setText(cursor.getString(14+2));
+				}
+			
+			
+		}else{
+			Log.e("leewoo", "cur 初始化"+cursor.getCount());
+			//未初始化
+			DevSetup.mSQLHelper.insertBtn(DevSetup.writeDB,mUid,devid,"learn" ,learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse);
+			DevSetup.mSQLHelper.insertBtn(DevSetup.writeDB,mUid,devid, "name" ,btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults+14);
+			//DevSetup.mSQLHelper.insertEtc(DevSetup.writeDB, mUid, 8, "name", "name", "name", "name");			
+		}
+
+		
 		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
@@ -165,16 +223,79 @@ public class IR_Selfdefine2 extends Activity implements android.view.View.OnClic
 	}
 
 	
-	 protected void dialog(int btnid) {
+	 protected void dialog(final int btnid) {
 		 AlertDialog.Builder builder = new Builder(IR_Selfdefine2.this);
+		// final String mStr = null;
 		 builder.setMessage("Please input name");
 		 builder.setTitle("Button name");
-		 builder.setView(new EditText(this));
+		 final EditText et=new EditText(this);
+		 builder.setView(et);
 		 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 		@Override
 		public void onClick(DialogInterface arg0, int arg1) {
 			// TODO Auto-generated method stub
-			//devid;
+			
+			switch (btnid) {
+			case 1:
+				button1.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 1, et.getText().toString());
+				break;
+			case 2:
+				button2.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 2, et.getText().toString());
+				break;
+			case 3:
+				button3.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 3, et.getText().toString());
+				break;
+			case 4:
+				button4.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 4, et.getText().toString());
+				break;
+			case 5:
+				button5.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 5, et.getText().toString());
+				break;
+			case 6:
+				button1.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 6, et.getText().toString());
+				break;
+			case 7:
+				button1.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 7, et.getText().toString());
+				break;				
+			case 8:
+				button8.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 8, et.getText().toString());
+				break;
+			case 9:
+				button9.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 9, et.getText().toString());
+				break;
+			case 10:
+				button10.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 10, et.getText().toString());
+				break;
+			case 11:
+				button11.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 11, et.getText().toString());
+				break;
+			case 12:
+				button12.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 12, et.getText().toString());
+				break;
+			case 13:
+				button13.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 13, et.getText().toString());
+				break;
+			case 14:
+				button14.setText(et.getText().toString());
+				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 14, et.getText().toString());
+				break;
+		
+			default:
+				break;
+			}
 		}
 		});
 		  builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
@@ -184,6 +305,7 @@ public class IR_Selfdefine2 extends Activity implements android.view.View.OnClic
 		  }
 		 });
 		 builder.create().show();
+		
 	   }
 
 }
