@@ -5,8 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -20,8 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-
 import com.seuic.smartgateway.R;
 
 public class SetupAp extends Activity
@@ -30,11 +28,12 @@ public class SetupAp extends Activity
 	public static SetupAp instance = null;
 	
 	EditText pushap_psk;
-	TextView ssid, password;
+	EditText ssid, password;
 	Button pushap;
 	Spinner spinnerSSID;
 	List<String> listSSID;
 	Handler handler;
+	NetConfig netConfig;
 	String target = null;
 	public static final int MESSAGE_PUSHAP_SUBENABLE = 9990;
 	public static final int MESSAGE_PUSHAP_FAILED = 9991;
@@ -79,24 +78,24 @@ public class SetupAp extends Activity
 		{
 			public void onClick(View v)
 			{
-//				int psk_leng = 5;//spinnerSSID.getContext().length();
-//				if (psk_leng == 0)
-//				{
-//					netConfig.setPsk(null);
-//				}else {
-//					netConfig.setPsk(pushap_psk.getText().toString().trim());
-//				}
-//				pushap.setEnabled(false);
-//				pushap.setText("sending");
-//				
-//				target = netConfig.toString();
-//				if (psk_leng != 0)
-//				{
-//					SaveShared(netConfig.getSsid(),netConfig.getPsk());
-//				}
-//				SaveFile();
-//				Thread pushThread = new Thread(pushRunnable);
-//				pushThread.start();
+				int psk_leng = 5;//spinnerSSID.getContext().length();
+				if (psk_leng == 0)
+				{
+					netConfig.setPsk(null);
+				}else {
+					netConfig.setPsk(password.getText().toString().trim());
+				}
+				pushap.setEnabled(false);
+				pushap.setText("sending");
+				
+				target = netConfig.toString();
+				if (psk_leng != 0)
+				{
+					SaveShared(netConfig.getSsid(),netConfig.getPsk());
+				}
+				SaveFile();
+				Thread pushThread = new Thread(pushRunnable);
+				pushThread.start();
 			
 			}		
 		});
@@ -143,9 +142,15 @@ public class SetupAp extends Activity
 		}
 		
 	};
+	public void SaveShared(String ssid, String psk){
+		SharedPreferences myPreferences = getSharedPreferences("netconfig", Activity.MODE_PRIVATE);
+		SharedPreferences.Editor editor = myPreferences.edit();
+		editor.putString(ssid, psk);
+		editor.commit();
+	}
 	public void SaveFile(){
-		String path = "/mnt/sdcard/Pcare-Route/Config/";
-		String pathFile = "/mnt/sdcard/Pcare-Route/Config/wpa_supplicant.conf";
+		String path = "/mnt/sdcard/SmartGateway/Config/";
+		String pathFile = "/mnt/sdcard/SmartGateway/Config/wpa_supplicant.conf";
 		try
 		{
 			File config = new File(path);
