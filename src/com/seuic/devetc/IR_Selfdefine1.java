@@ -105,11 +105,10 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 			
 				}
 			
-			
 		}else{
 			Log.e("leewoo", "cur 初始化"+cursor.getCount());
 			//未初始化
-			DevSetup.mSQLHelper.insertBtn(DevSetup.writeDB,mUid,devid,"learn" ,learnFalse, "true", learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse);
+			DevSetup.mSQLHelper.insertBtn(DevSetup.writeDB,mUid,devid,"learn" ,learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse);
 			DevSetup.mSQLHelper.insertBtn(DevSetup.writeDB,mUid,devid, "name" ,btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults+14);
 			//DevSetup.mSQLHelper.insertEtc(DevSetup.writeDB, mUid, 8, "name", "name", "name", "name");			
 		}
@@ -202,6 +201,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        	{  
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr1=true;
+        		DevSetup.mSQLHelper.updateBtnlearn(DevSetup.writeDB, devid, 1, true);        		
         		button1.setBackgroundColor(Color.YELLOW);
         		Log.e("btnclr1=",""+btnclr1);
 	        	}
@@ -213,6 +213,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        	{
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr2=true;
+        		DevSetup.mSQLHelper.updateBtnlearn(DevSetup.writeDB, devid,2, true);
         		button2.setBackgroundColor(Color.YELLOW);
         		Log.e("btnclr2=",""+btnclr2);
 	        	}
@@ -225,6 +226,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr3=true;
         		button3.setBackgroundColor(Color.YELLOW);
+        		DevSetup.mSQLHelper.updateBtnlearn(DevSetup.writeDB, devid, 3, true);
         		Log.e("btnclr3=",""+btnclr3);
         		}
         	}
@@ -236,6 +238,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        	{	
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr4=true;
+	        		DevSetup.mSQLHelper.updateBtnlearn(DevSetup.writeDB, devid, 4, true);
 	        		button4.setBackgroundColor(Color.YELLOW);
 	        		Log.e("btnclr4=",""+btnclr4);
 	        	}
@@ -248,6 +251,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr5=true;
 	        		button5.setBackgroundColor(Color.YELLOW);
+	        		DevSetup.mSQLHelper.updateBtnlearn(DevSetup.writeDB, devid,5, true);
 	        		Log.e("btnclr5=",""+btnclr5);
 	        	}
         	}
@@ -259,6 +263,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr6=true;
 	        		button6.setBackgroundColor(Color.YELLOW);
+	        		DevSetup.mSQLHelper.updateBtnlearn(DevSetup.writeDB, devid, 6, true);
 	        		Log.e("btnclr6=",""+btnclr6);
 	        	}
         	}
@@ -270,6 +275,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr7=true;
 	        		button7.setBackgroundColor(Color.YELLOW);
+	        		DevSetup.mSQLHelper.updateBtnlearn(DevSetup.writeDB, devid, 7, true);
 	        		Log.e("btnclr7=",""+btnclr7);
 	        	}
         	}
@@ -281,6 +287,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr8=true;
 	        		button8.setBackgroundColor(Color.YELLOW);
+	        		DevSetup.mSQLHelper.updateBtnlearn(DevSetup.writeDB, devid, 8, true);
 	        		Log.e("btnclr8=",""+btnclr8);
 	        	}
         	}
@@ -292,6 +299,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr9=true;
 	        		button9.setBackgroundColor(Color.YELLOW);
+	        		DevSetup.mSQLHelper.updateBtnlearn(DevSetup.writeDB, devid, 9, true);
 	        		Log.e("btnclr9=",""+btnclr9);
 	        	}
         	}
