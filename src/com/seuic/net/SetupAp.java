@@ -16,6 +16,8 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,9 +66,29 @@ public class SetupAp extends Activity
 	            listSSID.add(result.SSID);	            
 	        }  		
 		   }
-			ArrayAdapter<String> _Adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, listSSID);
+			ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, listSSID);
 			//绑定 Adapter到控件
-			spinnerSSID.setAdapter(_Adapter);
+			//设置下拉列表的风格  
+			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  	 
+			//添加事件Spinner事件监听    
+			spinnerSSID.setAdapter(adapter);
+			spinnerSSID.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+				@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void onNothingSelected(AdapterView<?> arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+			});  
+	          
+	
 	
 
 		
@@ -106,7 +128,7 @@ public class SetupAp extends Activity
 	Runnable pushRunnable = new Runnable()
 	{
 		File file = null;
-		String path = "/mnt/sdcard/Pcare-Route/Config/wpa_supplicant.conf";
+		String path = "/mnt/sdcard/SmartGateway/Config/wpa_supplicant.conf";
 //		String remoteFilename = "wpa_supplicant.conf";
 		public void run()
 		{

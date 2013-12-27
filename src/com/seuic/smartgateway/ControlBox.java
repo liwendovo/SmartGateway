@@ -44,11 +44,12 @@ import com.seuic.devetc.RF_Switch;
 import com.seuic.devetc.RF_WH;
 
 public class ControlBox extends Activity {
-	public final static CharSequence[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"}; 
-	public final static CharSequence[] itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
-	
+	public final static String[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"}; 
+	public final static String[] itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
+
 	TextView tv1; 
-	Button aboutBtn,resetBtn;
+	Button aboutBtn,resetBtn,homeBtn;
+	
 	Button titleBtn;
 	String mUid;
 	List<Map<String, Object>> listItemsIR;
@@ -73,7 +74,7 @@ public class ControlBox extends Activity {
 		titleBtn=(Button)findViewById(R.id.titleBtn);
 		aboutBtn=(Button)findViewById(R.id.aboutBtn);
 		resetBtn=(Button)findViewById(R.id.resetBtn);
-		
+		homeBtn=(Button)findViewById(R.id.home);
 		
 		
 		Intent intent=getIntent();
@@ -163,7 +164,14 @@ public class ControlBox extends Activity {
 				Log.i("leewoo", "reset");
 			}
 		});
-		
+		homeBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		listViewIR.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
@@ -295,7 +303,7 @@ public class ControlBox extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		Cursor cur=DevSetup.mSQLHelper.seleteList(DevSetup.writeDB,mUid);
+		Cursor cur=DevSetup.mSQLHelper.seleteList(DevSetup.writeDB, mUid);
 		if(0==cur.getCount()){
 			return;	
 		}	
