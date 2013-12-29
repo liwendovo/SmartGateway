@@ -116,7 +116,10 @@ public class AddDev extends Activity {
 			       		     "UID位数不对，请输入5位UID", Toast.LENGTH_SHORT);
 					toast.setGravity(Gravity.CENTER, 0, 0);
 					toast.show();
-					
+					Toast.makeText(getApplicationContext(),
+			       		     "UID位数不对，请输入5位UID", Toast.LENGTH_SHORT);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
 				}
 				else
 				{
@@ -125,26 +128,26 @@ public class AddDev extends Activity {
 				String UID = StringChange(UIDlen);
 					
 				//插入数据库库
-				writeDB=DevSetup.mSQLHelper.getWritableDatabase();
-				DevSetup.mSQLHelper.insertSetup(writeDB, UID, "Devices", "1");
+//				writeDB=ControlBox.mSQLHelper.getWritableDatabase();
+				ControlBox.mSQLHelper.insertSetup(ControlBox.writeDB, UID, "Devices", "1");
 				//devices判断
 				//默认加入设备
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[0], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[1], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[2], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[3], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[4], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[5], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[6], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[7], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "ir", ControlBox.itemsIR[8], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "ir", ControlBox.itemsIR[0], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "ir", ControlBox.itemsIR[1], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "ir", ControlBox.itemsIR[2], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "ir", ControlBox.itemsIR[3], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "ir", ControlBox.itemsIR[4], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "ir", ControlBox.itemsIR[5], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "ir", ControlBox.itemsIR[6], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "ir", ControlBox.itemsIR[7], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "ir", ControlBox.itemsIR[8], "Devices",  "0","0");
 				
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "rf", ControlBox.itemsRF[0], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "rf", ControlBox.itemsRF[1], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "rf", ControlBox.itemsRF[2], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "rf", ControlBox.itemsRF[3], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "rf", ControlBox.itemsRF[4], "Devices",  "0","0");
-				DevSetup.mSQLHelper.insertList(writeDB, UID, "rf", ControlBox.itemsRF[5], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "rf", ControlBox.itemsRF[0], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "rf", ControlBox.itemsRF[1], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "rf", ControlBox.itemsRF[2], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "rf", ControlBox.itemsRF[3], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "rf", ControlBox.itemsRF[4], "Devices",  "0","0");
+				ControlBox.mSQLHelper.insertList(ControlBox.writeDB, UID, "rf", ControlBox.itemsRF[5], "Devices",  "0","0");
 				
 				//出入三级表
 				

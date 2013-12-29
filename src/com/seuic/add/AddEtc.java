@@ -29,14 +29,11 @@ public class AddEtc extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.addetc);
-		
+		setContentView(R.layout.addetc);		
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");	
-		mClass=intent.getStringExtra("type");
-		
-		Log.e("leewoo", "AddEtc -------  onCreate"+mUid+"   "+mClass);		
-		
+		mClass=intent.getStringExtra("type");		
+		Log.e("leewoo", "AddEtc -------  onCreate"+mUid+"   "+mClass);			
 		okBtn=(Button)findViewById(R.id.okBtn);		
 		spinnerEtc=(Spinner)findViewById(R.id.spinnerEtc);	
 	
@@ -56,19 +53,13 @@ public class AddEtc extends Activity {
 			public void onClick(View source){
 				String name = ((EditText)findViewById(R.id.devName)).getText().toString();
 				//插入数据库库				
-				writeDB=DevSetup.mSQLHelper.getWritableDatabase();
-				DevSetup.mSQLHelper.insertList(writeDB, mUid, mClass,spinnerEtc.getSelectedItem().toString(), name, "0","0");
+				writeDB=ControlBox.mSQLHelper.getWritableDatabase();
+				ControlBox.mSQLHelper.insertList(writeDB, mUid, mClass,spinnerEtc.getSelectedItem().toString(), name, "0","0");
 				//三级页表的创建
-				
-				
-				
 				//Log.e("leewoo", mUid+" "+name+" "+mClass+" "+listBtn.getText().toString());
 				finish();
 			}			
-		});	
-		
-		
-		
+		});			
 	}
 
 	

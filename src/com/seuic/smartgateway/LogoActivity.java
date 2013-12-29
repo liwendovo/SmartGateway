@@ -22,7 +22,7 @@ public class LogoActivity extends Activity {
 			public void handleMessage(Message msg) {
 				switch (msg.what) {
 				case MESSAGE_MAIN_PROCEDURE:					
-					Intent intent = new Intent(LogoActivity.this, DevSetup.class);
+					Intent intent = new Intent(LogoActivity.this, ControlBox.class);
 					startActivityForResult(intent, 1);
 					//进入主界面后可以直接退出，不会退回logo
 				

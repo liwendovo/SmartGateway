@@ -14,6 +14,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.seuic.smartgateway.ControlBox;
 import com.seuic.smartgateway.DevSetup;
 import com.seuic.smartgateway.R;
 
@@ -63,7 +64,7 @@ public class IR_Selfdefine2 extends Activity implements android.view.View.OnClic
 			Log.e("leewoo", "deid error = 0");
 			}
 		
-		Cursor cursor=DevSetup.mSQLHelper.seleteBtn(DevSetup.writeDB,devid);
+		Cursor cursor=ControlBox.mSQLHelper.seleteBtn(ControlBox.writeDB,devid);
 		Log.e("leewoo", "cur: "+cursor.getCount());
 		if(cursor.getCount()>0){
 			//已初始化
@@ -107,8 +108,8 @@ public class IR_Selfdefine2 extends Activity implements android.view.View.OnClic
 		}else{
 			Log.e("leewoo", "cur 初始化"+cursor.getCount());
 			//未初始化
-			DevSetup.mSQLHelper.insertBtn(DevSetup.writeDB,mUid,devid,"learn" ,learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse);
-			DevSetup.mSQLHelper.insertBtn(DevSetup.writeDB,mUid,devid, "name" ,btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults+14);
+			ControlBox.mSQLHelper.insertBtn(ControlBox.writeDB,mUid,devid,"learn" ,learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse);
+			ControlBox.mSQLHelper.insertBtn(ControlBox.writeDB,mUid,devid, "name" ,btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults+14);
 			//DevSetup.mSQLHelper.insertEtc(DevSetup.writeDB, mUid, 8, "name", "name", "name", "name");			
 		}
 
@@ -238,59 +239,59 @@ public class IR_Selfdefine2 extends Activity implements android.view.View.OnClic
 			switch (btnid) {
 			case 1:
 				button1.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 1, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 1, et.getText().toString());
 				break;
 			case 2:
 				button2.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 2, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 2, et.getText().toString());
 				break;
 			case 3:
 				button3.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 3, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 3, et.getText().toString());
 				break;
 			case 4:
 				button4.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 4, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 4, et.getText().toString());
 				break;
 			case 5:
 				button5.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 5, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 5, et.getText().toString());
 				break;
 			case 6:
 				button1.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 6, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 6, et.getText().toString());
 				break;
 			case 7:
 				button1.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 7, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 7, et.getText().toString());
 				break;				
 			case 8:
 				button8.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 8, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 8, et.getText().toString());
 				break;
 			case 9:
 				button9.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 9, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 9, et.getText().toString());
 				break;
 			case 10:
 				button10.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 10, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 10, et.getText().toString());
 				break;
 			case 11:
 				button11.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 11, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 11, et.getText().toString());
 				break;
 			case 12:
 				button12.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 12, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 12, et.getText().toString());
 				break;
 			case 13:
 				button13.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 13, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 13, et.getText().toString());
 				break;
 			case 14:
 				button14.setText(et.getText().toString());
-				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 14, et.getText().toString());
+				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 14, et.getText().toString());
 				break;
 		
 			default:
