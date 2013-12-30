@@ -415,6 +415,12 @@ public class ControlBox extends Activity {
 		 builder.setMessage(this.getString(R.string.aboutus));		
 		 builder.create().show();
 	   }
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		writeDB.close();
+	}
 
 
 }

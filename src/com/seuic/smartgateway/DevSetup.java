@@ -24,7 +24,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import com.seuic.add.AddDev;
 import com.seuic.net.SetupAp;
@@ -36,8 +35,9 @@ public class DevSetup extends Activity {
 	Button setupBtn;
 	SharedPreferences myPreferences;
 	SharedPreferences.Editor editor;
-	List<Map<String, Object>> listItems;
+//	List<Map<String, Object>> listItems;
 	List<String> listDev;
+	ArrayAdapter<String> simpleAdapter; 
 	public SQLiteDatabase writeDB;
 
 
@@ -89,13 +89,13 @@ public class DevSetup extends Activity {
 		listView.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long arg3) {
 				// TODO Auto-generated method stub
 				
 				
 				
-					editor.putString("uid", (String) listItems.get(arg2).get("title"));
+					editor.putString("uid", (String)listView.getItemAtPosition(position));
 					editor.commit();
 				
 //				 String uid=(String) listItems.get(arg2).get("title");			
@@ -122,14 +122,22 @@ public class DevSetup extends Activity {
                             @Override
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
-                                	Map<String, Object> listItem=listItems.get(position);
-                                	ControlBox.mSQLHelper.deleteSetup(ControlBox.writeDB, listItem.get("title").toString());
-                                	listItems.remove(listItem);
+                                	
+//                                	Map<String, Object> listItem=listItems.get(position);
+//                                	
+//                                	listItems.remove(listItem);
+                                	
+                                	ControlBox.mSQLHelper.deleteSetup(ControlBox.writeDB, simpleAdapter.getItem(position));
+                                	
+//                                	simpleAdapter.remove(simpleAdapter.getItem(position));
+                                	
+                                	listDev.remove(position);
                                 	//数据库删除
+                                	
                                 	Log.e("leewoo", "swipe->Right");
                                 	
                                 }
-                              //  listItems.notifyDataSetChanged();
+                                simpleAdapter.notifyDataSetChanged();
                             }
                         });
         listView.setOnTouchListener(touchListener);
@@ -146,50 +154,62 @@ public class DevSetup extends Activity {
 		if(0==cur.getCount()){
 			return;	
 		}	
-		if(listItems!=null){
-			listItems.clear();
+//		if(listItems!=null){
+//			listItems.clear();
+//		}
+		if(listDev!=null){
+			listDev.clear();
 		}
 		String uidstr = myPreferences.getString("uid", "NULL");
+		Log.e("leewoo", "uid="+uidstr);
 		int index=1,mCurSet=0;
-        listItems=new ArrayList<Map<String,Object>>();		
+//        listItems=new ArrayList<Map<String,Object>>();		
         
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
-			Map<String, Object> listItem =new HashMap<String,Object>();
-			listItem.put("title", cur.getString(0));
-			listItem.put("content", cur.getString(1));
-			listItems.add(listItem);	
+//			Map<String, Object> listItem =new HashMap<String,Object>();
+//			listItem.put("title", cur.getString(0));
+//			listItem.put("content", cur.getString(1));
+//			Log.e("leewoo", cur.getString(0)+" "+cur.getString(1));
+//			listItems.add(listItem);	
 			listDev.add(cur.getString(0));
-			if(uidstr.equals(cur.getString(1))){
+			if(uidstr.equals(cur.getString(0))){
 				mCurSet=index;
 			}
 			index++;
 		}
+		Log.e("leewoo", "DevSetup index:"+index+"  mCurSet:"+mCurSet);
 //		SimpleAdapter simpleAdapter = new SimpleAdapter(this
 //				, listItems 
 //				, R.layout.line//android.R.layout.simple_list_item_single_choice
 //				, new String[]{ "title", "content" }
 //				, new int[]{R.id.title , R.id.content});
-		ArrayAdapter<String> simpleAdapter = new ArrayAdapter<String> (this,android.R.layout.simple_list_item_checked,listDev);
-			
+//		Adapter<String> adapter=new ArrayAdapter<String>(this,android.R.,arr);
+//		SimpleCursorAdapter adapter=new SimpleCursorAdapter(this, R.layout.line, cur,new String[]{ mSQLHelper.Uid}, new int []{R.id.title});
 	
+		
+		simpleAdapter = new ArrayAdapter<String> (this,android.R.layout.simple_list_item_single_choice,listDev);
+			
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);// 如果不使用这个设置，选项中的radiobutton无法响应选中事件
-		
+		listView.setAdapter(simpleAdapter);	
 		//初始选中状态判断
-		
-		if(0!=mCurSet){
-			listView.setItemChecked(mCurSet, true);
+		if( 0!= mCurSet){
+			listView.setItemChecked(mCurSet-1, true);
 		}
-		//Adapter<String> adapter=new ArrayAdapter<String>(this,android.R.,arr);
-		//SimpleCursorAdapter adapter=new SimpleCursorAdapter(this, R.layout.line, cur,new String[]{ mSQLHelper.Uid}, new int []{R.id.title});
-		listView.setAdapter(simpleAdapter);
-		
+	
 		
 	}
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
-		writeDB.close();
+
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+//		writeDB.close();
 	}
 	
 
