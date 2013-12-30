@@ -9,6 +9,103 @@ package com.seuic.smartgateway;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>reveal</code></td><td>0</td><td></td></tr>
+<tr><td><code>dismiss</code></td><td>1</td><td></td></tr>
+<tr><td><code>choice</code></td><td>2</td><td></td></tr>
+</table>
+         */
+        public static final int swipeActionLeft=0x7f010008;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>reveal</code></td><td>0</td><td></td></tr>
+<tr><td><code>dismiss</code></td><td>1</td><td></td></tr>
+<tr><td><code>choice</code></td><td>2</td><td></td></tr>
+</table>
+         */
+        public static final int swipeActionRight=0x7f010009;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int swipeAnimationTime=0x7f010001;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int swipeBackView=0x7f010006;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int swipeCloseAllItemsWhenMoveList=0x7f010004;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int swipeDrawableChecked=0x7f01000a;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int swipeDrawableUnchecked=0x7f01000b;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int swipeFrontView=0x7f010005;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>both</code></td><td>1</td><td></td></tr>
+<tr><td><code>right</code></td><td>2</td><td></td></tr>
+<tr><td><code>left</code></td><td>3</td><td></td></tr>
+</table>
+         */
+        public static final int swipeMode=0x7f010007;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int swipeOffsetLeft=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int swipeOffsetRight=0x7f010003;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int swipeOpenOnLongPress=0x7f010000;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -53,109 +150,122 @@ public final class R {
         public static final int water=0x7f02001d;
     }
     public static final class id {
-        public static final int Btn1=0x7f080000;
-        public static final int LinearLayout1=0x7f08001f;
-        public static final int SetupBtn=0x7f080005;
-        public static final int aboutBtn=0x7f08001e;
-        public static final int action_settings=0x7f080043;
-        public static final int addDevBtn=0x7f080002;
-        public static final int back=0x7f080020;
-        public static final int button1=0x7f080023;
-        public static final int button10=0x7f08002e;
-        public static final int button11=0x7f08002f;
-        public static final int button12=0x7f080030;
-        public static final int button13=0x7f080031;
-        public static final int button14=0x7f080032;
-        public static final int button15=0x7f080037;
-        public static final int button16=0x7f080038;
-        public static final int button17=0x7f080039;
-        public static final int button18=0x7f08003a;
-        public static final int button2=0x7f080024;
-        public static final int button3=0x7f080025;
-        public static final int button4=0x7f080026;
-        public static final int button5=0x7f080027;
-        public static final int button6=0x7f080028;
-        public static final int button7=0x7f080029;
-        public static final int button8=0x7f08002a;
-        public static final int button9=0x7f08002b;
-        public static final int cameraSetBtn=0x7f080019;
-        public static final int checkBox1=0x7f080042;
-        public static final int content=0x7f080034;
-        public static final int devClass=0x7f080010;
-        public static final int devListView=0x7f080007;
-        public static final int devName=0x7f08000a;
-        public static final int deviceSetBtn=0x7f080018;
-        public static final int editText1=0x7f080035;
-        public static final int editText2=0x7f080036;
-        public static final int editText7=0x7f08003e;
-        public static final int home=0x7f08000f;
-        public static final int imageButton1=0x7f08002c;
-        public static final int imageButton2=0x7f08002d;
-        public static final int imageView1=0x7f080009;
-        public static final int imageView2=0x7f080022;
-        public static final int listViewIR=0x7f080013;
-        public static final int listViewRF=0x7f080015;
-        public static final int okBtn=0x7f08000c;
-        public static final int password=0x7f080040;
-        public static final int pushapBtn=0x7f080041;
-        public static final int resetBtn=0x7f08001d;
-        public static final int spinnerEtc=0x7f08000b;
-        public static final int spinnerSSID=0x7f08003f;
-        public static final int tabhost=0x7f08000d;
-        public static final int tabir=0x7f080012;
-        public static final int tabrf=0x7f080014;
-        public static final int tabset=0x7f080017;
-        public static final int tabth=0x7f080016;
-        public static final int tabtitle=0x7f08000e;
-        public static final int textView1=0x7f080001;
-        public static final int textView2=0x7f080003;
-        public static final int textView3=0x7f080004;
-        public static final int textView4=0x7f080006;
-        public static final int textView6=0x7f08003b;
-        public static final int textView7=0x7f08003d;
-        public static final int title=0x7f080033;
-        public static final int titleBtn=0x7f080011;
-        public static final int titleTxt=0x7f080021;
-        public static final int tmpBtn=0x7f08001a;
-        public static final int toggleButton1=0x7f08001b;
-        public static final int toggleButton2=0x7f08001c;
-        public static final int toggleButton6=0x7f08003c;
-        public static final int uidEditText=0x7f080008;
+        public static final int Btn1=0x7f070007;
+        public static final int LinearLayout1=0x7f07002c;
+        public static final int SetupBtn=0x7f07000c;
+        public static final int aboutBtn=0x7f070025;
+        public static final int action_settings=0x7f07004f;
+        public static final int addDevBtn=0x7f070009;
+        public static final int back=0x7f070026;
+        public static final int both=0x7f070001;
+        public static final int button1=0x7f07002f;
+        public static final int button10=0x7f07003a;
+        public static final int button11=0x7f07003b;
+        public static final int button12=0x7f07003c;
+        public static final int button13=0x7f07003d;
+        public static final int button14=0x7f07003e;
+        public static final int button15=0x7f070043;
+        public static final int button16=0x7f070044;
+        public static final int button17=0x7f070045;
+        public static final int button18=0x7f070046;
+        public static final int button2=0x7f070030;
+        public static final int button3=0x7f070031;
+        public static final int button4=0x7f070032;
+        public static final int button5=0x7f070033;
+        public static final int button6=0x7f070034;
+        public static final int button7=0x7f070035;
+        public static final int button8=0x7f070036;
+        public static final int button9=0x7f070037;
+        public static final int cameraSetBtn=0x7f070020;
+        public static final int checkBox1=0x7f07004e;
+        public static final int choice=0x7f070006;
+        public static final int content=0x7f070040;
+        public static final int devClass=0x7f070017;
+        public static final int devListView=0x7f07000e;
+        public static final int devName=0x7f070011;
+        public static final int deviceSetBtn=0x7f07001f;
+        public static final int dismiss=0x7f070005;
+        public static final int editText1=0x7f070041;
+        public static final int editText2=0x7f070042;
+        public static final int editText7=0x7f07004a;
+        public static final int example_row_b_action_1=0x7f070027;
+        public static final int example_row_b_action_2=0x7f070028;
+        public static final int example_row_b_action_3=0x7f070029;
+        public static final int example_row_tv_title=0x7f07002b;
+        public static final int front=0x7f07002a;
+        public static final int home=0x7f070016;
+        public static final int imageButton1=0x7f070038;
+        public static final int imageButton2=0x7f070039;
+        public static final int imageView1=0x7f070010;
+        public static final int imageView2=0x7f07002e;
+        public static final int left=0x7f070003;
+        public static final int listViewIR=0x7f07001a;
+        public static final int listViewRF=0x7f07001c;
+        public static final int none=0x7f070000;
+        public static final int okBtn=0x7f070013;
+        public static final int password=0x7f07004c;
+        public static final int pushapBtn=0x7f07004d;
+        public static final int resetBtn=0x7f070024;
+        public static final int reveal=0x7f070004;
+        public static final int right=0x7f070002;
+        public static final int spinnerEtc=0x7f070012;
+        public static final int spinnerSSID=0x7f07004b;
+        public static final int tabhost=0x7f070014;
+        public static final int tabir=0x7f070019;
+        public static final int tabrf=0x7f07001b;
+        public static final int tabset=0x7f07001e;
+        public static final int tabth=0x7f07001d;
+        public static final int tabtitle=0x7f070015;
+        public static final int textView1=0x7f070008;
+        public static final int textView2=0x7f07000a;
+        public static final int textView3=0x7f07000b;
+        public static final int textView4=0x7f07000d;
+        public static final int textView6=0x7f070047;
+        public static final int textView7=0x7f070049;
+        public static final int title=0x7f07003f;
+        public static final int titleBtn=0x7f070018;
+        public static final int titleTxt=0x7f07002d;
+        public static final int tmpBtn=0x7f070021;
+        public static final int toggleButton1=0x7f070022;
+        public static final int toggleButton2=0x7f070023;
+        public static final int toggleButton6=0x7f070048;
+        public static final int uidEditText=0x7f07000f;
     }
     public static final class layout {
         public static final int activity_dev=0x7f030000;
         public static final int adddev=0x7f030001;
         public static final int addetc=0x7f030002;
         public static final int controlbox=0x7f030003;
-        public static final int ir_ac=0x7f030004;
-        public static final int ir_dvd=0x7f030005;
-        public static final int ir_fan=0x7f030006;
-        public static final int ir_media=0x7f030007;
-        public static final int ir_selfdefine1=0x7f030008;
-        public static final int ir_selfdefine2=0x7f030009;
-        public static final int ir_stu=0x7f03000a;
-        public static final int ir_tv=0x7f03000b;
-        public static final int ir_wh=0x7f03000c;
-        public static final int line=0x7f03000d;
-        public static final int line2=0x7f03000e;
-        public static final int list=0x7f03000f;
-        public static final int rf_curtain=0x7f030010;
-        public static final int rf_lamp=0x7f030011;
-        public static final int rf_selfdefine1=0x7f030012;
-        public static final int rf_selfdefine2=0x7f030013;
-        public static final int rf_switch=0x7f030014;
-        public static final int rf_wh=0x7f030015;
-        public static final int setupap=0x7f030016;
-        public static final int spinner=0x7f030017;
-        public static final int spinnerlayout=0x7f030018;
-        public static final int splash=0x7f030019;
+        public static final int dev_row=0x7f030004;
+        public static final int ir_ac=0x7f030005;
+        public static final int ir_dvd=0x7f030006;
+        public static final int ir_fan=0x7f030007;
+        public static final int ir_media=0x7f030008;
+        public static final int ir_selfdefine1=0x7f030009;
+        public static final int ir_selfdefine2=0x7f03000a;
+        public static final int ir_stu=0x7f03000b;
+        public static final int ir_tv=0x7f03000c;
+        public static final int ir_wh=0x7f03000d;
+        public static final int line=0x7f03000e;
+        public static final int line2=0x7f03000f;
+        public static final int list=0x7f030010;
+        public static final int rf_curtain=0x7f030011;
+        public static final int rf_lamp=0x7f030012;
+        public static final int rf_selfdefine1=0x7f030013;
+        public static final int rf_selfdefine2=0x7f030014;
+        public static final int rf_switch=0x7f030015;
+        public static final int rf_wh=0x7f030016;
+        public static final int setupap=0x7f030017;
+        public static final int spinner=0x7f030018;
+        public static final int spinnerlayout=0x7f030019;
+        public static final int splash=0x7f03001a;
     }
     public static final class menu {
-        public static final int dev=0x7f070000;
-        public static final int fan=0x7f070001;
-        public static final int media=0x7f070002;
-        public static final int selfdefine1=0x7f070003;
-        public static final int selfdefine2=0x7f070004;
+        public static final int dev=0x7f080000;
+        public static final int fan=0x7f080001;
+        public static final int media=0x7f080002;
+        public static final int selfdefine1=0x7f080003;
+        public static final int selfdefine2=0x7f080004;
     }
     public static final class string {
         public static final int aboutus=0x7f05000c;
@@ -201,4 +311,212 @@ public final class R {
          */
         public static final int AppTheme=0x7f060001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a SwipeListView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SwipeListView_swipeActionLeft com.seuic.smartgateway:swipeActionLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeListView_swipeActionRight com.seuic.smartgateway:swipeActionRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeListView_swipeAnimationTime com.seuic.smartgateway:swipeAnimationTime}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeListView_swipeBackView com.seuic.smartgateway:swipeBackView}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeListView_swipeCloseAllItemsWhenMoveList com.seuic.smartgateway:swipeCloseAllItemsWhenMoveList}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeListView_swipeDrawableChecked com.seuic.smartgateway:swipeDrawableChecked}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeListView_swipeDrawableUnchecked com.seuic.smartgateway:swipeDrawableUnchecked}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeListView_swipeFrontView com.seuic.smartgateway:swipeFrontView}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeListView_swipeMode com.seuic.smartgateway:swipeMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeListView_swipeOffsetLeft com.seuic.smartgateway:swipeOffsetLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeListView_swipeOffsetRight com.seuic.smartgateway:swipeOffsetRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeListView_swipeOpenOnLongPress com.seuic.smartgateway:swipeOpenOnLongPress}</code></td><td></td></tr>
+           </table>
+           @see #SwipeListView_swipeActionLeft
+           @see #SwipeListView_swipeActionRight
+           @see #SwipeListView_swipeAnimationTime
+           @see #SwipeListView_swipeBackView
+           @see #SwipeListView_swipeCloseAllItemsWhenMoveList
+           @see #SwipeListView_swipeDrawableChecked
+           @see #SwipeListView_swipeDrawableUnchecked
+           @see #SwipeListView_swipeFrontView
+           @see #SwipeListView_swipeMode
+           @see #SwipeListView_swipeOffsetLeft
+           @see #SwipeListView_swipeOffsetRight
+           @see #SwipeListView_swipeOpenOnLongPress
+         */
+        public static final int[] SwipeListView = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.seuic.smartgateway.R.attr#swipeActionLeft}
+          attribute's value can be found in the {@link #SwipeListView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>reveal</code></td><td>0</td><td></td></tr>
+<tr><td><code>dismiss</code></td><td>1</td><td></td></tr>
+<tr><td><code>choice</code></td><td>2</td><td></td></tr>
+</table>
+          @attr name com.seuic.smartgateway:swipeActionLeft
+        */
+        public static final int SwipeListView_swipeActionLeft = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.seuic.smartgateway.R.attr#swipeActionRight}
+          attribute's value can be found in the {@link #SwipeListView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>reveal</code></td><td>0</td><td></td></tr>
+<tr><td><code>dismiss</code></td><td>1</td><td></td></tr>
+<tr><td><code>choice</code></td><td>2</td><td></td></tr>
+</table>
+          @attr name com.seuic.smartgateway:swipeActionRight
+        */
+        public static final int SwipeListView_swipeActionRight = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.seuic.smartgateway.R.attr#swipeAnimationTime}
+          attribute's value can be found in the {@link #SwipeListView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.seuic.smartgateway:swipeAnimationTime
+        */
+        public static final int SwipeListView_swipeAnimationTime = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.seuic.smartgateway.R.attr#swipeBackView}
+          attribute's value can be found in the {@link #SwipeListView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.seuic.smartgateway:swipeBackView
+        */
+        public static final int SwipeListView_swipeBackView = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.seuic.smartgateway.R.attr#swipeCloseAllItemsWhenMoveList}
+          attribute's value can be found in the {@link #SwipeListView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.seuic.smartgateway:swipeCloseAllItemsWhenMoveList
+        */
+        public static final int SwipeListView_swipeCloseAllItemsWhenMoveList = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.seuic.smartgateway.R.attr#swipeDrawableChecked}
+          attribute's value can be found in the {@link #SwipeListView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.seuic.smartgateway:swipeDrawableChecked
+        */
+        public static final int SwipeListView_swipeDrawableChecked = 10;
+        /**
+          <p>This symbol is the offset where the {@link com.seuic.smartgateway.R.attr#swipeDrawableUnchecked}
+          attribute's value can be found in the {@link #SwipeListView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.seuic.smartgateway:swipeDrawableUnchecked
+        */
+        public static final int SwipeListView_swipeDrawableUnchecked = 11;
+        /**
+          <p>This symbol is the offset where the {@link com.seuic.smartgateway.R.attr#swipeFrontView}
+          attribute's value can be found in the {@link #SwipeListView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.seuic.smartgateway:swipeFrontView
+        */
+        public static final int SwipeListView_swipeFrontView = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.seuic.smartgateway.R.attr#swipeMode}
+          attribute's value can be found in the {@link #SwipeListView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>both</code></td><td>1</td><td></td></tr>
+<tr><td><code>right</code></td><td>2</td><td></td></tr>
+<tr><td><code>left</code></td><td>3</td><td></td></tr>
+</table>
+          @attr name com.seuic.smartgateway:swipeMode
+        */
+        public static final int SwipeListView_swipeMode = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.seuic.smartgateway.R.attr#swipeOffsetLeft}
+          attribute's value can be found in the {@link #SwipeListView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.seuic.smartgateway:swipeOffsetLeft
+        */
+        public static final int SwipeListView_swipeOffsetLeft = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.seuic.smartgateway.R.attr#swipeOffsetRight}
+          attribute's value can be found in the {@link #SwipeListView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.seuic.smartgateway:swipeOffsetRight
+        */
+        public static final int SwipeListView_swipeOffsetRight = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.seuic.smartgateway.R.attr#swipeOpenOnLongPress}
+          attribute's value can be found in the {@link #SwipeListView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.seuic.smartgateway:swipeOpenOnLongPress
+        */
+        public static final int SwipeListView_swipeOpenOnLongPress = 0;
+    };
 }
