@@ -150,40 +150,41 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
         case R.id.back: finish();break;
         case R.id.titleBtn:
         	lenclr=!lenclr;        	
-        	//Log.e("lenclr=",""+lenclr);
+        	Log.e("lenclr=",""+drawable);
         	if(lenclr==true){
-//        		leanrnBtn.setBackgroundColor(Color.GRAY);
+
             	Log.e("leewoo", "clr"+v.getId() ); 
+            	leanrnBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
             	
-			        	if(btnclr1)	button1.setBackgroundColor(Color.YELLOW);
-			        	else button1.setBackgroundColor(Color.GRAY);
+			        	if(btnclr1)	button1.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	else button1.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr2)	button2.setBackgroundColor(Color.YELLOW);
-			        	else button2.setBackgroundColor(Color.GRAY);
+			        	if(btnclr2)	button2.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	else button2.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr3)	button3.setBackgroundColor(Color.YELLOW);
-			        	else button3.setBackgroundColor(Color.GRAY);
+			        	if(btnclr3)	button3.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	else button3.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr4)	button4.setBackgroundColor(Color.YELLOW);
-			        	else button4.setBackgroundColor(Color.GRAY);
+			        	if(btnclr4)	button4.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	else button4.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr5)	button5.setBackgroundColor(Color.YELLOW);
-			        	else button5.setBackgroundColor(Color.GRAY);
+			        	if(btnclr5)	button5.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	else button5.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr6)	button6.setBackgroundColor(Color.YELLOW);
-			        	else button6.setBackgroundColor(Color.GRAY);
+			        	if(btnclr6)	button6.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	else button6.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr7)	button7.setBackgroundColor(Color.YELLOW);
-			        	else button7.setBackgroundColor(Color.GRAY);
+			        	if(btnclr7)	button7.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	else button7.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr8)	button8.setBackgroundColor(Color.YELLOW);
-			        	else button8.setBackgroundColor(Color.GRAY);
+			        	if(btnclr8)	button8.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	else button8.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr9)	button9.setBackgroundColor(Color.YELLOW);
-			        	else button9.setBackgroundColor(Color.GRAY);
+			        	if(btnclr9)	button9.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	else button9.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
         	}else{
-//        		leanrnBtn.setBackgroundDrawable(drawable);
+        		leanrnBtn.setBackgroundDrawable(drawable);
         		button1.setBackgroundDrawable(drawable);
         		button2.setBackgroundDrawable(drawable);
         		button3.setBackgroundDrawable(drawable);
@@ -202,10 +203,11 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        	{  
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr1=true;
-        		button1.setBackgroundColor(Color.YELLOW);
+        		button1.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
         		Log.e("btnclr1=",""+btnclr1);
 	        	}
 	        }
+        	
         	break;
         case R.id.button2:
         	if(lenclr==true){
@@ -213,10 +215,11 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        	{
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr2=true;
-        		button2.setBackgroundColor(Color.YELLOW);
+        		button2.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
         		Log.e("btnclr2=",""+btnclr2);
 	        	}
         	}
+        	
         	break;
         case R.id.button3:
         	if(lenclr==true){
@@ -224,10 +227,11 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        	{
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr3=true;
-        		button3.setBackgroundColor(Color.YELLOW);
+        		button3.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
         		Log.e("btnclr3=",""+btnclr3);
         		}
         	}
+        	
         	break;
         
         case R.id.button4:
@@ -236,7 +240,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        	{	
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr4=true;
-	        		button4.setBackgroundColor(Color.YELLOW);
+	        		button4.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 	        		Log.e("btnclr4=",""+btnclr4);
 	        	}
         	}
@@ -247,7 +251,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        	{   
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr5=true;
-	        		button5.setBackgroundColor(Color.YELLOW);
+	        		button5.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 	        		Log.e("btnclr5=",""+btnclr5);
 	        	}
         	}
@@ -258,7 +262,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        	{ 
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr6=true;
-	        		button6.setBackgroundColor(Color.YELLOW);
+	        		button6.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 	        		Log.e("btnclr6=",""+btnclr6);
 	        	}
         	}
@@ -269,7 +273,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        	{   
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr7=true;
-	        		button7.setBackgroundColor(Color.YELLOW);
+	        		button7.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 	        		Log.e("btnclr7=",""+btnclr7);
 	        	}
         	}
@@ -280,7 +284,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        	{  
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr8=true;
-	        		button8.setBackgroundColor(Color.YELLOW);
+	        		button8.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 	        		Log.e("btnclr8=",""+btnclr8);
 	        	}
         	}
@@ -291,7 +295,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        	{  
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr9=true;
-	        		button9.setBackgroundColor(Color.YELLOW);
+	        		button9.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 	        		Log.e("btnclr9=",""+btnclr9);
 	        	}
         	}
@@ -388,11 +392,11 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 5, et.getText().toString());
 				break;
 			case 6:
-				button1.setText(et.getText().toString());
+				button6.setText(et.getText().toString());
 				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 6, et.getText().toString());
 				break;
 			case 7:
-				button1.setText(et.getText().toString());
+				button7.setText(et.getText().toString());
 				DevSetup.mSQLHelper.updateBtnName(DevSetup.writeDB, devid, 7, et.getText().toString());
 				break;				
 			case 8:
