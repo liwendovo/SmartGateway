@@ -37,22 +37,20 @@
         android:text="Please choose IR device type"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/listBtn"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spinnerEtc"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView2"
-       />
+        android:layout_below="@+id/textView2" />
 
-    <Button
-        android:id="@+id/okBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="OK" />
+     <Button
+         android:id="@+id/okBtn"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentRight="true"
+         android:layout_below="@+id/spinnerEtc"
+         android:text="OK" />
 	
 </RelativeLayout>

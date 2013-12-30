@@ -145,6 +145,18 @@
 		        android:layout_alignParentTop="true"
 		        android:layout_centerHorizontal="true"
 		        android:src="@drawable/littlelogo" />
+                     
+                  
+                   <Button
+                    android:id="@+id/deviceSetBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Device Set" />
+                    <Button
+                    android:id="@+id/cameraSetBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"      
+                    android:text="Camera Set" />
                  <TableRow>
                    <TextView
 		            android:id="@+id/tmpBtn"
@@ -169,31 +181,14 @@
 	 			    android:checked="false" />                       
 	                 </TableRow>
                  
-                 <TableRow>
-                   <TextView
-		            android:id="@+id/TextView01"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="Time Display"
-		            android:textAppearance="?android:attr/textAppearanceLarge" />
-		
-		     	   <ToggleButton
-	 			    android:id="@+id/toggleButton3"
-	 			    android:layout_width="wrap_content"
-	 			    android:layout_height="wrap_content" 	
-	 			    android:textOff="12H"
-	 			    android:textOn="12H" 
-	 			     android:checked="true" />		
-			  	 	<ToggleButton
-	 			    android:id="@+id/toggleButton4"
-	 			    android:layout_width="wrap_content"
-	 			    android:layout_height="wrap_content" 	
-	 			    android:textOff="24H"
-	 			    android:textOn="24H" 
-	 			    android:checked="false" />                        
-                  </TableRow>
+               
               
-		 	
+		 	        <Button
+                    android:id="@+id/resetBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"                
+     			
+                    android:text="Time Set" />
                 <Button
                     android:id="@+id/resetBtn"
                     android:layout_width="match_parent"

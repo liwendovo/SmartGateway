@@ -18,12 +18,12 @@ public class SQLiteHelper extends SQLiteOpenHelper
 
 	private final static String Table_Name_Setup = "devsetup";
 	private final static String Table_Name_List = "devlist";
-	private final static String Table_Name_Etc = "devetc";
+//	private final static String Table_Name_Etc = "devetc";
 	private final static String Table_Name_Btn = "devbtn";
 	
 	public  final static String Uid   = "uid";    //设备ID
 	private final static String DevID = "devid";//遥控器ID
-	private final static String EtcID = "etcid";//按键的ID	
+//	private final static String EtcID = "etcid";//按键的ID	
 	private final static String Name  = "name";
 	private final static String Type  = "type";
 	private final static String Class = "class";	
@@ -38,9 +38,9 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	final String CREATE_LIST_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_List + 
     		 " ( "+  Uid + " VHARCHAR(20), "+ DevID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + Class + " VHARCHAR, " + Type + " VHARCHAR, "+Name + " VHARCHAR, " + Status + " VHARCHAR, "+ Other+ " VHARCHAR );";
-	final String CREATE_ETC_TABLE_SQL =
-			 "CREATE TABLE IF NOT EXISTS " + Table_Name_Etc + 
-    		 " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + EtcID + " VHARCHAR, "+ Name + " VHARCHAR, "+ Status + " VHARCHAR, "+  Other+ " VHARCHAR );";
+//	final String CREATE_ETC_TABLE_SQL =
+//			 "CREATE TABLE IF NOT EXISTS " + Table_Name_Etc + 
+//    		 " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + EtcID + " VHARCHAR, "+ Name + " VHARCHAR, "+ Status + " VHARCHAR, "+  Other+ " VHARCHAR );";
 	final String CREATE_BTN_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_Btn + 
    		     " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + Type + " VHARCHAR,  button1  VHARCHAR, button2 VHARCHAR, button3  VHARCHAR, button4  VHARCHAR, button5  VHARCHAR, button6  VHARCHAR, button7  VHARCHAR,button8  VHARCHAR,button9  VHARCHAR, button10  VHARCHAR, button11  VHARCHAR,button12  VHARCHAR, button13  VHARCHAR,button14  VHARCHAR);";
@@ -77,11 +77,11 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		String sql = "INSERT INTO " + Table_Name_List + " Values( \'" + Tag_Uid + "\', NULL ,\'" + Tag_Class + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',\'"  + Tag_Status + "\',\'"+ Tag_Other + "\');";
 		db.execSQL(sql);
 	}
-	public void insertEtc(SQLiteDatabase db, String Tag_Uid, int Tag_DevID, String Tag_EtcID, String Tag_Name, String Tag_Status, String Tag_Other) {
-		
-		String sql = "INSERT INTO " + Table_Name_Etc  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'"+ Tag_EtcID+"\',\'" +Tag_Name + "\',\'" + Tag_Status + "\',\'"+ Tag_Other + "\');";
-		db.execSQL(sql);
-	}
+//	public void insertEtc(SQLiteDatabase db, String Tag_Uid, int Tag_DevID, String Tag_EtcID, String Tag_Name, String Tag_Status, String Tag_Other) {
+//		
+//		String sql = "INSERT INTO " + Table_Name_Etc  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'"+ Tag_EtcID+"\',\'" +Tag_Name + "\',\'" + Tag_Status + "\',\'"+ Tag_Other + "\');";
+//		db.execSQL(sql);
+//	}
 	public void insertBtn(SQLiteDatabase db, String Tag_Uid, int Tag_DevID, String Tag_Type, String Btn1, String Btn2, String Btn3,String Btn4, String Btn5, String Btn6,String Btn7, String Btn8, String Btn9,String Btn10, String Btn11, String Btn12,String Btn13, String Btn14) {
 		
 		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'"+ Tag_Type+"\',\'"+ Btn1+"\',\'" +Btn2 + "\',\'" + Btn3 + "\',\'"+ Btn4 +"\',\'" +Btn5 +"\',\'" +Btn6 +"\',\'" +Btn7 +"\',\'" +Btn8 +"\',\'" +Btn9 +"\',\'" +Btn10 +"\',\'" +Btn11 +"\',\'" +Btn12 +"\',\'" +Btn13 +"\',\'" +Btn14 + "\');";
@@ -103,7 +103,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		db.execSQL(sql);
 		sql = "DELETE FROM " + Table_Name_List  + " WHERE " + Uid + "=\"" + Tag_Uid + "\"";
 		db.execSQL(sql);
-		sql = "DELETE FROM " + Table_Name_Etc   + " WHERE " + Uid + "=\"" + Tag_Uid + "\"";
+		sql = "DELETE FROM " + Table_Name_Btn   + " WHERE " + Uid + "=\"" + Tag_Uid + "\"";
 		db.execSQL(sql);
 		
 	}
@@ -112,7 +112,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		String 	
 		sql = "DELETE FROM " + Table_Name_List  + " WHERE " + DevID + "=\"" + Tag_DevID + "\"";
 		db.execSQL(sql);
-		sql = "DELETE FROM " + Table_Name_Etc   + " WHERE " + DevID + "=\"" + Tag_DevID + "\"";
+		sql = "DELETE FROM " + Table_Name_Btn   + " WHERE " + DevID + "=\"" + Tag_DevID + "\"";
 		db.execSQL(sql);
 	}
 	public Cursor seleteSetup(SQLiteDatabase db, String Tag_Uid) {
@@ -128,8 +128,10 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		return ToReturn;
 	}
 	public Cursor seleteList(SQLiteDatabase db, String Tag_UID) {
+	
 		String str = "SELECT * FROM " + Table_Name_List + " WHERE " +Uid + "=\""	+ Tag_UID + "\"";
 		Cursor ToReturn = db.rawQuery(str, null);
+		Log.e("leewoo","Cursor="+ToReturn);
 		ToReturn.moveToFirst();
 		return ToReturn;
 	}
@@ -140,12 +142,12 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		ToReturn.moveToFirst();
 		return ToReturn;
 	}
-	public Cursor seleteEtc(SQLiteDatabase db, int Tag_ID) {
-		String str = "SELECT * FROM " + Table_Name_Etc + " WHERE " +Uid + "=\""	+ Tag_ID + "\"";
-		Cursor ToReturn = db.rawQuery(str, null);
-		ToReturn.moveToFirst();
-		return ToReturn;
-	}
+//	public Cursor seleteEtc(SQLiteDatabase db, int Tag_ID) {
+//		String str = "SELECT * FROM " + Table_Name_Etc + " WHERE " +Uid + "=\""	+ Tag_ID + "\"";
+//		Cursor ToReturn = db.rawQuery(str, null);
+//		ToReturn.moveToFirst();
+//		return ToReturn;
+//	}
 	public Cursor seleteBtn(SQLiteDatabase db, int Tag_DevID) {
 		String str = "SELECT * FROM " + Table_Name_Btn + " WHERE " +DevID + "=\""+ Tag_DevID + "\"";
 		Cursor ToReturn = db.rawQuery(str, null);
@@ -169,10 +171,10 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		
 		db.execSQL(str);
 	}
-	public void updateEtcStatus(SQLiteDatabase db, String Tag_ID) {
-		String str = "update " + Table_Name_Etc + " set "+ Status+"='yes' where " + Uid + "=\"" + Tag_ID + "\"";
-		db.execSQL(str);
-	}
+//	public void updateEtcStatus(SQLiteDatabase db, String Tag_ID) {
+//		String str = "update " + Table_Name_Etc + " set "+ Status+"='yes' where " + Uid + "=\"" + Tag_ID + "\"";
+//		db.execSQL(str);
+//	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)

@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TabHost;
+import android.widget.Toast;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 import com.seuic.add.AddEtc;
@@ -42,15 +44,17 @@ import com.seuic.devetc.RF_Selfdefine1;
 import com.seuic.devetc.RF_Selfdefine2;
 import com.seuic.devetc.RF_Switch;
 import com.seuic.devetc.RF_WH;
+import com.seuic.sqlite.SQLiteHelper;
 
 public class ControlBox extends Activity {
-	public final static CharSequence[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"}; 
-	public final static CharSequence[] itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
-	
+	public final static String[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"}; 
+	public final static String[] itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
+
 	TextView tv1; 
-	Button aboutBtn,resetBtn;
-	Button titleBtn;
-	String mUid;
+	Button aboutBtn,resetBtn,deviceSetBtn,cameraSetBtn;
+	
+	Button titleBtn,homeBtn;
+	String mUid=null;
 	List<Map<String, Object>> listItemsIR;
 	List<Map<String, Object>> listItemsRF;
 	ListView listViewIR;
@@ -58,11 +62,21 @@ public class ControlBox extends Activity {
 	TextView devClass;
 	String TabID="IR";
 	public SQLiteDatabase readDB;
+	
+	public static SQLiteHelper mSQLHelper;
+	public static SQLiteDatabase writeDB;
+	SharedPreferences myPreferences;
+	SharedPreferences.Editor editor;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.controlbox);	
+		
+		mSQLHelper = new SQLiteHelper(this,"smartgateway.db",1); //数据库
+		writeDB=mSQLHelper.getWritableDatabase();
+		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
 		
 		listViewIR = (ListView)findViewById(R.id.listViewIR);
 		listViewRF = (ListView)findViewById(R.id.listViewRF);
@@ -73,11 +87,14 @@ public class ControlBox extends Activity {
 		titleBtn=(Button)findViewById(R.id.titleBtn);
 		aboutBtn=(Button)findViewById(R.id.aboutBtn);
 		resetBtn=(Button)findViewById(R.id.resetBtn);
+		homeBtn=(Button)findViewById(R.id.home);
+		deviceSetBtn=(Button)findViewById(R.id.deviceSetBtn);
+		
+
 		
 		
-		
-		Intent intent=getIntent();
-		mUid=intent.getStringExtra("uid");	
+//		Intent intent=getIntent();
+//		mUid=intent.getStringExtra("uid");	
 		
 		TabHost host = (TabHost)findViewById(R.id.tabhost);
 		host.setup();
@@ -163,6 +180,26 @@ public class ControlBox extends Activity {
 				Log.i("leewoo", "reset");
 			}
 		});
+		homeBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
+		
+		
+		deviceSetBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				 Intent intent = new Intent(ControlBox.this,DevSetup.class);	
+				 startActivity(intent);	
+			}
+		});
+		
 		
 		listViewIR.setOnItemClickListener(new OnItemClickListener(){
 
@@ -245,7 +282,7 @@ public class ControlBox extends Activity {
                                 for (int position : reverseSortedPositions) {
                                 	Map<String, Object> listItem=listItemsIR.get(position);
                                 	 int devid=Integer.parseInt(String.valueOf(listItem.get("devid")));
-                                	 DevSetup.mSQLHelper.deleteList(DevSetup.writeDB,devid);
+                                	 mSQLHelper.deleteList(writeDB,devid);
                                 	listItemsIR.remove(listItem);
                                 	//数据库删除
                                 	
@@ -276,7 +313,7 @@ public class ControlBox extends Activity {
                                 	Map<String, Object> listItem=listItemsRF.get(position);
                                 	int devid=Integer.parseInt(String.valueOf(listItem.get("devid")));
                                 	
-                                	DevSetup.mSQLHelper.deleteList(DevSetup.writeDB,devid);
+                                	mSQLHelper.deleteList(writeDB,devid);
                                 	listItemsRF.remove(listItem);
                                 	//数据库删除
                                 	Log.e("leewoo", "swipe->Right");
@@ -295,9 +332,15 @@ public class ControlBox extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		Cursor cur=DevSetup.mSQLHelper.seleteList(DevSetup.writeDB,mUid);
+		mUid=myPreferences.getString("uid", "NULL");
+		if (mUid.equals("NULL")) {
+			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();		
+		}
+		Log.e("leewoo","mUid="+mUid);
+		Cursor cur=mSQLHelper.seleteList(writeDB, mUid);
 		if(0==cur.getCount()){
-			return;	
+			Log.e("leewoo","count="+0);
+			return;
 		}	
 		if(listItemsRF!=null){
 			listItemsRF.clear();
@@ -350,7 +393,7 @@ public class ControlBox extends Activity {
 		
 		SimpleAdapter simpleAdapterIR = new SimpleAdapter(this
 				, listItemsIR 
-				, R.layout.line
+				, R.layout.line2
 				, new String[]{ "title", "content" }
 				, new int[]{R.id.title , R.id.content});
 
@@ -358,7 +401,7 @@ public class ControlBox extends Activity {
 		
 		SimpleAdapter simpleAdapterRF= new SimpleAdapter(this
 				, listItemsRF 
-				, R.layout.line
+				, R.layout.line2
 				, new String[]{ "title", "content" }
 				, new int[]{R.id.title , R.id.content});
 
@@ -372,6 +415,12 @@ public class ControlBox extends Activity {
 		 builder.setMessage(this.getString(R.string.aboutus));		
 		 builder.create().show();
 	   }
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		writeDB.close();
+	}
 
 
 }
