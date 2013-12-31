@@ -876,6 +876,11 @@ containing a value of this type.
         public static final int spinner=0x7f030018;
         public static final int spinnerlayout=0x7f030019;
         public static final int splash=0x7f03001a;
+        public static final int tabcam=0x7f03001b;
+        public static final int tabir=0x7f03001c;
+        public static final int tabrf=0x7f03001d;
+        public static final int tabset=0x7f03001e;
+        public static final int tabth=0x7f03001f;
     }
     public static final class menu {
         public static final int dev=0x7f080000;
