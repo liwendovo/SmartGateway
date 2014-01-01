@@ -21,12 +21,15 @@ package com.seuic.adapter;
 import java.util.List;
 import java.util.Map;
 
+import android.R.integer;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -34,14 +37,14 @@ import com.seuic.smartgateway.ControlBox;
 import com.seuic.smartgateway.R;
 import com.seuic.swipelistview.SwipeListView;
 
-public class SingleChoiceAdapter extends BaseAdapter {
+public class EtcAdapter extends BaseAdapter {
 
     private List<Map<String, Object>> data;
     private Context context;
     private SwipeListView mSwipeListView ;
-    int  currentID = -1;
+  
 
-    public SingleChoiceAdapter(Context context, List<Map<String, Object>> data, SwipeListView mSwipeListView) {
+    public EtcAdapter(Context context, List<Map<String, Object>> data, SwipeListView mSwipeListView) {
         this.context = context;
         this.data = data;
         this.mSwipeListView = mSwipeListView ;
@@ -59,7 +62,6 @@ public class SingleChoiceAdapter extends BaseAdapter {
     }
 
 
-    
 
     @Override
 	public Map<String, Object> getItem(int position) {
@@ -81,39 +83,37 @@ public class SingleChoiceAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = li.inflate(R.layout.row_dev, parent, false);
+            convertView = li.inflate(R.layout.row_etc, parent, false);
             holder = new ViewHolder();
-            holder.Title = (TextView) convertView.findViewById(R.id.title);
-            holder.radioBtn = (RadioButton) convertView.findViewById(R.id.radioBtn);
+            holder.icon=(ImageView)convertView.findViewById(R.id.icon);
+            holder.title = (TextView) convertView.findViewById(R.id.title);
+            holder.lastpress=(ImageView)convertView.findViewById(R.id.lastpress);
             holder.delete = (Button) convertView.findViewById(R.id.deleteBtn);          
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         
-        if(position==currentID)
-        	holder.radioBtn.setChecked(true);
-        else
-        	holder.radioBtn.setChecked(false);
-        
         ((SwipeListView)parent).recycle(convertView, position);
 
-//        holder.ivImage.setImageDrawable(item.getIcon());
-        holder.Title.setText(item.get("title").toString());
+        holder.icon.setImageDrawable((Drawable)item.get("icon"));
+        holder.title.setText(item.get("content").toString());
+        holder.lastpress.setImageDrawable((Drawable)item.get("lastpress"));
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //            	mSwipeListView.closeAnimate(position);
-//				mSwipeListView.dismiss(position);				
+//				mSwipeListView.dismiss(position);
+            	int devid=Integer.parseInt(String.valueOf(getItem(position).get("devid")));
+            	ControlBox.mSQLHelper.deleteList(ControlBox.writeDB,devid);
 				data.remove(position);
-				ControlBox.mSQLHelper.deleteSetup(ControlBox.writeDB,item.get("title").toString() );
+				
 				notifyDataSetChanged();
 				if (mSwipeListView != null)
 					mSwipeListView.closeOpenedItems();				
-				if(position==currentID)
-					 currentID=-1;
 				
-				//share中的怎么办 。。。不用管了
+				
+				//share中的怎么办 。。。不用管了 
 			        
             }
         });
@@ -125,16 +125,12 @@ public class SingleChoiceAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-//        ImageView ivImage;
-        TextView Title;
-        RadioButton radioBtn;
-        Button delete;
-        
+        ImageView icon;
+        TextView title;
+        ImageView lastpress;
+        Button delete;        
     }
     
-	public void setItemChecked(int currentID) {
-		this.currentID = currentID;
-	}
 
 
 

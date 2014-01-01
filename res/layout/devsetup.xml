@@ -97,26 +97,7 @@
        >
 
     </ListView>
-   <com.seuic.swipelistview.SwipeListView
-        android:id="@+id/devListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:listSelector="#00000000"
-        swipe:swipeActionLeft="reveal"
-        swipe:swipeActionRight="reveal"
-        swipe:swipeAnimationTime="0"
-        swipe:swipeBackView="@+id/back"
-        swipe:swipeCloseAllItemsWhenMoveList="true"
-        swipe:swipeFrontView="@+id/front"
-        swipe:swipeMode="both"
-        swipe:swipeOffsetLeft="0dp"
-        swipe:swipeOffsetRight="0dp"
-        swipe:swipeOpenOnLongPress="false" 
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView4"   
-        />-->
+ -->
      <com.seuic.swipelistview.SwipeListView
             
             android:id="@+id/devListView"

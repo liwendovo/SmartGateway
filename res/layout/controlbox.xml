@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:swipe="http://schemas.android.com/apk/res-auto"
     android:id="@+id/tabhost"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
@@ -71,12 +72,18 @@
 
        
 
-                <ListView
-                    android:id="@+id/listViewIR"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"     
-                    android:layout_alignParentLeft="true"
-                 ></ListView>
+             <com.seuic.swipelistview.SwipeListView            
+	            android:id="@+id/listViewIR"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	            android:divider="@null"
+	            swipe:swipeActionLeft="reveal"
+	            swipe:swipeBackView="@+id/back"
+	            swipe:swipeCloseAllItemsWhenMoveList="true"
+	            swipe:swipeFrontView="@+id/front"
+	            swipe:swipeMode="right"
+	            swipe:swipeOffsetRight="200dip"
+	            swipe:swipeOpenOnLongPress="false" />
 
             </RelativeLayout>
             <!-- the second tab tabrf -->
@@ -93,18 +100,27 @@
 
             
  
-                <ListView
+                <!--  ListView
                     android:id="@+id/listViewRF"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"                  
                     android:layout_alignParentLeft="true"
-                  
-                   
-                    >
-                </ListView>
+                 > </ListView>-->
+              <com.seuic.swipelistview.SwipeListView            
+	            android:id="@+id/listViewRF"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	            android:divider="@null"
+	            swipe:swipeActionLeft="reveal"
+	            swipe:swipeBackView="@+id/back"
+	            swipe:swipeCloseAllItemsWhenMoveList="true"
+	            swipe:swipeFrontView="@+id/front"
+	            swipe:swipeMode="right"
+	            swipe:swipeOffsetRight="200dip"
+	            swipe:swipeOpenOnLongPress="false" />               
             </RelativeLayout>
+            
             <!-- the third tab tabth -->
-
             <RelativeLayout
                 android:id="@+id/tabth"
                 android:layout_width="fill_parent"
@@ -112,7 +128,7 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="65dip"
                 android:paddingTop="20dip"
-                  android:paddingLeft="20dip" 
+                android:paddingLeft="20dip" 
                 android:paddingRight="20dip" >
 
              <ImageView
@@ -121,7 +137,6 @@
 		        android:layout_height="640dp"		        
 		        android:layout_centerHorizontal="true"		       
 		        android:src="@drawable/temp" />
-
             </RelativeLayout>
             
             <!-- the forth tab tabset -->
@@ -135,28 +150,26 @@
                 android:paddingLeft="20dip" 
                 android:paddingRight="20dip">
              <TableLayout 
-               android:layout_width="fill_parent" 
-   				 android:layout_height="wrap_content"
-   				 android:stretchColumns="1,2">
-                  <ImageView
+                android:layout_width="fill_parent" 
+   				android:layout_height="wrap_content"
+   				android:stretchColumns="1,2">
+                <ImageView
 		        android:id="@+id/imageView1"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignParentTop="true"
 		        android:layout_centerHorizontal="true"
 		        android:src="@drawable/littlelogo" />
-                     
-                  
-                   <Button
-                    android:id="@+id/deviceSetBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Device Set" />
-                    <Button
-                    android:id="@+id/cameraSetBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"      
-                    android:text="Camera Set" />
+                <Button
+                 android:id="@+id/deviceSetBtn"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:text="Device Set" />
+                 <Button
+                 android:id="@+id/cameraSetBtn"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"      
+                 android:text="Camera Set" />
                  <TableRow>
                    <TextView
 		            android:id="@+id/tmpBtn"
@@ -179,17 +192,13 @@
 	 			    android:textOff="F"
 	 			    android:textOn="F" 
 	 			    android:checked="false" />                       
-	                 </TableRow>
-                 
-               
-              
-		 	        <Button
+	                </TableRow>
+                 	<Button
                     android:id="@+id/resetBtn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"                
-     			
+                    android:layout_height="wrap_content"  
                     android:text="Time Set" />
-                <Button
+                    <Button
                     android:id="@+id/resetBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -205,7 +214,6 @@
                     android:text="About us" />
                  </TableLayout>
             </RelativeLayout>
-            
             
         </FrameLayout>
     </RelativeLayout>

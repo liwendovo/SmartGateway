@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:paddingBottom="6.0dip"
+        android:paddingTop="6.0dip"
+        android:layout_gravity="center"
+        android:tag="back"        
+         >
+
+     <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="64.0dip"
+            android:layout_height="34.0dip"
+            android:layout_gravity="right|center"
+            android:layout_marginLeft="10.0dip"
+            android:background="@drawable/red_del_btn_bg"
+            android:shadowColor="#7f000000"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="1.5"
+            android:text="删除"
+            android:textColor="#ffffffff"
+            android:textSize="14.0dip" />
+ 
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/front"       
+        android:layout_gravity="center"
+        android:background="@drawable/contact_list_item_bg_selector"
+        android:layout_width="match_parent"
+        android:layout_height="70dip"
+        android:paddingBottom="6.0dip"
+        android:paddingTop="6.0dip"
+        android:tag="front"   >
+ 		android:visibility="gone"
+ 		 <ImageView
+            android:id="@+id/icon"
+            android:layout_width="50.0dip"
+            android:layout_height="50.0dip"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10.0dip"
+            android:src="@drawable/ic_launcher" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+             android:textColor="@drawable/contact_list_item_buddy_name_text_color"
+            android:textAppearance="?android:attr/textAppearanceLarge" 
+             />
+
+      <ImageView
+            android:id="@+id/lastpress"
+            android:layout_width="50.0dip"
+            android:layout_height="50.0dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10.0dip"
+            android:src="@drawable/ic_launcher" />
+
+    </RelativeLayout>
+
+</FrameLayout>
