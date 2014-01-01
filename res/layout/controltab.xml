@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <!-- set the tab title attributes and set the title align the bottom -->
+
+        <TabWidget
+             android:id="@android:id/tabs"
+             android:layout_width="fill_parent"
+             android:layout_height="50dp"
+             android:layout_alignParentBottom="true"            
+             android:gravity="bottom"
+             android:orientation="horizontal" >
+        </TabWidget>
+        <!-- set the tab body attributes -->
+	     <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@android:id/tabs"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" >
+            </FrameLayout>
+    </RelativeLayout>
+
+</TabHost>

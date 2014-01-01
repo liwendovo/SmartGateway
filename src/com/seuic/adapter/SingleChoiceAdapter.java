@@ -111,8 +111,11 @@ public class SingleChoiceAdapter extends BaseAdapter {
 				if (mSwipeListView != null)
 					mSwipeListView.closeOpenedItems();				
 				if(position==currentID)
-					 currentID=-1;
-				
+				{
+					currentID=-1;
+//					ControlBox.editor.putString("uid","NULL");
+//					ControlBox.editor.commit();
+				}
 				//share中的怎么办 。。。不用管了
 			        
             }

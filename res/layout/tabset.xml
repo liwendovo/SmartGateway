@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
- <RelativeLayout
+ <LinearLayout
          	xmlns:android="http://schemas.android.com/apk/res/android"
    			xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:layout_marginBottom="65dip"
-            android:paddingTop="20dip" 
-            android:paddingLeft="20dip" 
-            android:paddingRight="20dip">
+            android:layout_marginBottom="65dip">
+        <include layout="@layout/title" android:focusable="true"/>	
              <TableLayout 
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
@@ -20,19 +18,18 @@
 					android:layout_alignParentTop="true"
 					android:layout_centerHorizontal="true"
 					android:src="@drawable/littlelogo" />
-                     
-                  
+                                       
                    <Button
-                    android:id="@+id/deviceSetBtn"
+                    android:id="@+id/devSetBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Device Set" />
                     <Button
-                    android:id="@+id/cameraSetBtn"
+                    android:id="@+id/camSetBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"      
                     android:text="Camera Set" />
-                 <TableRow>
+             <TableRow>
                    <TextView
 		            android:id="@+id/tmpBtn"
 		            android:layout_width="wrap_content"
@@ -54,29 +51,23 @@
 	 			    android:textOff="F"
 	 			    android:textOn="F" 
 	 			    android:checked="false" />                       
-	                 </TableRow>
+	          </TableRow>
                  
-               
-              
 		 	        <Button
                     android:id="@+id/resetBtn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"                
-     			
+                    android:layout_height="wrap_content"  
                     android:text="Time Set" />
                 <Button
                     android:id="@+id/resetBtn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                
-     			
+                    android:layout_height="wrap_content"     
                     android:text="Reset App" />
 
                 <Button
                     android:id="@+id/aboutBtn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-              
+                    android:layout_height="wrap_content"              
                     android:text="About us" />
-                 </TableLayout>
-            </RelativeLayout>
+         </TableLayout>
+</LinearLayout>

@@ -161,7 +161,7 @@
 		        android:layout_centerHorizontal="true"
 		        android:src="@drawable/littlelogo" />
                 <Button
-                 android:id="@+id/deviceSetBtn"
+                 android:id="@+id/devSetBtn"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
                  android:text="Device Set" />

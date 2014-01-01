@@ -89,19 +89,19 @@ public class DevSetup extends Activity {
 			}			
 		});	
 		
-		swipeListView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View view, int position,
-					long id) {
-				// TODO Auto-generated method stub
-				
-					mAdapter.setItemChecked(position);
-					mAdapter.notifyDataSetChanged();
-				Log.e("leewoo", "click on: "+position);
-				
-			}
-		});
+//		swipeListView.setOnItemClickListener(new OnItemClickListener() {
+//
+//			@Override
+//			public void onItemClick(AdapterView<?> arg0, View view, int position,
+//					long id) {
+//				// TODO Auto-generated method stub
+//				
+//					mAdapter.setItemChecked(position);
+//					mAdapter.notifyDataSetChanged();
+//				Log.e("leewoo", "click on: "+position);
+//				
+//			}
+//		});
 		swipeListView.setSwipeListViewListener(new BaseSwipeListViewListener() {
 		
 			
