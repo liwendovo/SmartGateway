@@ -17,8 +17,6 @@ public class TabCam extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabcam);
 		
-		
-		
 	}
 	
 }

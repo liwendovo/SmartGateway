@@ -12,7 +12,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_centerHorizontal="true" 
-            android:background="@drawable/ir"/>
-     
+            android:background="@drawable/tab_ir"/>     
     </RelativeLayout>
 </RelativeLayout>

@@ -15,7 +15,7 @@ import android.widget.TextView;
 public class TabSET extends Activity {
 
 	Button titleBtn,homeBtn;
-	TextView titleTxt;
+//	TextView titleTxt;
 	Button aboutBtn,resetBtn,devSetBtn,camSetBtn;
 	SharedPreferences myPreferences;
 	SharedPreferences.Editor editor;
@@ -27,12 +27,12 @@ public class TabSET extends Activity {
 		aboutBtn=(Button)findViewById(R.id.aboutBtn);
 		resetBtn=(Button)findViewById(R.id.resetBtn);
 		
-		homeBtn=(Button)findViewById(R.id.leftBtn);
-		titleTxt = (TextView)findViewById(R.id.titleTxt);
-		titleBtn=(Button)findViewById(R.id.rightBtn);	
+//		homeBtn=(Button)findViewById(R.id.back);
+//		titleTxt = (TextView)findViewById(R.id.titleTxt);
+		titleBtn=(Button)findViewById(R.id.titleBtn);	
 		
-		homeBtn.setText("Home");
-		titleTxt.setText("SET");
+
+//		titleTxt.setText("SET");
 		titleBtn.setVisibility(Button.INVISIBLE);
 		
 		devSetBtn=(Button)findViewById(R.id.devSetBtn);
@@ -65,14 +65,7 @@ public class TabSET extends Activity {
 				 startActivity(intent);	
 			}
 		});
-	homeBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				finish();
-			}
-		});
+
 	}
 	 protected void aboutus() {
 		 AlertDialog.Builder builder = new Builder(TabSET.this);

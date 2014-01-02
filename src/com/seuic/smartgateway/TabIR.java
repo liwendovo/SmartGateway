@@ -48,12 +48,12 @@ public class TabIR extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabir);		
-		homeBtn=(Button)findViewById(R.id.leftBtn);
-		titleTxt = (TextView)findViewById(R.id.titleTxt);
-		titleBtn=(Button)findViewById(R.id.rightBtn);	
-		homeBtn.setText("Home");
-		titleTxt.setText("IR");
-		titleBtn.setText("ADD");
+		homeBtn=(Button)findViewById(R.id.back);
+//		titleTxt = (TextView)findViewById(R.id.titleTxt);
+		titleBtn=(Button)findViewById(R.id.titleBtn);	
+//		homeBtn.setText("Home");
+////		titleTxt.setText("IR");
+//		titleBtn.setText("ADD");
 		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
 		titleBtn.setOnClickListener(new OnClickListener()
 		{		
@@ -65,14 +65,7 @@ public class TabIR extends Activity {
 			}			
 		});	
 		
-		homeBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				finish();
-			}
-		});
+
 		
 		listViewIR = (ListView)findViewById(R.id.listViewIR);
 		

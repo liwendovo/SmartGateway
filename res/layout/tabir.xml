@@ -6,7 +6,7 @@
 			android:layout_height="fill_parent"
 			android:orientation="vertical"		
 			>
-		<include layout="@layout/title_dev" android:focusable="true"/>	
+		<include layout="@layout/main_title" android:focusable="true"/>	
 		<ListView            
             android:id="@+id/listViewIR"
             android:layout_width="fill_parent"

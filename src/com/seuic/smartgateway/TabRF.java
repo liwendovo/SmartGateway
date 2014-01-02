@@ -50,12 +50,12 @@ public class TabRF extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabrf);
 		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
-		homeBtn=(Button)findViewById(R.id.leftBtn);
-		titleTxt = (TextView)findViewById(R.id.titleTxt);
-		titleBtn=(Button)findViewById(R.id.rightBtn);	
-		homeBtn.setText("Home");
-		titleTxt.setText("RF");
-		titleBtn.setText("ADD");
+		homeBtn=(Button)findViewById(R.id.back);
+//		titleTxt = (TextView)findViewById(R.id.titleTxt);
+		titleBtn=(Button)findViewById(R.id.titleBtn);	
+//		homeBtn.setText("Home");
+//		titleTxt.setText("RF");
+//		titleBtn.setText("ADD");
 		titleBtn.setOnClickListener(new OnClickListener()
 		{	
 			@Override	
@@ -66,13 +66,7 @@ public class TabRF extends Activity {
 				 startActivity(intent);	
             }			
 		});	
-		homeBtn.setOnClickListener(new OnClickListener() {			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				finish();
-			}
-		});
+	
 		listViewRF = (ListView)findViewById(R.id.listViewRF);
 		listViewRF.setOnItemClickListener(new OnItemClickListener(){
 

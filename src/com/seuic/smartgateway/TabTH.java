@@ -18,20 +18,14 @@ public class TabTH extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabth);
-		homeBtn=(Button)findViewById(R.id.leftBtn);
-		titleTxt = (TextView)findViewById(R.id.titleTxt);
-		titleBtn=(Button)findViewById(R.id.rightBtn);	
+		homeBtn=(Button)findViewById(R.id.back);
+//		titleTxt = (TextView)findViewById(R.id.titleTxt);
+		titleBtn=(Button)findViewById(R.id.titleBtn);	
 		homeBtn.setText("Home");
-		titleTxt.setText("TH");
+//		titleTxt.setText("TH");
 		titleBtn.setText("Chart");
 		
-		homeBtn.setOnClickListener(new OnClickListener() {			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				finish();
-			}
-		});
+	
 	}
 	
 }
