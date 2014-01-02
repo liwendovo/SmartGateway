@@ -3,45 +3,13 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background3"
     android:orientation="vertical"
     tools:context=".TvActivity" >
     
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#7A7A7A" >
-        
-        <Button
-            android:id="@+id/back"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_alignParentLeft="true"
-            android:text="@string/back" />
-
-        <TextView
-            android:id="@+id/titleTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="FAN"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FFFFFF" />
-
-        <Button
-            android:id="@+id/titleBtn"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/learn" />
-
-    </RelativeLayout>
-   
-
-   
+   <include layout="@layout/main_title" 
+            android:focusable="true"/>
+     
 
     <ImageView
         android:id="@+id/imageView1"

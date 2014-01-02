@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.seuic.smartgateway.R;
 
 public class IR_Media extends Activity implements android.view.View.OnClickListener {
 	Button  backBtn,leanrnBtn;
-	Button  button1,button2,button3,
+	ImageView   devpic;
+	ImageView  button1,button2,button3,
 			button4,button5,button6,
 			button7,button8,button9;
 	@Override
@@ -22,15 +24,16 @@ public class IR_Media extends Activity implements android.view.View.OnClickListe
 	
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
-		button1=(Button)findViewById(R.id.button1);
-		button2=(Button)findViewById(R.id.button2);
-		button3=(Button)findViewById(R.id.button3);		
-		button4=(Button)findViewById(R.id.button4);		
-		button5=(Button)findViewById(R.id.button5);
-		button6=(Button)findViewById(R.id.button6);		
-		button7=(Button)findViewById(R.id.button7);		
-		button8=(Button)findViewById(R.id.button8);
-		
+		button1=(ImageView)findViewById(R.id.button1);
+		button2=(ImageView)findViewById(R.id.button2);
+		button3=(ImageView)findViewById(R.id.button3);		
+		button4=(ImageView)findViewById(R.id.button4);		
+		button5=(ImageView)findViewById(R.id.button5);
+		button6=(ImageView)findViewById(R.id.button6);		
+		button7=(ImageView)findViewById(R.id.button7);		
+		button8=(ImageView)findViewById(R.id.button8);
+		devpic=(ImageView)findViewById(R.id.pic);
+		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_media));
 		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 

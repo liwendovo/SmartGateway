@@ -38,7 +38,7 @@ import com.seuic.devetc.IR_Selfdefine1;
 import com.seuic.devetc.IR_Selfdefine2;
 import com.seuic.devetc.IR_TV;
 import com.seuic.devetc.IR_WH;
-import com.seuic.devetc.RF_Curtain;
+import com.seuic.devetc.RF_Curtain1;
 import com.seuic.devetc.RF_Lamp;
 import com.seuic.devetc.RF_Selfdefine1;
 import com.seuic.devetc.RF_Selfdefine2;
@@ -256,7 +256,7 @@ public class ControlBox extends Activity {
 				 }else if(type.equals(itemsRF[2])){
 					 intent = new Intent(ControlBox.this,RF_Lamp.class);
 				 }else if(type.equals(itemsRF[3])){
-					 intent = new Intent(ControlBox.this,RF_Curtain.class);				 
+					 intent = new Intent(ControlBox.this,RF_Curtain1.class);				 
 				 }else if(type.equals(itemsRF[4])){
 					 intent = new Intent(ControlBox.this,RF_Selfdefine1.class);
 				 }else {

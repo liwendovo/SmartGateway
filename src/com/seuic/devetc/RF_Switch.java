@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.seuic.smartgateway.R;
 
 public class RF_Switch extends Activity implements android.view.View.OnClickListener{
 	Button  backBtn,leanrnBtn;
-	Button  button1,button2,button3,
+	ImageView   devpic;
+	ImageView  button1,button2,button3,
 			button4,button5,button6,
 			button7,button8,button9;
 	@Override
@@ -20,9 +22,10 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 		setContentView(R.layout.rf_switch);
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
-		button1=(Button)findViewById(R.id.button1);
-		button2=(Button)findViewById(R.id.button2);
-	
+		button1=(ImageView)findViewById(R.id.button1);
+		button2=(ImageView)findViewById(R.id.button2);
+		devpic=(ImageView)findViewById(R.id.pic);
+		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_dvd));	
 		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 

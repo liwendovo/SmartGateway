@@ -5,16 +5,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.seuic.smartgateway.R;
 
 public class IR_DVD extends Activity implements android.view.View.OnClickListener{
-	Button  backBtn,leanrnBtn;
-	Button  button1,button2,
-			button3,button4,button5,
-			button6,button7,button8,
-			button9,button10,button11,
-			button12,button13,button14;
+	
+	Button backBtn,leanrnBtn;
+	ImageView   devpic;
+	ImageView   button1,button2,
+				button3,button4,button5,
+				button6,button7,button8,
+				button9,button10,button11,
+				button12,button13,button14;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -23,15 +26,17 @@ public class IR_DVD extends Activity implements android.view.View.OnClickListene
 		setContentView(R.layout.ir_dvd);
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
-		button1=(Button)findViewById(R.id.button1);
-		button2=(Button)findViewById(R.id.button2);
-		button3=(Button)findViewById(R.id.button3);		
-		button4=(Button)findViewById(R.id.button4);		
-		button5=(Button)findViewById(R.id.button5);
-		button6=(Button)findViewById(R.id.button6);		
-		button7=(Button)findViewById(R.id.button7);		
-		button8=(Button)findViewById(R.id.button8);
-		button9=(Button)findViewById(R.id.button9);
+		button1=(ImageView)findViewById(R.id.button1);
+		button2=(ImageView)findViewById(R.id.button2);
+		button3=(ImageView)findViewById(R.id.button3);		
+		button4=(ImageView)findViewById(R.id.button4);		
+		button5=(ImageView)findViewById(R.id.button5);
+		button6=(ImageView)findViewById(R.id.button6);		
+		button7=(ImageView)findViewById(R.id.button7);		
+		button8=(ImageView)findViewById(R.id.button8);
+		button9=(ImageView)findViewById(R.id.button9);
+		devpic=(ImageView)findViewById(R.id.pic);
+		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_dvd));
 	
 		
 		backBtn.setOnClickListener(this); 
