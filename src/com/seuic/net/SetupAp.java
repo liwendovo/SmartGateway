@@ -46,7 +46,7 @@ public class SetupAp extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.setupap);
+		setContentView(R.layout.setup_ap);
 		password = (EditText)findViewById(R.id.password);
 		//ssid = (TextView)findViewById(R.id.ssid);
 		pushap= (Button)findViewById(R.id.pushapBtn);

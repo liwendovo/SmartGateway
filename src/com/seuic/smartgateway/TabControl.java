@@ -13,7 +13,23 @@ import android.view.Window;
 import android.widget.TabHost;
 
 import com.seuic.sqlite.SQLiteHelper;
-
+//import com.seuic.add.AddEtc;
+//import com.seuic.devetc.IR_AC;
+//import com.seuic.devetc.IR_DVD;
+//import com.seuic.devetc.IR_FAN;
+//import com.seuic.devetc.IR_Media;
+//import com.seuic.devetc.IR_STU;
+//import com.seuic.devetc.IR_Selfdefine1;
+//import com.seuic.devetc.IR_Selfdefine2;
+//import com.seuic.devetc.IR_TV;
+//import com.seuic.devetc.IR_WH;
+//import com.seuic.devetc.RF_Curtain;
+//import com.seuic.devetc.RF_Lamp;
+//import com.seuic.devetc.RF_Selfdefine1;
+//import com.seuic.devetc.RF_Selfdefine2;
+//import com.seuic.devetc.RF_Switch;
+//import com.seuic.devetc.RF_WH;
+//import com.seuic.swipelistview.BaseSwipeListViewListener;
 
 
 
@@ -23,7 +39,20 @@ public class TabControl extends ActivityGroup {
 	public final static String[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"}; 
 	public final static String[] itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
 
-
+//	TextView tv1; 
+//	Button aboutBtn,resetBtn,devSetBtn,camSetBtn;
+//	
+//	Button titleBtn,homeBtn;
+//	String mUid=null;
+//	List<Map<String, Object>> listItemsIR;
+//	SwipeListView listViewIR;
+//	List<Map<String, Object>> listItemsRF;	
+//	SwipeListView listViewRF;
+//	ListView listViewIR;
+//	ListView listViewRF;
+//	EtcAdapter irAdapter,rfAdapter;
+//	TextView devClass;
+//	String TabID="IR";
 	
 	private TabHost host = null;
 	private LayoutInflater mInflater = null;	
@@ -42,7 +71,45 @@ public class TabControl extends ActivityGroup {
 		writeDB=mSQLHelper.getWritableDatabase();
 		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
 		
+//		listViewIR = (SwipeListView)findViewById(R.id.listViewIR);
+//		listViewRF = (SwipeListView)findViewById(R.id.listViewRF);
+		
+//		homeBtn=(Button)findViewById(R.id.home);
+//		devClass   = (TextView)findViewById(R.id.devClass);		
+//		titleBtn=(Button)findViewById(R.id.titleBtn);
+//		
+//		aboutBtn=(Button)findViewById(R.id.aboutBtn);
+//		resetBtn=(Button)findViewById(R.id.resetBtn);
+//		
+//		devSetBtn=(Button)findViewById(R.id.devSetBtn);
+		
 
+		
+//		host = (TabHost)findViewById(R.id.tabhost);
+////		final TabHost host = getTabHost();
+//		host.setup();
+//
+//		TabHost.TabSpec irSpec = host.newTabSpec("IR");        //This param will be used as tabId.
+//		irSpec.setIndicator(null,         					//This param will diplay as title. 
+//		getResources().getDrawable(R.drawable.ir));
+//		irSpec.setContent(new Intent(ControlBox.this, TabIR.class));
+//		host.addTab(irSpec);
+//
+//		TabHost.TabSpec rfSpec = host.newTabSpec("RF");
+//		rfSpec.setIndicator(null, getResources().getDrawable(R.drawable.rf));
+//		rfSpec.setContent(new Intent(ControlBox.this, TabRF.class));
+//		host.addTab(rfSpec);
+//
+//		TabHost.TabSpec thSpec = host.newTabSpec("TH");
+//		thSpec.setIndicator(null, getResources().getDrawable(R.drawable.th));
+//		thSpec.setContent(new Intent(ControlBox.this, TabTH.class));
+//		host.addTab(thSpec);
+//		
+//		TabHost.TabSpec setSpec = host.newTabSpec("SET");
+//		setSpec.setIndicator(null, getResources().getDrawable(R.drawable.setp));
+//		setSpec.setContent(new Intent(ControlBox.this, TabSET.class));
+//		host.addTab(setSpec);
+//		host.getId();
 		mInflater = LayoutInflater.from(this);
 		host = (TabHost) findViewById(R.id.tabhost);
 		host.setup(this.getLocalActivityManager());
@@ -68,18 +135,13 @@ public class TabControl extends ActivityGroup {
 				.setIndicator(tab3Spec)
 				.setContent(intent));
 		
-		intent = new Intent(this, TabCam.class);
+		intent = new Intent(this, TabSET.class);
 		View tab4Spec = mInflater.inflate(R.layout.tab4_spec, null);
 		host.addTab(host
-				.newTabSpec("CAM")
+				.newTabSpec("SET")
 				.setIndicator(tab4Spec)
 				.setContent(intent));
-		intent = new Intent(this, TabSET.class);
-		View tab5Spec = mInflater.inflate(R.layout.tab5_spec, null);
-		host.addTab(host
-				.newTabSpec("SET")
-				.setIndicator(tab5Spec)
-				.setContent(intent));
+		
 		
 		
 		

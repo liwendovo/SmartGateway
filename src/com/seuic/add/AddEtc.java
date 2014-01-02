@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.seuic.smartgateway.ControlBox;
+import com.seuic.smartgateway.TabControl;
 import com.seuic.smartgateway.DevSetup;
 import com.seuic.smartgateway.R;
 
@@ -38,9 +38,9 @@ public class AddEtc extends Activity {
 		spinnerEtc=(Spinner)findViewById(R.id.spinnerEtc);	
 	
 		if(mClass.equals("ir")){
-			adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ControlBox.itemsIR);
+			adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, TabControl.itemsIR);
 		}else{
-			adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ControlBox.itemsRF);
+			adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, TabControl.itemsRF);
 		}
         //设置下拉列表的风格  
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);            
@@ -53,8 +53,8 @@ public class AddEtc extends Activity {
 			public void onClick(View source){
 				String name = ((EditText)findViewById(R.id.devName)).getText().toString();
 				//插入数据库库				
-				writeDB=ControlBox.mSQLHelper.getWritableDatabase();
-				ControlBox.mSQLHelper.insertList(writeDB, mUid, mClass,spinnerEtc.getSelectedItem().toString(), name, "0","0");
+				writeDB=TabControl.mSQLHelper.getWritableDatabase();
+				TabControl.mSQLHelper.insertList(writeDB, mUid, mClass,spinnerEtc.getSelectedItem().toString(), name, "0","0");
 				//三级页表的创建
 				//Log.e("leewoo", mUid+" "+name+" "+mClass+" "+listBtn.getText().toString());
 				finish();

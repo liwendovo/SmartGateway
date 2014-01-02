@@ -21,47 +21,52 @@ package com.seuic.adapter;
 import java.util.List;
 import java.util.Map;
 
-import android.R.integer;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.seuic.smartgateway.ControlBox;
 import com.seuic.smartgateway.R;
-import com.seuic.swipelistview.SwipeListView;
+import com.seuic.smartgateway.TabControl;
+import com.seuic.smartgateway.TabIR;
+
 
 public class EtcAdapter extends BaseAdapter {
 
     private List<Map<String, Object>> data;
-    private Context context;
-    private SwipeListView mSwipeListView ;
-  
-
-    public EtcAdapter(Context context, List<Map<String, Object>> data, SwipeListView mSwipeListView) {
+    private Context context; 
+    private float x,ux;
+    public EtcAdapter(Context context, List<Map<String, Object>> data) {
         this.context = context;
-        this.data = data;
-        this.mSwipeListView = mSwipeListView ;
-		
+        this.data = data;       
     }
 
 	@Override
 	public void notifyDataSetChanged() {
 		super.notifyDataSetChanged();
 	}
-
+	
+	public void remove(int index) {
+		if (index < 0)
+			return;
+		data.remove(index);		
+		notifyDataSetChanged();
+	}
 	@Override
     public int getCount() {
         return data.size();
     }
-
-
 
     @Override
 	public Map<String, Object> getItem(int position) {
@@ -83,55 +88,41 @@ public class EtcAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = li.inflate(R.layout.row_etc, parent, false);
+            convertView = li.inflate(R.layout.list_item, parent, false);
             holder = new ViewHolder();
-            holder.icon=(ImageView)convertView.findViewById(R.id.icon);
             holder.title = (TextView) convertView.findViewById(R.id.title);
-            holder.lastpress=(ImageView)convertView.findViewById(R.id.lastpress);
-            holder.delete = (Button) convertView.findViewById(R.id.deleteBtn);          
+            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+            holder.lastpress = (ImageView) convertView.findViewById(R.id.status);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         
-        ((SwipeListView)parent).recycle(convertView, position);
-
-        holder.icon.setImageDrawable((Drawable)item.get("icon"));
-        holder.title.setText(item.get("content").toString());
-        holder.lastpress.setImageDrawable((Drawable)item.get("lastpress"));
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//            	mSwipeListView.closeAnimate(position);
-//				mSwipeListView.dismiss(position);
-            	int devid=Integer.parseInt(String.valueOf(getItem(position).get("devid")));
-            	ControlBox.mSQLHelper.deleteList(ControlBox.writeDB,devid);
-				data.remove(position);
-				
+             	
+        holder.lastpress.setImageResource(R.drawable.dev_off);    
+        holder.title.setText(item.get("type").toString());
+        holder.icon.setImageResource(R.drawable.dev_icon);
+        
+     
+        
+       
+     
+        holder.lastpress.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			
 				notifyDataSetChanged();
-				if (mSwipeListView != null)
-					mSwipeListView.closeOpenedItems();				
-				
-				
-				//share中的怎么办 。。。不用管了 
-			        
-            }
-        });
-
-  
-
+			}
+		});
 
         return convertView;
     }
 
     static class ViewHolder {
-        ImageView icon;
         TextView title;
-        ImageView lastpress;
-        Button delete;        
+        ImageView icon,lastpress;
     }
     
-
-
-
 }

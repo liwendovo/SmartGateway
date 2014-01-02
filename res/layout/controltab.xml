@@ -15,7 +15,8 @@
              android:id="@android:id/tabs"
              android:layout_width="fill_parent"
              android:layout_height="50dp"
-             android:layout_alignParentBottom="true"            
+             android:layout_alignParentBottom="true" 
+             android:background="@drawable/main_tab_frame_tabwidget_background_img"           
              android:gravity="bottom"
              android:orientation="horizontal" >
         </TabWidget>

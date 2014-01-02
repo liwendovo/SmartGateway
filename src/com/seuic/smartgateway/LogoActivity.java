@@ -18,7 +18,7 @@ public class LogoActivity extends Activity {
 		public void run() {
 			// TODO Auto-generated method stub
 	
-			startActivity(new Intent(LogoActivity.this,	ControlBox.class));
+			startActivity(new Intent(LogoActivity.this,	TabControl.class));
 			
 			finish();
 		}

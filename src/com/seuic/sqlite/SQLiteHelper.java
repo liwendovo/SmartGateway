@@ -3,9 +3,6 @@
  * copyright@ seuic 
  * */
 package com.seuic.sqlite;
-import android.R.bool;
-import android.R.string;
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

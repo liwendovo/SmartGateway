@@ -20,7 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.seuic.smartgateway.ControlBox;
+import com.seuic.smartgateway.TabControl;
 import com.seuic.smartgateway.DevSetup;
 import com.seuic.smartgateway.R;
 
@@ -69,7 +69,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 			Log.e("leewoo", "deid error = 0");
 			}
 		
-		Cursor cursor=ControlBox.mSQLHelper.seleteBtn(ControlBox.writeDB,devid);
+		Cursor cursor=TabControl.mSQLHelper.seleteBtn(TabControl.writeDB,devid);
 		Log.e("leewoo", "cur: "+cursor.getCount());
 		if(cursor.getCount()>0){
 			//已初始化
@@ -109,8 +109,8 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 		}else{
 			Log.e("leewoo", "cur 初始化"+cursor.getCount());
 			//未初始化
-			ControlBox.mSQLHelper.insertBtn(ControlBox.writeDB,mUid,devid,"learn" ,learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse);
-			ControlBox.mSQLHelper.insertBtn(ControlBox.writeDB,mUid,devid, "name" ,btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults+14);
+			TabControl.mSQLHelper.insertBtn(TabControl.writeDB,mUid,devid,"learn" ,learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse);
+			TabControl.mSQLHelper.insertBtn(TabControl.writeDB,mUid,devid, "name" ,btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults+14);
 			//DevSetup.mSQLHelper.insertEtc(DevSetup.writeDB, mUid, 8, "name", "name", "name", "name");			
 		}
 
@@ -206,7 +206,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 
         		button1.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 
-        		ControlBox.mSQLHelper.updateBtnlearn(ControlBox.writeDB, devid, 1, true);        		
+        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true);        		
 
         		Log.e("btnclr1=",""+btnclr1);
 	        	}
@@ -222,7 +222,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 
         		button2.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 
-        		ControlBox.mSQLHelper.updateBtnlearn(ControlBox.writeDB, devid,2, true);
+        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,2, true);
 
         		Log.e("btnclr2=",""+btnclr2);
 	        	}
@@ -238,7 +238,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 
         		button3.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 
-        		ControlBox.mSQLHelper.updateBtnlearn(ControlBox.writeDB, devid, 3, true);
+        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 3, true);
 
         		Log.e("btnclr3=",""+btnclr3);
         		}
@@ -255,7 +255,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 
 	        		button4.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 
-	        		ControlBox.mSQLHelper.updateBtnlearn(ControlBox.writeDB, devid, 4, true);
+	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 4, true);
 	        		
 
 	        		Log.e("btnclr4=",""+btnclr4);
@@ -271,7 +271,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 
 	        		button5.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 
-	        		ControlBox.mSQLHelper.updateBtnlearn(ControlBox.writeDB, devid,5, true);
+	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,5, true);
 
 	        		Log.e("btnclr5=",""+btnclr5);
 	        	}
@@ -286,7 +286,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 
 	        		button6.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 
-	        		ControlBox.mSQLHelper.updateBtnlearn(ControlBox.writeDB, devid, 6, true);
+	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 6, true);
 
 	        		Log.e("btnclr6=",""+btnclr6);
 	        	}
@@ -301,7 +301,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 
 	        		button7.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 
-	        		ControlBox.mSQLHelper.updateBtnlearn(ControlBox.writeDB, devid, 7, true);
+	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 7, true);
 
 	        		Log.e("btnclr7=",""+btnclr7);
 	        	}
@@ -316,7 +316,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 
 	        		button8.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 
-	        		ControlBox.mSQLHelper.updateBtnlearn(ControlBox.writeDB, devid, 8, true);
+	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 8, true);
 
 	        		Log.e("btnclr8=",""+btnclr8);
 	        	}
@@ -331,7 +331,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 
 	        		button9.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
 
-	        		ControlBox.mSQLHelper.updateBtnlearn(ControlBox.writeDB, devid, 9, true);
+	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 9, true);
 
 	        		Log.e("btnclr9=",""+btnclr9);
 	        	}
@@ -410,43 +410,43 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 			switch (btnid) {
 			case 1:
 				button1.setText(et.getText().toString());
-				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 1, et.getText().toString());
+				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 1, et.getText().toString());
 				break;
 			case 2:
 				button2.setText(et.getText().toString());
-				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 2, et.getText().toString());
+				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 2, et.getText().toString());
 				break;
 			case 3:
 				button3.setText(et.getText().toString());
-				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 3, et.getText().toString());
+				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 3, et.getText().toString());
 				break;
 			case 4:
 				button4.setText(et.getText().toString());
-				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 4, et.getText().toString());
+				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 4, et.getText().toString());
 				break;
 			case 5:
 				button5.setText(et.getText().toString());
-				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 5, et.getText().toString());
+				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 5, et.getText().toString());
 				break;
 			case 6:
 
 				button6.setText(et.getText().toString());
-				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 6, et.getText().toString());
+				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 6, et.getText().toString());
 			
 				break;
 			case 7:
 
 				button1.setText(et.getText().toString());
-				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 7, et.getText().toString());
+				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 7, et.getText().toString());
 
 				break;				
 			case 8:
 				button8.setText(et.getText().toString());
-				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 8, et.getText().toString());
+				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 8, et.getText().toString());
 				break;
 			case 9:
 				button9.setText(et.getText().toString());
-				ControlBox.mSQLHelper.updateBtnName(ControlBox.writeDB, devid, 9, et.getText().toString());
+				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 9, et.getText().toString());
 				break;
 			default:
 				break;

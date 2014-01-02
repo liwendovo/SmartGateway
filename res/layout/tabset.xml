@@ -5,8 +5,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:layout_marginBottom="65dip">
-        <include layout="@layout/title" android:focusable="true"/>	
+           >
+        <include layout="@layout/title_dev" android:focusable="true"/>	
              <TableLayout 
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"

@@ -21,31 +21,37 @@ package com.seuic.adapter;
 import java.util.List;
 import java.util.Map;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.RadioButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.seuic.smartgateway.ControlBox;
+import android.widget.Toast;
+import com.seuic.smartgateway.DevSetup;
 import com.seuic.smartgateway.R;
-import com.seuic.swipelistview.SwipeListView;
+import com.seuic.smartgateway.TabControl;
+
 
 public class SingleChoiceAdapter extends BaseAdapter {
 
     private List<Map<String, Object>> data;
-    private Context context;
-    private SwipeListView mSwipeListView ;
+    private Context context; 
     int  currentID = -1;
-
-    public SingleChoiceAdapter(Context context, List<Map<String, Object>> data, SwipeListView mSwipeListView) {
+    
+//    StatusListener mStatusListener;
+    private float x,ux;
+    public SingleChoiceAdapter(Context context, List<Map<String, Object>> data) {
         this.context = context;
-        this.data = data;
-        this.mSwipeListView = mSwipeListView ;
-		
+        this.data = data;       
     }
 
 	@Override
@@ -57,9 +63,6 @@ public class SingleChoiceAdapter extends BaseAdapter {
     public int getCount() {
         return data.size();
     }
-
-
-    
 
     @Override
 	public Map<String, Object> getItem(int position) {
@@ -81,64 +84,145 @@ public class SingleChoiceAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = li.inflate(R.layout.row_dev, parent, false);
+            convertView = li.inflate(R.layout.list_item, parent, false);
             holder = new ViewHolder();
-            holder.Title = (TextView) convertView.findViewById(R.id.title);
-            holder.radioBtn = (RadioButton) convertView.findViewById(R.id.radioBtn);
-            holder.delete = (Button) convertView.findViewById(R.id.deleteBtn);          
+            holder.title = (TextView) convertView.findViewById(R.id.title);
+            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+            holder.status = (ImageView) convertView.findViewById(R.id.status);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         
-        if(position==currentID)
-        	holder.radioBtn.setChecked(true);
-        else
-        	holder.radioBtn.setChecked(false);
+        if(position==currentID)        	
+            holder.status.setImageResource(R.drawable.dev_on);
+        else        	
+        	holder.status.setImageResource(R.drawable.dev_off);
+    
+        holder.title.setText(item.get("uid").toString());
+        holder.icon.setImageResource(R.drawable.dev_icon);
         
-        ((SwipeListView)parent).recycle(convertView, position);
+     
+        
+        convertView.setOnTouchListener(new OnTouchListener() {  
+        	public boolean onTouch(View v, MotionEvent event) {  
+//        	final ViewHolder holder = (ViewHolder) v.getTag();  
+        	//当按下时处理  
+        	if (event.getAction() == MotionEvent.ACTION_DOWN) {  
+        	//设置背景为选中状态  
+//        	v.setBackgroundResource(R.drawable.mm_listitem_pressed);  
+	        	//获取按下时的x轴坐标  
+	        	x = event.getX();  
+        	} else if (event.getAction() == MotionEvent.ACTION_UP) {// 松开处理  
+        	//设置背景为未选中正常状态  
+//        	v.setBackgroundResource(R.drawable.mm_listitem_simple);  
+        	//获取松开时的x坐标  
+        	ux = event.getX();          	
+        	//按下和松开绝对值差当大于20时显示删除按钮，否则不显示  
+	        	if (Math.abs(x - ux) > 25) {  
+	        		 Toast.makeText(context,"右滑"+position, Toast.LENGTH_SHORT).show();	        		
+	        		 Log.e("leewoo", "右滑"+position);
 
-//        holder.ivImage.setImageDrawable(item.getIcon());
-        holder.Title.setText(item.get("title").toString());
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//            	mSwipeListView.closeAnimate(position);
-//				mSwipeListView.dismiss(position);				
-				data.remove(position);
-				ControlBox.mSQLHelper.deleteSetup(ControlBox.writeDB,item.get("title").toString() );
+	        		 AlertDialog.Builder builder = new Builder(context);
+	        		 builder.setMessage("确认删除设备？");
+	        		 builder.setTitle("确认信息");
+	        		 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+		        		@Override
+		        		public void onClick(DialogInterface arg0, int arg1) {
+		        			// TODO Auto-generated method stub
+		        			if(currentID==position){
+		        				currentID=-1;	
+		        				DevSetup.editor.putString("uid","NULL");
+		        				DevSetup.editor.commit();
+		        			} 
+		        			TabControl.mSQLHelper.deleteSetup(TabControl.writeDB, data.get(position).get("title").toString());
+				 			data.remove(position);	
+			        		notifyDataSetChanged();
+		        		}
+		        	});
+	        		 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+		        		@Override
+		        		 public void onClick(DialogInterface dialog, int which) {
+		        		 dialog.dismiss();
+		        		  
+		        		}
+		        	});
+	        		 builder.create().show();
+	        	   }
+	        		 
+	        		 
+	        	 
+        	 
+        	} else if (event.getAction() == MotionEvent.ACTION_MOVE) {//当滑动时背景为选中状态  
+//        	v.setBackgroundResource(R.drawable.mm_listitem_pressed);  
+//        		 Log.e("leewoo", "onTouch ACTION_MOVE: "+position);
+        	} else {//其他模式  
+        	//设置背景为未选中正常状态  
+//        	v.setBackgroundResource(R.drawable.mm_listitem_simple);  
+        	}  
+        	return true;  
+         }  
+        }); 
+        holder.status.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				currentID=position;  
+				DevSetup.editor.putString("uid",data.get(position).get("uid").toString());
+				DevSetup.editor.commit();
 				notifyDataSetChanged();
-				if (mSwipeListView != null)
-					mSwipeListView.closeOpenedItems();				
-				if(position==currentID)
-				{
-					currentID=-1;
-//					ControlBox.editor.putString("uid","NULL");
-//					ControlBox.editor.commit();
-				}
-				//share中的怎么办 。。。不用管了
-			        
-            }
-        });
-
+			}
+		});
+//        convertView.setOnClickListener(new OnClickListener() {
+//            
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+////                mActivity.openActivity();            	
+//            	currentID=position;            	
+//            }
+//        });
   
-
-
         return convertView;
     }
 
+    
     static class ViewHolder {
-//        ImageView ivImage;
-        TextView Title;
-        RadioButton radioBtn;
-        Button delete;
-        
+        TextView title;
+        ImageView icon,status;
     }
     
-	public void setItemChecked(int currentID) {
-		this.currentID = currentID;
+	public void setItemChecked(int setID) {
+		currentID = setID;
 	}
-
-
+	
+	
+	
+//	class OnStatusClickListener implements OnClickListener{
+//		int position;
+//		
+//		public OnStatusClickListener(int position){
+//			this.position = position;
+//		}
+//
+//		@Override
+//		public void onClick(View v) {
+//			// TODO Auto-generated method stub
+//			mStatusListener.onDeleteClicked(position);
+//			currentID=position;  
+//			notifyDataSetChanged();
+//		}
+//		
+//	}
+//		
+//	public interface StatusListener {
+//
+//		void onDeleteClicked(int index);
+//	}
+//	
+//	public void setDeleteListener(StatusListener mListener) {
+//		// TODO Auto-generated method stub
+//		mStatusListener = mListener;
+//	}
 
 }

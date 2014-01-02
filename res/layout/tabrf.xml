@@ -5,18 +5,16 @@
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
 			android:orientation="vertical"		
-			android:layout_marginBottom="65dip">
-		<include layout="@layout/title" android:focusable="true"/>	
-		<com.seuic.swipelistview.SwipeListView            
+			>
+		<include layout="@layout/title_dev" android:focusable="true"/>	
+		<ListView            
             android:id="@+id/listViewRF"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:divider="@null"
-            swipe:swipeActionLeft="reveal"
-            swipe:swipeBackView="@+id/back"
-            swipe:swipeCloseAllItemsWhenMoveList="true"
-            swipe:swipeFrontView="@+id/front"
-            swipe:swipeMode="right"
-            swipe:swipeOffsetRight="200dip"
-            swipe:swipeOpenOnLongPress="false" />
+            android:layout_alignParentBottom="true"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"       
+	        android:paddingLeft="20dip" 
+	        android:paddingRight="20dip" 
+       />
 </LinearLayout>

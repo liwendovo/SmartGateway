@@ -1,0 +1,101 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    
+    tools:context=".DevSetup" >
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#7A7A7A" >
+        
+         <Button
+            android:id="@+id/Btn1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="Logo" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Devices"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/addDevBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"            
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="ADD" />
+
+    </RelativeLayout>
+    
+ <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Setup Device"
+        android:background="#76EEC6"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+ 
+  <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#7A7A7A"
+        android:paddingTop="@dimen/activity_vertical_margin" >        
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your SSID"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/SetupBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Setup" />
+                     
+
+    </RelativeLayout>
+    
+  <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Device List"
+        android:background="#76EEC6"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+  
+ 
+    <ListView
+        android:id="@+id/devListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"       
+        android:paddingLeft="20dip" 
+        android:paddingRight="20dip"         
+      ></ListView>
+
+     
+  
+   
+</LinearLayout>

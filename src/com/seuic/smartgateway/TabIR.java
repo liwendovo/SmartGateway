@@ -1,11 +1,28 @@
 package com.seuic.smartgateway ;  
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.seuic.adapter.EtcAdapter;
 import com.seuic.add.AddEtc;
@@ -18,27 +35,12 @@ import com.seuic.devetc.IR_Selfdefine1;
 import com.seuic.devetc.IR_Selfdefine2;
 import com.seuic.devetc.IR_TV;
 import com.seuic.devetc.IR_WH;
-import com.seuic.swipelistview.BaseSwipeListViewListener;
-import com.seuic.swipelistview.SwipeListView;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class TabIR extends Activity {
 	Button titleBtn,homeBtn;
 	TextView titleTxt;
-	String mUid=null;
-	List<Map<String, Object>> listItemsIR;
-	SwipeListView listViewIR;
+	String mUid=null;	
+	ListView listViewIR;
 	EtcAdapter irAdapter;
 	SharedPreferences myPreferences;
 	SharedPreferences.Editor editor;
@@ -72,28 +74,33 @@ public class TabIR extends Activity {
 			}
 		});
 		
-		listViewIR = (SwipeListView)findViewById(R.id.listViewIR);
-		listViewIR.setSwipeListViewListener(new BaseSwipeListViewListener() {
+		listViewIR = (ListView)findViewById(R.id.listViewIR);
+		
+		listViewIR.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
 			@Override
-			public void onClickFrontView(int position) {
-				 String type=(String)listItemsIR.get(position).get("content");
-				 int devid=Integer.parseInt(String.valueOf(listItemsIR.get(position).get("devid")));
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				 String type=(String)irAdapter.getItem(position).get("type");
+				 Log.e("leewoo", "type="+type);
+				 int devid=Integer.parseInt(String.valueOf(irAdapter.getItem(position).get("devid")));
 				 Intent intent ;
-				 if(type.equals(ControlBox.itemsIR[0])){
+				 if(type.equals(TabControl.itemsIR[0])){
 					 intent = new Intent(TabIR.this,IR_TV.class);	
-				 }else if(type.equals(ControlBox.itemsIR[1])){
+				 }else if(type.equals(TabControl.itemsIR[1])){
 					 intent = new Intent(TabIR.this,IR_AC.class);
-				 }else if(type.equals(ControlBox.itemsIR[2])){
+				 }else if(type.equals(TabControl.itemsIR[2])){
 					 intent = new Intent(TabIR.this,IR_Media.class);
-				 }else if(type.equals(ControlBox.itemsIR[3])){
+				 }else if(type.equals(TabControl.itemsIR[3])){
 					 intent = new Intent(TabIR.this,IR_STU.class);
-				 }else if(type.equals(ControlBox.itemsIR[4])){
+				 }else if(type.equals(TabControl.itemsIR[4])){
 					 intent = new Intent(TabIR.this,IR_WH.class);
-				 }else if(type.equals(ControlBox.itemsIR[5])){
+				 }else if(type.equals(TabControl.itemsIR[5])){
 					 intent = new Intent(TabIR.this,IR_DVD.class);
-				 }else if(type.equals(ControlBox.itemsIR[6])){
+				 }else if(type.equals(TabControl.itemsIR[6])){
 					 intent = new Intent(TabIR.this,IR_FAN.class);
-				 }else if(type.equals(ControlBox.itemsIR[7])){
+				 }else if(type.equals(TabControl.itemsIR[7])){
 					 intent = new Intent(TabIR.this,IR_Selfdefine1.class);
 				 }else {
 					 intent = new Intent(TabIR.this,IR_Selfdefine2.class);
@@ -102,13 +109,68 @@ public class TabIR extends Activity {
 				 intent.putExtra("devid", devid);
 				 startActivity(intent);	
 			}
-
-			@Override
-			public void onClickBackView(int position) {
-				listViewIR.closeOpenedItems();// 关闭打开的项
-			}
-		});
-		
+			});
+		listViewIR.setOnTouchListener(new OnTouchListener() {  
+			
+			 private float x,ux,y,uy;
+	        	public boolean onTouch(View v, MotionEvent event) {  
+	        		
+	        	//当按下时处理  
+	        	if (event.getAction() == MotionEvent.ACTION_DOWN) {  
+	        	//设置背景为选中状态  
+//	        	v.setBackgroundResource(R.drawable.mm_listitem_pressed);  
+		        	//获取按下时的x轴坐标  
+		        	x = event.getX();  
+		        	y = event.getY();  
+	        	} else if (event.getAction() == MotionEvent.ACTION_UP) {// 松开处理  
+	        	//设置背景为未选中正常状态  
+//	        	v.setBackgroundResource(R.drawable.mm_listitem_simple);  
+	        	//获取松开时的x坐标  
+	        	ux = event.getX(); 
+	        	uy = event.getY();
+	        	int position1 = ((ListView) v).pointToPosition((int) x, (int) y);  
+                int position2 = ((ListView) v).pointToPosition((int) ux,(int) uy);
+                Log.e("leewoo", "onTouch :"+position1+" "+position2);
+	        	//按下和松开绝对值差当大于20时显示删除按钮，否则不显示  
+		        	if (position1 == position2 &&Math.abs(x - ux) > 20) {  
+		        		        		
+		        		 Log.e("leewoo", "右滑"+position1);
+		        		 final int position=position1;
+		        		 AlertDialog.Builder builder = new Builder(TabIR.this);
+		        		 builder.setMessage("确认删除设备？"+irAdapter.getItem(position).get("type"));
+		        		 builder.setTitle("确认信息");
+		        		 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+			        		@Override
+			        		public void onClick(DialogInterface arg0, int arg1) {
+			        			// TODO Auto-generated method stub		        		
+				        		
+				        		 TabControl.mSQLHelper.deleteList(TabControl.writeDB, Integer.parseInt(String.valueOf(irAdapter.getItem(position).get("devid"))));
+				        		 irAdapter.remove(position);	
+				        		 //数据库
+				        		
+			        		}
+			        	});
+		        		 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+			        		@Override
+			        		 public void onClick(DialogInterface dialog, int which) {
+			        		 dialog.dismiss();
+			        		  
+			        		}
+			        	});
+		        		 builder.create().show();	
+		        		 return true;  
+		        	 } 
+	        	} 
+//	        	else if (event.getAction() == MotionEvent.ACTION_MOVE) {//当滑动时背景为选中状态  
+////	        	v.setBackgroundResource(R.drawable.mm_listitem_pressed);  
+////	        		 Log.e("leewoo", "onTouch ACTION_MOVE: "+position);
+//	        	} else {//其他模式  
+//	        	//设置背景为未选中正常状态  
+////	        	v.setBackgroundResource(R.drawable.mm_listitem_simple);  
+//	        	}  
+	        	return false;  
+	         }  
+	        }); 
 	}
 	@Override
 	protected void onResume() {
@@ -119,37 +181,35 @@ public class TabIR extends Activity {
 			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();		
 		}
 		Log.e("leewoo","mUid="+mUid);
-		Cursor cur=ControlBox.mSQLHelper.seleteListClass(ControlBox.writeDB, mUid,"ir");
+		Cursor cur=TabControl.mSQLHelper.seleteListClass(TabControl.writeDB, mUid,"ir");
 		Log.e("leewoo","count="+cur.getCount());
 		if(0==cur.getCount()){
 			Log.e("leewoo","count="+0);
 			return;
 		}			
-		if(listItemsIR!=null){
-			listItemsIR.clear();
-		}
-		listItemsIR=new ArrayList<Map<String,Object>>();	
+		List<Map<String, Object>> listItemsIR=new ArrayList<Map<String,Object>>();	
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
 			Map<String,Object> listItem =new HashMap<String,Object>();			
-			listItem.put("title", cur.getString(4));
-			listItem.put("content", cur.getString(3));
+			listItem.put("name", cur.getString(4));
+			listItem.put("type", cur.getString(3));
 			listItem.put("devid", cur.getInt(1));
 			listItemsIR.add(listItem);
 		}	
 		cur.close();
 		//list排序  需要优化
-		if (!listItemsIR.isEmpty()) {    
-	    	 Collections.sort(listItemsIR, new Comparator<Map<String, Object>>() {
-	     	@Override
-	     	public int compare(Map<String, Object> object1,
-	     	Map<String, Object> object2) {
-			//根据文本排序
-	        return ((String) object1.get("title")).compareTo((String) object2.get("title"));
-	     	}    
-	       });    
-	     }	
-		irAdapter=new EtcAdapter(this, listItemsIR, listViewIR);
+//		if (!listItemsIR.isEmpty()) {    
+//	    	 Collections.sort(listItemsIR, new Comparator<Map<String, Object>>() {
+//	     	@Override
+//	     	public int compare(Map<String, Object> object1,
+//	     	Map<String, Object> object2) {
+//			//根据文本排序
+//	        return ((String) object1.get("name")).compareTo((String) object2.get("name"));
+//	     	}    
+//	       });    
+//	     }	
+		irAdapter=new EtcAdapter(this, listItemsIR);
 		listViewIR.setAdapter(irAdapter);		
 	}	
+
 }
   
