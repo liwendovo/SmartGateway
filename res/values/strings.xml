@@ -1,29 +1,5 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">SmartGateway</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_media">Media</string>
-    <string name="title_activity_fan">Fan</string>
-    <string name="title_activity_selfdefine1">Selfdefine1</string>
-    <string name="title_activity_selfdefine2">Selfdefine2</string>
-    <string name="home">Home</string>
-    <string name="back">Back</string>
-    <string name="learn">Learn</string>
-    <string name="add">ADD</string>
-    <string name="define">自定义</string>
-    <string name="aboutus">Copyright by SEUIC</string>
-    <string name="deleteinfo">Would you want to delete device:\n</string>
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_rf__curtain2">RF_Curtain2</string>
-
-</resources>
-=======
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
     <string name="app_name">SmartGateway</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
@@ -46,4 +22,4 @@
  
 
 </resources>
->>>>>>> Tab修改完成，待优化
+

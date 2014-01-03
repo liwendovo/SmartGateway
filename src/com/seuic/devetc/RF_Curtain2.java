@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.R.layout;
-import com.seuic.smartgateway.R.menu;
+
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -25,7 +25,7 @@ public class RF_Curtain2 extends Activity implements android.view.View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.rf__curtain2);
+        setContentView(R.layout.rf_curtain2);
         backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
 		button1=(ImageView)findViewById(R.id.button1);

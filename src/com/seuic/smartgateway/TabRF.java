@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import com.seuic.adapter.EtcAdapter;
 import com.seuic.add.AddEtc;
-import com.seuic.devetc.RF_Curtain;
+import com.seuic.devetc.RF_Curtain1;
 import com.seuic.devetc.RF_Lamp;
 import com.seuic.devetc.RF_Selfdefine1;
 import com.seuic.devetc.RF_Selfdefine2;
@@ -84,7 +84,7 @@ public class TabRF extends Activity {
 				 }else if(type.equals(TabControl.itemsRF[2])){
 					 intent = new Intent(TabRF.this,RF_Lamp.class);
 				 }else if(type.equals(TabControl.itemsRF[3])){
-					 intent = new Intent(TabRF.this,RF_Curtain.class);				 
+					 intent = new Intent(TabRF.this,RF_Curtain1.class);				 
 				 }else if(type.equals(TabControl.itemsRF[4])){
 					 intent = new Intent(TabRF.this,RF_Selfdefine1.class);
 				 }else {
