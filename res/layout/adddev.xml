@@ -59,6 +59,6 @@
         android:layout_above="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="28dp"
-        android:src="@drawable/code" />
+        android:src="@drawable/qrcode" />
 
 </RelativeLayout>

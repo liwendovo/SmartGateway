@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/ir_dvd_logo" />
+        android:src="@drawable/ep_logo" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/rf_curtain_updown" />
+        android:src="@drawable/rf_logo_curtain2" />
     
     <ImageView
         android:id="@+id/imageView3"

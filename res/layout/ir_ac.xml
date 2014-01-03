@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:src="@drawable/ir_ac_logo" />
+        android:src="@drawable/ir_logo_ac" />
 
     <TableLayout
         android:layout_width="fill_parent" 

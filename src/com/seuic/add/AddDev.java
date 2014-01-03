@@ -102,7 +102,7 @@ public class AddDev extends Activity {
 				if(UIDlen.length()!=5)
 				{   
 				
-					Toast.makeText(getApplicationContext(),
+					toast=Toast.makeText(getApplicationContext(),
 			       		     "UID位数不对，请输入5位UID", Toast.LENGTH_SHORT);
 					toast.setGravity(Gravity.CENTER, 0, 0);
 					toast.show();

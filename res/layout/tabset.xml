@@ -17,7 +17,7 @@
 					android:layout_height="wrap_content"
 					android:layout_alignParentTop="true"
 					android:layout_centerHorizontal="true"
-					android:src="@drawable/littlelogo" />
+					android:src="@drawable/ep_logo" />
                                        
                    <Button
                     android:id="@+id/devSetBtn"
