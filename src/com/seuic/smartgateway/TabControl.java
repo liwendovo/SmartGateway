@@ -36,7 +36,7 @@ public class TabControl extends ActivityGroup {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.controltab);	
+		setContentView(R.layout.tabcontrol);	
 		
 		mSQLHelper = new SQLiteHelper(this,"smartgateway.db",1); //Êý¾Ý¿â
 		writeDB=mSQLHelper.getWritableDatabase();

@@ -10,12 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class TabSET extends Activity {
 
 	Button titleBtn,homeBtn;
-//	TextView titleTxt;
+	ImageView titlePic;
 	Button aboutBtn,resetBtn,devSetBtn,camSetBtn;
 	SharedPreferences myPreferences;
 	SharedPreferences.Editor editor;
@@ -24,16 +25,21 @@ public class TabSET extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabset);
 		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
+		
+		
+		
 		aboutBtn=(Button)findViewById(R.id.aboutBtn);
 		resetBtn=(Button)findViewById(R.id.resetBtn);
 		
-//		homeBtn=(Button)findViewById(R.id.back);
-//		titleTxt = (TextView)findViewById(R.id.titleTxt);
-		titleBtn=(Button)findViewById(R.id.titleBtn);	
+		homeBtn=(Button)findViewById(R.id.back);
+		titlePic=(ImageView)findViewById(R.id.pic);
+		titleBtn=(Button)findViewById(R.id.titleBtn);
 		
-
-//		titleTxt.setText("SET");
-		titleBtn.setVisibility(Button.INVISIBLE);
+    	homeBtn.setBackgroundResource(R.drawable.ep_logo);
+    	titlePic.setImageResource(R.drawable.tab_rf);
+    	titleBtn.setBackgroundResource(R.drawable.title_add);
+    	
+//		titleBtn.setVisibility(Button.INVISIBLE);
 		
 		devSetBtn=(Button)findViewById(R.id.devSetBtn);
 		camSetBtn=(Button)findViewById(R.id.camSetBtn);

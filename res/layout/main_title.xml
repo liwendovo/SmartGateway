@@ -16,7 +16,7 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/back" />
+            android:background="@drawable/title_back" />
 
         <ImageView
             android:id="@+id/pic"
@@ -34,7 +34,7 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginRight="10dp"
-            android:background="@drawable/learn" />
+            android:background="@drawable/title_learn" />
        
 
 </RelativeLayout>

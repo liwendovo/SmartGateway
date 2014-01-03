@@ -20,8 +20,8 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.seuic.adapter.EtcAdapter;
@@ -38,7 +38,7 @@ import com.seuic.devetc.IR_WH;
 
 public class TabIR extends Activity {
 	Button titleBtn,homeBtn;
-	TextView titleTxt;
+	ImageView titlePic;	
 	String mUid=null;	
 	ListView listViewIR;
 	EtcAdapter irAdapter;
@@ -49,11 +49,15 @@ public class TabIR extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabir);		
 		homeBtn=(Button)findViewById(R.id.back);
-//		titleTxt = (TextView)findViewById(R.id.titleTxt);
-		titleBtn=(Button)findViewById(R.id.titleBtn);	
-//		homeBtn.setText("Home");
-////		titleTxt.setText("IR");
-//		titleBtn.setText("ADD");
+		titlePic=(ImageView)findViewById(R.id.pic);
+		titleBtn=(Button)findViewById(R.id.titleBtn);
+		
+    	homeBtn.setBackgroundResource(R.drawable.ep_logo);
+    	titlePic.setImageResource(R.drawable.tab_ir);
+    	titleBtn.setBackgroundResource(R.drawable.title_add);
+    	
+    	
+    	
 		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
 		titleBtn.setOnClickListener(new OnClickListener()
 		{		
@@ -184,7 +188,27 @@ public class TabIR extends Activity {
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
 			Map<String,Object> listItem =new HashMap<String,Object>();			
 			listItem.put("name", cur.getString(4));
-			listItem.put("type", cur.getString(3));
+			String type=cur.getString(3);
+			 listItem.put("type",type);
+			 if(type.equals(TabControl.itemsIR[0])){
+				 listItem.put("icon", R.drawable.ir_logo_tv);
+			 }else if(type.equals(TabControl.itemsIR[1])){
+				 listItem.put("icon", R.drawable.ir_logo_ac);
+			 }else if(type.equals(TabControl.itemsIR[2])){
+				 listItem.put("icon", R.drawable.ir_logo_stu);
+			 }else if(type.equals(TabControl.itemsIR[3])){
+				 listItem.put("icon", R.drawable.ir_logo_stu);
+			 }else if(type.equals(TabControl.itemsIR[4])){
+				 listItem.put("icon",R.drawable.ir_logo_wh );
+			 }else if(type.equals(TabControl.itemsIR[5])){
+				 listItem.put("icon", R.drawable.ir_logo_dvd);
+			 }else if(type.equals(TabControl.itemsIR[6])){
+				 listItem.put("icon",  R.drawable.ir_logo_fan1);
+			 }else if(type.equals(TabControl.itemsIR[7])){
+				 listItem.put("icon",  R.drawable.ir_logo_fan2);
+			 }else {
+				 listItem.put("icon",R.drawable.ir_logo_fan2 );
+			 }	
 			listItem.put("devid", cur.getInt(1));
 			listItemsIR.add(listItem);
 		}	

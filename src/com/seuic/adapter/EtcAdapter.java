@@ -99,9 +99,9 @@ public class EtcAdapter extends BaseAdapter {
         }
         
              	
-        holder.lastpress.setImageResource(R.drawable.dev_off);    
+        holder.lastpress.setImageResource(R.drawable.close);    
         holder.title.setText(item.get("type").toString());
-        holder.icon.setImageResource(R.drawable.dev_icon);
+        holder.icon.setImageResource((Integer) item.get("icon"));
         
      
         

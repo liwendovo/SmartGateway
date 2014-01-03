@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_gravity="center"
-        android:src="@drawable/ir_logo_wh" />
+        android:src="@drawable/ir_wh_logo" />
     
     <LinearLayout
         android:layout_width="wrap_content"

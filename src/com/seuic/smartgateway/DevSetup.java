@@ -20,12 +20,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import com.seuic.adapter.SingleChoiceAdapter;
 import com.seuic.add.AddDev;
 import com.seuic.net.SetupAp;
 
 public class DevSetup extends Activity {
+	Button titleBtn,homeBtn;
+	ImageView titlePic;	
+	
 	ListView mListView;
 	Button addDevBtn;
 	Button setupBtn;
@@ -42,13 +46,23 @@ public class DevSetup extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.setup_dev);
+		
+		homeBtn=(Button)findViewById(R.id.back);
+		titlePic=(ImageView)findViewById(R.id.pic);
+		titleBtn=(Button)findViewById(R.id.titleBtn);
+		
+    	homeBtn.setBackgroundResource(R.drawable.title_back);
+    	titlePic.setImageResource(R.drawable.tab_rf);
+    	titleBtn.setBackgroundResource(R.drawable.title_add);
+		
+		
 		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
 		writeDB=TabControl.mSQLHelper.getWritableDatabase();
 		editor= myPreferences.edit();
 		mListView = (ListView)findViewById(R.id.devListView);	
-		addDevBtn=(Button)findViewById(R.id.addDevBtn);
+		
 		setupBtn=(Button)findViewById(R.id.SetupBtn);
-		addDevBtn.setOnClickListener(new OnClickListener()
+		titleBtn.setOnClickListener(new OnClickListener()
 		{		
 			public void onClick(View source)
 			{
@@ -68,6 +82,13 @@ public class DevSetup extends Activity {
 					startActivity(intent);				
 			}			
 		});	
+		homeBtn.setOnClickListener(new OnClickListener()
+		{		
+			public void onClick(View source)
+			{
+				finish();			
+			}			
+		});
 }
 	
 	

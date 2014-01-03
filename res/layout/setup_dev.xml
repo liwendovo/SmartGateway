@@ -5,49 +5,8 @@
     android:background="@drawable/background3"
      >
     
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#7A7A7A" >
-        
-         <Button
-            android:id="@+id/Btn1"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="Logo" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Devices"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FFFFFF" />
-
-        <Button
-            android:id="@+id/addDevBtn"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"            
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="ADD" />
-
-    </RelativeLayout>
+   <include layout="@layout/main_title" android:focusable="true"/>	
     
- <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Setup Device"
-        android:background="#76EEC6"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
- 
   <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,13 +32,7 @@
 
     </RelativeLayout>
     
-  <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Device List"
-        android:background="#76EEC6"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+
   
  
     <ListView

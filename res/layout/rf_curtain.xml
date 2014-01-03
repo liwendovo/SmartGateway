@@ -21,7 +21,7 @@
         android:layout_width="222dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/rf_logo_curtain1" />
+        android:src="@drawable/rf_curtain1_logo" />
 
     <TableLayout 
                android:layout_width="fill_parent" 

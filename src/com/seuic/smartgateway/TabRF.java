@@ -21,6 +21,7 @@ import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,7 @@ import com.seuic.devetc.RF_WH;
 
 public class TabRF extends Activity {
 	Button titleBtn,homeBtn;
-	TextView titleTxt;
+	ImageView titlePic;
 	
 	String mUid=null;
 
@@ -50,12 +51,15 @@ public class TabRF extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabrf);
 		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
+
+
 		homeBtn=(Button)findViewById(R.id.back);
-//		titleTxt = (TextView)findViewById(R.id.titleTxt);
-		titleBtn=(Button)findViewById(R.id.titleBtn);	
-//		homeBtn.setText("Home");
-//		titleTxt.setText("RF");
-//		titleBtn.setText("ADD");
+		titlePic=(ImageView)findViewById(R.id.pic);
+		titleBtn=(Button)findViewById(R.id.titleBtn);
+		
+    	homeBtn.setBackgroundResource(R.drawable.ep_logo);
+    	titlePic.setImageResource(R.drawable.tab_rf);
+    	titleBtn.setBackgroundResource(R.drawable.title_add);
 		titleBtn.setOnClickListener(new OnClickListener()
 		{	
 			@Override	
@@ -179,9 +183,25 @@ public class TabRF extends Activity {
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
 			Map<String,Object> listItem =new HashMap<String,Object>();	
 		
-			listItem.put("name", cur.getString(4));
-			listItem.put("type", cur.getString(3));
+			listItem.put("name", cur.getString(4));			
 			listItem.put("devid", cur.getInt(1));
+			
+			String type=cur.getString(3);
+			 listItem.put("type",type);	
+			 
+			 if(type.equals(TabControl.itemsRF[0])){
+				 listItem.put("icon", R.drawable.rf_logo_switch);
+			 }else if(type.equals(TabControl.itemsRF[1])){
+				 listItem.put("icon", R.drawable.rf_logo_lamp);
+			 }else if(type.equals(TabControl.itemsRF[2])){
+				 listItem.put("icon", R.drawable.rf_logo_lamp);
+			 }else if(type.equals(TabControl.itemsRF[3])){
+				 listItem.put("icon", R.drawable.rf_logo_curtain);
+			 }else if(type.equals(TabControl.itemsRF[4])){
+				 listItem.put("icon",R.drawable.rf_logo_power );			 
+			 }else {
+				 listItem.put("icon",R.drawable.ir_logo_fan2 );
+			 }	
 			listItemsRF.add(listItem);
 		}	
 		cur.close();

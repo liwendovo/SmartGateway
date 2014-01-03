@@ -14,7 +14,6 @@
             android:layout_alignParentBottom="true"
 	        android:layout_alignParentLeft="true"
 	        android:layout_alignParentRight="true"       
-	        android:paddingLeft="20dip" 
-	        android:paddingRight="20dip" 
+	      
        />
 </LinearLayout>

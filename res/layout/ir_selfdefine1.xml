@@ -5,13 +5,10 @@
     android:layout_height="match_parent"
     android:background="@drawable/background3"
     android:orientation="vertical"
-    tools:context=".TvActivity" >
+    >
 
-    <include
-        layout="@layout/main_title" 
-        android:focusable="true" />
-   
-    <ImageView
+    <include layout="@layout/main_title" android:focusable="true" />
+       <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
