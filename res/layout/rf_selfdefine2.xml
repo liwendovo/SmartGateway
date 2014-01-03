@@ -21,12 +21,14 @@
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/define"
             android:text="Button" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/define"
             android:text="Button" />
        </TableRow>
         </TableLayout>
@@ -41,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:background="@drawable/define"
             android:layout_toLeftOf="@+id/imageView2"
             android:text="On" />
 
@@ -49,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/define"
         android:src="@drawable/close" />
       
        <Button
@@ -58,6 +62,7 @@
            android:layout_alignParentRight="true"
            android:layout_alignParentTop="true"
            android:layout_toRightOf="@id/imageView2"
+           android:background="@drawable/define"
            android:text="Off" />
 
     </RelativeLayout>
@@ -71,6 +76,7 @@
           android:id="@+id/button5"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:background="@drawable/define"
           android:layout_column="1"
           android:text="Button" />
 </TableRow>
@@ -80,18 +86,21 @@
             android:id="@+id/button6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/define"
             android:text="Button" />
 
         <Button
             android:id="@+id/button7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/define"
             android:text="Button" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/define"
             android:text="Button" />
 </TableRow>
   
@@ -100,6 +109,7 @@
             android:id="@+id/button9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/define"
            android:layout_column="1"
             android:text="Button" />
     </TableRow>
