@@ -106,16 +106,16 @@ public class EtcAdapter extends BaseAdapter {
      
         
        
-     
-        holder.lastpress.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-			
-				notifyDataSetChanged();
-			}
-		});
+//     
+//        holder.lastpress.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//			
+//				notifyDataSetChanged();
+//			}
+//		});
 
         return convertView;
     }
