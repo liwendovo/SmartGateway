@@ -17,7 +17,7 @@ public class TabSET extends Activity {
 
 	Button titleBtn,homeBtn;
 	ImageView titlePic;
-	Button aboutBtn,resetBtn,devSetBtn,camSetBtn;
+	Button aboutBtn,resetBtn,devSetBtn,camSetBtn,timeSetBtn;
 	SharedPreferences myPreferences;
 	SharedPreferences.Editor editor;
 	@Override
@@ -43,7 +43,7 @@ public class TabSET extends Activity {
 		
 		devSetBtn=(Button)findViewById(R.id.devSetBtn);
 		camSetBtn=(Button)findViewById(R.id.camSetBtn);
-		
+		timeSetBtn=(Button)findViewById(R.id.timeSetBtn);
 		
 		
 	   aboutBtn.setOnClickListener(new OnClickListener() {
@@ -67,7 +67,26 @@ public class TabSET extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				 Intent intent = new Intent(TabSET.this,DevSetup.class);	
+				 Intent intent = new Intent(TabSET.this,SetupDev.class);	
+				 startActivity(intent);	
+			}
+		}); 
+	   camSetBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				 Intent intent = new Intent(TabSET.this,SetupCam.class);	
+				 startActivity(intent);	
+			}
+		});
+	   
+	   timeSetBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				 Intent intent = new Intent(TabSET.this,SetupTime.class);	
 				 startActivity(intent);	
 			}
 		});

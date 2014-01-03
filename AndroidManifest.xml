@@ -41,9 +41,16 @@
 		
 		
 		  
-        <activity android:name="com.seuic.smartgateway.DevSetup" 			
+        <activity android:name="com.seuic.smartgateway.SetupDev" 			
 			android:label="DevSetup">
 		</activity> 
+		 <activity android:name="com.seuic.smartgateway.SetupCam" 			
+			android:label="SetupCam">
+		</activity> 
+         <activity android:name="com.seuic.smartgateway.SetupTime" 			
+			android:label="SetupTime">
+		</activity> 
+        
         <activity android:name="com.seuic.net.SetupAp" 			
 			android:label="SetupAp">
 		</activity> 

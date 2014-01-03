@@ -142,10 +142,9 @@ public final class R {
         public static final int yellow=0x7f02006d;
     }
     public static final class id {
-        public static final int Btn1=0x7f070040;
         public static final int LinearLayout1=0x7f070008;
-        public static final int SetupBtn=0x7f070041;
-        public static final int aboutBtn=0x7f07004d;
+        public static final int SetupBtn=0x7f070040;
+        public static final int aboutBtn=0x7f07004c;
         public static final int addDevBtn=0x7f070001;
         public static final int back=0x7f07002a;
         public static final int button1=0x7f070009;
@@ -168,11 +167,10 @@ public final class R {
         public static final int button7=0x7f07000f;
         public static final int button8=0x7f070010;
         public static final int button9=0x7f070011;
-        public static final int camListView=0x7f070042;
-        public static final int camSetBtn=0x7f070048;
-        public static final int devListView=0x7f070043;
+        public static final int camSetBtn=0x7f070046;
+        public static final int devListView=0x7f070041;
         public static final int devName=0x7f070005;
-        public static final int devSetBtn=0x7f070047;
+        public static final int devSetBtn=0x7f070045;
         public static final int front=0x7f070026;
         public static final int icon=0x7f070027;
         public static final int imageButton1=0x7f070013;
@@ -191,17 +189,17 @@ public final class R {
         public static final int imageView7=0x7f07001d;
         public static final int imageView8=0x7f07001e;
         public static final int imageView9=0x7f07001f;
-        public static final int listViewIR=0x7f070045;
-        public static final int listViewRF=0x7f070046;
+        public static final int listViewIR=0x7f070043;
+        public static final int listViewRF=0x7f070044;
         public static final int okBtn=0x7f070007;
         public static final int password=0x7f07003e;
         public static final int pic=0x7f07002b;
         public static final int pushapBtn=0x7f07003f;
-        public static final int resetBtn=0x7f07004c;
+        public static final int resetBtn=0x7f07004b;
         public static final int spinnerEtc=0x7f070006;
         public static final int spinnerSSID=0x7f07003d;
         public static final int status=0x7f070028;
-        public static final int tabhost=0x7f070044;
+        public static final int tabhost=0x7f070042;
         public static final int textView1=0x7f070000;
         public static final int textView10=0x7f070037;
         public static final int textView11=0x7f070039;
@@ -214,11 +212,12 @@ public final class R {
         public static final int textView7=0x7f070032;
         public static final int textView8=0x7f070033;
         public static final int textView9=0x7f070035;
+        public static final int timeSetBtn=0x7f07004a;
         public static final int title=0x7f070029;
         public static final int titleBtn=0x7f07002c;
-        public static final int tmpBtn=0x7f070049;
-        public static final int toggleButton1=0x7f07004a;
-        public static final int toggleButton2=0x7f07004b;
+        public static final int tmpBtn=0x7f070047;
+        public static final int toggleButton1=0x7f070048;
+        public static final int toggleButton2=0x7f070049;
         public static final int uidEditText=0x7f070003;
     }
     public static final class layout {
@@ -246,18 +245,19 @@ public final class R {
         public static final int setup_ap=0x7f030015;
         public static final int setup_cam=0x7f030016;
         public static final int setup_dev=0x7f030017;
-        public static final int splash=0x7f030018;
-        public static final int tab1_spec=0x7f030019;
-        public static final int tab2_spec=0x7f03001a;
-        public static final int tab3_spec=0x7f03001b;
-        public static final int tab4_spec=0x7f03001c;
-        public static final int tab5_spec=0x7f03001d;
-        public static final int tabcam=0x7f03001e;
-        public static final int tabcontrol=0x7f03001f;
-        public static final int tabir=0x7f030020;
-        public static final int tabrf=0x7f030021;
-        public static final int tabset=0x7f030022;
-        public static final int tabth=0x7f030023;
+        public static final int setup_time=0x7f030018;
+        public static final int splash=0x7f030019;
+        public static final int tab1_spec=0x7f03001a;
+        public static final int tab2_spec=0x7f03001b;
+        public static final int tab3_spec=0x7f03001c;
+        public static final int tab4_spec=0x7f03001d;
+        public static final int tab5_spec=0x7f03001e;
+        public static final int tabcam=0x7f03001f;
+        public static final int tabcontrol=0x7f030020;
+        public static final int tabir=0x7f030021;
+        public static final int tabrf=0x7f030022;
+        public static final int tabset=0x7f030023;
+        public static final int tabth=0x7f030024;
     }
     public static final class string {
         public static final int aboutus=0x7f05000c;

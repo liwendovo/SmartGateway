@@ -36,7 +36,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.seuic.smartgateway.DevSetup;
+import com.seuic.smartgateway.SetupDev;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 
@@ -132,8 +132,8 @@ public class SingleChoiceAdapter extends BaseAdapter {
 		        			// TODO Auto-generated method stub
 		        			if(currentID==position){
 		        				currentID=-1;	
-		        				DevSetup.editor.putString("uid","NULL");
-		        				DevSetup.editor.commit();
+		        				SetupDev.editor.putString("uid","NULL");
+		        				SetupDev.editor.commit();
 		        			} 
 		        			TabControl.mSQLHelper.deleteSetup(TabControl.writeDB, data.get(position).get("title").toString());
 				 			data.remove(position);	
@@ -169,8 +169,8 @@ public class SingleChoiceAdapter extends BaseAdapter {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				currentID=position;  
-				DevSetup.editor.putString("uid",data.get(position).get("uid").toString());
-				DevSetup.editor.commit();
+				SetupDev.editor.putString("uid",data.get(position).get("uid").toString());
+				SetupDev.editor.commit();
 				notifyDataSetChanged();
 			}
 		});

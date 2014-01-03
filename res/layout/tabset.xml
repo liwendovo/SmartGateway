@@ -54,7 +54,7 @@
 	          </TableRow>
                  
 		 	        <Button
-                    android:id="@+id/resetBtn"
+                    android:id="@+id/timeSetBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"  
                     android:text="Time Set" />

@@ -21,7 +21,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.seuic.smartgateway.TabControl;
-import com.seuic.smartgateway.DevSetup;
+import com.seuic.smartgateway.SetupDev;
 import com.seuic.smartgateway.R;
 
 public class IR_Selfdefine1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener {

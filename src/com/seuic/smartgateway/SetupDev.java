@@ -26,7 +26,7 @@ import com.seuic.adapter.SingleChoiceAdapter;
 import com.seuic.add.AddDev;
 import com.seuic.net.SetupAp;
 
-public class DevSetup extends Activity {
+public class SetupDev extends Activity {
 	Button titleBtn,homeBtn;
 	ImageView titlePic;	
 	
@@ -66,7 +66,7 @@ public class DevSetup extends Activity {
 		{		
 			public void onClick(View source)
 			{
-				Intent intent = new Intent(DevSetup.this
+				Intent intent = new Intent(SetupDev.this
 						, AddDev.class);					
 					//Æô¶¯Activity
 					startActivity(intent);				
@@ -76,7 +76,7 @@ public class DevSetup extends Activity {
 		{		
 			public void onClick(View source)
 			{
-				Intent intent = new Intent(DevSetup.this
+				Intent intent = new Intent(SetupDev.this
 						, SetupAp.class);					
 					//Æô¶¯Activity
 					startActivity(intent);				
