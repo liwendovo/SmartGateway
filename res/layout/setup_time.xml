@@ -82,16 +82,16 @@
         				     android:textAppearance="?android:attr/textAppearanceLarge"
         				     android:textColor="@drawable/selector_text_color" />
 
-             </RelativeLayout>
-		           <View
-					android:layout_width="fill_parent"
-					android:layout_height="2px"
-					android:background="@drawable/line" >
-					</View>
+            	 </RelativeLayout>
+	           <View
+				android:layout_width="fill_parent"
+				android:layout_height="2px"
+				android:background="@drawable/line" >
+				</View>
              
 				<RelativeLayout
 				    android:id="@+id/layoutZone"
-				     android:background="@drawable/selector_layout_background"
+				    android:background="@drawable/selector_layout_background"
 			        android:layout_width="wrap_content"			       
 			        android:layout_height="60dip"
 			        android:paddingRight="20dip"
@@ -99,24 +99,24 @@
 			        android:paddingBottom="6dip"
 			        android:paddingTop="6dip" >
 
-	                 <TextView
-	                     android:layout_width="wrap_content"
-	                     android:layout_height="wrap_content"
-	                      android:layout_alignParentLeft="true"
-	                     android:layout_centerHorizontal="true"
-	                     android:layout_centerVertical="true"
-	                     android:gravity="center"
-	                     android:text="Time Zone"
-	                     android:textAppearance="?android:attr/textAppearanceLarge"
-	                     android:textColor="@drawable/selector_text_color" />
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_alignParentLeft="true"
+	                    android:layout_centerHorizontal="true"
+	                    android:layout_centerVertical="true"
+	                    android:gravity="center"
+	                    android:text="Time Zone"
+	                    android:textAppearance="?android:attr/textAppearanceLarge"
+	                    android:textColor="@drawable/selector_text_color" />
 
-	                 	<Spinner
-	                 	    android:id="@+id/spinnerZone"
-	                 	    android:layout_width="70dp"
-	                 	    android:layout_height="wrap_content"
-	                 	    android:layout_alignParentRight="true"
-	                 	    android:layout_centerVertical="true"
-	                 	    android:background="@color/transparent" />
+                	<Spinner
+                	    android:id="@+id/spinnerZone"
+                	    android:layout_width="70dp"
+                	    android:layout_height="wrap_content"
+                	    android:layout_alignParentRight="true"
+                	    android:layout_centerVertical="true"
+                	    android:background="@color/transparent" />
 	                 	            
             	</RelativeLayout>
  		      	<View
