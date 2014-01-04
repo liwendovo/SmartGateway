@@ -130,14 +130,16 @@ public class SingleChoiceAdapter extends BaseAdapter {
 		        		@Override
 		        		public void onClick(DialogInterface arg0, int arg1) {
 		        			// TODO Auto-generated method stub
+		        			if(position>=0&&position<data.size()){
 		        			if(currentID==position){
 		        				currentID=-1;	
 		        				SetupDev.editor.putString("uid","NULL");
 		        				SetupDev.editor.commit();
 		        			} 
-		        			TabControl.mSQLHelper.deleteSetup(TabControl.writeDB, data.get(position).get("title").toString());
+		        			TabControl.mSQLHelper.deleteSetup(TabControl.writeDB, data.get(position).get("uid").toString());
 				 			data.remove(position);	
 			        		notifyDataSetChanged();
+		        			}
 		        		}
 		        	});
 	        		 builder.setNegativeButton("È¡Ïû", new DialogInterface.OnClickListener() {

@@ -166,20 +166,23 @@ public class TabRF extends Activity {
 	}
   
 	
+	
+
 	@Override
-	protected void onResume() {
+	protected void onStart() {
 		// TODO Auto-generated method stub
-		super.onResume();
+		super.onStart();
+		
 		mUid=myPreferences.getString("uid", "NULL");	
 		if (mUid.equals("NULL")) {
 			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();		
 		}
 		Log.e("leewoo","mUid="+mUid);
 		Cursor cur=TabControl.mSQLHelper.seleteListClass(TabControl.writeDB, mUid,"rf");
-		if(0==cur.getCount()){
-			Log.e("leewoo","count="+0);
-			return;
-		}	
+//		if(0==cur.getCount()){
+//			Log.e("leewoo","count="+0);
+//			return;
+//		}	
 		List<Map<String, Object>> listItemsRF=new ArrayList<Map<String,Object>>();	
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
 			Map<String,Object> listItem =new HashMap<String,Object>();	
@@ -219,6 +222,16 @@ public class TabRF extends Activity {
 //	     }	
 		rfAdapter=new EtcAdapter(this, listItemsRF);
 		listViewRF.setAdapter(rfAdapter);
+	}
+
+
+
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
 	}
 }
   
