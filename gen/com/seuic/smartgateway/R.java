@@ -214,7 +214,7 @@ public final class R {
         public static final int spinnerEtc=0x7f090006;
         public static final int spinnerSSID=0x7f09003d;
         public static final int spinnerZone=0x7f090047;
-        public static final int status=0x7f090028;
+        public static final int status=0x7f090029;
         public static final int tabhost=0x7f090048;
         public static final int textView1=0x7f090000;
         public static final int textView10=0x7f090037;
@@ -230,7 +230,7 @@ public final class R {
         public static final int textView9=0x7f090035;
         public static final int timeAutoBtn=0x7f090045;
         public static final int timeHourBtn=0x7f090043;
-        public static final int title=0x7f090029;
+        public static final int title=0x7f090028;
         public static final int titleBtn=0x7f09002c;
         public static final int uidEditText=0x7f090003;
     }

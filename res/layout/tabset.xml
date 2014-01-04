@@ -26,6 +26,7 @@
 	                 <ImageView			            
 			            android:layout_width="wrap_content"
 			            android:layout_height="wrap_content"
+			            android:layout_marginLeft="10.0dip"
 			            android:src="@drawable/dev_icon" />
 	
 	                 <TextView
@@ -63,6 +64,7 @@
 		            
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="10.0dip"
 		            android:src="@drawable/dev_icon" />
 
 	                 <TextView
@@ -96,6 +98,7 @@
 		            
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="10.0dip"
 		            android:src="@drawable/dev_icon" />
 
 	                 <TextView
@@ -141,6 +144,7 @@
 				    <ImageView		           
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="10.0dip"
 		            android:src="@drawable/dev_icon" />
 
                 	 <TextView
@@ -175,6 +179,7 @@
 		            
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="10.0dip"
 		            android:src="@drawable/dev_icon" />
 
                     <TextView
@@ -210,6 +215,7 @@
 		            
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="10.0dip"
 		            android:src="@drawable/dev_icon" />
 
 	                 <TextView
