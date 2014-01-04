@@ -71,7 +71,6 @@ public class TabSET extends Activity {
 		});
 	   
 	   setTempBtn.setOnClickListener(new OnClickListener() {
-		
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
@@ -80,11 +79,9 @@ public class TabSET extends Activity {
 			} else {
 				setTempBtn.setBackgroundResource(R.drawable.rf_switch_blue);
 			}
-			//状态记录 数据库
-			
-			
+			//状态记录 数据库			
 		}
-	});
+	   });
 	   
 	   
 	   layoutTime.setOnClickListener(new OnClickListener() {

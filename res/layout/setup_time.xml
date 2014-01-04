@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background3"
      >
@@ -11,23 +11,23 @@
 				    android:background="@drawable/selector_layout_background"
 			        android:layout_width="wrap_content"
 			        android:layout_height="60dip"			        
-			        android:paddingRight="10dip"
-			        android:paddingLeft="10dip"
+			        android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
 			        android:paddingBottom="6dip"
 			        android:paddingTop="6dip"			      
 			        >
 				           
 
-				            <TextView
-				                android:id="@+id/textView1"
-				                android:layout_width="wrap_content"
-				                android:layout_height="wrap_content"
-				                android:layout_alignParentLeft="true"
-				                android:layout_centerVertical="true"
-				                android:gravity="center"
-				                android:text="DEVICE"
-				                android:textAppearance="?android:attr/textAppearanceLarge"
-				                android:textColor="@drawable/selector_text_color" />
+		            <TextView
+		                android:id="@+id/textView1"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_alignParentLeft="true"
+		                android:layout_centerVertical="true"
+		                android:gravity="center"
+		                android:text="24-Hour Time"
+		                android:textAppearance="?android:attr/textAppearanceLarge"
+		                android:textColor="@drawable/selector_text_color" />
  					<ToggleButton
 	                     android:id="@+id/timeHourBtn"
 	                     android:textOn=" " 
@@ -54,21 +54,11 @@
 			        android:background="@drawable/selector_layout_background"
 				    android:layout_width="wrap_content"				   
 				    android:layout_height="60dip"
-				    android:paddingRight="10dip"
-			        android:paddingLeft="10dip"
+				    android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
 			        android:paddingBottom="6dip"
 			        android:paddingTop="6dip"			      
 			        >
-   
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"              
-                android:layout_alignParentLeft="true"
-                android:gravity="center"
-                android:text="CAMERA"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@drawable/selector_text_color" />
         				 <ToggleButton
 	                     android:id="@+id/timeAutoBtn"
 	                     android:textOn=" " 
@@ -81,6 +71,17 @@
 	                     
 	                     android:gravity="center"
 	                     />
+
+        				 <TextView
+        				     android:layout_width="wrap_content"
+        				     android:layout_height="wrap_content"
+        				     android:layout_alignParentLeft="true"
+				             android:layout_centerVertical="true"
+				             android:gravity="center"        				     
+        				     android:text="Set Automatically"
+        				     android:textAppearance="?android:attr/textAppearanceLarge"
+        				     android:textColor="@drawable/selector_text_color" />
+
              </RelativeLayout>
 		           <View
 					android:layout_width="fill_parent"
@@ -93,8 +94,8 @@
 				     android:background="@drawable/selector_layout_background"
 			        android:layout_width="wrap_content"			       
 			        android:layout_height="60dip"
-			        android:paddingRight="10dip"
-			        android:paddingLeft="10dip"
+			        android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
 			        android:paddingBottom="6dip"
 			        android:paddingTop="6dip" >
 
@@ -111,12 +112,11 @@
 
 	                 	<Spinner
 	                 	    android:id="@+id/spinnerZone"
-	                 	    android:layout_width="80dp"
-	                 	    android:background="@color/transparent"
-	                 	      
+	                 	    android:layout_width="70dp"
 	                 	    android:layout_height="wrap_content"
 	                 	    android:layout_alignParentRight="true"
-	                 	    android:layout_centerVertical="true" />
+	                 	    android:layout_centerVertical="true"
+	                 	    android:background="@color/transparent" />
 	                 	            
             	</RelativeLayout>
  		      	<View

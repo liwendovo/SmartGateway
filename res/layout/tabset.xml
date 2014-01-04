@@ -15,17 +15,17 @@
 				   <RelativeLayout
 				    android:id="@+id/layoutDev"
 				    android:background="@drawable/selector_layout_background"
-			        android:layout_width="wrap_content"
+			        android:layout_width="fill_parent"
 			        android:layout_height="60dip"			        
-			        android:paddingRight="10dip"
-			        android:paddingLeft="10dip"
+			        android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
 			        android:paddingBottom="6dip"
 			        android:paddingTop="6dip"			      
 			        >
 	                 <ImageView			            
 			            android:layout_width="wrap_content"
 			            android:layout_height="wrap_content"
-			            android:layout_marginLeft="10.0dip"
+			            
 			            android:src="@drawable/dev_icon" />
 	
 	                 <TextView
@@ -51,10 +51,10 @@
 			   <RelativeLayout
 			       android:id="@+id/layoutCam"
 			        android:background="@drawable/selector_layout_background"
-				    android:layout_width="wrap_content"				   
+				    android:layout_width="fill_parent"				   
 				    android:layout_height="60dip"
-				    android:paddingRight="10dip"
-			        android:paddingLeft="10dip"
+				    android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
 			        android:paddingBottom="6dip"
 			        android:paddingTop="6dip"			      
 			        >
@@ -63,8 +63,8 @@
 		            
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:layout_marginLeft="10.0dip"
-		            android:src="@drawable/dev_icon" />
+		            android:layout_marginLeft="5.0dip"
+		            android:src="@drawable/tab_cam" />
 
 	                 <TextView
 	                     android:layout_width="wrap_content"
@@ -86,10 +86,10 @@
 				<RelativeLayout
 				    android:id="@+id/layoutTemp"
 				     android:background="@drawable/selector_layout_background"
-			        android:layout_width="wrap_content"			       
+			        android:layout_width="fill_parent"			       
 			        android:layout_height="60dip"
-			        android:paddingRight="10dip"
-			        android:paddingLeft="10dip"
+			        android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
 			        android:paddingBottom="6dip"
 			        android:paddingTop="6dip" >
 				    
@@ -97,8 +97,8 @@
 		            
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:layout_marginLeft="10.0dip"
-		            android:src="@drawable/dev_icon" />
+		            android:layout_marginLeft="3.0dip"		          
+		            android:src="@drawable/tab_th" />
 
 	                 <TextView
 	                     
@@ -133,18 +133,18 @@
 				 <RelativeLayout
 				    android:id="@+id/layoutTime"
 				     android:background="@drawable/selector_layout_background"
-			        android:layout_width="wrap_content"			        
+			        android:layout_width="fill_parent"			        
 			        android:layout_height="60dip"
-			        android:paddingRight="10dip"
-			        android:paddingLeft="10dip"
+			        android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
 			        android:paddingBottom="6dip"
 			        android:paddingTop="6dip" >
 				    
 				    <ImageView		           
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:layout_marginLeft="10.0dip"
-		            android:src="@drawable/dev_icon" />
+		             android:layout_marginLeft="2.0dip"	
+		            android:src="@drawable/set_time" />
 
                 	 <TextView
                 	     
@@ -167,10 +167,10 @@
 		     <RelativeLayout
 		        android:id="@+id/layoutRest"
 		         android:background="@drawable/selector_layout_background"
-		        android:layout_width="wrap_content"		        
+		        android:layout_width="fill_parent"		        
 		        android:layout_height="60dip"
-		        android:paddingRight="10dip"
-			    android:paddingLeft="10dip"
+		        android:paddingRight="20dip"
+			    android:paddingLeft="20dip"
 		        android:paddingBottom="6dip"
 		        android:paddingTop="6dip" >
 				    
@@ -178,8 +178,8 @@
 		            
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:layout_marginLeft="10.0dip"
-		            android:src="@drawable/dev_icon" />
+		             android:layout_marginLeft="2.0dip"	
+		            android:src="@drawable/set_reset" />
 
                     <TextView
                      
@@ -203,10 +203,10 @@
 		     <RelativeLayout
 		        android:id="@+id/layoutAbout"
 		         android:background="@drawable/selector_layout_background"
-		        android:layout_width="wrap_content"		        
+		        android:layout_width="fill_parent"		        
 		        android:layout_height="60dip"
-		        android:paddingRight="10dip"
-			    android:paddingLeft="10dip"
+		        android:paddingRight="20dip"
+			    android:paddingLeft="20dip"
 		        android:paddingBottom="6dip"
 		        android:paddingTop="6dip" >
 				    
@@ -214,8 +214,8 @@
 		            
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:layout_marginLeft="10.0dip"
-		            android:src="@drawable/dev_icon" />
+		           
+		            android:src="@drawable/set_about" />
 
 	                 <TextView
 	                     
