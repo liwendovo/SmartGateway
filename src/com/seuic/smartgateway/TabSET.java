@@ -9,15 +9,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 public class TabSET extends Activity {
 
 	Button titleBtn,homeBtn;
 	ImageView titlePic;
-	Button aboutBtn,resetBtn,devSetBtn,camSetBtn,timeSetBtn;
+
+	ToggleButton setTempBtn;
+	RelativeLayout    layoutDev,layoutCam,layoutTemp,layoutTime,layoutRest,layoutAbout;
 	SharedPreferences myPreferences;
 	SharedPreferences.Editor editor;
 	@Override
@@ -25,12 +30,7 @@ public class TabSET extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabset);
 		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
-		
-		
-		
-		aboutBtn=(Button)findViewById(R.id.aboutBtn);
-		resetBtn=(Button)findViewById(R.id.resetBtn);
-		
+				
 		homeBtn=(Button)findViewById(R.id.back);
 		titlePic=(ImageView)findViewById(R.id.pic);
 		titleBtn=(Button)findViewById(R.id.titleBtn);
@@ -39,39 +39,28 @@ public class TabSET extends Activity {
     	titlePic.setImageResource(R.drawable.tab_rf);
     	titleBtn.setBackgroundResource(R.drawable.title_add);
     	
-//		titleBtn.setVisibility(Button.INVISIBLE);
+
+    
+		layoutDev=(RelativeLayout)findViewById(R.id.layoutDev);
+		layoutCam=(RelativeLayout)findViewById(R.id.layoutCam);
+		layoutTemp=(RelativeLayout)findViewById(R.id.layoutTemp);
+		layoutTime=(RelativeLayout)findViewById(R.id.layoutTime);
+		layoutRest=(RelativeLayout)findViewById(R.id.layoutRest);
+		layoutAbout=(RelativeLayout)findViewById(R.id.layoutAbout);
 		
-		devSetBtn=(Button)findViewById(R.id.devSetBtn);
-		camSetBtn=(Button)findViewById(R.id.camSetBtn);
-		timeSetBtn=(Button)findViewById(R.id.timeSetBtn);
+		setTempBtn=(ToggleButton)findViewById(R.id.setTempBtn);
 		
 		
-	   aboutBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				aboutus();
-			}
-		});
-	   resetBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Log.i("leewoo", "reset");
-			}
-		});
-	   devSetBtn.setOnClickListener(new OnClickListener() {
-			
+		layoutDev.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				 Intent intent = new Intent(TabSET.this,SetupDev.class);	
 				 startActivity(intent);	
 			}
-		}); 
-	   camSetBtn.setOnClickListener(new OnClickListener() {
+		});
+		
+	   layoutCam.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -81,13 +70,46 @@ public class TabSET extends Activity {
 			}
 		});
 	   
-	   timeSetBtn.setOnClickListener(new OnClickListener() {
+	   setTempBtn.setOnClickListener(new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			if (setTempBtn.isChecked()) {
+				setTempBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+			} else {
+				setTempBtn.setBackgroundResource(R.drawable.rf_switch_blue);
+			}
+			//×´Ì¬¼ÇÂ¼ Êý¾Ý¿â
+			
+			
+		}
+	});
+	   
+	   
+	   layoutTime.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				 Intent intent = new Intent(TabSET.this,SetupTime.class);	
 				 startActivity(intent);	
+			}
+		});
+	   layoutRest.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Log.i("leewoo", "reset");
+			}
+		});
+	   layoutAbout.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				aboutus();
 			}
 		});
 

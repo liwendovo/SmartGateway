@@ -88,7 +88,7 @@ public class EtcAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = li.inflate(R.layout.list_item, parent, false);
+            convertView = li.inflate(R.layout.item_list, parent, false);
             holder = new ViewHolder();
             holder.title = (TextView) convertView.findViewById(R.id.title);
             holder.icon = (ImageView) convertView.findViewById(R.id.icon);

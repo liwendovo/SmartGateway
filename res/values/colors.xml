@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<drawable name="white">#FFFFFF</drawable>
-	<drawable name="blue">#0000FF</drawable>
-	<drawable name="black">#000000</drawable>	
-	<drawable name="green">#00FF00</drawable>
-	<drawable name="yellow">#EEEE00</drawable>
-	<drawable name="red">#FF0000</drawable>	
-	<drawable name="pink">#FFC8FF</drawable>
+	<color name="white">#FFFFFF</color>
+	<color name="blue">#0000FF</color>
+	<color name="black">#000000</color>	
+	<color name="green">#00FF00</color>
+	<color name="yellow">#EEEE00</color>
+	<color name="red">#FF0000</color>	
+	<color name="pink">#FFC8FF</color>
+	<color name="transparent">#00000000</color>	
 	
-	<drawable name="dimGray">#696969</drawable>	
-	<drawable name="lightGray">#F7F7F7</drawable>	
-	<drawable name="lighterGray">#8C8EA5</drawable>	
-	<drawable name="lightBlack">#434343</drawable>	
-	<drawable name="greyBlack">#A5A6AD</drawable>
-	<drawable name="grayRed">#CD8162</drawable>	
-	<drawable name="lighterBlue">#E3E7EA</drawable>	
+	<color name="dimGray">#696969</color>	
+	<color name="lightGray">#F7F7F7</color>	
+	<color name="lighterGray">#8C8EA5</color>	
+	<color name="lightBlack">#434343</color>	
+	<color name="greyBlack">#A5A6AD</color>
+	<color name="grayRed">#CD8162</color>	
+	<color name="lighterBlue">#E3E7EA</color>	
 
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 选项卡背景色-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- When selected, use grey -->
+    <item android:color="@color/black"/>
+    <item android:state_focused="true" android:color="@color/dimGray" />
+    <item android:state_pressed="true" android:color="@color/dimGray" />   
+    <!-- When not selected, use white
+     <item android:state_pressed="true" android:color="@color/dimGray" />   
+    <item android:color="@color/lightGray" android:state_selected="true" />
+    <item android:drawable="@drawable/main_tab_frame_product_category"  />-->
+</selector>

@@ -130,31 +130,29 @@ public class TabIR extends Activity {
                 Log.e("leewoo", "onTouch :"+position1+" "+position2);
 	        	//按下和松开绝对值差当大于20时显示删除按钮，否则不显示  
 		        	if (position1 == position2 &&Math.abs(x - ux) > 20) {  
-		        		        		
-		        		 Log.e("leewoo", "右滑"+position1);
-		        		 final int position=position1;
-		        		 AlertDialog.Builder builder = new Builder(TabIR.this);
-		        		 builder.setMessage("确认删除设备？"+irAdapter.getItem(position).get("type"));
-		        		 builder.setTitle("确认信息");
-		        		 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-			        		@Override
-			        		public void onClick(DialogInterface arg0, int arg1) {
-			        			// TODO Auto-generated method stub		        		
-				        		
-				        		 TabControl.mSQLHelper.deleteList(TabControl.writeDB, Integer.parseInt(String.valueOf(irAdapter.getItem(position).get("devid"))));
-				        		 irAdapter.remove(position);	
-				        		 //数据库
-				        		
-			        		}
-			        	});
-		        		 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-			        		@Override
-			        		 public void onClick(DialogInterface dialog, int which) {
-			        		 dialog.dismiss();
-			        		  
-			        		}
-			        	});
-		        		 builder.create().show();	
+		        		 if(position1>=0&&position1<irAdapter.getCount()){	
+			        		 Log.e("leewoo", "右滑"+position1);
+			        		 final int position=position1;
+			        		 AlertDialog.Builder builder = new Builder(TabIR.this);
+			        		 builder.setMessage("确认删除设备？"+irAdapter.getItem(position).get("type"));
+			        		 builder.setTitle("确认信息");
+			        		 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+				        		@Override
+				        		public void onClick(DialogInterface arg0, int arg1) {
+				        			// TODO Auto-generated method stub	
+					        		 TabControl.mSQLHelper.deleteList(TabControl.writeDB, Integer.parseInt(String.valueOf(irAdapter.getItem(position).get("devid"))));
+					        		 irAdapter.remove(position);	
+					        		 //数据库
+				        			}
+			        		 	});
+			        		 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+				        		@Override
+				        		 public void onClick(DialogInterface dialog, int which) {
+				        		 dialog.dismiss();
+				        			}
+			        		 	});
+			        		 builder.create().show();	
+		        		 }
 		        		 return true;  
 		        	 } 
 	        	} 
