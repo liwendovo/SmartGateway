@@ -34,7 +34,7 @@ public class LogoActivity extends Activity {
 		setContentView(R.layout.splash);
 
 		handler = new Handler();
-		handler.postDelayed(startAct, 600);
+		handler.postDelayed(startAct, 2000);
 	}
 	
 	

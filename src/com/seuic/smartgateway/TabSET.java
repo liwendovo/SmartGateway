@@ -36,7 +36,7 @@ public class TabSET extends Activity {
 		titleBtn=(Button)findViewById(R.id.titleBtn);
 		
     	homeBtn.setBackgroundResource(R.drawable.ep_logo);
-    	titlePic.setImageResource(R.drawable.tab_rf);
+    	titlePic.setImageResource(R.drawable.tab_set_logo);
     	titleBtn.setBackgroundResource(R.drawable.title_add);
     	
 

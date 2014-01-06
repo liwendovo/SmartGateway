@@ -117,22 +117,22 @@ public class AddDev extends Activity {
 				TabControl.mSQLHelper.insertSetup(TabControl.writeDB, UID, "Devices", "1");
 				//devices判断
 				//默认加入设备
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[0], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[1], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[2], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[3], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[4], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[5], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[6], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[7], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[8], "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "TV", "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "AC", "Devices",  "0","0");
+				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[2], "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "STU", "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "WH", "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "DVD", "Devices",  "0","0");
+				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[6], "Devices",  "0","0");
+				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[7], "Devices",  "0","0");
+				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[8], "Devices",  "0","0");
 				
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", TabControl.itemsRF[0], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", TabControl.itemsRF[1], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", TabControl.itemsRF[2], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", TabControl.itemsRF[3], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", TabControl.itemsRF[4], "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", TabControl.itemsRF[5], "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Switch", "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "WH", "Devices",  "0","0");
+				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", TabControl.itemsRF[2], "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Curtain", "Devices",  "0","0");
+				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", TabControl.itemsRF[4], "Devices",  "0","0");
+				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", TabControl.itemsRF[5], "Devices",  "0","0");
 				
 				//出入三级表
 				

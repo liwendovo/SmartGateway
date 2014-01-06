@@ -43,7 +43,7 @@ public class SetupTime extends Activity{
 		//将adapter 添加到spinner中  
 		spinnerZone.setAdapter(adapter);            
 		//设置默认值  
-		spinnerZone.setVisibility(View.VISIBLE);  
+		spinnerZone.setVisibility(View.INVISIBLE);  
 		timeAutoBtn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {

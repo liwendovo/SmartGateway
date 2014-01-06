@@ -81,19 +81,24 @@ public class TabRF extends Activity {
 				 String type=(String)rfAdapter.getItem(position).get("type");
 				 int devid=Integer.parseInt(String.valueOf(rfAdapter.getItem(position).get("devid")));
 				 Intent intent ;
-				 if(type.equals(TabControl.itemsRF[0])){
+				 if(type.equals("Switch")){
 					 intent = new Intent(TabRF.this,RF_Switch.class);
-				 }else if(type.equals(TabControl.itemsRF[1])){
+				 }else if(type.equals("WH")){
 					 intent = new Intent(TabRF.this,RF_WH.class);
-				 }else if(type.equals(TabControl.itemsRF[2])){
-					 intent = new Intent(TabRF.this,RF_Lamp.class);
-				 }else if(type.equals(TabControl.itemsRF[3])){
+				 }
+//				 else if(type.equals(TabControl.itemsRF[2])){
+//					 intent = new Intent(TabRF.this,RF_Lamp.class);
+//				 }
+				 else {
 					 intent = new Intent(TabRF.this,RF_Curtain1.class);				 
-				 }else if(type.equals(TabControl.itemsRF[4])){
-					 intent = new Intent(TabRF.this,RF_Selfdefine1.class);
-				 }else {
-					 intent = new Intent(TabRF.this,RF_Selfdefine2.class);
-				 }						 
+				 }
+				 
+//				 else if(type.equals(TabControl.itemsRF[4])){
+//					 intent = new Intent(TabRF.this,RF_Selfdefine1.class);
+//				 }else {
+//					 intent = new Intent(TabRF.this,RF_Selfdefine2.class);
+//				 }			
+				 
 				 intent.putExtra("uid",  mUid);
 				 intent.putExtra("devid", devid);
 				 startActivity(intent);	
@@ -193,19 +198,25 @@ public class TabRF extends Activity {
 			String type=cur.getString(3);
 			 listItem.put("type",type);	
 			 
-			 if(type.equals(TabControl.itemsRF[0])){
+			 if(type.equals("Switch")){
 				 listItem.put("icon", R.drawable.rf_logo_switch);
-			 }else if(type.equals(TabControl.itemsRF[1])){
-				 listItem.put("icon", R.drawable.rf_logo_lamp);
-			 }else if(type.equals(TabControl.itemsRF[2])){
-				 listItem.put("icon", R.drawable.rf_logo_lamp);
-			 }else if(type.equals(TabControl.itemsRF[3])){
+			 }else if(type.equals("WH")){
+				 listItem.put("icon", R.drawable.ir_logo_wh);
+			 }
+			 
+//			 else if(type.equals(TabControl.itemsRF[2])){
+//				 listItem.put("icon", R.drawable.rf_logo_lamp);
+//				 
+//			 }
+			 else if(type.equals("Curtain")){
 				 listItem.put("icon", R.drawable.rf_logo_curtain);
-			 }else if(type.equals(TabControl.itemsRF[4])){
-				 listItem.put("icon",R.drawable.rf_logo_power );			 
-			 }else {
-				 listItem.put("icon",R.drawable.ir_logo_fan2 );
-			 }	
+			 }
+//			 else if(type.equals(TabControl.itemsRF[4])){
+//				 listItem.put("icon",R.drawable.rf_logo_power );			 
+//			 }else {
+//				 listItem.put("icon",R.drawable.ir_logo_fan2 );
+//			 }	
+//			 
 			listItemsRF.add(listItem);
 		}	
 		cur.close();

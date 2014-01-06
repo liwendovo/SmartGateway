@@ -20,8 +20,8 @@ import com.seuic.sqlite.SQLiteHelper;
 
 @SuppressWarnings("deprecation")
 public class TabControl extends ActivityGroup {
-	public final static String[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"}; 
-	public final static String[] itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
+	public final static String[] itemsIR = {"TV", "AC","STU","WH", "DVD"}; 
+	public final static String[] itemsRF = {"Switch", "WH", "Curtain"}; 	
 
 
 	

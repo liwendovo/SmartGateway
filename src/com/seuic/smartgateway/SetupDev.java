@@ -52,7 +52,7 @@ public class SetupDev extends Activity {
 		titleBtn=(Button)findViewById(R.id.titleBtn);
 		
     	homeBtn.setBackgroundResource(R.drawable.title_back);
-    	titlePic.setImageResource(R.drawable.tab_rf);
+    	titlePic.setImageResource(R.drawable.dev_icon);
     	titleBtn.setBackgroundResource(R.drawable.title_add);
 		
 		

@@ -83,25 +83,38 @@ public class TabIR extends Activity {
 				 Log.e("leewoo", "type="+type);
 				 int devid=Integer.parseInt(String.valueOf(irAdapter.getItem(position).get("devid")));
 				 Intent intent ;
-				 if(type.equals(TabControl.itemsIR[0])){
+				 if(type.equals("TV")){
 					 intent = new Intent(TabIR.this,IR_TV.class);	
-				 }else if(type.equals(TabControl.itemsIR[1])){
+				 }else if(type.equals("AC")){
 					 intent = new Intent(TabIR.this,IR_AC.class);
-				 }else if(type.equals(TabControl.itemsIR[2])){
-					 intent = new Intent(TabIR.this,IR_Media.class);
-				 }else if(type.equals(TabControl.itemsIR[3])){
+				 }
+				 
+//				 else if(type.equals(TabControl.itemsIR[2])){
+//					 intent = new Intent(TabIR.this,IR_Media.class);
+//				 }
+				 
+				 else if(type.equals("STU")){
 					 intent = new Intent(TabIR.this,IR_STU.class);
-				 }else if(type.equals(TabControl.itemsIR[4])){
+				 }
+			else if(type.equals("WH")){
 					 intent = new Intent(TabIR.this,IR_WH.class);
-				 }else if(type.equals(TabControl.itemsIR[5])){
+				 }
+			else{
 					 intent = new Intent(TabIR.this,IR_DVD.class);
-				 }else if(type.equals(TabControl.itemsIR[6])){
-					 intent = new Intent(TabIR.this,IR_FAN.class);
-				 }else if(type.equals(TabControl.itemsIR[7])){
-					 intent = new Intent(TabIR.this,IR_Selfdefine1.class);
-				 }else {
-					 intent = new Intent(TabIR.this,IR_Selfdefine2.class);
-				 }						 
+				 }
+				 
+				 
+//			else (type.equals("DVD")){
+//					 intent = new Intent(TabIR.this,IR_FAN.class);
+//				 }
+				 
+//				 else if(type.equals(TabControl.itemsIR[7])){
+//					 intent = new Intent(TabIR.this,IR_Selfdefine1.class);
+//				 }else {
+//					 intent = new Intent(TabIR.this,IR_Selfdefine2.class);
+//				 }	
+				 
+				 
 				 intent.putExtra("uid",  mUid);
 				 intent.putExtra("devid", devid);
 				 startActivity(intent);	
@@ -190,25 +203,32 @@ public class TabIR extends Activity {
 			listItem.put("name", cur.getString(4));
 			String type=cur.getString(3);
 			 listItem.put("type",type);
-			 if(type.equals(TabControl.itemsIR[0])){
+			 if(type.equals("TV")){
 				 listItem.put("icon", R.drawable.ir_logo_tv);
-			 }else if(type.equals(TabControl.itemsIR[1])){
+			 }else if(type.equals("AC")){
 				 listItem.put("icon", R.drawable.ir_logo_ac);
-			 }else if(type.equals(TabControl.itemsIR[2])){
+			 }
+//			 else if(type.equals(TabControl.itemsIR[2])){
+//				 listItem.put("icon", R.drawable.ir_logo_stu);
+//			 }
+			 else if(type.equals("STU")){
 				 listItem.put("icon", R.drawable.ir_logo_stu);
-			 }else if(type.equals(TabControl.itemsIR[3])){
-				 listItem.put("icon", R.drawable.ir_logo_stu);
-			 }else if(type.equals(TabControl.itemsIR[4])){
+			 }else if(type.equals("WH")){
 				 listItem.put("icon",R.drawable.ir_logo_wh );
-			 }else if(type.equals(TabControl.itemsIR[5])){
+			 }else if(type.equals("DVD")){
 				 listItem.put("icon", R.drawable.ir_logo_dvd);
-			 }else if(type.equals(TabControl.itemsIR[6])){
-				 listItem.put("icon",  R.drawable.ir_logo_fan1);
-			 }else if(type.equals(TabControl.itemsIR[7])){
-				 listItem.put("icon",  R.drawable.ir_logo_fan2);
-			 }else {
-				 listItem.put("icon",R.drawable.ir_logo_fan2 );
-			 }	
+				 
+			 }
+			 
+//			 else if(type.equals(TabControl.itemsIR[6])){
+//				 listItem.put("icon",  R.drawable.ir_logo_fan1);
+//			 }
+			 
+//			 else if(type.equals(TabControl.itemsIR[7])){
+//				 listItem.put("icon",  R.drawable.ir_logo_fan2);
+//			 }else {
+//				 listItem.put("icon",R.drawable.ir_logo_fan2 );
+//			 }	
 			listItem.put("devid", cur.getInt(1));
 			listItemsIR.add(listItem);
 		}	
