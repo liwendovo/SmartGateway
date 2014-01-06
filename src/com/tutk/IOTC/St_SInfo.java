@@ -32,4 +32,3 @@ public class St_SInfo {
 	public byte		NatType;
 	public byte		isSecure;
 }
-

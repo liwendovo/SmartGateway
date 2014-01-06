@@ -60,6 +60,10 @@
 		 <activity android:name="com.seuic.add.AddEtc" 			
 			android:label="AddEtc">
 		</activity> 
+		<activity android:name="com.seuic.add.AddCam" 			
+			android:label="AddEtc">
+		</activity> 
+		 
         <activity android:name="com.seuic.smartgateway.TabControl" 			
 			android:label="设备">
 		</activity> 
