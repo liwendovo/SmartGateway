@@ -28,11 +28,7 @@ import com.seuic.adapter.EtcAdapter;
 import com.seuic.add.AddEtc;
 import com.seuic.devetc.IR_AC;
 import com.seuic.devetc.IR_DVD;
-import com.seuic.devetc.IR_FAN;
-import com.seuic.devetc.IR_Media;
 import com.seuic.devetc.IR_STU;
-import com.seuic.devetc.IR_Selfdefine1;
-import com.seuic.devetc.IR_Selfdefine2;
 import com.seuic.devetc.IR_TV;
 import com.seuic.devetc.IR_WH;
 
@@ -61,11 +57,16 @@ public class TabIR extends Activity {
 		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
 		titleBtn.setOnClickListener(new OnClickListener()
 		{		
-			public void onClick(View source){				 
+			public void onClick(View source){	
+				if(mUid.equals("NULL")){
+					Toast.makeText(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT).show();		
+					
+				}else{
 				 Intent intent = new Intent(TabIR.this, AddEtc.class);	
 				 intent.putExtra("uid", mUid);
 				 intent.putExtra("type", "ir");
-				 startActivity(intent);	            	
+				 startActivity(intent);	  
+				}
 			}			
 		});	
 		

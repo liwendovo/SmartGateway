@@ -1,12 +1,8 @@
 package com.seuic.add;
 
 import android.app.Activity;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.seuic.smartgateway.R;
 

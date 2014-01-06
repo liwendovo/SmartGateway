@@ -62,11 +62,16 @@ public class TabRF extends Activity {
 		titleBtn.setOnClickListener(new OnClickListener()
 		{	
 			@Override	
-			public void onClick(View source){				 
+			public void onClick(View source){	
+				if(mUid.equals("NULL")){
+					Toast.makeText(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT).show();		
+					
+				}else{
 				 Intent intent = new Intent(TabRF.this, AddEtc.class);	
         		 intent.putExtra("uid", mUid);
 				 intent.putExtra("type", "rf");
 				 startActivity(intent);	
+				}
             }			
 		});	
 	

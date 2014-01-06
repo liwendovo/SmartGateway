@@ -12,10 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import com.seuic.smartgateway.TabControl;
-import com.seuic.smartgateway.SetupDev;
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.TabControl;
 
 public class AddEtc extends Activity {
 	Button okBtn;	
@@ -32,6 +32,10 @@ public class AddEtc extends Activity {
 		setContentView(R.layout.addetc);		
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");	
+		if(mUid.equals("NULL")){
+			Toast.makeText(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT).show();		
+			finish();
+			}
 		mClass=intent.getStringExtra("type");		
 		Log.e("leewoo", "AddEtc -------  onCreate"+mUid+"   "+mClass);			
 		okBtn=(Button)findViewById(R.id.okBtn);		

@@ -5,22 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.seuic.adapter.CamChoiceAdapter;
-import com.seuic.adapter.DevChoiceAdapter;
-import com.seuic.add.AddCam;
-import com.seuic.add.AddDev;
-
 import android.app.Activity;
-import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.seuic.adapter.CamChoiceAdapter;
 
 public class SetupCam extends Activity{
 	Button titleBtn,homeBtn;

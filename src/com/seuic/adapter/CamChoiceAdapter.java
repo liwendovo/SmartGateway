@@ -36,9 +36,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.seuic.smartgateway.SetupDev;
+
 import com.seuic.smartgateway.R;
-import com.seuic.smartgateway.TabControl;
+import com.seuic.smartgateway.SetupDev;
 
 
 public class CamChoiceAdapter extends BaseAdapter {
@@ -100,7 +100,7 @@ public class CamChoiceAdapter extends BaseAdapter {
         	holder.status.setImageResource(R.drawable.dev_off);
     
         holder.title.setText(item.get("uid").toString());
-        holder.icon.setImageResource(R.drawable.dev_icon);
+        holder.icon.setImageResource(R.drawable.tab_cam);
         
      
         
