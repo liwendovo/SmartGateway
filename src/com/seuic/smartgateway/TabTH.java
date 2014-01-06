@@ -24,7 +24,7 @@ public class TabTH extends Activity {
 		titlePic=(ImageView)findViewById(R.id.pic);
 		titleBtn=(Button)findViewById(R.id.titleBtn);
 		
-    	homeBtn.setBackgroundResource(R.drawable.ep_logo);
+    	//homeBtn.setBackgroundResource(R.drawable.ep_logo);
     	titlePic.setImageResource(R.drawable.tab_th);
     	titleBtn.setBackgroundResource(R.drawable.title_chart);
 		
