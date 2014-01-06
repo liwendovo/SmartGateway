@@ -23,7 +23,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.seuic.adapter.EtcAdapter;
@@ -192,19 +191,31 @@ public class TabRF extends Activity {
 			
 			String type=cur.getString(3);
 			 listItem.put("type",type);	
-			 
+//			 itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
 			 if(type.equals(TabControl.itemsRF[0])){
 				 listItem.put("icon", R.drawable.rf_logo_switch);
-			 }else if(type.equals(TabControl.itemsRF[1])){
+				 listItem.put("status", R.drawable.rf_logo_on);
+				 listItem.put("status2", R.drawable.rf_logo_off);
+			 }else if(type.equals(TabControl.itemsRF[1])){//wh
 				 listItem.put("icon", R.drawable.rf_logo_lamp);
-			 }else if(type.equals(TabControl.itemsRF[2])){
+				 listItem.put("status", R.drawable.rf_logo_on);
+				 listItem.put("status2", R.drawable.rf_logo_off);
+			 }else if(type.equals(TabControl.itemsRF[2])){//lamp
 				 listItem.put("icon", R.drawable.rf_logo_lamp);
+				 listItem.put("status", R.drawable.rf_logo_on);
+				 listItem.put("status2", R.drawable.rf_logo_off);
 			 }else if(type.equals(TabControl.itemsRF[3])){
 				 listItem.put("icon", R.drawable.rf_logo_curtain);
+				 listItem.put("status", R.drawable.rf_logo_open);
+				 listItem.put("status2", R.drawable.rf_logo_close);
 			 }else if(type.equals(TabControl.itemsRF[4])){
-				 listItem.put("icon",R.drawable.rf_logo_power );			 
+				 listItem.put("icon",R.drawable.rf_logo_power );
+				 listItem.put("status", R.drawable.rf_logo_on);
+				 listItem.put("status2", R.drawable.rf_logo_off);
 			 }else {
 				 listItem.put("icon",R.drawable.ir_logo_fan2 );
+				 listItem.put("status", R.drawable.rf_logo_on);
+				 listItem.put("status2", R.drawable.rf_logo_off);
 			 }	
 			listItemsRF.add(listItem);
 		}	

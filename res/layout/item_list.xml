@@ -38,6 +38,14 @@
           android:layout_centerVertical="true"
 		  android:textColor="@drawable/selector_text_color" 
           android:textAppearance="?android:attr/textAppearanceLarge" />
+      
+     <ImageView
+         android:id="@+id/status2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerVertical="true"
+         android:layout_toLeftOf="@+id/status"
+         />
      <ImageView
             android:id="@+id/status"
             android:layout_width="wrap_content"
@@ -46,6 +54,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10.0dip"
             android:src="@drawable/ic_launcher" />
+
       
     </RelativeLayout>
 

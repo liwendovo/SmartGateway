@@ -10,7 +10,7 @@
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/dev_icon"
         android:label="@string/app_name"
        android:theme="@android:style/Theme.NoTitleBar" >
         <activity
@@ -102,9 +102,12 @@
 		<activity android:name="com.seuic.devetc.RF_Lamp" 			
 			android:label="RF_Lamp">
 		</activity> 	
-			<activity android:name="com.seuic.devetc.RF_Curtain" 			
+		<activity android:name="com.seuic.devetc.RF_Curtain1" 			
 			android:label="RF_Curtain">
-		</activity> 		
+		</activity> 	
+		<activity android:name="com.seuic.devetc.RF_Curtain2" 			
+			android:label="RF_Curtain">
+		</activity> 	
 		<activity android:name="com.seuic.devetc.RF_Selfdefine1" 			
 			android:label="RF_Selfdefine1">
 		</activity> 

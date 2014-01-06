@@ -189,25 +189,37 @@ public class TabIR extends Activity {
 			Map<String,Object> listItem =new HashMap<String,Object>();			
 			listItem.put("name", cur.getString(4));
 			String type=cur.getString(3);
+			
+//			itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"};
 			 listItem.put("type",type);
 			 if(type.equals(TabControl.itemsIR[0])){
 				 listItem.put("icon", R.drawable.ir_logo_tv);
+				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else if(type.equals(TabControl.itemsIR[1])){
 				 listItem.put("icon", R.drawable.ir_logo_ac);
-			 }else if(type.equals(TabControl.itemsIR[2])){
+				 listItem.put("status", R.drawable.ir_logo_close);
+			 }else if(type.equals(TabControl.itemsIR[2])){//media
 				 listItem.put("icon", R.drawable.ir_logo_stu);
+				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else if(type.equals(TabControl.itemsIR[3])){
 				 listItem.put("icon", R.drawable.ir_logo_stu);
+				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else if(type.equals(TabControl.itemsIR[4])){
 				 listItem.put("icon",R.drawable.ir_logo_wh );
+				 listItem.put("status", R.drawable.ir_logo_up);
+				 listItem.put("status2", R.drawable.ir_logo_down);
 			 }else if(type.equals(TabControl.itemsIR[5])){
 				 listItem.put("icon", R.drawable.ir_logo_dvd);
+				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else if(type.equals(TabControl.itemsIR[6])){
 				 listItem.put("icon",  R.drawable.ir_logo_fan1);
+				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else if(type.equals(TabControl.itemsIR[7])){
 				 listItem.put("icon",  R.drawable.ir_logo_fan2);
+				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else {
 				 listItem.put("icon",R.drawable.ir_logo_fan2 );
+				 listItem.put("status", R.drawable.ir_logo_close);
 			 }	
 			listItem.put("devid", cur.getInt(1));
 			listItemsIR.add(listItem);
