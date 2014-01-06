@@ -203,7 +203,7 @@ public class TabRF extends Activity {
 				 listItem.put("status", R.drawable.rf_logo_on);
 				 listItem.put("status2", R.drawable.rf_logo_off);
 			 }else if(type.equals("WH")){//wh
-				 listItem.put("icon", R.drawable.rf_logo_lamp);
+				 listItem.put("icon", R.drawable.ir_logo_wh);
 				 listItem.put("status", R.drawable.rf_logo_on);
 				 listItem.put("status2", R.drawable.rf_logo_off);
 			 }else if(type.equals("Lamp")){//lamp

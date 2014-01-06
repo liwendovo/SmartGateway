@@ -41,7 +41,7 @@ import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 
 
-public class SingleChoiceAdapter extends BaseAdapter {
+public class CamChoiceAdapter extends BaseAdapter {
 
     private List<Map<String, Object>> data;
     private Context context; 
@@ -49,7 +49,7 @@ public class SingleChoiceAdapter extends BaseAdapter {
     
 //    StatusListener mStatusListener;
     private float x,ux;
-    public SingleChoiceAdapter(Context context, List<Map<String, Object>> data) {
+    public CamChoiceAdapter(Context context, List<Map<String, Object>> data) {
         this.context = context;
         this.data = data;       
     }
@@ -136,7 +136,7 @@ public class SingleChoiceAdapter extends BaseAdapter {
 		        				SetupDev.editor.putString("uid","NULL");
 		        				SetupDev.editor.commit();
 		        			} 
-		        			TabControl.mSQLHelper.deleteSetup(TabControl.writeDB, data.get(position).get("uid").toString());
+//		        			TabControl.mSQLHelper.deleteSetup(TabControl.writeDB, data.get(position).get("uid").toString());
 				 			data.remove(position);	
 			        		notifyDataSetChanged();
 		        			}
@@ -171,8 +171,8 @@ public class SingleChoiceAdapter extends BaseAdapter {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				currentID=position;  
-				SetupDev.editor.putString("uid",data.get(position).get("uid").toString());
-				SetupDev.editor.commit();
+//				SetupDev.editor.putString("uid",data.get(position).get("uid").toString());
+//				SetupDev.editor.commit();
 				notifyDataSetChanged();
 			}
 		});

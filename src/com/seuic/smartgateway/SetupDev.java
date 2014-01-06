@@ -22,7 +22,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import com.seuic.adapter.SingleChoiceAdapter;
+import com.seuic.adapter.DevChoiceAdapter;
 import com.seuic.add.AddDev;
 import com.seuic.net.SetupAp;
 
@@ -31,13 +31,14 @@ public class SetupDev extends Activity {
 	ImageView titlePic;	
 	
 	ListView mListView;
+	private DevChoiceAdapter mAdapter;
 	Button addDevBtn;
 	Button setupBtn;
 	int currentID=-1;
 	public static SharedPreferences myPreferences;
 	public static SharedPreferences.Editor editor;	
-//	private SwipeListView swipeListView;
-	private SingleChoiceAdapter mAdapter ;
+
+
 	public SQLiteDatabase writeDB;
 	
 
@@ -97,6 +98,15 @@ public class SetupDev extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		
+	}
+
+
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		
 		Cursor cur=TabControl.mSQLHelper.seleteSetupALL(writeDB);
 		if(0==cur.getCount()){
 			return;	
@@ -122,10 +132,11 @@ public class SetupDev extends Activity {
 		}
 		Log.e("leewoo", "DevSetup index:"+index+"  mCurSet:"+mCurSet);
 //		simpleAdapter = new ArrayAdapter<String> (this,android.R.layout.simple_list_item_single_choice,listDev);		
-		mAdapter = new SingleChoiceAdapter(this,listItems);	
+		mAdapter = new DevChoiceAdapter(this,listItems);	
 		mAdapter.setItemChecked(mCurSet);
 		mListView.setAdapter(mAdapter);
 	}
+
 
 
 	@Override
