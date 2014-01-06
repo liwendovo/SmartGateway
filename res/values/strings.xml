@@ -18,7 +18,20 @@
     <string name="tab1">IR</string>
     <string name="tab2">RF</string>
     <string name="tab3">TH</string>
-    <string name="tab4">SET</string>
+    <string name="tab4">CAM</string>
+    <string name="tab5">SET</string>
+    
+   <string-array name="time_zone"> 
+    <item>Beijing</item> 
+    <item>韩国</item> 
+    <item>日本</item> 
+    <item>美国 </item> 
+    <item>山西省</item> 
+    <item>内蒙古自治区</item> 
+    <item>辽宁省</item> 
+    <item>吉林省</item>     
+	</string-array>  
+      
  
 
 </resources>

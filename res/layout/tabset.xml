@@ -3,71 +3,237 @@
          	xmlns:android="http://schemas.android.com/apk/res/android"
    			xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="fill_parent"           
             android:orientation="vertical"
            >
         <include layout="@layout/main_title" android:focusable="true"/>	
+        
              <TableLayout 
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:stretchColumns="1,2">
-                  <ImageView
-					android:id="@+id/imageView1"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_alignParentTop="true"
-					android:layout_centerHorizontal="true"
-					android:src="@drawable/ep_logo" />
-                                       
-                   <Button
-                    android:id="@+id/devSetBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Device Set" />
-                    <Button
-                    android:id="@+id/camSetBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"      
-                    android:text="Camera Set" />
-             <TableRow>
-                   <TextView
-		            android:id="@+id/tmpBtn"
+				   <RelativeLayout
+				    android:id="@+id/layoutDev"
+				    android:background="@drawable/selector_layout_background"
+			        android:layout_width="fill_parent"
+			        android:layout_height="60dip"			        
+			        android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
+			        android:paddingBottom="6dip"
+			        android:paddingTop="6dip"			      
+			        >
+	                 <ImageView			            
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            
+			            android:src="@drawable/dev_icon" />
+	
+	                 <TextView
+	                     android:id="@+id/textView1"
+	                     android:layout_width="wrap_content"
+	                     android:layout_height="wrap_content"
+	                     android:layout_centerHorizontal="true"
+	                     android:layout_centerVertical="true"
+	                     android:gravity="center"
+	                     android:text="DEVICE"
+	                      android:textColor="@drawable/selector_text_color" 
+	                     android:textAppearance="?android:attr/textAppearanceLarge" />
+				       
+				    </RelativeLayout>
+				
+               
+	           <View
+				android:layout_width="fill_parent"
+				android:layout_height="2px"
+				android:background="@drawable/line" >
+				</View>
+             
+			   <RelativeLayout
+			       android:id="@+id/layoutCam"
+			        android:background="@drawable/selector_layout_background"
+				    android:layout_width="fill_parent"				   
+				    android:layout_height="60dip"
+				    android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
+			        android:paddingBottom="6dip"
+			        android:paddingTop="6dip"			      
+			        >
+				    
+				    <ImageView
+		            
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="Tempreture"
-		            android:textAppearance="?android:attr/textAppearanceLarge" />
-		
-			  		<ToggleButton
-	 			    android:id="@+id/toggleButton1"
-	 			    android:layout_width="wrap_content"
-	 			    android:layout_height="wrap_content" 	
-	 			    android:textOff="C"
-	 			    android:textOn="C" 
-	 			     android:checked="true" />		
-			  	 	<ToggleButton
-	 			    android:id="@+id/toggleButton2"
-	 			    android:layout_width="wrap_content"
-	 			    android:layout_height="wrap_content" 	
-	 			    android:textOff="F"
-	 			    android:textOn="F" 
-	 			    android:checked="false" />                       
-	          </TableRow>
-                 
-		 	        <Button
-                    android:id="@+id/timeSetBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"  
-                    android:text="Time Set" />
-                <Button
-                    android:id="@+id/resetBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"     
-                    android:text="Reset App" />
+		            android:layout_marginLeft="5.0dip"
+		            android:src="@drawable/tab_cam" />
 
-                <Button
-                    android:id="@+id/aboutBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"              
-                    android:text="About us" />
+	                 <TextView
+	                     android:layout_width="wrap_content"
+	                     android:layout_height="wrap_content"
+	                     android:layout_centerHorizontal="true"
+	                     android:layout_centerVertical="true"
+	                     android:gravity="center"
+	                     android:text="CAMERA"
+	                     android:textColor="@drawable/selector_text_color" 
+	                     android:textAppearance="?android:attr/textAppearanceLarge" />
+       
+             </RelativeLayout>
+		           <View
+					android:layout_width="fill_parent"
+					android:layout_height="2px"
+					android:background="@drawable/line" >
+					</View>
+             
+				<RelativeLayout
+				    android:id="@+id/layoutTemp"
+				     android:background="@drawable/selector_layout_background"
+			        android:layout_width="fill_parent"			       
+			        android:layout_height="60dip"
+			        android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
+			        android:paddingBottom="6dip"
+			        android:paddingTop="6dip" >
+				    
+				    <ImageView
+		            
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="3.0dip"		          
+		            android:src="@drawable/tab_th" />
+
+	                 <TextView
+	                     
+	                     android:layout_width="wrap_content"
+	                     android:layout_height="wrap_content"
+	                     android:layout_centerHorizontal="true"
+	                     android:layout_centerVertical="true"
+	                     android:gravity="center"
+	                     android:text="FAHRENHEIT"
+	                     android:textColor="@drawable/selector_text_color" 
+	                     android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	                 <ToggleButton
+	                     android:id="@+id/setTempBtn"
+	                     android:textOn=" " 
+        				 android:textOff=" " 
+        				 android:background="@drawable/rf_switch_blue"
+	                     android:layout_width="wrap_content"
+	                     android:layout_height="wrap_content"	                     
+	                     android:layout_alignParentRight="true"
+	                     android:layout_centerVertical="true"
+	                     
+	                     android:gravity="center"
+	                     />       					
+            	</RelativeLayout>
+		            <View
+					android:layout_width="fill_parent"
+					android:layout_height="2px"
+					android:background="@drawable/line" >
+					</View>
+             
+				 <RelativeLayout
+				    android:id="@+id/layoutTime"
+				     android:background="@drawable/selector_layout_background"
+			        android:layout_width="fill_parent"			        
+			        android:layout_height="60dip"
+			        android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
+			        android:paddingBottom="6dip"
+			        android:paddingTop="6dip" >
+				    
+				    <ImageView		           
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		             android:layout_marginLeft="2.0dip"	
+		            android:src="@drawable/set_time" />
+
+                	 <TextView
+                	     
+                	     android:layout_width="wrap_content"
+                	     android:layout_height="wrap_content"
+                	     android:layout_centerHorizontal="true"
+                	     android:layout_centerVertical="true"
+                	     android:textColor="@drawable/selector_text_color" 
+                	     android:gravity="center"
+                	     android:text="DATE &amp; TIME"
+                	     android:textAppearance="?android:attr/textAppearanceLarge" />
+       
+             </RelativeLayout>
+	         <View
+				android:layout_width="fill_parent"
+				android:layout_height="2px"
+				android:background="@drawable/line" >
+			 </View>
+             
+		     <RelativeLayout
+		        android:id="@+id/layoutRest"
+		         android:background="@drawable/selector_layout_background"
+		        android:layout_width="fill_parent"		        
+		        android:layout_height="60dip"
+		        android:paddingRight="20dip"
+			    android:paddingLeft="20dip"
+		        android:paddingBottom="6dip"
+		        android:paddingTop="6dip" >
+				    
+				    <ImageView
+		            
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		             android:layout_marginLeft="2.0dip"	
+		            android:src="@drawable/set_reset" />
+
+                    <TextView
+                     
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_centerHorizontal="true"
+                     android:layout_centerVertical="true"
+                     android:gravity="center"
+                     android:text="REST APP"
+                     android:textColor="@drawable/selector_text_color" 
+                     android:textAppearance="?android:attr/textAppearanceLarge" />
+       
+               </RelativeLayout>
+             
+		            <View
+					android:layout_width="fill_parent"
+					android:layout_height="2px"
+					android:background="@drawable/line">
+					</View>
+					
+		     <RelativeLayout
+		        android:id="@+id/layoutAbout"
+		         android:background="@drawable/selector_layout_background"
+		        android:layout_width="fill_parent"		        
+		        android:layout_height="60dip"
+		        android:paddingRight="20dip"
+			    android:paddingLeft="20dip"
+		        android:paddingBottom="6dip"
+		        android:paddingTop="6dip" >
+				    
+				    <ImageView
+		            
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		           
+		            android:src="@drawable/set_about" />
+
+	                 <TextView
+	                     
+	                     android:layout_width="wrap_content"
+	                     android:layout_height="wrap_content"
+	                     android:layout_centerHorizontal="true"
+	                     android:layout_centerVertical="true"
+	                     android:gravity="center"
+	                     android:text="ABOUT US"
+	                     android:textColor="@drawable/selector_text_color" 
+	                     android:textAppearance="?android:attr/textAppearanceLarge" />
+       
+            </RelativeLayout>
+	             <View
+				android:layout_width="fill_parent"
+				android:layout_height="2px"
+				android:background="@drawable/line">
+				</View>
+                    
          </TableLayout>
 </LinearLayout>

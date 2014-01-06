@@ -1,12 +1,128 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background3"
      >
    <include layout="@layout/main_title" android:focusable="true"/>	
+ 
+		 <RelativeLayout
+				    android:id="@+id/layoutHour"
+				    android:background="@drawable/selector_layout_background"
+			        android:layout_width="wrap_content"
+			        android:layout_height="60dip"			        
+			        android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
+			        android:paddingBottom="6dip"
+			        android:paddingTop="6dip"			      
+			        >
+				           
 
+		            <TextView
+		                android:id="@+id/textView1"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_alignParentLeft="true"
+		                android:layout_centerVertical="true"
+		                android:gravity="center"
+		                android:text="24-Hour Time"
+		                android:textAppearance="?android:attr/textAppearanceLarge"
+		                android:textColor="@drawable/selector_text_color" />
+ 					<ToggleButton
+	                     android:id="@+id/timeHourBtn"
+	                     android:textOn=" " 
+        				 android:textOff=" " 
+        				 android:background="@drawable/rf_switch_yellow"
+	                     android:layout_width="wrap_content"
+	                     android:layout_height="wrap_content"	                     
+	                     android:layout_alignParentRight="true"
+	                     android:layout_centerVertical="true"
+	                     
+	                     android:gravity="center"
+	                     />
+				    </RelativeLayout>
+				
+               
+	           <View
+				android:layout_width="fill_parent"
+				android:layout_height="2px"
+				android:background="@drawable/line" >
+				</View>
+             
+			   <RelativeLayout
+			       android:id="@+id/layoutAuto"
+			        android:background="@drawable/selector_layout_background"
+				    android:layout_width="wrap_content"				   
+				    android:layout_height="60dip"
+				    android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
+			        android:paddingBottom="6dip"
+			        android:paddingTop="6dip"			      
+			        >
+        				 <ToggleButton
+	                     android:id="@+id/timeAutoBtn"
+	                     android:textOn=" " 
+        				 android:textOff=" " 
+        				 android:background="@drawable/rf_switch_blue"
+	                     android:layout_width="wrap_content"
+	                     android:layout_height="wrap_content"	                     
+	                     android:layout_alignParentRight="true"
+	                     android:layout_centerVertical="true"
+	                     
+	                     android:gravity="center"
+	                     />
 
-     
+        				 <TextView
+        				     android:layout_width="wrap_content"
+        				     android:layout_height="wrap_content"
+        				     android:layout_alignParentLeft="true"
+				             android:layout_centerVertical="true"
+				             android:gravity="center"        				     
+        				     android:text="Set Automatically"
+        				     android:textAppearance="?android:attr/textAppearanceLarge"
+        				     android:textColor="@drawable/selector_text_color" />
+
+            	 </RelativeLayout>
+	           <View
+				android:layout_width="fill_parent"
+				android:layout_height="2px"
+				android:background="@drawable/line" >
+				</View>
+             
+				<RelativeLayout
+				    android:id="@+id/layoutZone"
+				    android:background="@drawable/selector_layout_background"
+			        android:layout_width="wrap_content"			       
+			        android:layout_height="60dip"
+			        android:paddingRight="20dip"
+			        android:paddingLeft="20dip"
+			        android:paddingBottom="6dip"
+			        android:paddingTop="6dip" >
+
+	                <TextView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_alignParentLeft="true"
+	                    android:layout_centerVertical="true"
+	                    android:gravity="center"
+	                    android:text="Time Zone"
+	                    android:textAppearance="?android:attr/textAppearanceLarge"
+	                    android:textColor="@drawable/selector_text_color" />
+
+                	<Spinner
+                	    android:id="@+id/spinnerZone"
+                	    android:layout_width="70dp"
+                	    android:layout_height="wrap_content"
+                	    android:layout_alignParentRight="true"
+                	    android:layout_centerVertical="true"
+                	    android:background="@color/transparent" />
+	                 	            
+            	</RelativeLayout>
+ 		      	<View
+					android:layout_width="fill_parent"
+					android:layout_height="2px"
+					android:background="@drawable/line" >
+					</View>
+ 
    
 </LinearLayout>

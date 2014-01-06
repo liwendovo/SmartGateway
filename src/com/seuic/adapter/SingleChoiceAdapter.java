@@ -84,7 +84,7 @@ public class SingleChoiceAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = li.inflate(R.layout.list_item, parent, false);
+            convertView = li.inflate(R.layout.item_list, parent, false);
             holder = new ViewHolder();
             holder.title = (TextView) convertView.findViewById(R.id.title);
             holder.icon = (ImageView) convertView.findViewById(R.id.icon);
@@ -130,14 +130,16 @@ public class SingleChoiceAdapter extends BaseAdapter {
 		        		@Override
 		        		public void onClick(DialogInterface arg0, int arg1) {
 		        			// TODO Auto-generated method stub
+		        			if(position>=0&&position<data.size()){
 		        			if(currentID==position){
 		        				currentID=-1;	
 		        				SetupDev.editor.putString("uid","NULL");
 		        				SetupDev.editor.commit();
 		        			} 
-		        			TabControl.mSQLHelper.deleteSetup(TabControl.writeDB, data.get(position).get("title").toString());
+		        			TabControl.mSQLHelper.deleteSetup(TabControl.writeDB, data.get(position).get("uid").toString());
 				 			data.remove(position);	
 			        		notifyDataSetChanged();
+		        			}
 		        		}
 		        	});
 	        		 builder.setNegativeButton("È¡Ïû", new DialogInterface.OnClickListener() {

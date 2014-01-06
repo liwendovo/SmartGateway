@@ -13,9 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.seuic.smartgateway.TabControl;
-import com.seuic.smartgateway.SetupDev;
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.TabControl;
 
 public class AddDev extends Activity {
 	Button addDevBtn;

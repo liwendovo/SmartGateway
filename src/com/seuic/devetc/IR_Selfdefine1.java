@@ -137,7 +137,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 		button9.setOnLongClickListener(this);
 		
 		
-		drawable = leanrnBtn.getBackground();
+		drawable = button1.getBackground();
 	}
 	
 	@Override
@@ -156,31 +156,31 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
             	Log.e("leewoo", "clr"+v.getId() ); 
             	leanrnBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
             	
-			        	if(btnclr1)	button1.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	if(btnclr1)	button1.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 			        	else button1.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr2)	button2.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	if(btnclr2)	button2.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 			        	else button2.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr3)	button3.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	if(btnclr3)	button3.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 			        	else button3.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr4)	button4.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	if(btnclr4)	button4.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 			        	else button4.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr5)	button5.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	if(btnclr5)	button5.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 			        	else button5.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr6)	button6.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	if(btnclr6)	button6.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 			        	else button6.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr7)	button7.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	if(btnclr7)	button7.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 			        	else button7.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr8)	button8.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	if(btnclr8)	button8.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 			        	else button8.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
-			        	if(btnclr9)	button9.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+			        	if(btnclr9)	button9.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 			        	else button9.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_normal_disable));
 			        	
         	}else{
@@ -204,7 +204,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr1=true;
 
-        		button1.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+        		button1.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true);        		
 
@@ -220,7 +220,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr2=true;
 
-        		button2.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+        		button2.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,2, true);
 
@@ -236,7 +236,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr3=true;
 
-        		button3.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+        		button3.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 3, true);
 
@@ -253,7 +253,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr4=true;
 
-	        		button4.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+	        		button4.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 4, true);
 	        		
@@ -269,7 +269,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr5=true;
 
-	        		button5.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+	        		button5.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,5, true);
 
@@ -284,7 +284,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr6=true;
 
-	        		button6.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+	        		button6.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 6, true);
 
@@ -299,7 +299,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr7=true;
 
-	        		button7.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+	        		button7.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 7, true);
 
@@ -314,7 +314,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr8=true;
 
-	        		button8.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+	        		button8.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 8, true);
 
@@ -329,7 +329,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr9=true;
 
-	        		button9.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_default_selected));
+	        		button9.setBackgroundDrawable(getResources().getDrawable(R.drawable.item_default_selected));
 
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 9, true);
 

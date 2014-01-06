@@ -124,31 +124,32 @@ public class TabRF extends Activity {
                Log.e("leewoo", "onTouch :"+position1+" "+position2);
 	        	//按下和松开绝对值差当大于20时显示删除按钮，否则不显示  
 		        	if (position1 == position2 &&Math.abs(x - ux) > 20) {  
-		        		        		
-		        		 Log.e("leewoo", "右滑"+position1);
-		        		 final int position=position1;
-		        		 AlertDialog.Builder builder = new Builder(TabRF.this);
-		        		 builder.setMessage("确认删除设备？"+rfAdapter.getItem(position).get("type"));
-		        		 builder.setTitle("确认信息");
-		        		 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-			        		@Override
-			        		public void onClick(DialogInterface arg0, int arg1) {
-			        			// TODO Auto-generated method stub		        		
-				        		
-				        		 TabControl.mSQLHelper.deleteList(TabControl.writeDB, Integer.parseInt(String.valueOf(rfAdapter.getItem(position).get("devid"))));
-				        		 rfAdapter.remove(position);	
-				        		 //数据库
-				        		
-			        		}
-			        	});
-		        		 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-			        		@Override
-			        		 public void onClick(DialogInterface dialog, int which) {
-			        		 dialog.dismiss();
-			        		  
-			        		}
-			        	});
-		        		 builder.create().show();	
+		        		 if(position1>=0&&position1<rfAdapter.getCount()){	       		
+			        		 Log.e("leewoo", "右滑"+position1);
+			        		 final int position=position1;
+			        		 AlertDialog.Builder builder = new Builder(TabRF.this);
+			        		 builder.setMessage("确认删除设备？"+rfAdapter.getItem(position).get("type"));
+			        		 builder.setTitle("确认信息");
+			        		 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+				        		@Override
+				        		public void onClick(DialogInterface arg0, int arg1) {
+				        			// TODO Auto-generated method stub		        		
+					        		
+					        		 TabControl.mSQLHelper.deleteList(TabControl.writeDB, Integer.parseInt(String.valueOf(rfAdapter.getItem(position).get("devid"))));
+					        		 rfAdapter.remove(position);	
+					        		 //数据库
+					        		
+				        		}
+				        	});
+			        		 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+				        		@Override
+				        		 public void onClick(DialogInterface dialog, int which) {
+				        		 dialog.dismiss();
+				        		  
+				        		}
+				        	});
+			        		 builder.create().show();	
+		        		 }
 		        		 return true;  
 		        	 } 
 	        	} 
@@ -165,20 +166,23 @@ public class TabRF extends Activity {
 	}
   
 	
+	
+
 	@Override
-	protected void onResume() {
+	protected void onStart() {
 		// TODO Auto-generated method stub
-		super.onResume();
+		super.onStart();
+		
 		mUid=myPreferences.getString("uid", "NULL");	
 		if (mUid.equals("NULL")) {
 			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();		
 		}
 		Log.e("leewoo","mUid="+mUid);
 		Cursor cur=TabControl.mSQLHelper.seleteListClass(TabControl.writeDB, mUid,"rf");
-		if(0==cur.getCount()){
-			Log.e("leewoo","count="+0);
-			return;
-		}	
+//		if(0==cur.getCount()){
+//			Log.e("leewoo","count="+0);
+//			return;
+//		}	
 		List<Map<String, Object>> listItemsRF=new ArrayList<Map<String,Object>>();	
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
 			Map<String,Object> listItem =new HashMap<String,Object>();	
@@ -218,6 +222,16 @@ public class TabRF extends Activity {
 //	     }	
 		rfAdapter=new EtcAdapter(this, listItemsRF);
 		listViewRF.setAdapter(rfAdapter);
+	}
+
+
+
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
 	}
 }
   
