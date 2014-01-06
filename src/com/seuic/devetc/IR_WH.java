@@ -25,7 +25,7 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 		button1=(ImageView)findViewById(R.id.imageView2);
 		button2=(ImageView)findViewById(R.id.imageView3);
 		devpic=(ImageView)findViewById(R.id.pic);
-		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_ac));
+		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_wh));
 		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 

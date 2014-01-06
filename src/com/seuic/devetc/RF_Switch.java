@@ -25,7 +25,7 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 		button1=(ImageView)findViewById(R.id.button1);
 		button2=(ImageView)findViewById(R.id.button2);
 		devpic=(ImageView)findViewById(R.id.pic);
-		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_dvd));	
+		devpic.setImageDrawable(getResources().getDrawable(R.drawable.rf_switch));	
 		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
