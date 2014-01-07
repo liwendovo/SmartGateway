@@ -22,9 +22,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+
 import com.seuic.adapter.DevChoiceAdapter;
 import com.seuic.add.AddDev;
-import com.seuic.net.SetupAp;
 
 public class SetupDev extends Activity {
 	Button titleBtn,homeBtn;
@@ -33,7 +33,7 @@ public class SetupDev extends Activity {
 	ListView mListView;
 	private DevChoiceAdapter mAdapter;
 	Button addDevBtn;
-	Button setupBtn;
+//	Button setupBtn;
 	int currentID=-1;
 	public static SharedPreferences myPreferences;
 	public static SharedPreferences.Editor editor;	
@@ -62,7 +62,7 @@ public class SetupDev extends Activity {
 		editor= myPreferences.edit();
 		mListView = (ListView)findViewById(R.id.devListView);	
 		
-		setupBtn=(Button)findViewById(R.id.SetupBtn);
+		
 		titleBtn.setOnClickListener(new OnClickListener()
 		{		
 			public void onClick(View source)
@@ -73,16 +73,17 @@ public class SetupDev extends Activity {
 					startActivity(intent);				
 			}			
 		});	
-		setupBtn.setOnClickListener(new OnClickListener()
-		{		
-			public void onClick(View source)
-			{
-				Intent intent = new Intent(SetupDev.this
-						, SetupAp.class);					
-					//Æô¶¯Activity
-					startActivity(intent);				
-			}			
-		});	
+//		setupBtn=(Button)findViewById(R.id.SetupBtn);
+//		setupBtn.setOnClickListener(new OnClickListener()
+//		{		
+//			public void onClick(View source)
+//			{
+//				Intent intent = new Intent(SetupDev.this
+//						, SetupAp.class);					
+//					//Æô¶¯Activity
+//					startActivity(intent);				
+//			}			
+//		});	
 		homeBtn.setOnClickListener(new OnClickListener()
 		{		
 			public void onClick(View source)
