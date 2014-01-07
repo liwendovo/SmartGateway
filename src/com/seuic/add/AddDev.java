@@ -8,7 +8,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -21,14 +20,14 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 import com.seuic.net.FTPUtil;
 import com.seuic.net.NetConfig;
@@ -38,7 +37,10 @@ import com.seuic.smartgateway.TabControl;
 public class AddDev extends Activity {
 	public final static String PREFERENCE_NAME = "netconfig";
 	Button addDevBtn;
-	Button pushap;
+//	Button pushap;
+	
+	Button titleBtn,homeBtn;
+	ImageView titlePic;
 	
 	EditText edtUid;
 	EditText edtSSID, edtPassword;
@@ -58,12 +60,30 @@ public class AddDev extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.adddev);		
+		setContentView(R.layout.adddev);	
+		
+		
+		homeBtn=(Button)findViewById(R.id.back);
+		titlePic=(ImageView)findViewById(R.id.pic);
+		titleBtn=(Button)findViewById(R.id.titleBtn);
+		
+    	homeBtn.setBackgroundResource(R.drawable.title_back);
+    	titlePic.setImageResource(R.drawable.tab_set);
+    	titleBtn.setVisibility(View.INVISIBLE);
+		
+		
+		
 		addDevBtn=(Button)findViewById(R.id.addDevBtn);
 		edtUid = (EditText) findViewById(R.id.uidEdt);
 		spinnerSSID=(Spinner)findViewById(R.id.spinnerSSID);		
 		edtPassword = (EditText)findViewById(R.id.passwordEdt);
-		
+		homeBtn.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		
 		WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 		WifiInfo wifiInfo = wifiManager.getConnectionInfo();

@@ -133,8 +133,8 @@ public class CamChoiceAdapter extends BaseAdapter {
 		        			if(position>=0&&position<data.size()){
 		        			if(currentID==position){
 		        				currentID=-1;	
-		        				SetupDev.editor.putString("uid","NULL");
-		        				SetupDev.editor.commit();
+//		        				SetupDev.editor.putString("uid","NULL");
+//		        				SetupDev.editor.commit();
 		        			} 
 //		        			TabControl.mSQLHelper.deleteSetup(TabControl.writeDB, data.get(position).get("uid").toString());
 				 			data.remove(position);	
