@@ -88,10 +88,10 @@
 		   <activity android:name="com.seuic.devetc.IR_FAN" 			
 			android:label="Fan">
 		</activity> 		
-		<activity android:name="com.seuic.devetc.IR_Selfdefine1" 			
+		<activity android:name="com.seuic.devetc.IR_Custom1" 			
 			android:label="IR_Selfdefine1">
 		</activity> 
-		<activity android:name="com.seuic.devetc.IR_Selfdefine2" 			
+		<activity android:name="com.seuic.devetc.IR_Custom2" 			
 			android:label="IR_Selfdefine2">
 		</activity> 
 		
@@ -112,10 +112,10 @@
 		<activity android:name="com.seuic.devetc.RF_Curtain2" 			
 			android:label="RF_Curtain">
 		</activity> 	
-		<activity android:name="com.seuic.devetc.RF_Selfdefine1" 			
+		<activity android:name="com.seuic.devetc.RF_Custom1" 			
 			android:label="RF_Selfdefine1">
 		</activity> 
-		<activity android:name="com.seuic.devetc.RF_Selfdefine2" 			
+		<activity android:name="com.seuic.devetc.RF_Custom2" 			
 			android:label="RF_Selfdefine2">
 		</activity> 
 		

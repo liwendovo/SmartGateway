@@ -15,7 +15,7 @@ import android.widget.EditText;
 
 import com.seuic.smartgateway.R;
 
-public class RF_Selfdefine1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener{
+public class RF_Custom1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener{
 	Button  backBtn,leanrnBtn;
 	Button  button1,button2,button3,
 			button4,button5,button6,
@@ -24,7 +24,7 @@ public class RF_Selfdefine1 extends Activity implements android.view.View.OnClic
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.rf_selfdefine1);
+		setContentView(R.layout.rf_custom1);
 //		SharedPreferences sharedPreferences = getSharedPreferences("itcast", Context.MODE_PRIVATE);
 //		Editor editor = sharedPreferences.edit();//获取编辑器
 //		editor.putString("name", "传智播客");
@@ -136,7 +136,7 @@ public class RF_Selfdefine1 extends Activity implements android.view.View.OnClic
 	}
 
 	 protected void dialog() {
-		 AlertDialog.Builder builder = new Builder(RF_Selfdefine1.this);
+		 AlertDialog.Builder builder = new Builder(RF_Custom1.this);
 		 builder.setMessage("Please input name");
 		 builder.setTitle("Button name");
 		 builder.setView(new EditText(this));

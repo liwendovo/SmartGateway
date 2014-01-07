@@ -27,10 +27,11 @@ import android.widget.Toast;
 
 import com.seuic.adapter.EtcAdapter;
 import com.seuic.add.AddEtc;
+import com.seuic.devetc.RF_Curtain;
 import com.seuic.devetc.RF_Curtain1;
+import com.seuic.devetc.RF_Custom1;
+import com.seuic.devetc.RF_Custom2;
 import com.seuic.devetc.RF_Lamp;
-import com.seuic.devetc.RF_Selfdefine1;
-import com.seuic.devetc.RF_Selfdefine2;
 import com.seuic.devetc.RF_Switch;
 import com.seuic.devetc.RF_WH;
 
@@ -82,6 +83,8 @@ public class TabRF extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
 				// TODO Auto-generated method stub
+//				itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"};
+//				 itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"};
 				 String type=(String)rfAdapter.getItem(position).get("type");
 				 int devid=Integer.parseInt(String.valueOf(rfAdapter.getItem(position).get("devid")));
 				 Intent intent ;
@@ -89,19 +92,15 @@ public class TabRF extends Activity {
 					 intent = new Intent(TabRF.this,RF_Switch.class);
 				 }else if(type.equals("WH")){
 					 intent = new Intent(TabRF.this,RF_WH.class);
-				 }
-//				 else if(type.equals(TabControl.itemsRF[2])){
-//					 intent = new Intent(TabRF.this,RF_Lamp.class);
-//				 }
-				 else {
-					 intent = new Intent(TabRF.this,RF_Curtain1.class);				 
-				 }
-				 
-//				 else if(type.equals(TabControl.itemsRF[4])){
-//					 intent = new Intent(TabRF.this,RF_Selfdefine1.class);
-//				 }else {
-//					 intent = new Intent(TabRF.this,RF_Selfdefine2.class);
-//				 }			
+				 }else if(type.equals("Lamp")){
+					 intent = new Intent(TabRF.this,RF_Lamp.class);
+				 }else if(type.equals("Curtain")){
+					 intent = new Intent(TabRF.this,RF_Curtain1.class);
+				 }else if(type.equals("Custom1")){
+					 intent = new Intent(TabRF.this,RF_Custom1.class);
+				 }else {
+					 intent = new Intent(TabRF.this,RF_Custom2.class);
+				 }			
 				 
 				 intent.putExtra("uid",  mUid);
 				 intent.putExtra("devid", devid);
@@ -219,8 +218,8 @@ public class TabRF extends Activity {
 				 listItem.put("icon", R.drawable.rf_logo_curtain);
 				 listItem.put("status", R.drawable.rf_logo_open);
 				 listItem.put("status2", R.drawable.rf_logo_close);
-			 }else if(type.equals("自定义1")){
-				 listItem.put("icon",R.drawable.rf_logo_power );
+			 }else if(type.equals("CUSTOM1")){
+				 listItem.put("icon",R.drawable.ir_logo_fan2 );
 				 listItem.put("status", R.drawable.rf_logo_on);
 				 listItem.put("status2", R.drawable.rf_logo_off);
 			 }else {
@@ -248,13 +247,5 @@ public class TabRF extends Activity {
 	}
 
 
-
-
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		
-	}
 }
   

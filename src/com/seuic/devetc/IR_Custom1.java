@@ -24,7 +24,7 @@ import com.seuic.smartgateway.TabControl;
 import com.seuic.smartgateway.SetupDev;
 import com.seuic.smartgateway.R;
 
-public class IR_Selfdefine1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener {
+public class IR_Custom1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener {
 	Button  backBtn,leanrnBtn;
 	Button  button1,button2,button3,
 			button4,button5,button6,
@@ -49,7 +49,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.ir_selfdefine1);
+		setContentView(R.layout.ir_custom1);
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
 		button1=(Button)findViewById(R.id.button1);
@@ -396,7 +396,7 @@ public class IR_Selfdefine1 extends Activity implements android.view.View.OnClic
 	}
 
 	 protected void dialog(final int btnid) {
-		 AlertDialog.Builder builder = new Builder(IR_Selfdefine1.this);
+		 AlertDialog.Builder builder = new Builder(IR_Custom1.this);
 		// final String mStr = null;
 		 builder.setMessage("Please input name");
 		 builder.setTitle("Button name");

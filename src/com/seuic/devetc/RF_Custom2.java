@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 import com.seuic.smartgateway.R;
 
-public class RF_Selfdefine2 extends Activity implements android.view.View.OnClickListener{
+public class RF_Custom2 extends Activity implements android.view.View.OnClickListener{
 	Button  backBtn,leanrnBtn;
 	Button  button1,button2,button3,
 			button4,button5,button6,
@@ -22,7 +22,7 @@ public class RF_Selfdefine2 extends Activity implements android.view.View.OnClic
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.rf_selfdefine2);
+		setContentView(R.layout.rf_custom2);
 		
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
@@ -50,7 +50,7 @@ public class RF_Selfdefine2 extends Activity implements android.view.View.OnClic
 	}
 
 	 protected void dialog() {
-		 AlertDialog.Builder builder = new Builder(RF_Selfdefine2.this);
+		 AlertDialog.Builder builder = new Builder(RF_Custom2.this);
 		 builder.setMessage("Please input name");
 		 builder.setTitle("Button name");
 		 builder.setView(new EditText(this));

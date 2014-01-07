@@ -111,7 +111,8 @@ public class AddDev extends Activity {
 					
 					
 				String UID = StringChange(UIDlen);
-					
+//				itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"};
+//				itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"};	
 				//插入数据库库
 //				writeDB=ControlBox.mSQLHelper.getWritableDatabase();
 				TabControl.mSQLHelper.insertSetup(TabControl.writeDB, UID, "Devices", "1");
@@ -123,16 +124,16 @@ public class AddDev extends Activity {
 				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "STU", "Devices",  "0","0");
 				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "WH", "Devices",  "0","0");
 				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "DVD", "Devices",  "0","0");
-				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[6], "Devices",  "0","0");
-				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[7], "Devices",  "0","0");
-				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", TabControl.itemsIR[8], "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "FAN", "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM1", "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM2", "Devices",  "0","0");
 				
 				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Switch", "Devices",  "0","0");
-				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "WH", "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Lamp", "Devices",  "0","0");
 				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", TabControl.itemsRF[2], "Devices",  "0","0");
 				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Curtain", "Devices",  "0","0");
-				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", TabControl.itemsRF[4], "Devices",  "0","0");
-				//TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", TabControl.itemsRF[5], "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM1", "Devices",  "0","0");
+				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM2", "Devices",  "0","0");
 				
 				//出入三级表
 				

@@ -27,7 +27,11 @@ import android.widget.Toast;
 import com.seuic.adapter.EtcAdapter;
 import com.seuic.add.AddEtc;
 import com.seuic.devetc.IR_AC;
+import com.seuic.devetc.IR_Custom1;
+import com.seuic.devetc.IR_Custom2;
 import com.seuic.devetc.IR_DVD;
+import com.seuic.devetc.IR_FAN;
+import com.seuic.devetc.IR_Media;
 import com.seuic.devetc.IR_STU;
 import com.seuic.devetc.IR_TV;
 import com.seuic.devetc.IR_WH;
@@ -80,6 +84,8 @@ public class TabIR extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
 				// TODO Auto-generated method stub
+//				itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"};
+//				 itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"};
 				 String type=(String)irAdapter.getItem(position).get("type");
 				 Log.e("leewoo", "type="+type);
 				 int devid=Integer.parseInt(String.valueOf(irAdapter.getItem(position).get("devid")));
@@ -88,32 +94,21 @@ public class TabIR extends Activity {
 					 intent = new Intent(TabIR.this,IR_TV.class);	
 				 }else if(type.equals("AC")){
 					 intent = new Intent(TabIR.this,IR_AC.class);
-				 }
-				 
-//				 else if(type.equals(TabControl.itemsIR[2])){
-//					 intent = new Intent(TabIR.this,IR_Media.class);
-//				 }
-				 
-				 else if(type.equals("STU")){
+				 }else if(type.equals("Media")){
+					 intent = new Intent(TabIR.this,IR_Media.class);
+				 }else if(type.equals("STU")){
 					 intent = new Intent(TabIR.this,IR_STU.class);
-				 }
-			else if(type.equals("WH")){
+				 }else if(type.equals("WH")){
 					 intent = new Intent(TabIR.this,IR_WH.class);
-				 }
-			else{
+				 }else if(type.equals("DVD")){
 					 intent = new Intent(TabIR.this,IR_DVD.class);
-				 }
-				 
-				 
-//			else (type.equals("DVD")){
-//					 intent = new Intent(TabIR.this,IR_FAN.class);
-//				 }
-				 
-//				 else if(type.equals(TabControl.itemsIR[7])){
-//					 intent = new Intent(TabIR.this,IR_Selfdefine1.class);
-//				 }else {
-//					 intent = new Intent(TabIR.this,IR_Selfdefine2.class);
-//				 }	
+				 }else if(type.equals("FAN")){
+					 intent = new Intent(TabIR.this,IR_FAN.class);
+				 }else if(type.equals("CUSTOM1")){
+					 intent = new Intent(TabIR.this, IR_Custom1.class);
+				 }else {
+					 intent = new Intent(TabIR.this,IR_Custom2.class);
+				 }	
 				 
 				 
 				 intent.putExtra("uid",  mUid);
@@ -215,8 +210,7 @@ public class TabIR extends Activity {
 			 }else if(type.equals("Media")){//media
 				 listItem.put("icon", R.drawable.ir_logo_stu);
 				 listItem.put("status", R.drawable.ir_logo_close);
-			 }
-			 else if(type.equals("STU")){
+			 }else if(type.equals("STU")){
 				 listItem.put("icon", R.drawable.ir_logo_stu);
 				 listItem.put("status", R.drawable.ir_logo_close);			
 			 }else if(type.equals("WH")){
@@ -229,7 +223,7 @@ public class TabIR extends Activity {
 			 }else if(type.equals("FAN")){
 				 listItem.put("icon",  R.drawable.ir_logo_fan1);
 				 listItem.put("status", R.drawable.ir_logo_close);
-			 }else if(type.equals("自定义1")){
+			 }else if(type.equals("CUSTOM1")){
 				 listItem.put("icon",  R.drawable.ir_logo_fan2);
 				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else {
@@ -256,12 +250,7 @@ public class TabIR extends Activity {
 		listViewIR.setAdapter(irAdapter);
 	}
 
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-				
-	}	
+
 
 }
   
