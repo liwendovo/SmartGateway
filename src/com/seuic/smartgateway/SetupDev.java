@@ -57,8 +57,7 @@ public class SetupDev extends Activity {
     	titleBtn.setBackgroundResource(R.drawable.title_add);
 		
 		
-		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
-		writeDB=TabControl.mSQLHelper.getWritableDatabase();
+		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);		
 		editor= myPreferences.edit();
 		mListView = (ListView)findViewById(R.id.devListView);	
 		
@@ -108,7 +107,7 @@ public class SetupDev extends Activity {
 		// TODO Auto-generated method stub
 		super.onStart();
 		
-		Cursor cur=TabControl.mSQLHelper.seleteSetupALL(writeDB);
+		Cursor cur=TabControl.mSQLHelper.seleteSetupALL(TabControl.writeDB);
 		if(0==cur.getCount()){
 			return;	
 		}	

@@ -23,7 +23,6 @@ import java.util.Map;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,7 +30,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.seuic.smartgateway.R;
 
@@ -99,7 +97,9 @@ public class EtcAdapter extends BaseAdapter {
         holder.icon.setImageResource((Integer) item.get("icon"));
         holder.quickBtn1.setImageResource((Integer) item.get("status")); 
         if(item.get("status2") != null){
+        holder.quickBtn2.setVisibility(View.VISIBLE);
         holder.quickBtn2.setImageResource((Integer) item.get("status2"));  
+       
         	holder.quickBtn2.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -110,6 +110,10 @@ public class EtcAdapter extends BaseAdapter {
 					
 				}
 			});
+        }else{
+        	
+        	 holder.quickBtn2.setVisibility(View.INVISIBLE);
+        	
         }
        
      
