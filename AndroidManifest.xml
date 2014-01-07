@@ -23,6 +23,9 @@
         </activity>
         
         
+        <activity android:name="com.seuic.smartgateway.TabControl" 			
+			android:label="设备">
+		</activity> 
           <activity android:name="com.seuic.smartgateway.TabIR" 			
 			android:label="TabIR">
 		</activity>
@@ -51,9 +54,7 @@
 			android:label="SetupTime">
 		</activity> 
         
-        <activity android:name="com.seuic.net.SetupAp" 			
-			android:label="SetupAp">
-		</activity> 
+  
        	<activity android:name="com.seuic.add.AddDev" 			
 			android:label="AddDev">
 		</activity> 
@@ -64,9 +65,7 @@
 			android:label="AddEtc">
 		</activity> 
 		 
-        <activity android:name="com.seuic.smartgateway.TabControl" 			
-			android:label="设备">
-		</activity> 
+     
          <activity android:name="com.seuic.devetc.IR_TV" 			
 			android:label="TV">
 		</activity> 
@@ -89,10 +88,10 @@
 			android:label="Fan">
 		</activity> 		
 		<activity android:name="com.seuic.devetc.IR_Custom1" 			
-			android:label="IR_Selfdefine1">
+			android:label="IR_Custom1">
 		</activity> 
 		<activity android:name="com.seuic.devetc.IR_Custom2" 			
-			android:label="IR_Selfdefine2">
+			android:label="IR_Custom2">
 		</activity> 
 		
 		
@@ -113,13 +112,11 @@
 			android:label="RF_Curtain">
 		</activity> 	
 		<activity android:name="com.seuic.devetc.RF_Custom1" 			
-			android:label="RF_Selfdefine1">
+			android:label="RF_Custom1">
 		</activity> 
 		<activity android:name="com.seuic.devetc.RF_Custom2" 			
-			android:label="RF_Selfdefine2">
+			android:label="RF_Custom2">
 		</activity> 
-		
-		
 		
 		
     </application>
