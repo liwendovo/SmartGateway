@@ -18,6 +18,7 @@ import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.seuic.smartgateway.TabControl;
@@ -26,6 +27,7 @@ import com.seuic.smartgateway.R;
 
 public class IR_Custom1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener {
 	Button  backBtn,leanrnBtn;
+	ImageView   devpic;
 	Button  button1,button2,button3,
 			button4,button5,button6,
 			button7,button8,button9;
@@ -61,6 +63,9 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		button7=(Button)findViewById(R.id.button7);		
 		button8=(Button)findViewById(R.id.button8);
 		button9=(Button)findViewById(R.id.button9);
+		devpic=(ImageView)findViewById(R.id.pic);
+		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_custom));
+		
 		
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");

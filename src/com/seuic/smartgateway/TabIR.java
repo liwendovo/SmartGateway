@@ -208,7 +208,7 @@ public class TabIR extends Activity {
 				 listItem.put("icon", R.drawable.ir_logo_ac);
 				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else if(type.equals("Media")){//media
-				 listItem.put("icon", R.drawable.ir_logo_stu);
+				 listItem.put("icon", R.drawable.ir_logo_fan2);
 				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else if(type.equals("STU")){
 				 listItem.put("icon", R.drawable.ir_logo_stu);

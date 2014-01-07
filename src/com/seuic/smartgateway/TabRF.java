@@ -201,7 +201,7 @@ public class TabRF extends Activity {
 			String type=cur.getString(3);
 			 listItem.put("type",type);	
 
-//			 itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
+			 //itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
 			 if(type.equals("Switch")){
 				 listItem.put("icon", R.drawable.rf_logo_switch);
 				 listItem.put("status", R.drawable.rf_logo_on);

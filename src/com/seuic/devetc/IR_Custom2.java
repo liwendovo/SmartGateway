@@ -13,6 +13,7 @@ import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.seuic.smartgateway.TabControl;
 import com.seuic.smartgateway.SetupDev;
@@ -25,16 +26,15 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 	String btnDefaults="自定义";
 	String mUid;
 	Button  backBtn,leanrnBtn;
-	Button  button1,button2,
+	ImageView   devpic;
+	ImageView  button1,button2,
 			button3,button4,button5,
 			button6,button7,button8,
-			button9,button10,button11,
-			button12,button13,button14;
+			button9,button10;
 	String btnName1,btnName2,
 		   btnName3,btnName4,btnName5,
 		   btnName6,btnName7,btnName8,
-		   btnName9,btnName10,btnName11,
-		   btnName12,btnName13,btnName14;
+		   btnName9,btnName10;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,20 +42,19 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		setContentView(R.layout.ir_custom2);
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
-		button1=(Button)findViewById(R.id.button1);
-		button2=(Button)findViewById(R.id.button2);
-		button3=(Button)findViewById(R.id.button3);		
-		button4=(Button)findViewById(R.id.button4);		
-		button5=(Button)findViewById(R.id.button5);
-		button6=(Button)findViewById(R.id.button6);		
-		button7=(Button)findViewById(R.id.button7);		
-		button8=(Button)findViewById(R.id.button8);
-		button9=(Button)findViewById(R.id.button9);
-		button10=(Button)findViewById(R.id.button10);
-		button11=(Button)findViewById(R.id.button11);
-		button12=(Button)findViewById(R.id.button12);
-		button13=(Button)findViewById(R.id.button13);
-		button14=(Button)findViewById(R.id.button14);
+		button1=(ImageView)findViewById(R.id.button1);
+		button2=(ImageView)findViewById(R.id.button2);
+		button3=(ImageView)findViewById(R.id.button3);		
+		button4=(ImageView)findViewById(R.id.button4);		
+		button5=(ImageView)findViewById(R.id.button5);
+		button6=(ImageView)findViewById(R.id.button6);		
+		button7=(ImageView)findViewById(R.id.button7);		
+		button8=(ImageView)findViewById(R.id.button8);
+		button9=(ImageView)findViewById(R.id.button9);
+		button10=(ImageView)findViewById(R.id.button10);
+		devpic=(ImageView)findViewById(R.id.pic);
+		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_custom));
+		
 		
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");
@@ -88,20 +87,17 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 				Log.e("leewoo", "cur "+cursor.getString(2));
 				if(cursor.getString(2).equals("name"))
 				{
-				button1.setText(cursor.getString(1+2));
-				button2.setText(cursor.getString(2+2));
-				button3.setText(cursor.getString(3+2));
-				button4.setText(cursor.getString(4+2));
-				button5.setText(cursor.getString(5+2));
-				button6.setText(cursor.getString(6+2));			
-				button7.setText(cursor.getString(7+2));
-				button8.setText(cursor.getString(8+2));
-				button9.setText(cursor.getString(9+2));
-				button10.setText(cursor.getString(10+2));
-				button11.setText(cursor.getString(11+2));
-				button12.setText(cursor.getString(12+2));
-				button13.setText(cursor.getString(13+2));
-				button14.setText(cursor.getString(14+2));
+//				button1.setText(cursor.getString(1+2));
+//				button2.setText(cursor.getString(2+2));
+//				button3.setText(cursor.getString(3+2));
+//				button4.setText(cursor.getString(4+2));
+//				button5.setText(cursor.getString(5+2));
+//				button6.setText(cursor.getString(6+2));			
+//				button7.setText(cursor.getString(7+2));
+//				button8.setText(cursor.getString(8+2));
+//				button9.setText(cursor.getString(9+2));
+//				button10.setText(cursor.getString(10+2));
+				
 				}
 			
 			
@@ -136,10 +132,7 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		button8.setOnLongClickListener(this);
 		button9.setOnLongClickListener(this);
 		button10.setOnLongClickListener(this);
-		button11.setOnLongClickListener(this);
-		button12.setOnLongClickListener(this);
-		button13.setOnLongClickListener(this);
-		button14.setOnLongClickListener(this);
+		
 		//按键名臣刷新 btnName
 	
 	}
@@ -188,22 +181,7 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 	        	Log.e("leewoo", "button7 onLongClick");
 	        	dialog(10);
 	            break;  
-	        case R.id.button11:  
-	        	Log.e("leewoo", "button7 onLongClick");
-	        	dialog(11);
-	            break;  
-	        case R.id.button12:  
-	        	Log.e("leewoo", "button7 onLongClick");
-	        	dialog(12);
-	            break;  
-	        case R.id.button13:  
-	        	Log.e("leewoo", "button7 onLongClick");
-	        	dialog(13);
-	            break;  
-	        case R.id.button14:  
-	        	Log.e("leewoo", "button7 onLongClick");
-	        	dialog(14);
-	            break;  
+	       
 	            
 	        default:  
 	            break;  
@@ -237,62 +215,47 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 			// TODO Auto-generated method stub
 			
 			switch (btnid) {
-			case 1:
-				button1.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 1, et.getText().toString());
-				break;
-			case 2:
-				button2.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 2, et.getText().toString());
-				break;
-			case 3:
-				button3.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 3, et.getText().toString());
-				break;
-			case 4:
-				button4.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 4, et.getText().toString());
-				break;
-			case 5:
-				button5.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 5, et.getText().toString());
-				break;
-			case 6:
-				button1.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 6, et.getText().toString());
-				break;
-			case 7:
-				button1.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 7, et.getText().toString());
-				break;				
-			case 8:
-				button8.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 8, et.getText().toString());
-				break;
-			case 9:
-				button9.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 9, et.getText().toString());
-				break;
-			case 10:
-				button10.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 10, et.getText().toString());
-				break;
-			case 11:
-				button11.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 11, et.getText().toString());
-				break;
-			case 12:
-				button12.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 12, et.getText().toString());
-				break;
-			case 13:
-				button13.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 13, et.getText().toString());
-				break;
-			case 14:
-				button14.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 14, et.getText().toString());
-				break;
+//			case 1:
+//				button1.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 1, et.getText().toString());
+//				break;
+//			case 2:
+//				button2.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 2, et.getText().toString());
+//				break;
+//			case 3:
+//				button3.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 3, et.getText().toString());
+//				break;
+//			case 4:
+//				button4.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 4, et.getText().toString());
+//				break;
+//			case 5:
+//				button5.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 5, et.getText().toString());
+//				break;
+//			case 6:
+//				button1.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 6, et.getText().toString());
+//				break;
+//			case 7:
+//				button1.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 7, et.getText().toString());
+//				break;				
+//			case 8:
+//				button8.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 8, et.getText().toString());
+//				break;
+//			case 9:
+//				button9.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 9, et.getText().toString());
+//				break;
+//			case 10:
+//				button10.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 10, et.getText().toString());
+//				break;
+			
 		
 			default:
 				break;

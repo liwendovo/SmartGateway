@@ -11,108 +11,132 @@
         layout="@layout/main_title" 
         android:focusable="true" />
     
-    
-
-   <TableLayout 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/ir_background"
+        android:orientation="vertical" >
+   
+   
+    <TableLayout 
                android:layout_width="fill_parent" 
-   				 android:layout_height="wrap_content"
-   				 android:stretchColumns="0,1">
-<TableRow>
-       <Button
+   			   android:layout_height="wrap_content"
+   			   android:layout_marginTop="20dp"
+   			   android:layout_marginLeft="10dp"
+   			   android:layout_marginRight="10dp"
+   			   android:stretchColumns="0,1,2" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ep_logo" />
+    
+  <TableRow  android:layout_marginTop="10dp" >
+    
+        <ImageView
             android:id="@+id/button1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/define"
-            android:text="Button" />
+            android:layout_height="wrap_content" 
+             android:layout_column="0"           
+             android:src="@drawable/ir_custom2_top1" />
 
-        <Button
+       
+       <ImageView
             android:id="@+id/button2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/define"
-            android:text="Button" />
-       </TableRow>
-        </TableLayout>
-         
-     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+            android:layout_height="wrap_content"            
+             android:layout_column="2"
+            android:src="@drawable/ir_custom2_top2" />
 
-        <Button
+    </TableRow>
+    
+  <TableRow  android:layout_marginTop="30dp">
+        <ImageView
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/define"
-            android:layout_toLeftOf="@+id/imageView2"
-            android:text="On" />
+            android:layout_gravity="center"          
+            android:src="@drawable/ir_custom2_on" />
 
-      <ImageView
-        android:id="@+id/imageView2"
+         <ImageView
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ir_custom_close" />
+
+        <ImageView
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_gravity="center"       
+            android:src="@drawable/ir_custom2_off" />
+
+   </TableRow>
+   </TableLayout>
+   
+   <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/define"
-        android:src="@drawable/close" />
-      
-       <Button
-           android:id="@+id/button4"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentRight="true"
-           android:layout_alignParentTop="true"
-           android:layout_toRightOf="@id/imageView2"
-           android:background="@drawable/define"
-           android:text="Off" />
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center">
 
-    </RelativeLayout>
-    
-     <TableLayout 
-               android:layout_width="fill_parent" 
-   				 android:layout_height="wrap_content"
-   				 android:stretchColumns="0,1,2">
-    <TableRow android:layout_marginTop="10dp">
-      <Button
-          android:id="@+id/button5"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:background="@drawable/define"
-          android:layout_column="1"
-          android:text="Button" />
-</TableRow>
-  
-<TableRow  android:layout_marginTop="10dp">
-        <Button
+    <TableLayout 
+               android:layout_width="wrap_content" 
+   			   android:layout_height="wrap_content"
+   			  >
+
+    <TableRow  android:layout_marginTop="10dp">
+
+        <ImageView
             android:id="@+id/button6"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/define"
-            android:text="Button" />
+            android:layout_height="wrap_content"            
+            android:layout_column="1"
+             android:src="@drawable/ir_custom2_up" />
 
-        <Button
+   </TableRow >
+
+    <TableRow   >
+        
+        <ImageView
             android:id="@+id/button7"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/define"
-            android:text="Button" />
+            android:layout_height="wrap_content"           
+            android:src="@drawable/ir_custom2_left" />
 
-        <Button
+        <ImageView
             android:id="@+id/button8"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/define"
-            android:text="Button" />
-</TableRow>
-  
-    <TableRow>
-        <Button
+            android:layout_height="wrap_content"            
+            android:src="@drawable/ir_custom2_medium" />
+
+        <ImageView
             android:id="@+id/button9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/define"
-           android:layout_column="1"
-            android:text="Button" />
-    </TableRow>
-     </TableLayout>
+            android:src="@drawable/ir_custom2_right" />
+
+   </TableRow>
+   
+
+    <TableRow    >
+
+        <ImageView
+            android:id="@+id/button10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"           
+            android:layout_column="1"
+            android:src="@drawable/ir_custom2_down" />
+
+   </TableRow>
+    </TableLayout>
+   </LinearLayout>
+    </LinearLayout>
      </LinearLayout>
