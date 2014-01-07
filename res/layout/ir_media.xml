@@ -50,10 +50,13 @@
         </TableLayout>
 
         <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="185dp"
+           android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"  
             android:layout_marginTop="5dp"
-            android:layout_weight="1.33" >
+            android:layout_weight="0.64"
+            android:background="@drawable/ir_round_full" >
 
             <ImageView
                 android:id="@+id/button3"
@@ -104,6 +107,7 @@
    				 android:layout_marginLeft="30dp" 
    				 android:layout_marginRight="30dp" 
    				 android:layout_marginBottom="35dp" 
+   				 android:layout_marginTop="20dp" 
    				 android:stretchColumns="0,1">
 
  	 <TableRow>

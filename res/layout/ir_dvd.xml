@@ -50,17 +50,19 @@
         </TableLayout>
 
         <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="185dp"
+           android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"  
             android:layout_marginTop="5dp"
-            android:layout_weight="1.33" >
+            android:layout_weight="0.64"
+            android:background="@drawable/ir_round_full" >
 
             <ImageView
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                
+                android:layout_centerHorizontal="true"                
                 android:layout_centerVertical="true"
                 android:src="@drawable/ir_dvd_play" />
 
@@ -71,14 +73,6 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/button3"
                 android:src="@drawable/ir_dvd_pre" />
-
-            <ImageView
-                android:id="@+id/button4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/button2"
-                android:layout_toRightOf="@+id/button3"
-                android:src="@drawable/ir_dvd_next" />
 
             <ImageView
                 android:id="@+id/button1"
@@ -95,6 +89,14 @@
                 android:layout_below="@+id/button3"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/ir_dvd_voldown" />
+
+            <ImageView
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/button2"
+                android:layout_toRightOf="@+id/button3"
+                android:src="@drawable/ir_dvd_next" />
 
         </RelativeLayout>
 
