@@ -25,9 +25,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <service android:name="com.seuic.net.TUTKService">
+            <intent-filter>
+                <action android:name="com.seuic.net.TUTKService" />
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </service>
+        
         <activity
             android:name="com.seuic.smartgateway.TabControl"
-            android:label="设备" >
+            android:label="TabControl" >
         </activity>
         <activity
             android:name="com.seuic.smartgateway.TabIR"
