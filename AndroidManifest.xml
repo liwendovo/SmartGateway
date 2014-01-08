@@ -7,119 +7,146 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="14" />
-	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
+    </uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-       android:theme="@android:style/Theme.NoTitleBar" >
+        android:theme="@android:style/Theme.NoTitleBar" >
         <activity
             android:name="com.seuic.smartgateway.LogoActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        
-        <activity android:name="com.seuic.smartgateway.TabControl" 			
-			android:label="设备">
-		</activity> 
-          <activity android:name="com.seuic.smartgateway.TabIR" 			
-			android:label="TabIR">
-		</activity>
-		  <activity android:name="com.seuic.smartgateway.TabRF" 			
-			android:label="TabRF">
-		</activity>
-		  <activity android:name="com.seuic.smartgateway.TabTH" 			
-			android:label="TabTH">
-		</activity>
-		  <activity android:name="com.seuic.smartgateway.TabSET" 			
-			android:label="TabSET">
-		</activity>
-		  <activity android:name="com.seuic.smartgateway.TabCam" 			
-			android:label="TabCam">
-		</activity>
-		
-		
-		  
-        <activity android:name="com.seuic.smartgateway.SetupDev" 			
-			android:label="DevSetup">
-		</activity> 
-		 <activity android:name="com.seuic.smartgateway.SetupCam" 			
-			android:label="SetupCam">
-		</activity> 
-         <activity android:name="com.seuic.smartgateway.SetupTime" 			
-			android:label="SetupTime">
-		</activity> 
-        
-  
-       	<activity android:name="com.seuic.add.AddDev" 			
-			android:label="AddDev">
-		</activity> 
-		 <activity android:name="com.seuic.add.AddEtc" 			
-			android:label="AddEtc">
-		</activity> 
-		<activity android:name="com.seuic.add.AddCam" 			
-			android:label="AddEtc">
-		</activity> 
-		 
-     
-         <activity android:name="com.seuic.devetc.IR_TV" 			
-			android:label="TV">
-		</activity> 
-		   <activity android:name="com.seuic.devetc.IR_AC" 			
-			android:label="AC">
-		</activity> 
-		   <activity android:name="com.seuic.devetc.IR_Media" 			
-			android:label="Media">
-		</activity> 
-		   <activity android:name="com.seuic.devetc.IR_STU" 			
-			android:label="STU">
-		</activity> 
-		   <activity android:name="com.seuic.devetc.IR_WH" 			
-			android:label="WH">
-		</activity> 
-		   <activity android:name="com.seuic.devetc.IR_DVD" 			
-			android:label="DVD">
-		</activity> 
-		   <activity android:name="com.seuic.devetc.IR_FAN" 			
-			android:label="Fan">
-		</activity> 		
-		<activity android:name="com.seuic.devetc.IR_Custom1" 			
-			android:label="IR_Custom1">
-		</activity> 
-		<activity android:name="com.seuic.devetc.IR_Custom2" 			
-			android:label="IR_Custom2">
-		</activity> 
-		
-		
-		
-		<activity android:name="com.seuic.devetc.RF_Switch" 			
-			android:label="RF_Switch">
-		</activity> 
-		<activity android:name="com.seuic.devetc.RF_WH" 			
-			android:label="RF_WH">
-		</activity> 
-		<activity android:name="com.seuic.devetc.RF_Lamp" 			
-			android:label="RF_Lamp">
-		</activity> 	
-		<activity android:name="com.seuic.devetc.RF_Curtain1" 			
-			android:label="RF_Curtain">
-		</activity> 	
-		<activity android:name="com.seuic.devetc.RF_Curtain2" 			
-			android:label="RF_Curtain">
-		</activity> 	
-		<activity android:name="com.seuic.devetc.RF_Custom1" 			
-			android:label="RF_Custom1">
-		</activity> 
-		<activity android:name="com.seuic.devetc.RF_Custom2" 			
-			android:label="RF_Custom2">
-		</activity> 
-		
-		
+        <activity
+            android:name="com.seuic.smartgateway.TabControl"
+            android:label="设备" >
+        </activity>
+        <activity
+            android:name="com.seuic.smartgateway.TabIR"
+            android:label="TabIR" >
+        </activity>
+        <activity
+            android:name="com.seuic.smartgateway.TabRF"
+            android:label="TabRF" >
+        </activity>
+        <activity
+            android:name="com.seuic.smartgateway.TabTH"
+            android:label="TabTH" >
+        </activity>
+        <activity
+            android:name="com.seuic.smartgateway.TabSET"
+            android:label="TabSET" >
+        </activity>
+        <activity
+            android:name="com.seuic.smartgateway.TabCam"
+            android:label="TabCam" >
+        </activity>
+        <activity
+            android:name="com.seuic.smartgateway.SetupDev"
+            android:label="DevSetup" >
+        </activity>
+        <activity
+            android:name="com.seuic.smartgateway.SetupCam"
+            android:label="SetupCam" >
+        </activity>
+        <activity
+            android:name="com.seuic.smartgateway.SetupTime"
+            android:label="SetupTime" >
+        </activity>
+        <activity
+            android:name="com.seuic.add.AddDev"
+            android:label="AddDev" >
+        </activity>
+        <activity
+            android:name="com.seuic.add.AddEtc"
+            android:label="AddEtc" >
+        </activity>
+        <activity
+            android:name="com.seuic.add.AddCam"
+            android:label="AddEtc" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.IR_TV"
+            android:label="TV" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.IR_AC"
+            android:label="AC" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.IR_Media"
+            android:label="Media" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.IR_STU"
+            android:label="STU" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.IR_WH"
+            android:label="WH" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.IR_DVD"
+            android:label="DVD" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.IR_FAN"
+            android:label="Fan" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.IR_Custom1"
+            android:label="IR_Custom1" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.IR_Custom2"
+            android:label="IR_Custom2" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.RF_Switch"
+            android:label="RF_Switch" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.RF_WH"
+            android:label="RF_WH" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.RF_Lamp"
+            android:label="RF_Lamp" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.RF_Curtain1"
+            android:label="RF_Curtain" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.RF_Curtain2"
+            android:label="RF_Curtain" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.RF_Custom1"
+            android:label="RF_Custom1" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.RF_Custom2"
+            android:label="RF_Custom2" >
+        </activity>
+        <activity
+            android:name="com.seuic.devetc.RF_Power"
+            android:label="@string/title_activity_rf__power" >
+        </activity>
+        <activity
+            android:name=".Camera"
+            android:label="@string/title_activity_camera"
+            android:screenOrientation="landscape" 
+            android:configChanges="orientation|keyboardHidden">
+        </activity>
     </application>
 
 </manifest>
-

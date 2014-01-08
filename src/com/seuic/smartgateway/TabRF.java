@@ -32,6 +32,7 @@ import com.seuic.devetc.RF_Curtain1;
 import com.seuic.devetc.RF_Custom1;
 import com.seuic.devetc.RF_Custom2;
 import com.seuic.devetc.RF_Lamp;
+import com.seuic.devetc.RF_Power;
 import com.seuic.devetc.RF_Switch;
 import com.seuic.devetc.RF_WH;
 
@@ -84,7 +85,7 @@ public class TabRF extends Activity {
 					long id) {
 				// TODO Auto-generated method stub
 //				itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"};
-//				 itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"};
+//				 itemsRF = {"Switch", "WH", "Lamp","Power","Curtain","自定义1","自定义2"};
 				 String type=(String)rfAdapter.getItem(position).get("type");
 				 int devid=Integer.parseInt(String.valueOf(rfAdapter.getItem(position).get("devid")));
 				 Intent intent ;
@@ -96,6 +97,8 @@ public class TabRF extends Activity {
 					 intent = new Intent(TabRF.this,RF_Lamp.class);
 				 }else if(type.equals("Curtain")){
 					 intent = new Intent(TabRF.this,RF_Curtain1.class);
+				 }else if(type.equals("Power")){
+					 intent = new Intent(TabRF.this,RF_Power.class);
 				 }else if(type.equals("Custom1")){
 					 intent = new Intent(TabRF.this,RF_Custom1.class);
 				 }else {
@@ -218,12 +221,16 @@ public class TabRF extends Activity {
 				 listItem.put("icon", R.drawable.rf_logo_curtain);
 				 listItem.put("status", R.drawable.rf_logo_open);
 				 listItem.put("status2", R.drawable.rf_logo_close);
+			 }else if(type.equals("Power")){
+				 listItem.put("icon", R.drawable.rf_logo_power);
+				 listItem.put("status", R.drawable.rf_logo_on);
+				 listItem.put("status2", R.drawable.rf_logo_off);
 			 }else if(type.equals("CUSTOM1")){
-				 listItem.put("icon",R.drawable.ir_logo_fan2 );
+				 listItem.put("icon",R.drawable.ir_logo_custom );
 				 listItem.put("status", R.drawable.rf_logo_on);
 				 listItem.put("status2", R.drawable.rf_logo_off);
 			 }else {
-				 listItem.put("icon",R.drawable.ir_logo_fan2 );
+				 listItem.put("icon",R.drawable.ir_logo_custom );
 				 listItem.put("status", R.drawable.rf_logo_on);
 				 listItem.put("status2", R.drawable.rf_logo_off);
 			 }	

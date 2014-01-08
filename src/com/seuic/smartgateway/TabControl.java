@@ -21,7 +21,7 @@ import com.seuic.sqlite.SQLiteHelper;
 @SuppressWarnings("deprecation")
 public class TabControl extends ActivityGroup {
 	public final static String[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","CUSTOM1","CUSTOM2"}; 
-	public final static String[] itemsRF = {"Switch", "Lamp", "Curtain","CUSTOM1","CUSTOM2"}; 	
+	public final static String[] itemsRF = {"Switch", "Lamp", "Curtain","Power","CUSTOM1","CUSTOM2"}; 	
 //	itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"};
 //	itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"};
 	

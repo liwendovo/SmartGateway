@@ -208,7 +208,7 @@ public class TabIR extends Activity {
 				 listItem.put("icon", R.drawable.ir_logo_ac);
 				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else if(type.equals("Media")){//media
-				 listItem.put("icon", R.drawable.ir_logo_fan2);
+				 listItem.put("icon", R.drawable.ir_logo_media);
 				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else if(type.equals("STU")){
 				 listItem.put("icon", R.drawable.ir_logo_stu);
@@ -224,10 +224,10 @@ public class TabIR extends Activity {
 				 listItem.put("icon",  R.drawable.ir_logo_fan1);
 				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else if(type.equals("CUSTOM1")){
-				 listItem.put("icon",  R.drawable.ir_logo_fan2);
+				 listItem.put("icon",  R.drawable.ir_logo_custom);
 				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else {
-				 listItem.put("icon",R.drawable.ir_logo_fan2 );
+				 listItem.put("icon",R.drawable.ir_logo_custom);
 				 listItem.put("status", R.drawable.ir_logo_close);
 			 }	
 
