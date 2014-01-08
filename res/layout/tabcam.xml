@@ -1,8 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"  >
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+     android1:orientation="vertical"
+    android:background="@drawable/tab_cam_black" >
 
-    
+    <TableLayout
+        android1:id="@+id/tableLayout1"
+        android1:layout_width="fill_parent"
+        android1:layout_height="wrap_content"
+        
+        android:background="@drawable/tab_cam_background"
+        android:stretchColumns="0,1,2,3,4,5" >
+
+            <TableRow  android:gravity="center">          
+       
+            <ImageView
+                android1:id="@+id/button5"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:src="@drawable/tab_cam_back" />
+            
+             <ImageView
+                android1:id="@+id/button6"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:src="@drawable/tab_cam_night" />
+             <ImageView
+                android1:id="@+id/button4"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:src="@drawable/tab_cam_listen" />
+            
+             <ImageView
+                android1:id="@+id/button3"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:src="@drawable/tab_cam_rec" />
+            
+             <ImageView
+                android1:id="@+id/button2"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:src="@drawable/tab_cam_shot" />
+
+             <ImageView
+                 android1:id="@+id/button1"
+                 android1:layout_width="wrap_content"
+                 android1:layout_height="wrap_content"
+                 android:layout_marginTop="5dp"   
+                 android:layout_marginBottom="5dp"               
+                 android1:src="@drawable/ep_logo_rev" />
+       
+        </TableRow>
+
+        
+    </TableLayout>
+
+    <LinearLayout
+        android1:id="@+id/linearLayout1"
+        android1:layout_width="fill_parent"
+        android1:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android1:gravity="center"
+        android1:orientation="horizontal" >
+
+       
+
+         <ImageView
+                android1:id="@+id/button9"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:src="@drawable/tab_cam_left" />
+
+        <LinearLayout
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:orientation="vertical" >
+            
+            <ImageView
+            android1:id="@+id/button11"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"           
+            android1:src="@drawable/tab_cam_up" />
+
+            <ImageView
+            android1:id="@+id/button12"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android1:src="@drawable/tab_cam_down" />
+
+           
+        </LinearLayout>
+
+        <ImageView
+                android1:id="@+id/button10"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android:layout_marginRight="70dp"
+                android1:src="@drawable/tab_cam_right" />
+        
+         
+
+        <ImageView
+            android1:id="@+id/button8"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content" 
+            android:layout_marginRight="25dp"          
+            android1:src="@drawable/tab_cam_del" />
+        
+        <ImageView
+            android1:id="@+id/button7"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:src="@drawable/tab_cam_add" />
+    </LinearLayout>
 
 </LinearLayout>
