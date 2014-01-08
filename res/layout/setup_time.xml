@@ -7,14 +7,13 @@
    <include layout="@layout/main_title" android:focusable="true"/>	
  
 		 <RelativeLayout
-				    android:id="@+id/layoutHour"
-				    android:background="@drawable/selector_layout_background"
+				    android:id="@+id/layoutHour"				    
 			        android:layout_width="wrap_content"
-			        android:layout_height="60dip"			        
+			        android:layout_height="60dip"
 			        android:paddingRight="20dip"
-			        android:paddingLeft="20dip"
-			        android:paddingBottom="6dip"
-			        android:paddingTop="6dip"			      
+        			android:paddingLeft="20dip"			        
+			  		android:paddingBottom="6dip"
+        			android:paddingTop="6dip"	      
 			        >
 				           
 
@@ -24,6 +23,7 @@
 		                android:layout_height="wrap_content"
 		                android:layout_alignParentLeft="true"
 		                android:layout_centerVertical="true"
+		              
 		                android:gravity="center"
 		                android:text="24-Hour Time"
 		                android:textAppearance="?android:attr/textAppearanceLarge"
@@ -37,7 +37,7 @@
 	                     android:layout_height="wrap_content"	                     
 	                     android:layout_alignParentRight="true"
 	                     android:layout_centerVertical="true"
-	                     
+	                  
 	                     android:gravity="center"
 	                     />
 				    </RelativeLayout>
@@ -50,16 +50,26 @@
 				</View>
              
 			   <RelativeLayout
-			       android:id="@+id/layoutAuto"
-			        android:background="@drawable/selector_layout_background"
+			       android:id="@+id/layoutAuto"			        
 				    android:layout_width="wrap_content"				   
-				    android:layout_height="60dip"
+				    android:layout_height="60dip"	
 				    android:paddingRight="20dip"
-			        android:paddingLeft="20dip"
-			        android:paddingBottom="6dip"
-			        android:paddingTop="6dip"			      
+        			android:paddingLeft="20dip"			        
+			  		android:paddingBottom="6dip"
+        			android:paddingTop="6dip"				 		      
 			        >
-        				 <ToggleButton
+        			
+       				 <TextView
+       				     android:layout_width="wrap_content"
+       				     android:layout_height="wrap_content"
+       				     android:layout_alignParentLeft="true"
+			             android:layout_centerVertical="true"
+			             android:gravity="center"        	
+			        		     
+       				     android:text="Set Automatically"
+       				     android:textAppearance="?android:attr/textAppearanceLarge"
+       				     android:textColor="@drawable/selector_text_color" />
+					 <ToggleButton
 	                     android:id="@+id/timeAutoBtn"
 	                     android:textOn=" " 
         				 android:textOff=" " 
@@ -68,20 +78,9 @@
 	                     android:layout_height="wrap_content"	                     
 	                     android:layout_alignParentRight="true"
 	                     android:layout_centerVertical="true"
-	                     
+	                    
 	                     android:gravity="center"
 	                     />
-
-        				 <TextView
-        				     android:layout_width="wrap_content"
-        				     android:layout_height="wrap_content"
-        				     android:layout_alignParentLeft="true"
-				             android:layout_centerVertical="true"
-				             android:gravity="center"        				     
-        				     android:text="Set Automatically"
-        				     android:textAppearance="?android:attr/textAppearanceLarge"
-        				     android:textColor="@drawable/selector_text_color" />
-
             	 </RelativeLayout>
 	           <View
 				android:layout_width="fill_parent"
@@ -90,20 +89,20 @@
 				</View>
              
 				<RelativeLayout
-				    android:id="@+id/layoutZone"
-				    android:background="@drawable/selector_layout_background"
+				    android:id="@+id/layoutZone"				    
 			        android:layout_width="wrap_content"			       
 			        android:layout_height="60dip"
 			        android:paddingRight="20dip"
-			        android:paddingLeft="20dip"
-			        android:paddingBottom="6dip"
-			        android:paddingTop="6dip" >
+        			android:paddingLeft="20dip"			        
+			  		android:paddingBottom="6dip"
+        			android:paddingTop="6dip"	 >
 
 	                <TextView
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
 	                    android:layout_alignParentLeft="true"
 	                    android:layout_centerVertical="true"
+	                   
 	                    android:gravity="center"
 	                    android:text="Time Zone"
 	                    android:textAppearance="?android:attr/textAppearanceLarge"
@@ -111,7 +110,7 @@
 
                 	<Spinner
                 	    android:id="@+id/spinnerZone"
-                	    android:layout_width="70dp"
+                	    android:layout_width="70dp"                	  
                 	    android:layout_height="wrap_content"
                 	    android:layout_alignParentRight="true"
                 	    android:layout_centerVertical="true"

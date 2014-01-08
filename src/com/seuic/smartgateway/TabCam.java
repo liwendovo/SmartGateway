@@ -2,9 +2,9 @@ package com.seuic.smartgateway ;
 
 import java.util.List;
 import java.util.Map;
+
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.ListView;
 

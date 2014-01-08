@@ -38,7 +38,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.seuic.smartgateway.R;
-import com.seuic.smartgateway.SetupDev;
 
 
 public class CamChoiceAdapter extends BaseAdapter {
@@ -191,7 +190,8 @@ public class CamChoiceAdapter extends BaseAdapter {
     
     static class ViewHolder {
         TextView title;
-        ImageView icon,status;
+        ImageView icon;
+        ImageView status;
     }
     
 	public void setItemChecked(int setID) {

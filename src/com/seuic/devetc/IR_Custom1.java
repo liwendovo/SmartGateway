@@ -6,13 +6,10 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.Window;
@@ -21,9 +18,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.seuic.smartgateway.TabControl;
-import com.seuic.smartgateway.SetupDev;
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.TabControl;
 
 public class IR_Custom1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener {
 	Button  backBtn,leanrnBtn;

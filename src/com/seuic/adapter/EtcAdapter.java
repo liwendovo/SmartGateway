@@ -132,7 +132,9 @@ public class EtcAdapter extends BaseAdapter {
 
     static class ViewHolder {
         TextView title;
-        ImageView icon,quickBtn1,quickBtn2;
+        ImageView icon;
+        ImageView quickBtn1;
+        ImageView quickBtn2;
     }
     
 }

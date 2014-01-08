@@ -9,11 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.ToggleButton;
 
 public class TabSET extends Activity {
@@ -48,9 +46,17 @@ public class TabSET extends Activity {
 		layoutRest=(RelativeLayout)findViewById(R.id.layoutRest);
 		layoutAbout=(RelativeLayout)findViewById(R.id.layoutAbout);
 		
+		layoutDev.setBackgroundResource(android.R.drawable.list_selector_background);
+		layoutCam.setBackgroundResource(android.R.drawable.list_selector_background);
+		layoutTemp.setBackgroundResource(android.R.drawable.list_selector_background);
+		layoutTime.setBackgroundResource(android.R.drawable.list_selector_background);
+		layoutRest.setBackgroundResource(android.R.drawable.list_selector_background);		
+		layoutAbout.setBackgroundResource(android.R.drawable.list_selector_background);
+		
+		
+		
 		setTempBtn=(ToggleButton)findViewById(R.id.setTempBtn);
-		
-		
+
 		layoutDev.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

@@ -15,9 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.seuic.smartgateway.TabControl;
-import com.seuic.smartgateway.SetupDev;
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.TabControl;
 
 public class IR_Custom2 extends Activity implements android.view.View.OnClickListener,OnLongClickListener{
 	int devid;
