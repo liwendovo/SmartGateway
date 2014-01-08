@@ -87,18 +87,29 @@ public class AddDev extends Activity {
 		
 		WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 		WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-		String wifissid = wifiInfo.getSSID();   
+		String wifissid = wifiInfo.getSSID();  
+		listSSID =  new ArrayList<String>();
+		if(wifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLED){
 		Log.d("leewoo","wifiinfo:"+wifiInfo.toString());
 		Log.d("leewoo","SSID:"+wifissid);			
 		List<ScanResult> results = wifiManager.getScanResults();  
 		//String otherwifi ="The existing network SSID is: \n\n"; 
-		listSSID =  new ArrayList<String>();
+		
+		
+		
 		if(!results.isEmpty()){
 		
 		for (ScanResult result : results) {    	          		   
 		     listSSID.add(result.SSID);
-		  }  		
+		  				}  		
+				}
 		}
+		
+		else {  Toast.makeText(getApplicationContext(), "wifi未连接，请连接wifi", Toast.LENGTH_SHORT).show();
+		
+		}
+		
+		
 		ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, listSSID);
 		//绑定 Adapter到控件 
 		//设置下拉列表的风格  

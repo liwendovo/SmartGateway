@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.ListView;
 
 public class TabCam extends Activity {
@@ -15,8 +17,17 @@ public class TabCam extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.tabcam);
+		setContentView(R.layout.tabcam);		
+		 getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN ,      
+                 WindowManager.LayoutParams. FLAG_FULLSCREEN); 
+
+
 		
+	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub		
+		super.onDestroy();
 	}
 	
 }

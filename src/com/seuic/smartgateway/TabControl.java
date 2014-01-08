@@ -17,7 +17,7 @@ import com.seuic.sqlite.SQLiteHelper;
 
 
 
-
+ 
 @SuppressWarnings("deprecation")
 public class TabControl extends ActivityGroup {
 	public final static String[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","CUSTOM1","CUSTOM2"}; 
@@ -72,7 +72,7 @@ public class TabControl extends ActivityGroup {
 		View tab4Spec = mInflater.inflate(R.layout.tab4_spec, null);
 		host.addTab(host
 				.newTabSpec("CAM")
-				.setIndicator(tab4Spec)
+				.setIndicator(tab4Spec)				
 				.setContent(intent));
 		intent = new Intent(this, TabSET.class);
 		View tab5Spec = mInflater.inflate(R.layout.tab5_spec, null);

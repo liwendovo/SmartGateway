@@ -32,7 +32,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.seuic.smartgateway.R;
-
+     
 
 public class EtcAdapter extends BaseAdapter {
 

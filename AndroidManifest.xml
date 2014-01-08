@@ -47,7 +47,8 @@
         </activity>
         <activity
             android:name="com.seuic.smartgateway.TabCam"
-            android:label="TabCam" >
+            android:label="TabCam"
+              >
         </activity>
         <activity
             android:name="com.seuic.smartgateway.SetupDev"
