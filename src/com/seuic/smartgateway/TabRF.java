@@ -27,7 +27,6 @@ import android.widget.Toast;
 
 import com.seuic.adapter.EtcAdapter;
 import com.seuic.add.AddEtc;
-import com.seuic.devetc.RF_Curtain;
 import com.seuic.devetc.RF_Curtain1;
 import com.seuic.devetc.RF_Custom1;
 import com.seuic.devetc.RF_Custom2;
