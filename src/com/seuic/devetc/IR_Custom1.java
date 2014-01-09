@@ -44,6 +44,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	 Boolean btnclr9=false;
 	 Drawable drawable;
 	 Drawable drawable1;
+	 Drawable drawable2;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -141,7 +142,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		
 		drawable = getResources().getDrawable(R.drawable.define);
 		drawable1 = getResources().getDrawable(R.drawable.title_learn);
-		
+		drawable2 = getResources().getDrawable(R.drawable.defineblack);
 	}
 	
 	@Override
@@ -162,35 +163,47 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
             	Log.e("leewoo", "clr"+v.getId() ); 
             	leanrnBtn.getBackground().setAlpha(100);
             	
-			        	if(btnclr1)	button1.setBackgroundDrawable(drawable);
-			        	else button1.getBackground().setAlpha(100);
-			        	
-			        	if(btnclr2)	button2.setBackgroundDrawable(drawable);
-			        	else button2.getBackground().setAlpha(100);
-			        	
-			        	if(btnclr3)	button3.setBackgroundDrawable(drawable);
-			        	else button3.getBackground().setAlpha(100);
-			        	
-			        	if(btnclr4)	button4.setBackgroundDrawable(drawable);
-			        	else button4.getBackground().setAlpha(100);
-			        	
-			        	if(btnclr5)	button5.setBackgroundDrawable(drawable);
-			        	else button5.getBackground().setAlpha(100);
-			        	
-			        	if(btnclr6)	button6.setBackgroundDrawable(drawable);
-			        	else button6.getBackground().setAlpha(100);
-			        	
-			        	if(btnclr7)	button7.setBackgroundDrawable(drawable);
-			        	else button7.getBackground().setAlpha(100);
-			        	
-			        	if(btnclr8)	button8.setBackgroundDrawable(drawable);
-			        	else button8.getBackground().setAlpha(100);
-			        	
-			        	if(btnclr9)	button9.setBackgroundDrawable(drawable);
-			        	else button9.getBackground().setAlpha(100);
+//			        	if(btnclr1)	button1.setBackgroundDrawable(drawable);
+//			        	else button1.setBackgroundDrawable(drawable2);
+//			        	
+//			        	if(btnclr2)	button2.setBackgroundDrawable(drawable);
+//			        	else button2.setBackgroundDrawable(drawable2);
+//			        	
+//			        	if(btnclr3)	button3.setBackgroundDrawable(drawable);
+//			        	else button3.setBackgroundDrawable(drawable2);
+//			        	
+//			        	if(btnclr4)	button4.setBackgroundDrawable(drawable);
+//			        	else button4.setBackgroundDrawable(drawable2);
+//			        	
+//			        	if(btnclr5)	button5.setBackgroundDrawable(drawable);
+//			        	else button5.setBackgroundDrawable(drawable2);
+//			        	
+//			        	if(btnclr6)	button6.setBackgroundDrawable(drawable);
+//			        	else button6.setBackgroundDrawable(drawable2);
+//			        	
+//			        	if(btnclr7)	button7.setBackgroundDrawable(drawable);
+//			        	else button7.setBackgroundDrawable(drawable2);
+//			        	
+//			        	if(btnclr8)	button8.setBackgroundDrawable(drawable);
+//			        	else button8.setBackgroundDrawable(drawable2);
+//			        	
+//			        	if(btnclr9)	button9.setBackgroundDrawable(drawable);
+//			        	else button9.setBackgroundDrawable(drawable2);
+            	
+            	button1.setBackgroundDrawable(drawable2);
+            	button2.setBackgroundDrawable(drawable2);
+            	button3.setBackgroundDrawable(drawable2);
+            	button4.setBackgroundDrawable(drawable2);
+            	button5.setBackgroundDrawable(drawable2);
+            	button6.setBackgroundDrawable(drawable2);
+            	button7.setBackgroundDrawable(drawable2);
+            	button8.setBackgroundDrawable(drawable2);
+            	button9.setBackgroundDrawable(drawable2);
+            	            	
+            	
 			        	
         	}else{
-        		leanrnBtn.setBackgroundDrawable(drawable1);
+        		leanrnBtn.getBackground().setAlpha(255);
         		button1.setBackgroundDrawable(drawable);
         		button2.setBackgroundDrawable(drawable);
         		button3.setBackgroundDrawable(drawable);
@@ -206,8 +219,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         case R.id.button1:
         	
         	if(lenclr==true){
-	        	if(btnclr1==false)
-	        	{  
+	        	
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr1=true;
 
@@ -216,15 +228,14 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true);        		
 
         		Log.e("btnclr1=",""+btnclr1);
-	        	}
+	        	
 	        }
         	
         	break;
         case R.id.button2:
         	
         	if(lenclr==true){
-	        	if(btnclr2==false)
-	        	{
+	        	
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr2=true;
 
@@ -233,15 +244,14 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,2, true);
 
         		Log.e("btnclr2=",""+btnclr2);
-	        	}
+	        	
         	}
         	
         	break;
         case R.id.button3:
 //        	TabControl.mBtnSelected.setButtonFocusChanged(button3);
         	if(lenclr==true){
-	        	if(btnclr3==false)
-	        	{
+	        
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr3=true;
 
@@ -250,15 +260,14 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 3, true);
 
         		Log.e("btnclr3=",""+btnclr3);
-        		}
+        		
         	}
         	
         	break;
         
         case R.id.button4:
         	if(lenclr==true){
-	        	if(btnclr4==false)
-	        	{	
+	        	
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr4=true;
 
@@ -268,13 +277,12 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		
 
 	        		Log.e("btnclr4=",""+btnclr4);
-	        	}
+	        	
         	}
         	break;
         case R.id.button5:
         	if(lenclr==true){
-	        	if(btnclr5==false)
-	        	{   
+	         
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr5=true;
 
@@ -283,13 +291,12 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,5, true);
 
 	        		Log.e("btnclr5=",""+btnclr5);
-	        	}
+	        	
         	}
         	break;
         case R.id.button6:
         	if(lenclr==true){
-	        	if(btnclr6==false)
-	        	{ 
+	        	 
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr6=true;
 
@@ -298,13 +305,12 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 6, true);
 
 	        		Log.e("btnclr6=",""+btnclr6);
-	        	}
+	        	
         	}
         	break;
         case R.id.button7:
         	if(lenclr==true){
-	        	if(btnclr7==false)
-	        	{   
+	        	  
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr7=true;
 
@@ -313,13 +319,12 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 7, true);
 
 	        		Log.e("btnclr7=",""+btnclr7);
-	        	}
+	        	
         	}
         	break;
         case R.id.button8:
         	if(lenclr==true){
-	        	if(btnclr8==false)
-	        	{  
+	        	 
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr8=true;
 
@@ -328,13 +333,12 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 8, true);
 
 	        		Log.e("btnclr8=",""+btnclr8);
-	        	}
+	        	
         	}
         	break;
         case R.id.button9:
         	if(lenclr==true){
-	        	if(btnclr9==false)
-	        	{  
+	        	 
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr9=true;
 
@@ -343,8 +347,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 9, true);
 
 	        		Log.e("btnclr9=",""+btnclr9);
-	        	}
-        	}
+	        	        	}
         	break;     
         	
         default:  
