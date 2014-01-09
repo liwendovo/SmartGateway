@@ -152,7 +152,9 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		switch(v.getId())  
         {  
         case R.id.back: finish();break;
+        
         case R.id.titleBtn:
+//        	TabControl.mBtnSelected.setButtonFocusChanged(leanrnBtn);
         	lenclr=!lenclr;        	
         	Log.e("lenclr=",""+drawable);
         	if(lenclr==true){
@@ -202,6 +204,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	break;
   	
         case R.id.button1:
+        	
         	if(lenclr==true){
 	        	if(btnclr1==false)
 	        	{  
@@ -218,6 +221,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	
         	break;
         case R.id.button2:
+        	
         	if(lenclr==true){
 	        	if(btnclr2==false)
 	        	{
@@ -234,6 +238,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	
         	break;
         case R.id.button3:
+//        	TabControl.mBtnSelected.setButtonFocusChanged(button3);
         	if(lenclr==true){
 	        	if(btnclr3==false)
 	        	{

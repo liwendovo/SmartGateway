@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.TabControl;
 
 public class IR_FAN extends Activity implements android.view.View.OnClickListener{
 	Button  backBtn,leanrnBtn;
@@ -48,7 +49,41 @@ public class IR_FAN extends Activity implements android.view.View.OnClickListene
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		
+		switch(v.getId())  
+        {  
+//        case R.id.back:
+//        	TabControl.mImageViewSelected.setButtonFocusChanged(backBtn);
+//        	finish();
+//        	break;
+//        case R.id.titleBtn:
+//        	TabControl.mImageViewSelected.setButtonFocusChanged(leanrnBtn);
+//    		break;
+        case R.id.button1: 
+        	TabControl.mImageViewSelected.setButtonFocusChanged(button1);
+            break;  
+        case R.id.button2:  
+        	TabControl.mImageViewSelected.setButtonFocusChanged(button2);
+            break;  
+        case R.id.button3:  
+        	TabControl.mImageViewSelected.setButtonFocusChanged(button3);
+            break;  
+        case R.id.button4:  
+        	TabControl.mImageViewSelected.setButtonFocusChanged(button4);
+            break;  
+//        case R.id.button5:  
+//        	TabControl.mImageViewSelected.setButtonFocusChanged(button5);
+//            break;  
+//        case R.id.button6:  
+//        	TabControl.mImageViewSelected.setButtonFocusChanged(button6);
+//            break;  
+//        case R.id.button7:  
+//        	TabControl.mImageViewSelected.setButtonFocusChanged(button7);
+//            break;  
+//   
+        default:  
+            break;  
+       
+        }
 	}
 
 	

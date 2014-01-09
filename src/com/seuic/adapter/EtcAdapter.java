@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.TabControl;
      
 
 public class EtcAdapter extends BaseAdapter {
@@ -77,7 +78,7 @@ public class EtcAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
     
 		final Map<String, Object> item =getItem(position);
-        ViewHolder holder;
+        final ViewHolder holder;
         if (convertView == null) {
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = li.inflate(R.layout.item_list, parent, false);
@@ -107,7 +108,7 @@ public class EtcAdapter extends BaseAdapter {
 					// TODO Auto-generated method stub
 //					Toast.makeText(context,	"Btn2 onclick", Toast.LENGTH_SHORT).show();
 					Log.e("leewoo", "quickBtn1 onclick");
-					
+					TabControl.mImageViewSelected.setButtonFocusChanged(holder.quickBtn2);
 				}
 			});
         }else{
@@ -124,6 +125,7 @@ public class EtcAdapter extends BaseAdapter {
 				// TODO Auto-generated method stub
 //				Toast.makeText(context,	"Btn1 onclick", Toast.LENGTH_SHORT).show();
 				Log.e("leewoo", "quickBtn2 onclick");
+				TabControl.mImageViewSelected.setButtonFocusChanged(holder.quickBtn1);
 			}
 		});
 

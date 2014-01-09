@@ -2,12 +2,14 @@ package com.seuic.devetc;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.TabControl;
 
-public class RF_Power extends Activity {
+public class RF_Power extends Activity implements android.view.View.OnClickListener{
 	
 	Button  backBtn,leanrnBtn;
 	ImageView   devpic;
@@ -25,6 +27,23 @@ public class RF_Power extends Activity {
 		devpic.setImageDrawable(getResources().getDrawable(R.drawable.rf_power));
         
     }
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		 switch(v.getId())  
+	        {  
+	        case R.id.button1: 
+	        	TabControl.mImageViewSelected.setButtonFocusChanged(button1);
+	            break;  
+	        case R.id.button2:  
+	        	TabControl.mImageViewSelected.setButtonFocusChanged(button2);
+	            break;  
+	       
+	        default:  
+	            break;  
+	        }  
+	}
 
    
 }

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.TabControl;
 
 public class RF_WH extends Activity implements android.view.View.OnClickListener{
 	Button  backBtn,leanrnBtn;
@@ -35,7 +36,18 @@ public class RF_WH extends Activity implements android.view.View.OnClickListener
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		
+		 switch(v.getId())  
+	        {  
+	        case R.id.button1: 
+	        	TabControl.mImageViewSelected.setButtonFocusChanged(button1);
+	            break;  
+	        case R.id.button2:  
+	        	TabControl.mImageViewSelected.setButtonFocusChanged(button2);
+	            break;  
+	       
+	        default:  
+	            break;  
+	        }  
 	}
 
 	

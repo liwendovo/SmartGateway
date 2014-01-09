@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.TabControl;
 
 public class RF_Switch extends Activity implements android.view.View.OnClickListener{
 	Button  backBtn,leanrnBtn;
@@ -37,7 +38,38 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		
+		 switch(v.getId())  
+	        {  
+	        case R.id.button1: 
+	        	TabControl.mImageViewSelected.setButtonFocusChanged(button1);
+	            break;  
+	        case R.id.button2:  
+	        	TabControl.mImageViewSelected.setButtonFocusChanged(button2);
+	            break;  
+//	        case R.id.button3:  
+//	        	TabControl.mBtnSelected.setButtonFocusChanged(button3);
+//	            break;  
+//	        case R.id.button4:  
+//	        	TabControl.mBtnSelected.setButtonFocusChanged(button4);
+//	            break;  
+//	        case R.id.button5:  
+//	        	TabControl.mBtnSelected.setButtonFocusChanged(button5);
+//	            break;  
+//	        case R.id.button6:  
+//	        	TabControl.mBtnSelected.setButtonFocusChanged(button6);
+//	            break;  
+//	        case R.id.button7:  
+//	        	TabControl.mBtnSelected.setButtonFocusChanged(button7);
+//	            break;  
+//	        case R.id.button8:  
+//	        	TabControl.mBtnSelected.setButtonFocusChanged(button8);
+//	            break;  
+//	        case R.id.button9:  
+//	        	TabControl.mBtnSelected.setButtonFocusChanged(button9);
+//	            break;  
+	        default:  
+	            break;  
+	        }  
 	}
 
 	
