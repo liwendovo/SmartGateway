@@ -218,7 +218,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 
             break;  
         case R.id.button3:  
-
+        	 break;
         case R.id.button4:  
 
             break;  
@@ -281,9 +281,8 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 6, et.getText().toString());
 				break;
 			case 7:
-				button1.setText(et.getText().toString());
+				button7.setText(et.getText().toString());
 				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 7, et.getText().toString());
-
 				break;				
 			case 8:
 				button8.setText(et.getText().toString());
