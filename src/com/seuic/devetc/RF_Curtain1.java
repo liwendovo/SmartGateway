@@ -34,7 +34,10 @@ public class RF_Curtain1 extends Activity implements android.view.View.OnClickLi
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);  
 		button3.setOnClickListener(this);  
-		 
+		TabControl.mViewSelected.setImageViewFocusChanged(button1);
+		TabControl.mViewSelected.setImageViewFocusChanged(button2);
+		TabControl.mViewSelected.setImageViewFocusChanged(button3);
+	
 	
 	}
 
@@ -51,13 +54,13 @@ public class RF_Curtain1 extends Activity implements android.view.View.OnClickLi
 //        	TabControl.mViewSelected.setImageViewFocusChanged(leanrnBtn);
 //    		break;
         case R.id.button1: 
-        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
+//        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
             break;  
         case R.id.button2:  
-        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
+//        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
             break;  
         case R.id.button3:  
-        	TabControl.mViewSelected.setImageViewFocusChanged(button3);
+//        	TabControl.mViewSelected.setImageViewFocusChanged(button3);
             break;  
         
         default:  

@@ -54,6 +54,17 @@ public class RF_Custom2 extends Activity implements android.view.View.OnClickLis
 		button8.setOnClickListener(this);  
 		button9.setOnClickListener(this);  
 		button10.setOnClickListener(this); 
+		TabControl.mViewSelected.setImageViewFocusChanged(button1);
+		TabControl.mViewSelected.setImageViewFocusChanged(button2);
+		TabControl.mViewSelected.setImageViewFocusChanged(button3);
+		TabControl.mViewSelected.setImageViewFocusChanged(button4);
+		TabControl.mViewSelected.setImageViewFocusChanged(button5);
+		TabControl.mViewSelected.setImageViewFocusChanged(button6);
+		TabControl.mViewSelected.setImageViewFocusChanged(button7);
+		TabControl.mViewSelected.setImageViewFocusChanged(button8);
+		TabControl.mViewSelected.setImageViewFocusChanged(button9);
+		TabControl.mViewSelected.setImageViewFocusChanged(button10);
+	
 	}
 
 	 protected void dialog() {
@@ -82,36 +93,36 @@ public class RF_Custom2 extends Activity implements android.view.View.OnClickLis
 		// TODO Auto-generated method stub
 		 switch(v.getId())  
 	        {  
-	        case R.id.button1: 
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
-	            break;  
-	        case R.id.button2:  
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
-	            break;  
-	        case R.id.button3:  
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button3);
-	            break;  
-	        case R.id.button4:  
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button4);
-	            break;  
-	        case R.id.button5:  
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button5);
-	            break;  
-	        case R.id.button6:  
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button6);
-	            break;  
-	        case R.id.button7:  
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button7);
-	            break;  
-	        case R.id.button8:  
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button8);
-	            break;  
-	        case R.id.button9:  
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button9);
-	            break;  
-	        case R.id.button10:  
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button10);
-	            break;  
+//	        case R.id.button1: 
+//	        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
+//	            break;  
+//	        case R.id.button2:  
+//	        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
+//	            break;  
+//	        case R.id.button3:  
+//	        	TabControl.mViewSelected.setImageViewFocusChanged(button3);
+//	            break;  
+//	        case R.id.button4:  
+//	        	TabControl.mViewSelected.setImageViewFocusChanged(button4);
+//	            break;  
+//	        case R.id.button5:  
+//	        	TabControl.mViewSelected.setImageViewFocusChanged(button5);
+//	            break;  
+//	        case R.id.button6:  
+//	        	TabControl.mViewSelected.setImageViewFocusChanged(button6);
+//	            break;  
+//	        case R.id.button7:  
+//	        	TabControl.mViewSelected.setImageViewFocusChanged(button7);
+//	            break;  
+//	        case R.id.button8:  
+//	        	TabControl.mViewSelected.setImageViewFocusChanged(button8);
+//	            break;  
+//	        case R.id.button9:  
+//	        	TabControl.mViewSelected.setImageViewFocusChanged(button9);
+//	            break;  
+//	        case R.id.button10:  
+//	        	TabControl.mViewSelected.setImageViewFocusChanged(button10);
+//	            break;  
 	        default:  
 	            break;  
 	        }  

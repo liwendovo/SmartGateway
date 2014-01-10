@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.TabControl;
 
 public class RF_Custom1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener{
 	Button  backBtn,leanrnBtn;
@@ -71,6 +72,18 @@ public class RF_Custom1 extends Activity implements android.view.View.OnClickLis
 		button7.setOnLongClickListener(this);
 		button8.setOnLongClickListener(this);
 		button9.setOnLongClickListener(this);
+		
+		
+		TabControl.mViewSelected.setButtonFocusChanged(button1);
+		TabControl.mViewSelected.setButtonFocusChanged(button2);
+		TabControl.mViewSelected.setButtonFocusChanged(button3);
+		TabControl.mViewSelected.setButtonFocusChanged(button4);
+		TabControl.mViewSelected.setButtonFocusChanged(button5);
+		TabControl.mViewSelected.setButtonFocusChanged(button6);
+		TabControl.mViewSelected.setButtonFocusChanged(button7);
+		TabControl.mViewSelected.setButtonFocusChanged(button8);
+		TabControl.mViewSelected.setButtonFocusChanged(button9);
+
 		
 	}
 

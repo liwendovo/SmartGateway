@@ -32,6 +32,8 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 		leanrnBtn.setOnClickListener(this); 
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);  
+		TabControl.mViewSelected.setImageViewFocusChanged(button1);
+		TabControl.mViewSelected.setImageViewFocusChanged(button2);
 		
 	}
 
@@ -48,10 +50,10 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 //        	TabControl.mViewSelected.setImageViewFocusChanged(leanrnBtn);
 //    		break;
         case R.id.button1: 
-        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
+//        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
             break;  
         case R.id.button2:  
-        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
+//        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
             break;  
       
         default:  

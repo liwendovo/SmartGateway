@@ -51,6 +51,40 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		button8=(ImageView)findViewById(R.id.button8);
 		button9=(ImageView)findViewById(R.id.button9);
 		button10=(ImageView)findViewById(R.id.button10);
+		
+		backBtn.setOnClickListener(this); 
+		leanrnBtn.setOnClickListener(this); 
+		button1.setOnClickListener(this);  
+		button2.setOnClickListener(this);  
+		button3.setOnClickListener(this);  
+		button4.setOnClickListener(this);  
+		button5.setOnClickListener(this);  
+		button6.setOnClickListener(this);  
+		button7.setOnClickListener(this);  
+		button8.setOnClickListener(this);  
+		button9.setOnClickListener(this);  
+		button1.setOnLongClickListener(this);
+		button2.setOnLongClickListener(this);
+		button3.setOnLongClickListener(this);
+		button4.setOnLongClickListener(this);
+		button5.setOnLongClickListener(this);
+		button6.setOnLongClickListener(this);
+		button7.setOnLongClickListener(this);
+		button8.setOnLongClickListener(this);
+		button9.setOnLongClickListener(this);
+		button10.setOnLongClickListener(this);
+		TabControl.mViewSelected.setImageViewFocusChanged(button1);
+		TabControl.mViewSelected.setImageViewFocusChanged(button2);
+		TabControl.mViewSelected.setImageViewFocusChanged(button3);
+		TabControl.mViewSelected.setImageViewFocusChanged(button4);
+		TabControl.mViewSelected.setImageViewFocusChanged(button5);
+		TabControl.mViewSelected.setImageViewFocusChanged(button6);
+		TabControl.mViewSelected.setImageViewFocusChanged(button7);
+		TabControl.mViewSelected.setImageViewFocusChanged(button8);
+		TabControl.mViewSelected.setImageViewFocusChanged(button9);
+		TabControl.mViewSelected.setImageViewFocusChanged(button10);
+		
+		
 		devpic=(ImageView)findViewById(R.id.pic);
 		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_custom));
 		
@@ -110,27 +144,7 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 
 		
 		
-		backBtn.setOnClickListener(this); 
-		leanrnBtn.setOnClickListener(this); 
-		button1.setOnClickListener(this);  
-		button2.setOnClickListener(this);  
-		button3.setOnClickListener(this);  
-		button4.setOnClickListener(this);  
-		button5.setOnClickListener(this);  
-		button6.setOnClickListener(this);  
-		button7.setOnClickListener(this);  
-		button8.setOnClickListener(this);  
-		button9.setOnClickListener(this);  
-		button1.setOnLongClickListener(this);
-		button2.setOnLongClickListener(this);
-		button3.setOnLongClickListener(this);
-		button4.setOnLongClickListener(this);
-		button5.setOnLongClickListener(this);
-		button6.setOnLongClickListener(this);
-		button7.setOnLongClickListener(this);
-		button8.setOnLongClickListener(this);
-		button9.setOnLongClickListener(this);
-		button10.setOnLongClickListener(this);
+	
 		
 		//°´¼üÃû³¼Ë¢ÐÂ btnName
 	

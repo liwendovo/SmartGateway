@@ -145,6 +145,18 @@ public class SQLiteHelper extends SQLiteOpenHelper
 //		ToReturn.moveToFirst();
 //		return ToReturn;
 //	}
+	public Cursor seleteBtnLearn(SQLiteDatabase db, int Tag_DevID) {
+		String str = "SELECT * FROM " + Table_Name_Btn + " WHERE " +DevID + "=\""+ Tag_DevID + "\" AND "+Type+ "=\"learn\"";
+		Cursor ToReturn = db.rawQuery(str, null);
+		ToReturn.moveToFirst();
+		return ToReturn;
+	}
+	public Cursor seleteBtnName(SQLiteDatabase db, int Tag_DevID) {
+		String str = "SELECT * FROM " + Table_Name_Btn + " WHERE " +DevID + "=\""+ Tag_DevID + "\" AND "+Type+ "=\"name\"";
+		Cursor ToReturn = db.rawQuery(str, null);
+		ToReturn.moveToFirst();
+		return ToReturn;
+	}
 	public Cursor seleteBtn(SQLiteDatabase db, int Tag_DevID) {
 		String str = "SELECT * FROM " + Table_Name_Btn + " WHERE " +DevID + "=\""+ Tag_DevID + "\"";
 		Cursor ToReturn = db.rawQuery(str, null);
