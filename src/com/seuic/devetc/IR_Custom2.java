@@ -39,6 +39,7 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ir_custom2);
+		Log.e("leewoo", "in IR_Custom2 ");
 		
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);

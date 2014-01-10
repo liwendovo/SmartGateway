@@ -7,7 +7,6 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,14 +42,16 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	 Boolean btnclr8=false;
 	 Boolean btnclr9=false;
 	
-	 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ir_custom1);
+		
+		Log.e("leewoo", "in IR_Custom1 ");
+		
+		
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
 		button1=(Button)findViewById(R.id.button1);
@@ -62,64 +63,6 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		button7=(Button)findViewById(R.id.button7);		
 		button8=(Button)findViewById(R.id.button8);
 		button9=(Button)findViewById(R.id.button9);
-		devpic=(ImageView)findViewById(R.id.pic);
-		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_custom));
-		
-		
-		Intent intent=getIntent();
-		mUid=intent.getStringExtra("uid");
-		devid=intent.getIntExtra("devid", 0);
-		if(devid==0){
-			Log.e("leewoo", "deid error = 0");
-			}
-		
-		Cursor cursor=TabControl.mSQLHelper.seleteBtn(TabControl.writeDB,devid);
-		Log.e("leewoo", "cur: "+cursor.getCount());
-		if(cursor.getCount()>0){
-			//已初始化
-			if(cursor.getCount()!=2){Log.e("leewoo", "cur不足2");}
-			    
-			    Log.e("leewoo", "cur "+cursor.getString(2));
-				if(cursor.getString(2).equals("learn"))
-				{
-				//学习
-				//	Log.e("leewoo", "cur learn");					
-					btnclr1=cursor.getString(1+2).equals("true")?true:false;
-					btnclr2=cursor.getString(2+2).equals("true")?true:false;
-					btnclr3=cursor.getString(3+2).equals("true")?true:false;
-					btnclr4=cursor.getString(4+2).equals("true")?true:false;
-					btnclr5=cursor.getString(5+2).equals("true")?true:false;
-					btnclr6=cursor.getString(6+2).equals("true")?true:false;
-					btnclr7=cursor.getString(7+2).equals("true")?true:false;
-					btnclr8=cursor.getString(8+2).equals("true")?true:false;
-					btnclr9=cursor.getString(9+2).equals("true")?true:false;					
-				}
-				cursor.moveToNext();
-				Log.e("leewoo", "cur "+cursor.getString(2));
-				if(cursor.getString(2).equals("name"))
-				{
-					button1.setText(cursor.getString(1+2));
-					button2.setText(cursor.getString(2+2));
-					button3.setText(cursor.getString(3+2));
-					button4.setText(cursor.getString(4+2));
-					button5.setText(cursor.getString(5+2));
-					button6.setText(cursor.getString(6+2));			
-					button7.setText(cursor.getString(7+2));
-					button8.setText(cursor.getString(8+2));
-					button9.setText(cursor.getString(9+2));
-			
-				}
-			
-		}else{
-			Log.e("leewoo", "cur 初始化"+cursor.getCount());
-			//未初始化
-			TabControl.mSQLHelper.insertBtn(TabControl.writeDB,mUid,devid,"learn" ,learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse);
-			TabControl.mSQLHelper.insertBtn(TabControl.writeDB,mUid,devid, "name" ,btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults+14);
-			//DevSetup.mSQLHelper.insertEtc(DevSetup.writeDB, mUid, 8, "name", "name", "name", "name");			
-		}
-
-		
-		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this);
 		button1.setOnClickListener(this);  
@@ -140,8 +83,69 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		button7.setOnLongClickListener(this);
 		button8.setOnLongClickListener(this);
 		button9.setOnLongClickListener(this);
+		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
+		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
+		TabControl.mViewSelected.setButtonFocusChanged(button1);
+		TabControl.mViewSelected.setButtonFocusChanged(button2);
+		TabControl.mViewSelected.setButtonFocusChanged(button3);
+		TabControl.mViewSelected.setButtonFocusChanged(button4);
+		TabControl.mViewSelected.setButtonFocusChanged(button5);
+		TabControl.mViewSelected.setButtonFocusChanged(button6);
+		TabControl.mViewSelected.setButtonFocusChanged(button7);
+		TabControl.mViewSelected.setButtonFocusChanged(button8);
+		TabControl.mViewSelected.setButtonFocusChanged(button9);
+		
+		devpic=(ImageView)findViewById(R.id.pic);
+		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_custom));
 		
 		
+		Intent intent=getIntent();
+		mUid=intent.getStringExtra("uid");
+		devid=intent.getIntExtra("devid", 0);
+		if(devid==0){
+			Log.e("leewoo", "deid error = 0");
+			}
+		
+		Cursor cursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);
+		Log.e("leewoo", "cur: "+cursor.getCount());
+		if(cursor.getCount()>0){				 
+			//学习					
+			btnclr1=cursor.getString(1+2).equals("true")?true:false;
+			btnclr2=cursor.getString(2+2).equals("true")?true:false;
+			btnclr3=cursor.getString(3+2).equals("true")?true:false;
+			btnclr4=cursor.getString(4+2).equals("true")?true:false;
+			btnclr5=cursor.getString(5+2).equals("true")?true:false;
+			btnclr6=cursor.getString(6+2).equals("true")?true:false;
+			btnclr7=cursor.getString(7+2).equals("true")?true:false;
+			btnclr8=cursor.getString(8+2).equals("true")?true:false;
+			btnclr9=cursor.getString(9+2).equals("true")?true:false;	
+			
+		}else{
+			Log.e("leewoo", "cur learn 初始化"+cursor.getCount());
+			//未初始化
+			TabControl.mSQLHelper.insertBtn(TabControl.writeDB,mUid,devid,"learn" ,learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse);
+		}
+		cursor.close();
+		
+		cursor=TabControl.mSQLHelper.seleteBtnName(TabControl.writeDB,devid);
+		Log.e("leewoo", "cur: "+cursor.getCount());
+		if(cursor.getCount()>0){
+			//已初始化		
+				button1.setText(cursor.getString(1+2));
+				button2.setText(cursor.getString(2+2));
+				button3.setText(cursor.getString(3+2));
+				button4.setText(cursor.getString(4+2));
+				button5.setText(cursor.getString(5+2));
+				button6.setText(cursor.getString(6+2));			
+				button7.setText(cursor.getString(7+2));
+				button8.setText(cursor.getString(8+2));
+				button9.setText(cursor.getString(9+2));
+		}else{
+			Log.e("leewoo", "cur name 初始化"+cursor.getCount());
+			//未初始化
+			TabControl.mSQLHelper.insertBtn(TabControl.writeDB,mUid,devid, "name" ,btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults+14);
+		}		
+		cursor.close();
 	    setbuttonstate();
 				
 		
@@ -188,14 +192,10 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         case R.id.back: finish();break;
         
         case R.id.titleBtn:
-//        	TabControl.mBtnSelected.setImageViewFocusChanged(leanrnBtn);
-        	lenclr=!lenclr;        	
-        	//Log.e("lenclr=",""+drawable);
+        	lenclr=!lenclr;  
         	if(lenclr==true){
-
             	Log.e("leewoo", "clr"+v.getId() ); 
-            	TabControl.mViewSelected.buttonclicklearn(leanrnBtn);
-            	//Log.e("leanrnBtn=true",""+drawable1);            	
+            	TabControl.mViewSelected.buttonclicklearn(leanrnBtn);                     	
             	TabControl.mViewSelected.buttonclicklearn(button1);
             	TabControl.mViewSelected.buttonclicklearn(button2);
             	TabControl.mViewSelected.buttonclicklearn(button3);
@@ -205,150 +205,92 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
             	TabControl.mViewSelected.buttonclicklearn(button7);
             	TabControl.mViewSelected.buttonclicklearn(button8);
             	TabControl.mViewSelected.buttonclicklearn(button9);
-            	            	
-            	
-			        	
         	}else{
-        		TabControl.mViewSelected.buttonclickrecover(leanrnBtn);
-        		
+        		TabControl.mViewSelected.buttonclickrecover(leanrnBtn);        		
         		setbuttonstate();    
         	}
         	break;
-  	
-        case R.id.button1:
-        	
-        	if(lenclr==true){
-	        	
+  	    case R.id.button1:        	
+        	if(lenclr==true){	        	
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr1=true;
-
         		TabControl.mViewSelected.buttonclickrecover(button1);
-
-        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true);        		
-
-        		Log.e("btnclr1=",""+btnclr1);
-	        	
-	        }
-        	
+        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true);  
+        		Log.e("btnclr1=",""+btnclr1);	        	
+	        }        	
         	break;
-        case R.id.button2:
-        	
-        	if(lenclr==true){
-	        	
+        case R.id.button2:        	
+        	if(lenclr==true){	        	
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr2=true;
-
         		TabControl.mViewSelected.buttonclickrecover(button2);
-
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,2, true);
-
-        		Log.e("btnclr2=",""+btnclr2);
-	        	
-        	}
-        	
+        		Log.e("btnclr2=",""+btnclr2);	        	
+        	}        	
         	break;
         case R.id.button3:
-//        	TabControl.mBtnSelected.setImageViewFocusChanged(button3);
-        	if(lenclr==true){
-	        
+        	if(lenclr==true){	        
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr3=true;
-
         		TabControl.mViewSelected.buttonclickrecover(button3);
-
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 3, true);
-
-        		Log.e("btnclr3=",""+btnclr3);
-        		
-        	}
-        	
-        	break;
-        
+        		Log.e("btnclr3=",""+btnclr3);        		
+        	}        	
+        	break;        
         case R.id.button4:
-        	if(lenclr==true){
-	        	
+        	if(lenclr==true){	        	
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr4=true;
-
 	        		TabControl.mViewSelected.buttonclickrecover(button4);
-
-	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 4, true);
-	        		
-
-	        		Log.e("btnclr4=",""+btnclr4);
-	        	
+	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 4, true);  
+	        		Log.e("btnclr4=",""+btnclr4);	        	
         	}
         	break;
         case R.id.button5:
-        	if(lenclr==true){
-	         
+        	if(lenclr==true){	         
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr5=true;
-
 	        		TabControl.mViewSelected.buttonclickrecover(button5);
-
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,5, true);
-
-	        		Log.e("btnclr5=",""+btnclr5);
-	        	
+	        		Log.e("btnclr5=",""+btnclr5);	        	
         	}
         	break;
         case R.id.button6:
-        	if(lenclr==true){
-	        	 
+        	if(lenclr==true){	        	 
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr6=true;
-
 	        		TabControl.mViewSelected.buttonclickrecover(button6);
-
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 6, true);
-
 	        		Log.e("btnclr6=",""+btnclr6);
-	        	
         	}
         	break;
         case R.id.button7:
-        	if(lenclr==true){
-	        	  
+        	if(lenclr==true){	        	  
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr7=true;
-
 	        		TabControl.mViewSelected.buttonclickrecover(button7);
-
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 7, true);
-
-	        		Log.e("btnclr7=",""+btnclr7);
-	        	
+	        		Log.e("btnclr7=",""+btnclr7);	        	
         	}
         	break;
         case R.id.button8:
-        	if(lenclr==true){
-	        	 
+        	if(lenclr==true){	        	 
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr8=true;
-
 	        		TabControl.mViewSelected.buttonclickrecover(button8);
-
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 8, true);
-
-	        		Log.e("btnclr8=",""+btnclr8);
-	        	
+	        		Log.e("btnclr8=",""+btnclr8);	        	
         	}
         	break;
         case R.id.button9:
-        	if(lenclr==true){
-	        	 
+        	if(lenclr==true){	        	 
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr9=true;
-
 	        		TabControl.mViewSelected.buttonclickrecover(button9);
-
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 9, true);
-
 	        		Log.e("btnclr9=",""+btnclr9);
-	        	        	}
-        	break;     
-        	
+	        }
+        	break;             	
         default:  
         	Log.e("leewoo", "Button id =default " ); 
             break;  
@@ -360,11 +302,8 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	@Override
 	public boolean onLongClick(View v) {
 		// TODO Auto-generated method stub
-//		 dialog();
-//	 	 Log.e("leewoo", "onLongClick");
-//		 Log.e("leewoo", "Button id = " + v.getId());  
-	        switch(v.getId())  
-	        {  
+        switch(v.getId())  
+        {  
 	        case R.id.button1:  	        	
 	        	dialog(1);
 	            break;  
@@ -417,8 +356,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 		@Override
 		public void onClick(DialogInterface arg0, int arg1) {
-			// TODO Auto-generated method stub
-			
+			// TODO Auto-generated method stub			
 			switch (btnid) {
 			case 1:
 				button1.setText(et.getText().toString());
@@ -441,16 +379,12 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 5, et.getText().toString());
 				break;
 			case 6:
-
 				button6.setText(et.getText().toString());
 				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 6, et.getText().toString());
-			
 				break;
 			case 7:
-
 				button1.setText(et.getText().toString());
 				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 7, et.getText().toString());
-
 				break;				
 			case 8:
 				button8.setText(et.getText().toString());
@@ -463,16 +397,15 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 			default:
 				break;
 			}
-		}
+		  }
 		});
 		  builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
-		@Override
-		 public void onClick(DialogInterface dialog, int which) {
-		 dialog.dismiss();
-		  }
-		 });
-		 builder.create().show();
-		
+			@Override
+			 public void onClick(DialogInterface dialog, int which) {
+			 dialog.dismiss();
+			  }
+			 });
+		 builder.create().show();		
 	   }
 
 }

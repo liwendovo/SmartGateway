@@ -141,9 +141,6 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 				button7.setText(cursor.getString(7+2));
 				button8.setText(cursor.getString(8+2));
 				button9.setText(cursor.getString(9+2));
-				
-				
-			
 		}else{
 			Log.e("leewoo", "cur 初始化"+cursor.getCount());
 			//未初始化

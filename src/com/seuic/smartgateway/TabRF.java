@@ -27,6 +27,8 @@ import android.widget.Toast;
 
 import com.seuic.adapter.EtcAdapter;
 import com.seuic.add.AddEtc;
+import com.seuic.devetc.IR_Custom1;
+import com.seuic.devetc.IR_Custom2;
 import com.seuic.devetc.RF_Curtain1;
 import com.seuic.devetc.RF_Custom1;
 import com.seuic.devetc.RF_Custom2;
@@ -98,10 +100,10 @@ public class TabRF extends Activity {
 					 intent = new Intent(TabRF.this,RF_Curtain1.class);
 				 }else if(type.equals("Power")){
 					 intent = new Intent(TabRF.this,RF_Power.class);
-				 }else if(type.equals("Custom1")){
-					 intent = new Intent(TabRF.this,RF_Custom1.class);
+				 }else if(type.equals("CUSTOM1")){
+					 intent = new Intent(TabRF.this,IR_Custom1.class);
 				 }else {
-					 intent = new Intent(TabRF.this,RF_Custom2.class);
+					 intent = new Intent(TabRF.this,IR_Custom2.class);
 				 }			
 				 
 				 intent.putExtra("uid",  mUid);

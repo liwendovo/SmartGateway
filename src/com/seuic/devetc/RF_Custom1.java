@@ -28,7 +28,7 @@ public class RF_Custom1 extends Activity implements android.view.View.OnClickLis
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.rf_custom1);
-		
+		Log.e("leewoo", "in RF_Custom1 ");
 		backBtn=(Button)findViewById(R.id.back);		
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);	
 		button1=(Button)findViewById(R.id.button1);
@@ -62,8 +62,7 @@ public class RF_Custom1 extends Activity implements android.view.View.OnClickLis
 		button6.setOnLongClickListener(this);
 		button7.setOnLongClickListener(this);
 		button8.setOnLongClickListener(this);
-		button9.setOnLongClickListener(this);
-		
+		button9.setOnLongClickListener(this);		
 		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
 		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
 		TabControl.mViewSelected.setButtonFocusChanged(button1);
@@ -75,8 +74,6 @@ public class RF_Custom1 extends Activity implements android.view.View.OnClickLis
 		TabControl.mViewSelected.setButtonFocusChanged(button7);
 		TabControl.mViewSelected.setButtonFocusChanged(button8);
 		TabControl.mViewSelected.setButtonFocusChanged(button9);
-
-		
 	}
 
 	@Override
@@ -96,7 +93,6 @@ public class RF_Custom1 extends Activity implements android.view.View.OnClickLis
            break;  
         case R.id.button3:  
             break;  
-        
         default:  
             break;  
        
