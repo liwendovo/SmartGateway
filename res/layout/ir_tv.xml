@@ -30,7 +30,7 @@
             <TableRow>
 
                 <ImageView
-                    android:id="@+id/button15"
+                    android:id="@+id/button13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ir_close" />
@@ -42,7 +42,7 @@
                     android:src="@drawable/ep_logo" />
 
                 <ImageView
-                    android:id="@+id/button16"
+                    android:id="@+id/button14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ir_dvd_vol" />
@@ -183,14 +183,14 @@
                 >
 
                 <ImageView
-                    android:id="@+id/button13"
+                    android:id="@+id/button15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:src="@drawable/ir_ver" />
 
                 <ImageView
-                    android:id="@+id/button14"
+                    android:id="@+id/button16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"

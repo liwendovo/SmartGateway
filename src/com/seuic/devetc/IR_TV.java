@@ -2,10 +2,12 @@ package com.seuic.devetc;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
@@ -17,7 +19,25 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 			button4,button5,button6,
 			button7,button8,button9,
 			button10,button11,button12,
-			button13,button14,button15,button16;
+			button13,button14;
+	
+	 Boolean lenclr=false;
+	 Boolean btnclr1=false;
+	 Boolean btnclr2=false;
+	 Boolean btnclr3=false;
+	 Boolean btnclr4=false;
+	 Boolean btnclr5=false;
+	 Boolean btnclr6=false;
+	 Boolean btnclr7=false;
+	 Boolean btnclr8=false;
+	 Boolean btnclr9=false;
+	 Boolean btnclr10=false;
+	 Boolean btnclr11=false;
+	 Boolean btnclr12=false;
+	 Boolean btnclr13=false;
+	 Boolean btnclr14=false;
+	 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -43,8 +63,6 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		button12=(ImageView)findViewById(R.id.button12);
 		button13=(ImageView)findViewById(R.id.button13);
 		button14=(ImageView)findViewById(R.id.button14);
-		button15=(ImageView)findViewById(R.id.button15);
-		button16=(ImageView)findViewById(R.id.button16);
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
 		button1.setOnClickListener(this);  
@@ -61,8 +79,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		button12.setOnClickListener(this);  
 		button13.setOnClickListener(this);  
 		button14.setOnClickListener(this);  
-		button15.setOnClickListener(this);  
-		button16.setOnClickListener(this); 
+		
 //		button1.setClickable(false);
 //		button2.setClickable(false);
 //		button3.setClickable(false);
@@ -83,10 +100,62 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		TabControl.mViewSelected.setImageViewFocusChanged(button12);
 		TabControl.mViewSelected.setImageViewFocusChanged(button13);
 		TabControl.mViewSelected.setImageViewFocusChanged(button14);
-		TabControl.mViewSelected.setImageViewFocusChanged(button15);
-		TabControl.mViewSelected.setImageViewFocusChanged(button16);
+		
+		
+		setbuttonstate();
 	}
 
+	
+	private void setbuttonstate()
+	{
+    	if(btnclr1)	TabControl.mViewSelected.imageviewClickRecover(button1);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button1);
+    	
+    	if(btnclr2)	TabControl.mViewSelected.imageviewClickRecover(button2);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button2);
+    	
+    	if(btnclr3)	TabControl.mViewSelected.imageviewClickRecover(button3);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button3);
+    	
+    	if(btnclr4)	TabControl.mViewSelected.imageviewClickRecover(button4);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button4);
+    	
+    	if(btnclr5)	TabControl.mViewSelected.imageviewClickRecover(button5);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button5);
+    	
+    	if(btnclr6)	TabControl.mViewSelected.imageviewClickRecover(button6);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button6);
+    	
+    	if(btnclr7)	TabControl.mViewSelected.imageviewClickRecover(button7);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button7);
+    	
+    	if(btnclr8)	TabControl.mViewSelected.imageviewClickRecover(button8);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button8);
+    	
+    	if(btnclr9)	TabControl.mViewSelected.imageviewClickRecover(button9);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button9);
+    	
+    	if(btnclr10) TabControl.mViewSelected.imageviewClickRecover(button10);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button10);
+    	
+    	if(btnclr11)	TabControl.mViewSelected.imageviewClickRecover(button11);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button11);
+    	
+    	if(btnclr12)	TabControl.mViewSelected.imageviewClickRecover(button12);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button12);
+    	
+    	if(btnclr13)	TabControl.mViewSelected.imageviewClickRecover(button13);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button13);
+    	
+    	if(btnclr14)	TabControl.mViewSelected.imageviewClickRecover(button14);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button14);
+    	
+    
+    	
+    	    	
+	}
+	
+	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -95,16 +164,262 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
         case R.id.back:
         	finish();
         	break;
+         
         case R.id.titleBtn:
-   		break;
-        case R.id.button1: 
-            break;  
-        case R.id.button2:  
-           break;  
-        case R.id.button3:  
-            break; 
+//        	TabControl.mBtnSelected.setImageViewFocusChanged(leanrnBtn);
+        	lenclr=!lenclr;        	
+        	//Log.e("lenclr=",""+drawable);
+        	if(lenclr==true){
+
+            	Log.e("leewoo", "clr"+v.getId() ); 
+            	TabControl.mViewSelected.buttonClickLearn(leanrnBtn);
+            	//Log.e("leanrnBtn=true",""+drawable1);            	
+            	TabControl.mViewSelected.imageviewClickLearn(button1);
+            	TabControl.mViewSelected.imageviewClickLearn(button2);
+            	TabControl.mViewSelected.imageviewClickLearn(button3);
+            	TabControl.mViewSelected.imageviewClickLearn(button4);
+            	TabControl.mViewSelected.imageviewClickLearn(button5);
+            	TabControl.mViewSelected.imageviewClickLearn(button6);
+            	TabControl.mViewSelected.imageviewClickLearn(button7);
+            	TabControl.mViewSelected.imageviewClickLearn(button8);
+            	TabControl.mViewSelected.imageviewClickLearn(button9);
+            	TabControl.mViewSelected.imageviewClickLearn(button10);
+            	TabControl.mViewSelected.imageviewClickLearn(button11);
+            	TabControl.mViewSelected.imageviewClickLearn(button12);
+            	TabControl.mViewSelected.imageviewClickLearn(button13);
+            	TabControl.mViewSelected.imageviewClickLearn(button14);
+            	
+               	           	            	
+            				        	
+        	}else{
+        		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
+        		
+        		setbuttonstate();    
+        	}
+        	break;
+        	
+          
+      
+        	
+        	 case R.id.button1:
+             	
+             	if(lenclr==true){
+     	        	
+             		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+             		btnclr1=true;
+
+             		TabControl.mViewSelected.imageviewClickRecover(button1);
+
+//             		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true);        		
+
+             		Log.e("btnclr1=",""+btnclr1);
+     	        	
+     	        }
+             	
+             	break;
+             case R.id.button2:
+             	
+             	if(lenclr==true){
+     	        	
+             		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+             		btnclr2=true;
+
+             		TabControl.mViewSelected.imageviewClickRecover(button2);
+
+//             		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,2, true);
+
+             		Log.e("btnclr2=",""+btnclr2);
+     	        	
+             	}
+             	
+             	break;
+             case R.id.button3:
+//             	TabControl.mBtnSelected.setImageViewFocusChanged(button3);
+             	if(lenclr==true){
+     	        
+             		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+             		btnclr3=true;
+
+             		TabControl.mViewSelected.imageviewClickRecover(button3);
+
+//             		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 3, true);
+
+             		Log.e("btnclr3=",""+btnclr3);
+             		
+             	}
+             	
+             	break;
+             
+             case R.id.button4:
+             	if(lenclr==true){
+     	        	
+     	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+     	        		btnclr4=true;
+
+     	        		TabControl.mViewSelected.imageviewClickRecover(button4);
+
+//     	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 4, true);
+     	        		
+
+     	        		Log.e("btnclr4=",""+btnclr4);
+     	        	
+             	}
+             	break;
+             case R.id.button5:
+             	if(lenclr==true){
+     	         
+     	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+     	        		btnclr5=true;
+
+     	        		TabControl.mViewSelected.imageviewClickRecover(button5);
+
+//     	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,5, true);
+
+     	        		Log.e("btnclr5=",""+btnclr5);
+     	        	
+             	}
+             	break;
+             case R.id.button6:
+             	if(lenclr==true){
+     	        	 
+     	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+     	        		btnclr6=true;
+
+     	        		TabControl.mViewSelected.imageviewClickRecover(button6);
+
+//     	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 6, true);
+
+     	        		Log.e("btnclr6=",""+btnclr6);
+     	        	
+             	}
+             	break;
+             case R.id.button7:
+             	if(lenclr==true){
+     	        	  
+     	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+     	        		btnclr7=true;
+
+     	        		TabControl.mViewSelected.imageviewClickRecover(button7);
+
+//     	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 7, true);
+
+     	        		Log.e("btnclr7=",""+btnclr7);
+     	        	
+             	}
+             	break;
+             case R.id.button8:
+             	if(lenclr==true){
+     	        	 
+     	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+     	        		btnclr8=true;
+
+     	        		TabControl.mViewSelected.imageviewClickRecover(button8);
+
+//     	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 8, true);
+
+     	        		Log.e("btnclr8=",""+btnclr8);
+     	        	
+             	}
+             	break;
+             case R.id.button9:
+             	if(lenclr==true){
+     	        	 
+     	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+     	        		btnclr9=true;
+
+     	        		TabControl.mViewSelected.imageviewClickRecover(button9);
+
+//     	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 9, true);
+
+     	        		Log.e("btnclr9=",""+btnclr9);
+     	        	        	}
+             	break;    
+             	
+             case R.id.button10:
+             	if(lenclr==true){
+     	        	  
+     	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+     	        		btnclr10=true;
+
+     	        		TabControl.mViewSelected.imageviewClickRecover(button10);
+
+//     	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 7, true);
+
+     	        		Log.e("btnclr10=",""+btnclr10);
+     	        	
+             	}
+             	break;
+             	
+             	 case R.id.button11:
+                 	
+                 	if(lenclr==true){
+         	        	
+                 		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+                 		btnclr11=true;
+
+                 		TabControl.mViewSelected.imageviewClickRecover(button11);
+
+//                 		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true);        		
+
+                 		Log.e("btnclr11=",""+btnclr11);
+         	        	
+         	        }
+                 	
+                 	break;
+                 case R.id.button12:
+                 	
+                 	if(lenclr==true){
+         	        	
+                 		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+                 		btnclr12=true;
+
+                 		TabControl.mViewSelected.imageviewClickRecover(button12);
+
+//                 		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,2, true);
+
+                 		Log.e("btnclr12=",""+btnclr12);
+         	        	
+                 	}
+                 	
+                 	break;
+                 case R.id.button13:
+//                 	TabControl.mBtnSelected.setImageViewFocusChanged(button3);
+                 	if(lenclr==true){
+         	        
+                 		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+                 		btnclr13=true;
+
+                 		TabControl.mViewSelected.imageviewClickRecover(button13);
+
+//                 		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 3, true);
+
+                 		Log.e("btnclr13=",""+btnclr13);
+                 		
+                 	}
+                 	
+                 	break;
+                 
+                 case R.id.button14:
+                 	if(lenclr==true){
+         	        	
+         	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
+         	        		btnclr14=true;
+
+         	        		TabControl.mViewSelected.imageviewClickRecover(button14);
+
+//         	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 4, true);
+         	        		
+
+         	        		Log.e("btnclr14=",""+btnclr14);
+         	        	
+                 	}
+                 	break;
+                
+                             	
+        	
         default:  
-            break; 
+        	Log.e("leewoo", "Button id =default " ); 
+            break;  
         }
 	  
 	}

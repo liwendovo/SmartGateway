@@ -136,7 +136,7 @@ public class ViewSelected {
 
  }  
    
-   public final void buttonclickgreychanged(View inView)
+   public final void buttonClickGreyChanged(View inView)
    {
 
 	   inView.getBackground().setColorFilter(new ColorMatrixColorFilter(LEARNED)); 
@@ -145,7 +145,15 @@ public class ViewSelected {
 	   inView.setEnabled(false);
    }
    
-   public final void buttonclicklearn(View inView)
+   public final void imageviewClickGreyChanged(View inView)
+   {
+
+	   ((ImageView) inView).setColorFilter(new ColorMatrixColorFilter(LEARNED)); 
+	 
+	   inView.setEnabled(false);
+   }
+   
+   public final void buttonClickLearn(View inView)
    {
 
 	  inView.getBackground().setColorFilter(new ColorMatrixColorFilter(LEARNED)); 
@@ -153,11 +161,26 @@ public class ViewSelected {
 	  inView.setEnabled(true);	  
    }
    
-   public final void buttonclickrecover(View inView)
+   public final void imageviewClickLearn(View inView)
+   {
+
+	  ((ImageView) inView).setColorFilter(new ColorMatrixColorFilter(LEARNED)); 
+	  inView.setEnabled(true);	  
+   }
+   
+   
+   public final void buttonClickRecover(View inView)
    {
 
 	   inView.getBackground().setColorFilter(new ColorMatrixColorFilter(NOT_SELECTED)); 
 	   inView.setBackgroundDrawable(inView.getBackground());
+	   inView.setEnabled(true);
+   }
+   
+   public final void imageviewClickRecover(View inView)
+   {
+
+	   ((ImageView) inView).setColorFilter(new ColorMatrixColorFilter(NOT_SELECTED)); 	  
 	   inView.setEnabled(true);
    }
    
