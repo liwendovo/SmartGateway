@@ -108,7 +108,7 @@ public class EtcAdapter extends BaseAdapter {
 					// TODO Auto-generated method stub
 //					Toast.makeText(context,	"Btn2 onclick", Toast.LENGTH_SHORT).show();
 					Log.e("leewoo", "quickBtn1 onclick");
-					TabControl.mImageViewSelected.setButtonFocusChanged(holder.quickBtn2);
+					TabControl.mViewSelected.setImageViewFocusChanged(holder.quickBtn2);
 				}
 			});
         }else{
@@ -125,7 +125,7 @@ public class EtcAdapter extends BaseAdapter {
 				// TODO Auto-generated method stub
 //				Toast.makeText(context,	"Btn1 onclick", Toast.LENGTH_SHORT).show();
 				Log.e("leewoo", "quickBtn2 onclick");
-				TabControl.mImageViewSelected.setButtonFocusChanged(holder.quickBtn1);
+				TabControl.mViewSelected.setImageViewFocusChanged(holder.quickBtn1);
 			}
 		});
 

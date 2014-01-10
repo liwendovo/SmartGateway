@@ -2,7 +2,6 @@ package com.seuic.devetc;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -61,6 +60,10 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		button12.setOnClickListener(this);  
 		button13.setOnClickListener(this);  
 		button14.setOnClickListener(this);  
+//		button1.setClickable(false);
+//		button2.setClickable(false);
+//		button3.setClickable(false);
+//		button4.setClickable(false);
 	}
 
 	@Override
@@ -69,46 +72,46 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		 switch(v.getId())  
 	        {  
 	        case R.id.button1: 
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button1);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
 	            break;  
 	        case R.id.button2:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button2);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
 	            break;  
 	        case R.id.button3:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button3);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button3);
 	            break;  
 	        case R.id.button4:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button4);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button4);
 	            break;  
 	        case R.id.button5:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button5);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button5);
 	            break;  
 	        case R.id.button6:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button6);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button6);
 	            break;  
 	        case R.id.button7:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button7);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button7);
 	            break;  
 	        case R.id.button8:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button8);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button8);
 	            break;  
 	        case R.id.button9:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button9);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button9);
 	            break;  
 	        case R.id.button10:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button10);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button10);
 	            break;  
 	        case R.id.button11:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button11);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button11);
 	            break;  
 	        case R.id.button12:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button12);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button12);
 	            break;  
 	        case R.id.button13:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button13);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button13);
 	            break;  
 	        case R.id.button14:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button14);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button14);
 	            break;  
 	       
 	        default:  

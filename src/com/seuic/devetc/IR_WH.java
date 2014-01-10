@@ -41,17 +41,17 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 		switch(v.getId())  
         {  
 //        case R.id.back:
-//        	TabControl.mImageViewSelected.setButtonFocusChanged(backBtn);
+//        	TabControl.mViewSelected.setImageViewFocusChanged(backBtn);
 //        	finish();
 //        	break;
 //        case R.id.titleBtn:
-//        	TabControl.mImageViewSelected.setButtonFocusChanged(leanrnBtn);
+//        	TabControl.mViewSelected.setImageViewFocusChanged(leanrnBtn);
 //    		break;
         case R.id.button1: 
-        	TabControl.mImageViewSelected.setButtonFocusChanged(button1);
+        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
             break;  
         case R.id.button2:  
-        	TabControl.mImageViewSelected.setButtonFocusChanged(button2);
+        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
             break;  
       
         default:  

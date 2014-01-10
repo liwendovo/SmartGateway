@@ -139,7 +139,6 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		button7.setOnLongClickListener(this);
 		button8.setOnLongClickListener(this);
 		button9.setOnLongClickListener(this);
-		
 		drawable = getResources().getDrawable(R.drawable.define);
 		drawable1 = getResources().getDrawable(R.drawable.title_learn);
 		drawable2 = getResources().getDrawable(R.drawable.defineblack);
@@ -155,7 +154,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         case R.id.back: finish();break;
         
         case R.id.titleBtn:
-//        	TabControl.mBtnSelected.setButtonFocusChanged(leanrnBtn);
+//        	TabControl.mBtnSelected.setImageViewFocusChanged(leanrnBtn);
         	lenclr=!lenclr;        	
         	Log.e("lenclr=",""+drawable);
         	if(lenclr==true){
@@ -249,7 +248,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	
         	break;
         case R.id.button3:
-//        	TabControl.mBtnSelected.setButtonFocusChanged(button3);
+//        	TabControl.mBtnSelected.setImageViewFocusChanged(button3);
         	if(lenclr==true){
 	        
         		Toast.makeText(getApplicationContext(), "Ñ§Ï°³É¹¦", Toast.LENGTH_SHORT).show(); 

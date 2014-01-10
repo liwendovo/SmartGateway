@@ -41,31 +41,31 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 		 switch(v.getId())  
 	        {  
 	        case R.id.button1: 
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button1);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
 	            break;  
 	        case R.id.button2:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button2);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
 	            break;  
 //	        case R.id.button3:  
-//	        	TabControl.mBtnSelected.setButtonFocusChanged(button3);
+//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button3);
 //	            break;  
 //	        case R.id.button4:  
-//	        	TabControl.mBtnSelected.setButtonFocusChanged(button4);
+//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button4);
 //	            break;  
 //	        case R.id.button5:  
-//	        	TabControl.mBtnSelected.setButtonFocusChanged(button5);
+//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button5);
 //	            break;  
 //	        case R.id.button6:  
-//	        	TabControl.mBtnSelected.setButtonFocusChanged(button6);
+//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button6);
 //	            break;  
 //	        case R.id.button7:  
-//	        	TabControl.mBtnSelected.setButtonFocusChanged(button7);
+//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button7);
 //	            break;  
 //	        case R.id.button8:  
-//	        	TabControl.mBtnSelected.setButtonFocusChanged(button8);
+//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button8);
 //	            break;  
 //	        case R.id.button9:  
-//	        	TabControl.mBtnSelected.setButtonFocusChanged(button9);
+//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button9);
 //	            break;  
 	        default:  
 	            break;  

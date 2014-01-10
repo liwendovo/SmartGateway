@@ -34,10 +34,10 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 		 switch(v.getId())  
 	        {  
 	        case R.id.button1: 
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button1);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
 	            break;  
 	        case R.id.button2:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button2);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
 	            break;  
 	       
 	        default:  

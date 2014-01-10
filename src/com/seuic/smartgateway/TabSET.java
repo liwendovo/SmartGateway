@@ -52,7 +52,7 @@ public class TabSET extends Activity {
 		layoutTime.setBackgroundResource(android.R.drawable.list_selector_background);
 		layoutRest.setBackgroundResource(android.R.drawable.list_selector_background);		
 		layoutAbout.setBackgroundResource(android.R.drawable.list_selector_background);
-		
+//		layoutAbout.setBackgroundResource(android.R.drawable.btn_default);
 		
 		
 		setTempBtn=(ToggleButton)findViewById(R.id.setTempBtn);

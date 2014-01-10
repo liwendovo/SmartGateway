@@ -39,10 +39,10 @@ public class RF_WH extends Activity implements android.view.View.OnClickListener
 		 switch(v.getId())  
 	        {  
 	        case R.id.button1: 
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button1);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
 	            break;  
 	        case R.id.button2:  
-	        	TabControl.mImageViewSelected.setButtonFocusChanged(button2);
+	        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
 	            break;  
 	       
 	        default:  

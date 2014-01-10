@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TabHost;
 
-import com.seuic.adapter.ImageViewSelected;
+import com.seuic.adapter.ViewSelected;
 import com.seuic.sqlite.SQLiteHelper;
 
 
@@ -32,7 +32,7 @@ public class TabControl extends ActivityGroup {
 	public static SQLiteDatabase writeDB;
 	public static SharedPreferences myPreferences;
 	public static SharedPreferences.Editor editor;
-	public static ImageViewSelected mImageViewSelected;
+	public static ViewSelected mViewSelected;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,7 +42,7 @@ public class TabControl extends ActivityGroup {
 		mSQLHelper = new SQLiteHelper(this,"smartgateway.db",1); //Êý¾Ý¿â
 		writeDB=mSQLHelper.getWritableDatabase();
 		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
-		mImageViewSelected=new ImageViewSelected();
+		mViewSelected=new ViewSelected();
 
 		mInflater = LayoutInflater.from(this);
 		host = (TabHost) findViewById(R.id.tabhost);
