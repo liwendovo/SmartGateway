@@ -27,10 +27,11 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 			button4,button5,button6,
 			button7,button8,button9;
 	int devid;
+	String mUid;
 	String learnFalse="false";
 	String learnTrue="true";
 	String btnDefaults="自定义";
-	String mUid;
+	
 	 Boolean lenclr=false;
 	 Boolean btnclr1=false;
 	 Boolean btnclr2=false;
@@ -41,7 +42,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	 Boolean btnclr7=false;
 	 Boolean btnclr8=false;
 	 Boolean btnclr9=false;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -51,7 +52,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		
 		Log.e("leewoo", "in IR_Custom1 ");
 		
-		
+
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
 		button1=(Button)findViewById(R.id.button1);
@@ -63,6 +64,9 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		button7=(Button)findViewById(R.id.button7);		
 		button8=(Button)findViewById(R.id.button8);
 		button9=(Button)findViewById(R.id.button9);
+
+
+
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this);
 		button1.setOnClickListener(this);  
@@ -94,9 +98,11 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		TabControl.mViewSelected.setButtonFocusChanged(button7);
 		TabControl.mViewSelected.setButtonFocusChanged(button8);
 		TabControl.mViewSelected.setButtonFocusChanged(button9);
+
 		
 		devpic=(ImageView)findViewById(R.id.pic);
 		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_custom));
+
 		
 		
 		Intent intent=getIntent();
@@ -151,34 +157,34 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		
 	}
 	
-	public void setbuttonstate()
+	private void setbuttonstate()
 	{
-    	if(btnclr1)	TabControl.mViewSelected.buttonclickrecover(button1);
-    	else TabControl.mViewSelected.buttonclickgreychanged(button1);
+    	if(btnclr1)	TabControl.mViewSelected.buttonClickRecover(button1);
+    	else TabControl.mViewSelected.buttonClickGreyChanged(button1);
     	
-    	if(btnclr2)	TabControl.mViewSelected.buttonclickrecover(button2);
-    	else TabControl.mViewSelected.buttonclickgreychanged(button2);
+    	if(btnclr2)	TabControl.mViewSelected.buttonClickRecover(button2);
+    	else TabControl.mViewSelected.buttonClickGreyChanged(button2);
     	
-    	if(btnclr3)	TabControl.mViewSelected.buttonclickrecover(button3);
-    	else TabControl.mViewSelected.buttonclickgreychanged(button3);
+    	if(btnclr3)	TabControl.mViewSelected.buttonClickRecover(button3);
+    	else TabControl.mViewSelected.buttonClickGreyChanged(button3);
     	
-    	if(btnclr4)	TabControl.mViewSelected.buttonclickrecover(button4);
-    	else TabControl.mViewSelected.buttonclickgreychanged(button4);
+    	if(btnclr4)	TabControl.mViewSelected.buttonClickRecover(button4);
+    	else TabControl.mViewSelected.buttonClickGreyChanged(button4);
     	
-    	if(btnclr5)	TabControl.mViewSelected.buttonclickrecover(button5);
-    	else TabControl.mViewSelected.buttonclickgreychanged(button5);
+    	if(btnclr5)	TabControl.mViewSelected.buttonClickRecover(button5);
+    	else TabControl.mViewSelected.buttonClickGreyChanged(button5);
     	
-    	if(btnclr6)	TabControl.mViewSelected.buttonclickrecover(button6);
-    	else TabControl.mViewSelected.buttonclickgreychanged(button6);
+    	if(btnclr6)	TabControl.mViewSelected.buttonClickRecover(button6);
+    	else TabControl.mViewSelected.buttonClickGreyChanged(button6);
     	
-    	if(btnclr7)	TabControl.mViewSelected.buttonclickrecover(button7);
-    	else TabControl.mViewSelected.buttonclickgreychanged(button7);
+    	if(btnclr7)	TabControl.mViewSelected.buttonClickRecover(button7);
+    	else TabControl.mViewSelected.buttonClickGreyChanged(button7);
     	
-    	if(btnclr8)	TabControl.mViewSelected.buttonclickrecover(button8);
-    	else TabControl.mViewSelected.buttonclickgreychanged(button8);
+    	if(btnclr8)	TabControl.mViewSelected.buttonClickRecover(button8);
+    	else TabControl.mViewSelected.buttonClickGreyChanged(button8);
     	
-    	if(btnclr9)	TabControl.mViewSelected.buttonclickrecover(button9);
-    	else TabControl.mViewSelected.buttonclickgreychanged(button9);
+    	if(btnclr9)	TabControl.mViewSelected.buttonClickRecover(button9);
+    	else TabControl.mViewSelected.buttonClickGreyChanged(button9);
 	}
 	
 	
@@ -192,21 +198,23 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         case R.id.back: finish();break;
         
         case R.id.titleBtn:
-        	lenclr=!lenclr;  
+        	lenclr=!lenclr; 
         	if(lenclr==true){
             	Log.e("leewoo", "clr"+v.getId() ); 
-            	TabControl.mViewSelected.buttonclicklearn(leanrnBtn);                     	
-            	TabControl.mViewSelected.buttonclicklearn(button1);
-            	TabControl.mViewSelected.buttonclicklearn(button2);
-            	TabControl.mViewSelected.buttonclicklearn(button3);
-            	TabControl.mViewSelected.buttonclicklearn(button4);
-            	TabControl.mViewSelected.buttonclicklearn(button5);
-            	TabControl.mViewSelected.buttonclicklearn(button6);
-            	TabControl.mViewSelected.buttonclicklearn(button7);
-            	TabControl.mViewSelected.buttonclicklearn(button8);
-            	TabControl.mViewSelected.buttonclicklearn(button9);
+
+            	TabControl.mViewSelected.buttonClickLearn(leanrnBtn);                     	
+            	TabControl.mViewSelected.buttonClickLearn(button1);
+            	TabControl.mViewSelected.buttonClickLearn(button2);
+            	TabControl.mViewSelected.buttonClickLearn(button3);
+            	TabControl.mViewSelected.buttonClickLearn(button4);
+            	TabControl.mViewSelected.buttonClickLearn(button5);
+            	TabControl.mViewSelected.buttonClickLearn(button6);
+            	TabControl.mViewSelected.buttonClickLearn(button7);
+            	TabControl.mViewSelected.buttonClickLearn(button8);
+            	TabControl.mViewSelected.buttonClickLearn(button9);
+
         	}else{
-        		TabControl.mViewSelected.buttonclickrecover(leanrnBtn);        		
+        		TabControl.mViewSelected.buttonClickRecover(leanrnBtn); 
         		setbuttonstate();    
         	}
         	break;
@@ -214,16 +222,19 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	if(lenclr==true){	        	
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr1=true;
-        		TabControl.mViewSelected.buttonclickrecover(button1);
-        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true);  
-        		Log.e("btnclr1=",""+btnclr1);	        	
-	        }        	
+        		TabControl.mViewSelected.buttonClickRecover(button1);
+        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true); 
+        		Log.e("btnclr1=",""+btnclr1);
+	        	
+	        }
+        	
+
         	break;
         case R.id.button2:        	
         	if(lenclr==true){	        	
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr2=true;
-        		TabControl.mViewSelected.buttonclickrecover(button2);
+        		TabControl.mViewSelected.buttonClickRecover(button2);
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,2, true);
         		Log.e("btnclr2=",""+btnclr2);	        	
         	}        	
@@ -232,7 +243,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	if(lenclr==true){	        
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr3=true;
-        		TabControl.mViewSelected.buttonclickrecover(button3);
+        		TabControl.mViewSelected.buttonClickRecover(button3);
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 3, true);
         		Log.e("btnclr3=",""+btnclr3);        		
         	}        	
@@ -241,16 +252,17 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	if(lenclr==true){	        	
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr4=true;
-	        		TabControl.mViewSelected.buttonclickrecover(button4);
-	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 4, true);  
-	        		Log.e("btnclr4=",""+btnclr4);	        	
+	        		TabControl.mViewSelected.buttonClickRecover(button4);
+	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 4, true);	        		
+	        		Log.e("btnclr4=",""+btnclr4);
+
         	}
         	break;
         case R.id.button5:
         	if(lenclr==true){	         
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr5=true;
-	        		TabControl.mViewSelected.buttonclickrecover(button5);
+	        		TabControl.mViewSelected.buttonClickRecover(button5);
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,5, true);
 	        		Log.e("btnclr5=",""+btnclr5);	        	
         	}
@@ -259,7 +271,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	if(lenclr==true){	        	 
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr6=true;
-	        		TabControl.mViewSelected.buttonclickrecover(button6);
+	        		TabControl.mViewSelected.buttonClickRecover(button6);
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 6, true);
 	        		Log.e("btnclr6=",""+btnclr6);
         	}
@@ -268,7 +280,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	if(lenclr==true){	        	  
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr7=true;
-	        		TabControl.mViewSelected.buttonclickrecover(button7);
+	        		TabControl.mViewSelected.buttonClickRecover(button7);
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 7, true);
 	        		Log.e("btnclr7=",""+btnclr7);	        	
         	}
@@ -277,7 +289,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	if(lenclr==true){	        	 
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr8=true;
-	        		TabControl.mViewSelected.buttonclickrecover(button8);
+	        		TabControl.mViewSelected.buttonClickRecover(button8);
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 8, true);
 	        		Log.e("btnclr8=",""+btnclr8);	        	
         	}
@@ -286,7 +298,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	if(lenclr==true){	        	 
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr9=true;
-	        		TabControl.mViewSelected.buttonclickrecover(button9);
+	        		TabControl.mViewSelected.buttonClickRecover(button9);
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 9, true);
 	        		Log.e("btnclr9=",""+btnclr9);
 	        }
