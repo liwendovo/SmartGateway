@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.TabControl;
 
 public class RF_Custom1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener{
 	Button  backBtn,leanrnBtn;
@@ -27,15 +28,6 @@ public class RF_Custom1 extends Activity implements android.view.View.OnClickLis
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.rf_custom1);
-//		SharedPreferences sharedPreferences = getSharedPreferences("itcast", Context.MODE_PRIVATE);
-//		Editor editor = sharedPreferences.edit();//获取编辑器
-//		editor.putString("name", "传智播客");
-//		editor.putInt("age", 4);
-//		editor.commit();
-//		SharedPreferences sharedPreferences = getSharedPreferences("itcast", Context.MODE_PRIVATE);
-//		//getString()第二个参数为缺省值，如果preference中不存在该key，将返回缺省值
-//		String name = sharedPreferences.getString("name", "");
-//		int age = sharedPreferences.getInt("age", 1);
 		
 		backBtn=(Button)findViewById(R.id.back);		
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);	
@@ -72,6 +64,19 @@ public class RF_Custom1 extends Activity implements android.view.View.OnClickLis
 		button8.setOnLongClickListener(this);
 		button9.setOnLongClickListener(this);
 		
+		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
+		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
+		TabControl.mViewSelected.setButtonFocusChanged(button1);
+		TabControl.mViewSelected.setButtonFocusChanged(button2);
+		TabControl.mViewSelected.setButtonFocusChanged(button3);
+		TabControl.mViewSelected.setButtonFocusChanged(button4);
+		TabControl.mViewSelected.setButtonFocusChanged(button5);
+		TabControl.mViewSelected.setButtonFocusChanged(button6);
+		TabControl.mViewSelected.setButtonFocusChanged(button7);
+		TabControl.mViewSelected.setButtonFocusChanged(button8);
+		TabControl.mViewSelected.setButtonFocusChanged(button9);
+
+		
 	}
 
 	@Override
@@ -80,10 +85,22 @@ public class RF_Custom1 extends Activity implements android.view.View.OnClickLis
 //		Log.e("leewoo", "Button id = " + v.getId());  
 		switch(v.getId())  
         {  
-        case R.id.back: finish();break;
+        case R.id.back:
+        	finish();
+        	break;
+        case R.id.titleBtn:
+   		break;
+        case R.id.button1: 
+            break;  
+        case R.id.button2:  
+           break;  
+        case R.id.button3:  
+            break;  
+        
         default:  
             break;  
-        }  
+       
+        } 
         
 	}
 

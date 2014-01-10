@@ -32,44 +32,33 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 		leanrnBtn.setOnClickListener(this); 
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);  
-	
+		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
+		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
+		TabControl.mViewSelected.setImageViewFocusChanged(button1);
+		TabControl.mViewSelected.setImageViewFocusChanged(button2);
+		
+		
 	}
 
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		 switch(v.getId())  
-	        {  
-	        case R.id.button1: 
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
-	            break;  
-	        case R.id.button2:  
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
-	            break;  
-//	        case R.id.button3:  
-//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button3);
-//	            break;  
-//	        case R.id.button4:  
-//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button4);
-//	            break;  
-//	        case R.id.button5:  
-//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button5);
-//	            break;  
-//	        case R.id.button6:  
-//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button6);
-//	            break;  
-//	        case R.id.button7:  
-//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button7);
-//	            break;  
-//	        case R.id.button8:  
-//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button8);
-//	            break;  
-//	        case R.id.button9:  
-//	        	TabControl.mBtnSelected.setImageViewFocusChanged(button9);
-//	            break;  
-	        default:  
-	            break;  
-	        }  
+		switch(v.getId())  
+        {  
+        case R.id.back:
+        	finish();
+        	break;
+        case R.id.titleBtn:
+   		break;
+        case R.id.button1: 
+            break;  
+        case R.id.button2:  
+           break;  
+        case R.id.button3:  
+            break; 
+        default:  
+            break; 
+        }
 	}
 
 	

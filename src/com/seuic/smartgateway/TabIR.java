@@ -180,8 +180,8 @@ public class TabIR extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		Log.e("leewoo","TabIR-->onStart");
-		Log.e("leewoo","TabIR-->onResume");
+//		Log.e("leewoo","TabIR-->onStart");
+//		Log.e("leewoo","TabIR-->onResume");
 		mUid=myPreferences.getString("uid", "NULL");	
 		if (mUid.equals("NULL")) {
 			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();		

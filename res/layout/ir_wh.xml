@@ -152,20 +152,20 @@
         <TableRow>
         
         <ImageView
-            android:id="@+id/imageView14"
+            android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ir_wh_up" />
 
         <ImageView
-            android:id="@+id/imageView15"
+            android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/close" />
 
         <ImageView
-            android:id="@+id/imageView16"
+            android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ir_wh_down" />

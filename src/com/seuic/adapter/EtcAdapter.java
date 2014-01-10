@@ -97,10 +97,13 @@ public class EtcAdapter extends BaseAdapter {
         holder.title.setText(item.get("type").toString());
         holder.icon.setImageResource((Integer) item.get("icon"));
         holder.quickBtn1.setImageResource((Integer) item.get("status")); 
+    	TabControl.mViewSelected.setImageViewFocusChanged(holder.quickBtn2);
+    	TabControl.mViewSelected.setImageViewFocusChanged(holder.quickBtn1);
         if(item.get("status2") != null){
         holder.quickBtn2.setVisibility(View.VISIBLE);
-        holder.quickBtn2.setImageResource((Integer) item.get("status2"));  
-       
+      
+    	
+        holder.quickBtn2.setImageResource((Integer) item.get("status2"));         
         	holder.quickBtn2.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -108,7 +111,7 @@ public class EtcAdapter extends BaseAdapter {
 					// TODO Auto-generated method stub
 //					Toast.makeText(context,	"Btn2 onclick", Toast.LENGTH_SHORT).show();
 					Log.e("leewoo", "quickBtn1 onclick");
-					TabControl.mViewSelected.setImageViewFocusChanged(holder.quickBtn2);
+				
 				}
 			});
         }else{
@@ -125,7 +128,7 @@ public class EtcAdapter extends BaseAdapter {
 				// TODO Auto-generated method stub
 //				Toast.makeText(context,	"Btn1 onclick", Toast.LENGTH_SHORT).show();
 				Log.e("leewoo", "quickBtn2 onclick");
-				TabControl.mViewSelected.setImageViewFocusChanged(holder.quickBtn1);
+				
 			}
 		});
 

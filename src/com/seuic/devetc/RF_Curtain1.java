@@ -26,16 +26,21 @@ public class RF_Curtain1 extends Activity implements android.view.View.OnClickLi
 		button1=(ImageView)findViewById(R.id.button1);
 		button2=(ImageView)findViewById(R.id.button2);
 		button3=(ImageView)findViewById(R.id.button3);		
-		devpic=(ImageView)findViewById(R.id.pic);
-		devpic.setImageDrawable(getResources().getDrawable(R.drawable.rf_curtain));	
-		
+	
+	
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);  
 		button3.setOnClickListener(this);  
-		 
+		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
+		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
+		TabControl.mViewSelected.setImageViewFocusChanged(button1);
+		TabControl.mViewSelected.setImageViewFocusChanged(button2);
+		TabControl.mViewSelected.setImageViewFocusChanged(button3);
 	
+		devpic=(ImageView)findViewById(R.id.pic);
+		devpic.setImageDrawable(getResources().getDrawable(R.drawable.rf_curtain));	
 	}
 
 	@Override
@@ -43,21 +48,16 @@ public class RF_Curtain1 extends Activity implements android.view.View.OnClickLi
 		// TODO Auto-generated method stub
 		switch(v.getId())  
         {  
-//        case R.id.back:
-//        	TabControl.mViewSelected.setImageViewFocusChanged(backBtn);
-//        	finish();
-//        	break;
-//        case R.id.titleBtn:
-//        	TabControl.mViewSelected.setImageViewFocusChanged(leanrnBtn);
-//    		break;
+        case R.id.back:
+        	finish();
+        	break;
+        case R.id.titleBtn:
+   		break;
         case R.id.button1: 
-        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
             break;  
         case R.id.button2:  
-        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
-            break;  
+           break;  
         case R.id.button3:  
-        	TabControl.mViewSelected.setImageViewFocusChanged(button3);
             break;  
         
         default:  

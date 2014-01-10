@@ -23,26 +23,40 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
 		button1=(ImageView)findViewById(R.id.button1);
 		button2=(ImageView)findViewById(R.id.button2);
+	
+		backBtn.setOnClickListener(this); 
+		leanrnBtn.setOnClickListener(this); 
+		button1.setOnClickListener(this);  
+		button2.setOnClickListener(this); 
+		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
+		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
+		TabControl.mViewSelected.setImageViewFocusChanged(button1);
+		TabControl.mViewSelected.setImageViewFocusChanged(button2);		
 		devpic=(ImageView)findViewById(R.id.pic);
 		devpic.setImageDrawable(getResources().getDrawable(R.drawable.rf_power));
-        
     }
 
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		 switch(v.getId())  
-	        {  
-	        case R.id.button1: 
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
-	            break;  
-	        case R.id.button2:  
-	        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
-	            break;  
-	       
-	        default:  
-	            break;  
-	        }  
+		switch(v.getId())  
+        {  
+        case R.id.back:
+        	finish();
+        	break;
+        case R.id.titleBtn:
+   		break;
+        case R.id.button1: 
+            break;  
+        case R.id.button2:  
+           break;  
+        case R.id.button3:  
+            break;  
+        
+        default:  
+            break;  
+       
+        }
 	}
 
    
