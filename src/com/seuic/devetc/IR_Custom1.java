@@ -42,11 +42,12 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	 Boolean btnclr7=false;
 	 Boolean btnclr8=false;
 	 Boolean btnclr9=false;
-	 Drawable drawable;
-	 Drawable drawable1;
-	 Drawable drawable2;
+	
+	 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ir_custom1);
@@ -139,10 +140,43 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		button7.setOnLongClickListener(this);
 		button8.setOnLongClickListener(this);
 		button9.setOnLongClickListener(this);
-		drawable = getResources().getDrawable(R.drawable.define);
-		drawable1 = getResources().getDrawable(R.drawable.title_learn);
-		drawable2 = getResources().getDrawable(R.drawable.defineblack);
+		
+		
+	    setbuttonstate();
+				
+		
 	}
+	
+	public void setbuttonstate()
+	{
+    	if(btnclr1)	TabControl.mViewSelected.buttonclickrecover(button1);
+    	else TabControl.mViewSelected.buttonclickgreychanged(button1);
+    	
+    	if(btnclr2)	TabControl.mViewSelected.buttonclickrecover(button2);
+    	else TabControl.mViewSelected.buttonclickgreychanged(button2);
+    	
+    	if(btnclr3)	TabControl.mViewSelected.buttonclickrecover(button3);
+    	else TabControl.mViewSelected.buttonclickgreychanged(button3);
+    	
+    	if(btnclr4)	TabControl.mViewSelected.buttonclickrecover(button4);
+    	else TabControl.mViewSelected.buttonclickgreychanged(button4);
+    	
+    	if(btnclr5)	TabControl.mViewSelected.buttonclickrecover(button5);
+    	else TabControl.mViewSelected.buttonclickgreychanged(button5);
+    	
+    	if(btnclr6)	TabControl.mViewSelected.buttonclickrecover(button6);
+    	else TabControl.mViewSelected.buttonclickgreychanged(button6);
+    	
+    	if(btnclr7)	TabControl.mViewSelected.buttonclickrecover(button7);
+    	else TabControl.mViewSelected.buttonclickgreychanged(button7);
+    	
+    	if(btnclr8)	TabControl.mViewSelected.buttonclickrecover(button8);
+    	else TabControl.mViewSelected.buttonclickgreychanged(button8);
+    	
+    	if(btnclr9)	TabControl.mViewSelected.buttonclickrecover(button9);
+    	else TabControl.mViewSelected.buttonclickgreychanged(button9);
+	}
+	
 	
 	@Override
 	public void onClick(View v) {	
@@ -156,62 +190,28 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         case R.id.titleBtn:
 //        	TabControl.mBtnSelected.setImageViewFocusChanged(leanrnBtn);
         	lenclr=!lenclr;        	
-        	Log.e("lenclr=",""+drawable);
+        	//Log.e("lenclr=",""+drawable);
         	if(lenclr==true){
 
             	Log.e("leewoo", "clr"+v.getId() ); 
-            	leanrnBtn.getBackground().setAlpha(100);
-            	
-//			        	if(btnclr1)	button1.setBackgroundDrawable(drawable);
-//			        	else button1.setBackgroundDrawable(drawable2);
-//			        	
-//			        	if(btnclr2)	button2.setBackgroundDrawable(drawable);
-//			        	else button2.setBackgroundDrawable(drawable2);
-//			        	
-//			        	if(btnclr3)	button3.setBackgroundDrawable(drawable);
-//			        	else button3.setBackgroundDrawable(drawable2);
-//			        	
-//			        	if(btnclr4)	button4.setBackgroundDrawable(drawable);
-//			        	else button4.setBackgroundDrawable(drawable2);
-//			        	
-//			        	if(btnclr5)	button5.setBackgroundDrawable(drawable);
-//			        	else button5.setBackgroundDrawable(drawable2);
-//			        	
-//			        	if(btnclr6)	button6.setBackgroundDrawable(drawable);
-//			        	else button6.setBackgroundDrawable(drawable2);
-//			        	
-//			        	if(btnclr7)	button7.setBackgroundDrawable(drawable);
-//			        	else button7.setBackgroundDrawable(drawable2);
-//			        	
-//			        	if(btnclr8)	button8.setBackgroundDrawable(drawable);
-//			        	else button8.setBackgroundDrawable(drawable2);
-//			        	
-//			        	if(btnclr9)	button9.setBackgroundDrawable(drawable);
-//			        	else button9.setBackgroundDrawable(drawable2);
-            	
-            	button1.setBackgroundDrawable(drawable2);
-            	button2.setBackgroundDrawable(drawable2);
-            	button3.setBackgroundDrawable(drawable2);
-            	button4.setBackgroundDrawable(drawable2);
-            	button5.setBackgroundDrawable(drawable2);
-            	button6.setBackgroundDrawable(drawable2);
-            	button7.setBackgroundDrawable(drawable2);
-            	button8.setBackgroundDrawable(drawable2);
-            	button9.setBackgroundDrawable(drawable2);
+            	TabControl.mViewSelected.buttonclicklearn(leanrnBtn);
+            	//Log.e("leanrnBtn=true",""+drawable1);            	
+            	TabControl.mViewSelected.buttonclicklearn(button1);
+            	TabControl.mViewSelected.buttonclicklearn(button2);
+            	TabControl.mViewSelected.buttonclicklearn(button3);
+            	TabControl.mViewSelected.buttonclicklearn(button4);
+            	TabControl.mViewSelected.buttonclicklearn(button5);
+            	TabControl.mViewSelected.buttonclicklearn(button6);
+            	TabControl.mViewSelected.buttonclicklearn(button7);
+            	TabControl.mViewSelected.buttonclicklearn(button8);
+            	TabControl.mViewSelected.buttonclicklearn(button9);
             	            	
             	
 			        	
         	}else{
-        		leanrnBtn.getBackground().setAlpha(255);
-        		button1.setBackgroundDrawable(drawable);
-        		button2.setBackgroundDrawable(drawable);
-        		button3.setBackgroundDrawable(drawable);
-        		button4.setBackgroundDrawable(drawable);
-        		button5.setBackgroundDrawable(drawable);
-        		button6.setBackgroundDrawable(drawable);
-        		button7.setBackgroundDrawable(drawable);
-        		button8.setBackgroundDrawable(drawable);
-        		button9.setBackgroundDrawable(drawable);      
+        		TabControl.mViewSelected.buttonclickrecover(leanrnBtn);
+        		
+        		setbuttonstate();    
         	}
         	break;
   	
@@ -222,7 +222,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr1=true;
 
-        		button1.setBackgroundDrawable(drawable);
+        		TabControl.mViewSelected.buttonclickrecover(button1);
 
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true);        		
 
@@ -238,7 +238,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr2=true;
 
-        		button2.setBackgroundDrawable(drawable);
+        		TabControl.mViewSelected.buttonclickrecover(button2);
 
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,2, true);
 
@@ -254,7 +254,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
         		btnclr3=true;
 
-        		button3.setBackgroundDrawable(drawable);
+        		TabControl.mViewSelected.buttonclickrecover(button3);
 
         		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 3, true);
 
@@ -270,7 +270,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr4=true;
 
-	        		button4.setBackgroundDrawable(drawable);
+	        		TabControl.mViewSelected.buttonclickrecover(button4);
 
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 4, true);
 	        		
@@ -285,7 +285,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr5=true;
 
-	        		button5.setBackgroundDrawable(drawable);
+	        		TabControl.mViewSelected.buttonclickrecover(button5);
 
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,5, true);
 
@@ -299,7 +299,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr6=true;
 
-	        		button6.setBackgroundDrawable(drawable);
+	        		TabControl.mViewSelected.buttonclickrecover(button6);
 
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 6, true);
 
@@ -313,7 +313,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr7=true;
 
-	        		button7.setBackgroundDrawable(drawable);
+	        		TabControl.mViewSelected.buttonclickrecover(button7);
 
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 7, true);
 
@@ -327,7 +327,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr8=true;
 
-	        		button8.setBackgroundDrawable(drawable);
+	        		TabControl.mViewSelected.buttonclickrecover(button8);
 
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 8, true);
 
@@ -341,7 +341,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
 	        		btnclr9=true;
 
-	        		button9.setBackgroundDrawable(drawable);
+	        		TabControl.mViewSelected.buttonclickrecover(button9);
 
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 9, true);
 

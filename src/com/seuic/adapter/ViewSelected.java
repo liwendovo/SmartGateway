@@ -1,5 +1,6 @@
 package com.seuic.adapter;
 
+import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -33,9 +34,9 @@ public class ViewSelected {
       * 学习这个按钮进行的颜色过滤   
       */    
    public final static float[] LEARNED=new float[] {      
-         2, 0, 0, 0, 2,      
-         0, 2, 0, 0, 2,      
-         0, 0, 2, 0, 2,      
+         0.6f, 0, 0, 0, 0,      
+         0, 0.6f, 0, 0, 0,      
+         0, 0, 0.6f, 0, 0,      
          0, 0, 0, 1, 0 };   
    
     /**   
@@ -132,4 +133,34 @@ public class ViewSelected {
 //    inView.setOnTouchListener(buttonOnTouchListener);     
 //    inView.setOnFocusChangeListener(buttonOnFocusChangeListener);     
 //  }  
+   
+   public final void buttonclickgreychanged(View inView)
+   {
+
+	   inView.getBackground().setColorFilter(new ColorMatrixColorFilter(LEARNED)); 
+	 
+	   inView.setBackgroundDrawable(inView.getBackground());
+	   inView.setEnabled(false);
+   }
+   
+   public final void buttonclicklearn(View inView)
+   {
+
+	  inView.getBackground().setColorFilter(new ColorMatrixColorFilter(LEARNED)); 
+	  inView.setBackgroundDrawable(inView.getBackground());
+	  inView.setEnabled(true);	  
+   }
+   
+   public final void buttonclickrecover(View inView)
+   {
+
+	   inView.getBackground().setColorFilter(new ColorMatrixColorFilter(NOT_SELECTED)); 
+	   inView.setBackgroundDrawable(inView.getBackground());
+	   inView.setEnabled(true);
+   }
+   
 }
+
+
+
+
