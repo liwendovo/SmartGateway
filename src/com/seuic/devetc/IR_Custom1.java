@@ -23,10 +23,12 @@ import com.seuic.smartgateway.TabControl;
 
 public class IR_Custom1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener {
 	Button  backBtn,leanrnBtn;
-	ImageView   devpic;
+	ImageView   devpic;	
 	Button  button1,button2,button3,
 			button4,button5,button6,
 			button7,button8,button9;
+	ImageView   button10;
+	
 	int devid;
 	String learnFalse="false";
 	String learnTrue="true";
@@ -42,7 +44,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	 Boolean btnclr7=false;
 	 Boolean btnclr8=false;
 	 Boolean btnclr9=false;
-		
+	 Boolean btnclr10=false;	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -63,6 +65,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		button7=(Button)findViewById(R.id.button7);		
 		button8=(Button)findViewById(R.id.button8);
 		button9=(Button)findViewById(R.id.button9);
+		button10=(ImageView)findViewById(R.id.button10);
 		devpic=(ImageView)findViewById(R.id.pic);
 		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_custom));
 		
@@ -76,7 +79,8 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		button6.setOnClickListener(this);  
 		button7.setOnClickListener(this);  
 		button8.setOnClickListener(this);  
-		button9.setOnClickListener(this);  
+		button9.setOnClickListener(this);
+		button10.setOnClickListener(this);
 		button1.setOnLongClickListener(this);
 		button2.setOnLongClickListener(this);
 		button3.setOnLongClickListener(this);
@@ -97,7 +101,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		TabControl.mViewSelected.setButtonFocusChanged(button7);
 		TabControl.mViewSelected.setButtonFocusChanged(button8);
 		TabControl.mViewSelected.setButtonFocusChanged(button9);
-		
+		TabControl.mViewSelected.setImageViewFocusChanged(button10);
 		
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");
@@ -179,6 +183,9 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
     	
     	if(btnclr9)	TabControl.mViewSelected.buttonClickRecover(button9);
     	else TabControl.mViewSelected.buttonClickGreyChanged(button9);
+    	
+    	if(btnclr10)TabControl.mViewSelected.imageviewClickRecover(button10);
+    	else TabControl.mViewSelected.imageviewClickGreyChanged(button10);
 	}
 	
 	
@@ -205,7 +212,8 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
             	TabControl.mViewSelected.buttonClickLearn(button6);
             	TabControl.mViewSelected.buttonClickLearn(button7);
             	TabControl.mViewSelected.buttonClickLearn(button8);
-            	TabControl.mViewSelected.buttonClickLearn(button9);            	
+            	TabControl.mViewSelected.buttonClickLearn(button9);  
+            	TabControl.mViewSelected.imageviewClickLearn(button10);
 			        	
         	}else{
         		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
@@ -345,6 +353,20 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 9, true);
 
 	        		Log.e("btnclr9=",""+btnclr9);
+	        	        	}
+        	break;     
+        	
+        case R.id.button10:
+        	if(lenclr==true){
+	        	 
+	        		Toast.makeText(getApplicationContext(), "Ñ§Ï°³É¹¦", Toast.LENGTH_SHORT).show(); 
+	        		btnclr10=true;
+
+	        		TabControl.mViewSelected.imageviewClickRecover(button10);
+
+	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 10, true);
+
+	        		Log.e("btnclr10=",""+btnclr10);
 	        	        	}
         	break;     
         	

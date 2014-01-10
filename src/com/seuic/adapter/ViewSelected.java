@@ -42,24 +42,7 @@ public class ViewSelected {
     /**   
    20.   * 按钮焦点改变   
    21.   */    
-//    public final static OnFocusChangeListener imageViewOnFocusChangeListener=new OnFocusChangeListener() {     
-//         
-//     @Override    
-//     public void onFocusChange(View v, boolean hasFocus) {  
-////    	  Log.e("leewoo", "imageViewOnFocusChangeListener ");
-//	    if (hasFocus) {     
-////	    	((ImageView) v).setColorFilter(new ColorMatrixColorFilter(SELECTED));  
-//	    	((ImageView) v).setColorFilter(new ColorMatrixColorFilter(SELECTED)); 
-//	    	  ((ImageView) v).setImageDrawable(((ImageView) v).getDrawable()); 
-//	      }     
-//	   else    
-//	      {     
-////		    ((ImageView) v).setColorFilter(new ColorMatrixColorFilter(NOT_SELECTED));   
-//		   ((ImageView) v).setColorFilter(new ColorMatrixColorFilter(NOT_SELECTED)); 
-//	    	  ((ImageView) v).setImageDrawable(((ImageView) v).getDrawable()); 
-//	    }     
-//     }     
-//   };     
+
     
     /**   
    39.   * 按钮触碰按下效果   
@@ -67,18 +50,13 @@ public class ViewSelected {
    public final static OnTouchListener imageViewOnTouchListener=new OnTouchListener() {     
     @Override    
     public boolean onTouch(View v, MotionEvent event) {   
-//    	  Log.e("leewoo", "imageViewOnTouchListener ");
+
       if(event.getAction() == MotionEvent.ACTION_DOWN){     
-//    	  ((ImageView) v).setColorFilter(new ColorMatrixColorFilter(SELECTED));  
-//    	  Log.e("leewoo", "imageViewOnTouchListener-->ACTION_DOWN");
     	  	((ImageView) v).setColorFilter(new ColorMatrixColorFilter(SELECTED)); 
-//	    	  ((ImageView) v).setImageDrawable(((ImageView) v).getDrawable()); 
+
       }     
-     else if(event.getAction() == MotionEvent.ACTION_UP){     
-//    	  Log.e("leewoo", "imageViewOnTouchListener-->ACTION_UP");
-//         ((ImageView) v).setColorFilter(new ColorMatrixColorFilter(NOT_SELECTED));  
+     else if(event.getAction() == MotionEvent.ACTION_UP){   
     	  ((ImageView) v).setColorFilter(new ColorMatrixColorFilter(NOT_SELECTED)); 
-//    	  ((ImageView) v).setImageDrawable(((ImageView) v).getDrawable()); 
      }     
     return false;     
     }     
@@ -86,21 +64,6 @@ public class ViewSelected {
    /**   
    20.   * 按钮焦点改变   
    21.   */    
-//    public final static OnFocusChangeListener buttonOnFocusChangeListener=new OnFocusChangeListener() {     
-//         
-//     @Override    
-//     public void onFocusChange(View v, boolean hasFocus) {         
-//	    if (hasFocus) {     	    	 
-//	    	 v.getBackground().setColorFilter(new ColorMatrixColorFilter(SELECTED)); 
-//	    	 v.setBackgroundDrawable(v.getBackground());   
-//	      }     
-//	    else    
-//	      {     
-//		     v.getBackground().setColorFilter(new ColorMatrixColorFilter(NOT_SELECTED));
-//		     v.setBackgroundDrawable(v.getBackground());  
-//	      }     
-//     }     
-//   };     
     
     /**   
    39.   * 按钮触碰按下效果   
@@ -110,11 +73,11 @@ public class ViewSelected {
     public boolean onTouch(View v, MotionEvent event) {     
       if(event.getAction() == MotionEvent.ACTION_DOWN){     
     	  v.getBackground().setColorFilter(new ColorMatrixColorFilter(SELECTED)); 
-//    	  v.setBackgroundDrawable(v.getBackground());      
+    	  v.setBackgroundDrawable(v.getBackground());      
       }     
      else if(event.getAction() == MotionEvent.ACTION_UP){     
     	 v.getBackground().setColorFilter(new ColorMatrixColorFilter(NOT_SELECTED));
-//	     v.setBackgroundDrawable(v.getBackground());  
+	     v.setBackgroundDrawable(v.getBackground());  
          
      }     
     return false;     
@@ -126,14 +89,11 @@ public class ViewSelected {
   */    
    public final  void setImageViewFocusChanged(View inView)     
    {     
-    inView.setOnTouchListener(imageViewOnTouchListener);     
-//    inView.setOnFocusChangeListener(imageViewOnFocusChangeListener);     
+    inView.setOnTouchListener(imageViewOnTouchListener);  
   }    
    public final void setButtonFocusChanged(View inView)     
    {     
-    inView.setOnTouchListener(buttonOnTouchListener);     
-//    inView.setOnFocusChangeListener(buttonOnFocusChangeListener);     
-
+    inView.setOnTouchListener(buttonOnTouchListener);  
  }  
    
    public final void buttonClickGreyChanged(View inView)
@@ -184,8 +144,6 @@ public class ViewSelected {
 	   inView.setEnabled(true);
    }
    
-
-
 
 }
 
