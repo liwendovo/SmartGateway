@@ -27,6 +27,8 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 
 		backBtn=(Button)findViewById(R.id.back);	
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);	
+		devpic=(ImageView)findViewById(R.id.pic);
+		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_tv));
 		button1=(ImageView)findViewById(R.id.button1);
 		button2=(ImageView)findViewById(R.id.button2);
 		button3=(ImageView)findViewById(R.id.button3);		
@@ -43,10 +45,6 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		button14=(ImageView)findViewById(R.id.button14);
 		button15=(ImageView)findViewById(R.id.button15);
 		button16=(ImageView)findViewById(R.id.button16);
-		
-		devpic=(ImageView)findViewById(R.id.pic);
-		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_tv));
-		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
 		button1.setOnClickListener(this);  
@@ -69,7 +67,8 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 //		button2.setClickable(false);
 //		button3.setClickable(false);
 //		button4.setClickable(false);
-		
+		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
+		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
 		TabControl.mViewSelected.setImageViewFocusChanged(button1);
 		TabControl.mViewSelected.setImageViewFocusChanged(button2);
 		TabControl.mViewSelected.setImageViewFocusChanged(button3);
@@ -91,54 +90,22 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		 switch(v.getId())  
-	        {  
-	        case R.id.button1: 
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
-	            break;  
-	        case R.id.button2:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
-	            break;  
-	        case R.id.button3:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button3);
-	            break;  
-	        case R.id.button4:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button4);
-	            break;  
-	        case R.id.button5:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button5);
-	            break;  
-	        case R.id.button6:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button6);
-	            break;  
-	        case R.id.button7:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button7);
-	            break;  
-	        case R.id.button8:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button8);
-	            break;  
-	        case R.id.button9:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button9);
-	            break;  
-	        case R.id.button10:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button10);
-	            break;  
-	        case R.id.button11:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button11);
-	            break;  
-	        case R.id.button12:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button12);
-	            break;  
-	        case R.id.button13:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button13);
-	            break;  
-	        case R.id.button14:  
-//	        	TabControl.mViewSelected.setImageViewFocusChanged(button14);
-	            break;  
-	       
-	        default:  
-	            break;  
-	        }  
+		switch(v.getId())  
+        {  
+        case R.id.back:
+        	finish();
+        	break;
+        case R.id.titleBtn:
+   		break;
+        case R.id.button1: 
+            break;  
+        case R.id.button2:  
+           break;  
+        case R.id.button3:  
+            break; 
+        default:  
+            break; 
+        }
 	  
 	}
 

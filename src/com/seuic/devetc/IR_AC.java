@@ -58,8 +58,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		button7=(Button)findViewById(R.id.button7);		
 		button8=(Button)findViewById(R.id.button8);
 		button9=(Button)findViewById(R.id.button9);
-		button10=(ImageView)findViewById(R.id.button10);
-		
+		button10=(ImageView)findViewById(R.id.button10);		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
 		button1.setOnClickListener(this);  
@@ -71,8 +70,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		button7.setOnClickListener(this);  
 		button8.setOnClickListener(this);  
 		button9.setOnClickListener(this);  
-		button10.setOnClickListener(this); 
-		
+		button10.setOnClickListener(this); 		
 		button1.setOnLongClickListener(this);
 		button2.setOnLongClickListener(this);
 		button3.setOnLongClickListener(this);
@@ -83,7 +81,8 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		button8.setOnLongClickListener(this);
 		button9.setOnLongClickListener(this);
 		button10.setOnLongClickListener(this);
-		
+		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
+		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
 		TabControl.mViewSelected.setButtonFocusChanged(button1);
 		TabControl.mViewSelected.setButtonFocusChanged(button2);
 		TabControl.mViewSelected.setButtonFocusChanged(button3);

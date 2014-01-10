@@ -15,7 +15,7 @@ public class IR_Media extends Activity implements android.view.View.OnClickListe
 	ImageView   devpic;
 	ImageView  button1,button2,button3,
 			button4,button5,button6,
-			button7,button8;
+			button7,button8,button9,button10;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,6 +25,10 @@ public class IR_Media extends Activity implements android.view.View.OnClickListe
 	
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
+		devpic=(ImageView)findViewById(R.id.pic);
+		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_media));
+		
+		
 		button1=(ImageView)findViewById(R.id.button1);
 		button2=(ImageView)findViewById(R.id.button2);
 		button3=(ImageView)findViewById(R.id.button3);		
@@ -33,8 +37,8 @@ public class IR_Media extends Activity implements android.view.View.OnClickListe
 		button6=(ImageView)findViewById(R.id.button6);		
 		button7=(ImageView)findViewById(R.id.button7);		
 		button8=(ImageView)findViewById(R.id.button8);
-		devpic=(ImageView)findViewById(R.id.pic);
-		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_media));
+		button9=(ImageView)findViewById(R.id.button9);		
+		button10=(ImageView)findViewById(R.id.button10);
 		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
@@ -45,7 +49,11 @@ public class IR_Media extends Activity implements android.view.View.OnClickListe
 		button5.setOnClickListener(this);  
 		button6.setOnClickListener(this);  
 		button7.setOnClickListener(this);  
-		button8.setOnClickListener(this);  
+		button8.setOnClickListener(this); 
+		button9.setOnClickListener(this);  
+		button10.setOnClickListener(this); 
+		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
+		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
 		TabControl.mViewSelected.setImageViewFocusChanged(button1);
 		TabControl.mViewSelected.setImageViewFocusChanged(button2);
 		TabControl.mViewSelected.setImageViewFocusChanged(button3);
@@ -54,8 +62,8 @@ public class IR_Media extends Activity implements android.view.View.OnClickListe
 		TabControl.mViewSelected.setImageViewFocusChanged(button6);
 		TabControl.mViewSelected.setImageViewFocusChanged(button7);
 		TabControl.mViewSelected.setImageViewFocusChanged(button8);
-//		TabControl.mViewSelected.setImageViewFocusChanged(button9);
-	
+		TabControl.mViewSelected.setImageViewFocusChanged(button9);
+		TabControl.mViewSelected.setImageViewFocusChanged(button10);
 	}
 
 	@Override
@@ -63,39 +71,29 @@ public class IR_Media extends Activity implements android.view.View.OnClickListe
 		// TODO Auto-generated method stub
 		switch(v.getId())  
         {  
-//        case R.id.back:
-//        	TabControl.mViewSelected.setImageViewFocusChanged(backBtn);
-//        	finish();
-//        	break;
-//        case R.id.titleBtn:
-//        	TabControl.mViewSelected.setImageViewFocusChanged(leanrnBtn);
-//    		break;
+        case R.id.back:
+        	finish();
+        	break;
+        case R.id.titleBtn:
+    		break;
         case R.id.button1: 
-//        	TabControl.mViewSelected.setImageViewFocusChanged(button1);
-            break;  
+           break;  
         case R.id.button2:  
-//        	TabControl.mViewSelected.setImageViewFocusChanged(button2);
             break;  
         case R.id.button3:  
-//        	TabControl.mViewSelected.setImageViewFocusChanged(button3);
             break;  
         case R.id.button4:  
-//        	TabControl.mViewSelected.setImageViewFocusChanged(button4);
-            break;  
+           break;  
         case R.id.button5:  
-//        	TabControl.mViewSelected.setImageViewFocusChanged(button5);
-            break;  
+           break;  
         case R.id.button6:  
-//        	TabControl.mViewSelected.setImageViewFocusChanged(button6);
-            break;  
+           break;  
         case R.id.button7:  
-//        	TabControl.mViewSelected.setImageViewFocusChanged(button7);
-            break;  
+           break;  
         case R.id.button8:  
-//        	TabControl.mViewSelected.setImageViewFocusChanged(button8);
-            break;  
+           break;  
         case R.id.button9:  
-//        	TabControl.mViewSelected.setImageViewFocusChanged(button9);
+
             break;  
         default:  
             break;  

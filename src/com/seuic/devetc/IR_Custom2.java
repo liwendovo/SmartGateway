@@ -39,6 +39,7 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ir_custom2);
+		
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
 		button1=(ImageView)findViewById(R.id.button1);
@@ -50,8 +51,7 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		button7=(ImageView)findViewById(R.id.button7);		
 		button8=(ImageView)findViewById(R.id.button8);
 		button9=(ImageView)findViewById(R.id.button9);
-		button10=(ImageView)findViewById(R.id.button10);
-		
+		button10=(ImageView)findViewById(R.id.button10);		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
 		button1.setOnClickListener(this);  
@@ -73,6 +73,8 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		button8.setOnLongClickListener(this);
 		button9.setOnLongClickListener(this);
 		button10.setOnLongClickListener(this);
+		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
+		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
 		TabControl.mViewSelected.setImageViewFocusChanged(button1);
 		TabControl.mViewSelected.setImageViewFocusChanged(button2);
 		TabControl.mViewSelected.setImageViewFocusChanged(button3);
@@ -205,13 +207,23 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		switch(v.getId())  
-        {  
-        case R.id.back: finish();break;
-        case R.id.titleBtn: break;
-        default:  
-            break;  
-        }  		
+		
+    		switch(v.getId())  
+            {  
+            case R.id.back:
+            	finish();
+            	break;
+            case R.id.titleBtn:
+       		break;
+            case R.id.button1: 
+                break;  
+            case R.id.button2:  
+               break;  
+            case R.id.button3:  
+                break; 
+            default:  
+                break; 
+            }		
 	}
 
 	
