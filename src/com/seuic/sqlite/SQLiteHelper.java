@@ -63,9 +63,18 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		super(context, name, null, version);
 	}
 	// 返回值  成功  重复
-	public void insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, String Tag_Name) {
+	public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, String Tag_Name) {
+		
+		String str = "SELECT * FROM " + Table_Name_Setup + " WHERE " +Uid + "=\""+ Tag_Uid + "\"";
+		Cursor ToReturn = db.rawQuery(str, null);
+		if(0==ToReturn.getCount())
+		{
 		String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\');";
 		db.execSQL(sql);
+		return true;
+		}else{
+		return false;
+		}
 	}
 	// 返回值  成功  重复
 	public void insertList(SQLiteDatabase db, String Tag_Uid, String Tag_Class, String Tag_Type, String Tag_Name, String Tag_Status, String Tag_Other) {
@@ -73,6 +82,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	
 		String sql = "INSERT INTO " + Table_Name_List + " Values( \'" + Tag_Uid + "\', NULL ,\'" + Tag_Class + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',\'"  + Tag_Status + "\',\'"+ Tag_Other + "\');";
 		db.execSQL(sql);
+		
 	}
 //	public void insertEtc(SQLiteDatabase db, String Tag_Uid, int Tag_DevID, String Tag_EtcID, String Tag_Name, String Tag_Status, String Tag_Other) {
 //		
@@ -80,18 +90,13 @@ public class SQLiteHelper extends SQLiteOpenHelper
 //		db.execSQL(sql);
 //	}
 	public void insertBtn(SQLiteDatabase db, String Tag_Uid, int Tag_DevID, String Tag_Type, String Btn1, String Btn2, String Btn3,String Btn4, String Btn5, String Btn6,String Btn7, String Btn8, String Btn9,String Btn10, String Btn11, String Btn12,String Btn13, String Btn14) {
-		
+		String str = "SELECT * FROM " + Table_Name_Setup + " WHERE " +DevID + "=\""+ Tag_DevID + "\"";
+		Cursor ToReturn = db.rawQuery(str, null);
+		if(0==ToReturn.getCount())
+		{
 		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'"+ Tag_Type+"\',\'"+ Btn1+"\',\'" +Btn2 + "\',\'" + Btn3 + "\',\'"+ Btn4 +"\',\'" +Btn5 +"\',\'" +Btn6 +"\',\'" +Btn7 +"\',\'" +Btn8 +"\',\'" +Btn9 +"\',\'" +Btn10 +"\',\'" +Btn11 +"\',\'" +Btn12 +"\',\'" +Btn13 +"\',\'" +Btn14 + "\');";
 		db.execSQL(sql);
-//		ContentValues cv = new ContentValues();  
-//		cv.put(Uid, Tag_Uid);  
-//		cv.put(DevID, Tag_DevID);
-//		cv.put(Uid, Tag_Type);
-//		cv.put("button1", Btn1);  cv.put("button2", Btn2);  cv.put("button3", Btn3);  cv.put("button4", Btn4);  cv.put("button5", Btn5);  
-//		cv.put("button6", Btn6);  cv.put("button7", Btn7);  cv.put("button8", Btn8);  cv.put("button9", Btn9);  cv.put("button10", Btn10); 
-//		cv.put("button11", Btn11);  cv.put("button12", Btn12);  cv.put("button13", Btn13);  cv.put("button14", Btn14); 
-//		db.insert(Table_Name_Btn, null, cv);
-		//Log.e("leewoo", "insertBtn"+Tag_Uid+Tag_DevID+Tag_Type+Btn1+Btn2+Btn3+Btn4+Btn5+Btn6+Btn7+Btn8+Btn9+Btn10+Btn11+Btn12+Btn13+Btn14);
+		}
 	}
 	public void deleteSetup(SQLiteDatabase db, String Tag_Uid) {
 		

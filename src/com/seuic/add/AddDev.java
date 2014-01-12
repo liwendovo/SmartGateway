@@ -215,7 +215,7 @@ public class AddDev extends Activity {
 //				writeDB=ControlBox.mSQLHelper.getWritableDatabase();
 				TabControl.mSQLHelper.insertSetup(TabControl.writeDB, UID, "Devices", "1");
 				//devices判断
-				//默认加入设备
+				//调试用默认加入设备
 				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "TV", "Devices",  "0","0");
 				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "AC", "Devices",  "0","0");
 				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "Media", "Devices",  "0","0");

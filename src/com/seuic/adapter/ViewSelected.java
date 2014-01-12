@@ -61,9 +61,7 @@ public class ViewSelected {
     return false;     
     }     
    };     
-   /**   
-   20.   * 按钮焦点改变   
-   21.   */    
+  
     
     /**   
    39.   * 按钮触碰按下效果   

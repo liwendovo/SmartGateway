@@ -4,6 +4,8 @@ import com.tutk.IOTC.IOTCAPIs;
 import com.tutk.IOTC.AVAPIs;
 
 public class Client {
+	 static int sid;
+	 static int avIndex;
     public static void start(String uid) {      
         
         System.out.println("StreamClient start...");
@@ -21,11 +23,11 @@ public class Client {
         // alloc 3 sessions for video and two-way audio
         AVAPIs.avInitialize(3);
 
-        int sid = IOTCAPIs.IOTC_Connect_ByUID(uid);
+        sid = IOTCAPIs.IOTC_Connect_ByUID(uid);
         System.out.printf("Step 2: call IOTC_Connect_ByUID(%s).......\n", uid);
 
         long[] srvType = new long[1];
-        int avIndex = AVAPIs.avClientStart(sid, "admin", "888888", 20000, srvType, 0);
+         avIndex = AVAPIs.avClientStart(sid, "admin", "888888", 20000, srvType, 0);
         System.out.printf("Step 2: call avClientStart(%d).......\n", avIndex);
 
         if (avIndex < 0) {
@@ -64,7 +66,70 @@ public class Client {
 		IOTCAPIs.IOTC_DeInitialize();
         System.out.printf("StreamClient exit...\n");
     }
+    public static void stop(String uid) {
+        AVAPIs.avClientStop(avIndex);
+        System.out.printf("avClientStop OK\n");
+        IOTCAPIs.IOTC_Session_Close(sid);
+        System.out.printf("IOTC_Session_Close OK\n");
+		AVAPIs.avDeInitialize();
+		IOTCAPIs.IOTC_DeInitialize();
+        System.out.printf("StreamClient exit...\n");    
+    }
+ public static void restart(String uid) {   
+        System.out.println("StreamClient start...");
+        // use which Master base on location, port 0 means to get a random port
+        int ret = IOTCAPIs.IOTC_Initialize(0, "m1.iotcplatform.com",
+                "m2.iotcplatform.com", "m4.iotcplatform.com",
+                "m5.iotcplatform.com");
+        System.out.printf("IOTC_Initialize() ret = %d\n", ret);
+        if (ret != IOTCAPIs.IOTC_ER_NoERROR) {
+            System.out.printf("IOTCAPIs_Device exit...!!\n");
+            return;
+        }
 
+        // alloc 3 sessions for video and two-way audio
+        AVAPIs.avInitialize(3);
+
+        
+        
+//////////////////////////////////////////////////        
+        
+        sid = IOTCAPIs.IOTC_Connect_ByUID(uid);
+        System.out.printf("Step 2: call IOTC_Connect_ByUID(%s).......\n", uid);
+
+        long[] srvType = new long[1];
+         avIndex = AVAPIs.avClientStart(sid, "admin", "888888", 20000, srvType, 0);
+        System.out.printf("Step 2: call avClientStart(%d).......\n", avIndex);
+
+        if (avIndex < 0) {
+            System.out.printf("avClientStart failed[%d]\n", avIndex);
+            return;
+        }
+        
+        
+        AVAPIs av = new AVAPIs();
+        ret = av.avSendIOCtrl(avIndex, AVAPIs.IOTYPE_INNER_SND_DATA_DELAY,new byte[2], 2);
+        if (ret < 0) {
+            System.out.printf("start_ipcam_stream failed[%d]\n", ret);
+           
+        }
+       
+
+        AVAPIs.avClientStop(avIndex);
+        System.out.printf("avClientStop OK\n");
+        IOTCAPIs.IOTC_Session_Close(sid);
+        
+///////////////////////////////////////////////////////////        
+        
+        
+        
+        
+        
+        System.out.printf("IOTC_Session_Close OK\n");
+		AVAPIs.avDeInitialize();
+		IOTCAPIs.IOTC_DeInitialize();
+        System.out.printf("StreamClient exit...\n");
+    }
     public static boolean startIpcamStream(int avIndex) {
         AVAPIs av = new AVAPIs();
         int ret = av.avSendIOCtrl(avIndex, AVAPIs.IOTYPE_INNER_SND_DATA_DELAY,

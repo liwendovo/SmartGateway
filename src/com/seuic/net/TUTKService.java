@@ -10,8 +10,8 @@ import android.os.IBinder;
 
 public class TUTKService extends Service{
 	 
-	  String logcat="TUTKService";
-	  private final IBinder binder = new MyBinder();
+	String logcat="TUTKService";
+	private final IBinder binder = new MyBinder();
 	
 	
 	
@@ -39,17 +39,17 @@ public class TUTKService extends Service{
 		super.onDestroy();
 	}
 
-	
-	
-	  public class MyBinder extends Binder
-	  {
-	    public MyBinder()
-	    {
-	    }
+	public class MyBinder extends Binder
+	{
+		public MyBinder()
+		{
+		}
 
-	    TUTKService getService()
-	    {
-	      return TUTKService.this;
-	    }
-	  }
+		TUTKService getService()
+		{
+		  return TUTKService.this;
+		}
+	}	
+	
+  
 }
