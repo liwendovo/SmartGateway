@@ -119,13 +119,13 @@ public class CamChoiceAdapter extends BaseAdapter {
         	ux = event.getX();          	
         	//按下和松开绝对值差当大于20时显示删除按钮，否则不显示  
 	        	if (Math.abs(x - ux) > 25) {  
-	        		 Toast.makeText(context,"右滑"+position, Toast.LENGTH_SHORT).show();	        		
+//	        		 Toast.makeText(context,"右滑"+position, Toast.LENGTH_SHORT).show();	        		
 	        		 Log.e("leewoo", "右滑"+position);
 
 	        		 AlertDialog.Builder builder = new Builder(context);
-	        		 builder.setMessage("确认删除设备？");
-	        		 builder.setTitle("确认信息");
-	        		 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+	        		 builder.setMessage(context.getResources().getString(R.string.deletecaminfo) +data.get(position).get("uid"));
+	        		 builder.setTitle(R.string.deletetitle);
+	        		 builder.setPositiveButton(R.string.deleteok, new DialogInterface.OnClickListener() {
 		        		@Override
 		        		public void onClick(DialogInterface arg0, int arg1) {
 		        			// TODO Auto-generated method stub
@@ -141,7 +141,7 @@ public class CamChoiceAdapter extends BaseAdapter {
 		        			}
 		        		}
 		        	});
-	        		 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+	        		 builder.setNegativeButton(R.string.deletecancle, new DialogInterface.OnClickListener() {
 		        		@Override
 		        		 public void onClick(DialogInterface dialog, int which) {
 		        		 dialog.dismiss();

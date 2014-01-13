@@ -11,8 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.TabHost;
-
 import com.seuic.adapter.ViewSelected;
+import com.seuic.net.TUTKService;
 import com.seuic.sqlite.SQLiteHelper;
 
 
@@ -82,8 +82,13 @@ public class TabControl extends ActivityGroup {
 				.setIndicator(tab5Spec)
 				.setContent(intent));
 		
-		
-		
+		Bundle bundle = new Bundle();
+//		bundle.putInt("timer", bundle_timer_setting);
+//		bundle.putInt("res", bundle_video_res);
+//		bundle.putBoolean("cycle_video", bundle_cycle_video);
+		Intent serviceIntent = new Intent(TUTKService.TUTKService_Name);
+		serviceIntent.putExtras(bundle);
+		startService(serviceIntent);   
 		
 		
 		

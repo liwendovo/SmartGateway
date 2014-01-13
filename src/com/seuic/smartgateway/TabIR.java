@@ -143,9 +143,9 @@ public class TabIR extends Activity {
 			        		 Log.e("leewoo", "右滑"+position1);
 			        		 final int position=position1;
 			        		 AlertDialog.Builder builder = new Builder(TabIR.this);
-			        		 builder.setMessage("确认删除设备？"+irAdapter.getItem(position).get("type"));
-			        		 builder.setTitle("确认信息");
-			        		 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+			        		 builder.setMessage(getResources().getString(R.string.deletedevinfo) +irAdapter.getItem(position).get("type"));
+			        		 builder.setTitle(R.string.deletetitle);
+			        		 builder.setPositiveButton(R.string.deleteok, new DialogInterface.OnClickListener() {
 				        		@Override
 				        		public void onClick(DialogInterface arg0, int arg1) {
 				        			// TODO Auto-generated method stub	
@@ -154,7 +154,7 @@ public class TabIR extends Activity {
 					        		 //数据库
 				        			}
 			        		 	});
-			        		 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+			        		 builder.setNegativeButton(R.string.deletecancle, new DialogInterface.OnClickListener() {
 				        		@Override
 				        		 public void onClick(DialogInterface dialog, int which) {
 				        		 dialog.dismiss();

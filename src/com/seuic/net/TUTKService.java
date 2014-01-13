@@ -9,7 +9,7 @@ import android.os.Binder;
 import android.os.IBinder;
 
 public class TUTKService extends Service{
-	 
+	public static String TUTKService_Name = "com.seuic.net.TUTKService";
 	String logcat="TUTKService";
 	private final IBinder binder = new MyBinder();
 	
