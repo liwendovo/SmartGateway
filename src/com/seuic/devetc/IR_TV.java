@@ -101,7 +101,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		TabControl.mViewSelected.setImageViewFocusChanged(button12);
 		TabControl.mViewSelected.setImageViewFocusChanged(button13);
 		TabControl.mViewSelected.setImageViewFocusChanged(button14);
-		
+		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");
 		devid=intent.getIntExtra("devid", 0);

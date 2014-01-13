@@ -102,7 +102,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		TabControl.mViewSelected.setButtonFocusChanged(button8);
 		TabControl.mViewSelected.setButtonFocusChanged(button9);
 		TabControl.mViewSelected.setImageViewFocusChanged(button10);
-
+		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
 		
 		devpic=(ImageView)findViewById(R.id.pic);
 		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_custom));
@@ -159,6 +159,8 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 			TabControl.mSQLHelper.insertBtn(TabControl.writeDB,mUid,devid, "name" ,btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults+14);
 		}		
 		cursor.close();
+		
+		
 	    setbuttonstate();
 				
 		
@@ -166,6 +168,8 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	
 	private void setbuttonstate()
 	{
+		
+		
     	if(btnclr1)	TabControl.mViewSelected.buttonClickRecover(button1);
     	else TabControl.mViewSelected.buttonClickGreyChanged(button1);
     	
