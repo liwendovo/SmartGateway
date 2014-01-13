@@ -100,21 +100,27 @@ public class Client {
         long[] srvType = new long[1];
          avIndex = AVAPIs.avClientStart(sid, "admin", "888888", 20000, srvType, 0);
         System.out.printf("Step 2: call avClientStart(%d).......\n", avIndex);
-
         if (avIndex < 0) {
             System.out.printf("avClientStart failed[%d]\n", avIndex);
             return;
         }
         
-        
+        //数据发送
         AVAPIs av = new AVAPIs();
         ret = av.avSendIOCtrl(avIndex, AVAPIs.IOTYPE_INNER_SND_DATA_DELAY,new byte[2], 2);
         if (ret < 0) {
             System.out.printf("start_ipcam_stream failed[%d]\n", ret);
            
         }
-       
-
+        
+       //数据接收 放到线程里 先这样
+        
+     
+        ret = av.avRecvIOCtrl(avIndex, null, null, ret, ret);
+        if (ret < 0) {
+            System.out.printf("start_ipcam_stream failed[%d]\n", ret);
+           
+        }
         AVAPIs.avClientStop(avIndex);
         System.out.printf("avClientStop OK\n");
         IOTCAPIs.IOTC_Session_Close(sid);

@@ -90,13 +90,10 @@ public class SQLiteHelper extends SQLiteOpenHelper
 //		db.execSQL(sql);
 //	}
 	public void insertBtn(SQLiteDatabase db, String Tag_Uid, int Tag_DevID, String Tag_Type, String Btn1, String Btn2, String Btn3,String Btn4, String Btn5, String Btn6,String Btn7, String Btn8, String Btn9,String Btn10, String Btn11, String Btn12,String Btn13, String Btn14) {
-		String str = "SELECT * FROM " + Table_Name_Setup + " WHERE " +DevID + "=\""+ Tag_DevID + "\"";
-		Cursor ToReturn = db.rawQuery(str, null);
-		if(0==ToReturn.getCount())
-		{
+		
 		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'"+ Tag_Type+"\',\'"+ Btn1+"\',\'" +Btn2 + "\',\'" + Btn3 + "\',\'"+ Btn4 +"\',\'" +Btn5 +"\',\'" +Btn6 +"\',\'" +Btn7 +"\',\'" +Btn8 +"\',\'" +Btn9 +"\',\'" +Btn10 +"\',\'" +Btn11 +"\',\'" +Btn12 +"\',\'" +Btn13 +"\',\'" +Btn14 + "\');";
 		db.execSQL(sql);
-		}
+		
 	}
 	public void deleteSetup(SQLiteDatabase db, String Tag_Uid) {
 		
