@@ -124,5 +124,11 @@ public class TabSET extends Activity {
 		 builder.setMessage(this.getString(R.string.aboutus));		
 		 builder.create().show();
 	   }
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		Log.e("leewoo", "TabSET---onStart");
+	}
 }
   
