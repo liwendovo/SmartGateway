@@ -1,6 +1,5 @@
 package com.seuic.devetc;
 
-import android.R.integer;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -22,14 +21,9 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 	Button backBtn,leanrnBtn;
 	ImageView   devpic;
 	final int buttonMaxNum=14;
-//	ImageView  button1,button2,button3,
-//			button4,button5,button6,
-//			button7,button8,button9,
-//			button10,button11,button12,
-//			button13,button14;	
-	 ImageView button[]=new ImageView[14];
-	 boolean btnLearn[]=new boolean[buttonMaxNum];
-	 int curButton=-1;
+	ImageView button[]=new ImageView[buttonMaxNum];
+	boolean btnLearn[]=new boolean[buttonMaxNum];
+	int curButton=-1;
 	
 	private ProgressDialog progressDialog;  
 	int devid;
@@ -37,25 +31,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 	String learnFalse="false"; 
 	Boolean lenclr=false;
 	
-//	Boolean btnclr1=false;
-//	Boolean btnclr2=false;
-//	Boolean btnclr3=false;
-//	Boolean btnclr4=false;
-//	Boolean btnclr5=false;
-//	Boolean btnclr6=false;
-//	Boolean btnclr7=false;
-//	Boolean btnclr8=false;
-//	Boolean btnclr9=false;
-//	Boolean btnclr10=false;
-//	Boolean btnclr11=false;
-//	Boolean btnclr12=false;
-//	Boolean btnclr13=false;
-//	Boolean btnclr14=false;
-	
-	
-	
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -118,7 +94,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		if(cursor.getCount()>0){				 
 			//学习	
 			for(int i=0;i<buttonMaxNum;i++){
-				btnLearn[i]=cursor.getString(i+2).equals("true")?true:false;
+				btnLearn[i]=cursor.getString(i+3).equals("true")?true:false;
 			}
 		}else{
 			Log.e("leewoo", "cur learn 初始化"+cursor.getCount());
@@ -258,6 +234,8 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 
 	        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton, true);
 	        	btnLearn[curButton-1]=true;
+	        	Log.e("leewoo", "");
+	        	curButton=-1;
 	            //关闭ProgressDialog  
 	            progressDialog.dismiss(); 
 //	        	TabControl.mViewSelected.imageviewClickRecover(button[curButton-1]);

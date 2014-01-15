@@ -3,11 +3,14 @@ package com.seuic.devetc;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -23,9 +26,16 @@ import com.seuic.smartgateway.TabControl;
 public class IR_Custom1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener {
 	Button  backBtn,leanrnBtn;
 	ImageView   devpic;	
-	Button  button1,button2,button3,
-			button4,button5,button6,
-			button7,button8,button9;
+	
+	final int buttonMaxNum=10;
+	View button[]=new View[buttonMaxNum];
+	boolean btnLearn[]=new boolean[buttonMaxNum];
+	int curButton=-1;
+	Boolean lenclr=false;
+	private ProgressDialog progressDialog;  
+//	Button  button1,button2,button3,
+//			button4,button5,button6,
+//			button7,button8,button9;
 	ImageView   button10;
 	
 	int devid;
@@ -34,17 +44,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	String learnTrue="true";
 	String btnDefaults="自定义";
 	
-	 Boolean lenclr=false;
-	 Boolean btnclr1=false;
-	 Boolean btnclr2=false;
-	 Boolean btnclr3=false;
-	 Boolean btnclr4=false;
-	 Boolean btnclr5=false;
-	 Boolean btnclr6=false;
-	 Boolean btnclr7=false;
-	 Boolean btnclr8=false;
-	 Boolean btnclr9=false;
-	 Boolean btnclr10=false;	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,56 +52,44 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ir_custom1);
-		
+		for(int i=0;i<buttonMaxNum;i++){btnLearn[i]=false;}
 		Log.e("leewoo", "in IR_Custom1 ");
-		
-
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
-		button1=(Button)findViewById(R.id.button1);
-		button2=(Button)findViewById(R.id.button2);
-		button3=(Button)findViewById(R.id.button3);		
-		button4=(Button)findViewById(R.id.button4);		
-		button5=(Button)findViewById(R.id.button5);
-		button6=(Button)findViewById(R.id.button6);		
-		button7=(Button)findViewById(R.id.button7);		
-		button8=(Button)findViewById(R.id.button8);
-		button9=(Button)findViewById(R.id.button9);
-		button10=(ImageView)findViewById(R.id.button10);	
+		button[0]=(Button)findViewById(R.id.button1);
+		button[1]=(Button)findViewById(R.id.button2);
+		button[2]=(Button)findViewById(R.id.button3);		
+		button[3]=(Button)findViewById(R.id.button4);		
+		button[4]=(Button)findViewById(R.id.button5);
+		button[5]=(Button)findViewById(R.id.button6);		
+		button[6]=(Button)findViewById(R.id.button7);		
+		button[7]=(Button)findViewById(R.id.button8);
+		button[8]=(Button)findViewById(R.id.button9);
+		button[9]=(ImageView)findViewById(R.id.button10);	
 
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this);
-		button1.setOnClickListener(this);  
-		button2.setOnClickListener(this);  
-		button3.setOnClickListener(this);  
-		button4.setOnClickListener(this);  
-		button5.setOnClickListener(this);  
-		button6.setOnClickListener(this);  
-		button7.setOnClickListener(this);  
-		button8.setOnClickListener(this);  
-		button9.setOnClickListener(this);
-		button10.setOnClickListener(this);
-		button1.setOnLongClickListener(this);
-		button2.setOnLongClickListener(this);
-		button3.setOnLongClickListener(this);
-		button4.setOnLongClickListener(this);
-		button5.setOnLongClickListener(this);
-		button6.setOnLongClickListener(this);
-		button7.setOnLongClickListener(this);
-		button8.setOnLongClickListener(this);
-		button9.setOnLongClickListener(this);
+		for(int i=0;i<buttonMaxNum-1;i++){
+			button[i].setOnClickListener(this);
+			button[i].setOnLongClickListener(this);
+		}		
+		button[9].setOnClickListener(this);
+		
+		
+		
 		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
-		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
-		TabControl.mViewSelected.setButtonFocusChanged(button1);
-		TabControl.mViewSelected.setButtonFocusChanged(button2);
-		TabControl.mViewSelected.setButtonFocusChanged(button3);
-		TabControl.mViewSelected.setButtonFocusChanged(button4);
-		TabControl.mViewSelected.setButtonFocusChanged(button5);
-		TabControl.mViewSelected.setButtonFocusChanged(button6);
-		TabControl.mViewSelected.setButtonFocusChanged(button7);
-		TabControl.mViewSelected.setButtonFocusChanged(button8);
-		TabControl.mViewSelected.setButtonFocusChanged(button9);
-		TabControl.mViewSelected.setImageViewFocusChanged(button10);
+		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);		
+		TabControl.mViewSelected.setButtonFocusChanged(button[0]);
+		TabControl.mViewSelected.setButtonFocusChanged(button[1]);
+		TabControl.mViewSelected.setButtonFocusChanged(button[2]);
+		TabControl.mViewSelected.setButtonFocusChanged(button[3]);
+		TabControl.mViewSelected.setButtonFocusChanged(button[4]);
+		TabControl.mViewSelected.setButtonFocusChanged(button[5]);
+		TabControl.mViewSelected.setButtonFocusChanged(button[6]);
+		TabControl.mViewSelected.setButtonFocusChanged(button[7]);
+		TabControl.mViewSelected.setButtonFocusChanged(button[8]);		
+		TabControl.mViewSelected.setImageViewFocusChanged(button[9]);
+		
 		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
 		
 		devpic=(ImageView)findViewById(R.id.pic);
@@ -122,17 +110,10 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		Cursor cursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);
 		Log.e("leewoo", "cur: "+cursor.getCount());
 		if(cursor.getCount()>0){				 
-			//学习					
-			btnclr1=cursor.getString(1+2).equals("true")?true:false;
-			btnclr2=cursor.getString(2+2).equals("true")?true:false;
-			btnclr3=cursor.getString(3+2).equals("true")?true:false;
-			btnclr4=cursor.getString(4+2).equals("true")?true:false;
-			btnclr5=cursor.getString(5+2).equals("true")?true:false;
-			btnclr6=cursor.getString(6+2).equals("true")?true:false;
-			btnclr7=cursor.getString(7+2).equals("true")?true:false;
-			btnclr8=cursor.getString(8+2).equals("true")?true:false;
-			btnclr9=cursor.getString(9+2).equals("true")?true:false;	
-			btnclr10=cursor.getString(10+2).equals("true")?true:false;	
+			//学习	
+			for(int i=0;i<buttonMaxNum;i++){
+				btnLearn[i]=cursor.getString(i+3).equals("true")?true:false;
+			}
 		}else{
 			Log.e("leewoo", "cur learn 初始化"+cursor.getCount());
 			//未初始化
@@ -143,16 +124,11 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		cursor=TabControl.mSQLHelper.seleteBtnName(TabControl.writeDB,devid);
 		Log.e("leewoo", "cur: "+cursor.getCount());
 		if(cursor.getCount()>0){
-			//已初始化		
-				button1.setText(cursor.getString(1+2));
-				button2.setText(cursor.getString(2+2));
-				button3.setText(cursor.getString(3+2));
-				button4.setText(cursor.getString(4+2));
-				button5.setText(cursor.getString(5+2));
-				button6.setText(cursor.getString(6+2));			
-				button7.setText(cursor.getString(7+2));
-				button8.setText(cursor.getString(8+2));
-				button9.setText(cursor.getString(9+2));
+			//已初始化		//学习	
+			for(int i=0;i<buttonMaxNum-1;i++){
+				
+				((Button)button[i]).setText(cursor.getString(i+3));
+			}			
 		}else{
 			Log.e("leewoo", "cur name 初始化"+cursor.getCount());
 			//未初始化
@@ -166,40 +142,6 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		
 	}
 	
-	private void setbuttonstate()
-	{
-		
-		
-    	if(btnclr1)	TabControl.mViewSelected.buttonClickRecover(button1);
-    	else TabControl.mViewSelected.buttonClickGreyChanged(button1);
-    	
-    	if(btnclr2)	TabControl.mViewSelected.buttonClickRecover(button2);
-    	else TabControl.mViewSelected.buttonClickGreyChanged(button2);
-    	
-    	if(btnclr3)	TabControl.mViewSelected.buttonClickRecover(button3);
-    	else TabControl.mViewSelected.buttonClickGreyChanged(button3);
-    	
-    	if(btnclr4)	TabControl.mViewSelected.buttonClickRecover(button4);
-    	else TabControl.mViewSelected.buttonClickGreyChanged(button4);
-    	
-    	if(btnclr5)	TabControl.mViewSelected.buttonClickRecover(button5);
-    	else TabControl.mViewSelected.buttonClickGreyChanged(button5);
-    	
-    	if(btnclr6)	TabControl.mViewSelected.buttonClickRecover(button6);
-    	else TabControl.mViewSelected.buttonClickGreyChanged(button6);
-    	
-    	if(btnclr7)	TabControl.mViewSelected.buttonClickRecover(button7);
-    	else TabControl.mViewSelected.buttonClickGreyChanged(button7);
-    	
-    	if(btnclr8)	TabControl.mViewSelected.buttonClickRecover(button8);
-    	else TabControl.mViewSelected.buttonClickGreyChanged(button8);
-    	
-    	if(btnclr9)	TabControl.mViewSelected.buttonClickRecover(button9);
-    	else TabControl.mViewSelected.buttonClickGreyChanged(button9);
-    	
-    	if(btnclr10)TabControl.mViewSelected.imageviewClickRecover(button10);
-    	else TabControl.mViewSelected.imageviewClickGreyChanged(button10);
-	}
 	
 	
 	@Override
@@ -216,17 +158,12 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	if(lenclr==true){
             	Log.e("leewoo", "clr"+v.getId() ); 
 
-            	TabControl.mViewSelected.buttonClickLearn(leanrnBtn);                     	
-            	TabControl.mViewSelected.buttonClickLearn(button1);
-            	TabControl.mViewSelected.buttonClickLearn(button2);
-            	TabControl.mViewSelected.buttonClickLearn(button3);
-            	TabControl.mViewSelected.buttonClickLearn(button4);
-            	TabControl.mViewSelected.buttonClickLearn(button5);
-            	TabControl.mViewSelected.buttonClickLearn(button6);
-            	TabControl.mViewSelected.buttonClickLearn(button7);
-            	TabControl.mViewSelected.buttonClickLearn(button8);
-            	TabControl.mViewSelected.buttonClickLearn(button9);  
-            	TabControl.mViewSelected.imageviewClickLearn(button10);			        	
+            	TabControl.mViewSelected.buttonClickLearn(leanrnBtn); 
+            	
+            	for(int i=0;i<buttonMaxNum-1;i++){    				
+            		TabControl.mViewSelected.buttonClickLearn(button[i]);
+    			}	            
+            	TabControl.mViewSelected.imageviewClickLearn(button[9]);			        	
 
         	}else{
         		TabControl.mViewSelected.buttonClickRecover(leanrnBtn); 
@@ -235,11 +172,8 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	break;
   	    case R.id.button1:        	
         	if(lenclr==true){	        	
-        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
-        		btnclr1=true;
-        		TabControl.mViewSelected.buttonClickRecover(button1);
-        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true); 
-        		Log.e("btnclr1=",""+btnclr1);
+        		showProgressDialog();
+         		curButton=1;
 	        	
 	        }
         	
@@ -247,85 +181,58 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	break;
         case R.id.button2:        	
         	if(lenclr==true){	        	
-        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
-        		btnclr2=true;
-        		TabControl.mViewSelected.buttonClickRecover(button2);
-        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,2, true);
-        		Log.e("btnclr2=",""+btnclr2);	        	
+        		showProgressDialog();
+         		curButton=2;	        	
         	}        	
         	break;
         case R.id.button3:
         	if(lenclr==true){	        
-        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
-        		btnclr3=true;
-        		TabControl.mViewSelected.buttonClickRecover(button3);
-        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 3, true);
-        		Log.e("btnclr3=",""+btnclr3);        		
+        		showProgressDialog();
+         		curButton=3;      		
         	}        	
         	break;        
         case R.id.button4:
         	if(lenclr==true){	        	
-	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
-	        		btnclr4=true;
-	        		TabControl.mViewSelected.buttonClickRecover(button4);
-	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 4, true);	        		
-	        		Log.e("btnclr4=",""+btnclr4);
+        		showProgressDialog();
+         		curButton=4;
 
         	}
         	break;
         case R.id.button5:
         	if(lenclr==true){	         
-	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
-	        		btnclr5=true;
-	        		TabControl.mViewSelected.buttonClickRecover(button5);
-	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid,5, true);
-	        		Log.e("btnclr5=",""+btnclr5);	        	
+        		showProgressDialog();
+         		curButton=5;        	
         	}
         	break;
         case R.id.button6:
         	if(lenclr==true){	        	 
-	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
-	        		btnclr6=true;
-	        		TabControl.mViewSelected.buttonClickRecover(button6);
-	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 6, true);
-	        		Log.e("btnclr6=",""+btnclr6);
+        		showProgressDialog();
+         		curButton=6;
         	}
         	break;
         case R.id.button7:
         	if(lenclr==true){	        	  
-	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
-	        		btnclr7=true;
-	        		TabControl.mViewSelected.buttonClickRecover(button7);
-	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 7, true);
-	        		Log.e("btnclr7=",""+btnclr7);	        	
+        		showProgressDialog();
+         		curButton=7;        	
         	}
         	break;
         case R.id.button8:
         	if(lenclr==true){	        	 
-	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
-	        		btnclr8=true;
-	        		TabControl.mViewSelected.buttonClickRecover(button8);
-	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 8, true);
-	        		Log.e("btnclr8=",""+btnclr8);	        	
+        		showProgressDialog();
+         		curButton=8;	        	
         	}
         	break;
         case R.id.button9:
         	if(lenclr==true){	        	 
-	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
-	        		btnclr9=true;
-	        		TabControl.mViewSelected.buttonClickRecover(button9);
-	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 9, true);
-	        		Log.e("btnclr9=",""+btnclr9);
+        		showProgressDialog();
+         		curButton=9;
 	        	}
         	break;     
         	
         case R.id.button10:
         	if(lenclr==true){	        	 
-	        		Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show(); 
-	        		btnclr10=true;
-	        		TabControl.mViewSelected.imageviewClickRecover(button10);
-	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 10, true);
-	        		Log.e("btnclr10=",""+btnclr10);
+        		showProgressDialog();
+         		curButton=10;
 	        }
         	break;     
         	
@@ -336,8 +243,43 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         }  
         
 	}
+	private Handler handler = new Handler(){ 
+        @Override  
+        public void handleMessage(Message msg) {  
+        	
+        	Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show();  
 
-	
+        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton, true);
+        	btnLearn[curButton-1]=true;
+            //关闭ProgressDialog  
+            progressDialog.dismiss(); 
+//        	TabControl.mViewSelected.imageviewClickRecover(button[curButton-1]);
+//          TabControl.mViewSelected.imageviewClickLearn(button[curButton-1]);
+        }};  
+		 private void showProgressDialog(){  
+		 progressDialog = ProgressDialog.show(IR_Custom1.this, "Learnning...", "Please wait...", true, false); 
+		 new Thread(){        
+		     @Override  
+		     public void run() {  
+		       try {
+						Thread.sleep(3000) ;
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		         handler.sendEmptyMessage(0);  
+		     }}.start();      
+		 }
+		 private void setbuttonstate()
+			{				
+				for(int i=0;i<(buttonMaxNum-1);i++){
+					if(btnLearn[i])	TabControl.mViewSelected.buttonClickRecover(button[i]);
+			    	else TabControl.mViewSelected.buttonClickGreyChanged(button[i]);
+				}
+				if(btnLearn[9])TabControl.mViewSelected.imageviewClickRecover(button[9]);
+		    	else TabControl.mViewSelected.imageviewClickGreyChanged(button[9]);
+			}
+			
 	@Override
 	public boolean onLongClick(View v) {
 		// TODO Auto-generated method stub
@@ -395,47 +337,52 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 		@Override
 		public void onClick(DialogInterface arg0, int arg1) {
-			// TODO Auto-generated method stub			
-			switch (btnid) {
-			case 1:
-				button1.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 1, et.getText().toString());
-				break;
-			case 2:
-				button2.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 2, et.getText().toString());
-				break;
-			case 3:
-				button3.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 3, et.getText().toString());
-				break;
-			case 4:
-				button4.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 4, et.getText().toString());
-				break;
-			case 5:
-				button5.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 5, et.getText().toString());
-				break;
-			case 6:
-				button6.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 6, et.getText().toString());
-				break;
-			case 7:
-				button7.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 7, et.getText().toString());
-				break;				
-			case 8:
-				button8.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 8, et.getText().toString());
-				break;
-			case 9:
-				button9.setText(et.getText().toString());
-				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 9, et.getText().toString());
-				break;
-			default:
-				break;
-			}
+			// TODO Auto-generated method stub	
+			
+			((Button)button[btnid-1]).setText(et.getText().toString());
+			TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, btnid-1, et.getText().toString());
+			
+			
+//			switch (btnid) {
+//			case 1:
+//				button1.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 1, et.getText().toString());
+//				break;
+//			case 2:
+//				button2.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 2, et.getText().toString());
+//				break;
+//			case 3:
+//				button3.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 3, et.getText().toString());
+//				break;
+//			case 4:
+//				button4.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 4, et.getText().toString());
+//				break;
+//			case 5:
+//				button5.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 5, et.getText().toString());
+//				break;
+//			case 6:
+//				button6.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 6, et.getText().toString());
+//				break;
+//			case 7:
+//				button7.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 7, et.getText().toString());
+//				break;				
+//			case 8:
+//				button8.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 8, et.getText().toString());
+//				break;
+//			case 9:
+//				button9.setText(et.getText().toString());
+//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 9, et.getText().toString());
+//				break;
+//			default:
+//				break;
+//			}
 		  }
 		});
 		  builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {

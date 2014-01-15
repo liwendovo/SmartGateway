@@ -99,9 +99,6 @@ public class TabControl extends ActivityGroup {
  		
 	}
 	
-	
-	
-
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
