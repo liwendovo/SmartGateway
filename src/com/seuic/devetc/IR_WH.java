@@ -32,11 +32,11 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);  
 		button3.setOnClickListener(this);  
-		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
-		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
-		TabControl.mViewSelected.setImageViewFocusChanged(button1);
-		TabControl.mViewSelected.setImageViewFocusChanged(button2);
-		TabControl.mViewSelected.setImageViewFocusChanged(button3);
+		TabControl.mViewSelected.setButtonClickChanged(backBtn);
+		TabControl.mViewSelected.setButtonClickChanged(leanrnBtn);
+		TabControl.mViewSelected.setImageViewClickChanged(button1);
+		TabControl.mViewSelected.setImageViewClickChanged(button2);
+		TabControl.mViewSelected.setImageViewClickChanged(button3);
 		devpic=(ImageView)findViewById(R.id.pic);
 		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_wh));
 	}

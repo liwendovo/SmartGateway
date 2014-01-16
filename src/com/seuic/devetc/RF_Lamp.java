@@ -43,15 +43,15 @@ public class RF_Lamp extends Activity implements android.view.View.OnClickListen
 		button5.setOnClickListener(this);  
 		button6.setOnClickListener(this);  
 		button7.setOnClickListener(this);  
-		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
-		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
-		TabControl.mViewSelected.setImageViewFocusChanged(button1);
-		TabControl.mViewSelected.setImageViewFocusChanged(button2);
-		TabControl.mViewSelected.setImageViewFocusChanged(button3);
-		TabControl.mViewSelected.setImageViewFocusChanged(button4);
-		TabControl.mViewSelected.setImageViewFocusChanged(button5);
-		TabControl.mViewSelected.setImageViewFocusChanged(button6);
-		TabControl.mViewSelected.setImageViewFocusChanged(button7);
+		TabControl.mViewSelected.setButtonClickChanged(backBtn);
+		TabControl.mViewSelected.setButtonClickChanged(leanrnBtn);
+		TabControl.mViewSelected.setImageViewClickChanged(button1);
+		TabControl.mViewSelected.setImageViewClickChanged(button2);
+		TabControl.mViewSelected.setImageViewClickChanged(button3);
+		TabControl.mViewSelected.setImageViewClickChanged(button4);
+		TabControl.mViewSelected.setImageViewClickChanged(button5);
+		TabControl.mViewSelected.setImageViewClickChanged(button6);
+		TabControl.mViewSelected.setImageViewClickChanged(button7);
 	
 	}
 

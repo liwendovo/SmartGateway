@@ -26,12 +26,17 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	private final static String Class = "class";	
 	private final static String Status= "status";	
 	private final static String Other = "other";
+	private final static String Fah =  "fah";
+	private final static String Hour = "hour";
+	private final static String Auto = "auto";
+	private final static String Zone = "zone";
+	
 	
 	
     final String CREATE_SETUP_TABLE_SQL =
     		 "CREATE TABLE IF NOT EXISTS " + Table_Name_Setup + 
-    		 " ( " + Uid + " VHARCHAR PRIMARY KEY, " + Type  + " VHARCHAR, " + Name + " VHARCHAR );";
-  //_id INTEGER PRIMARY KEY AUTOINCREMENT
+    		 " ( " + Uid + " VHARCHAR PRIMARY KEY, " + Type  + " VHARCHAR, "+ Name + " VHARCHAR, "+ Fah  + " VHARCHAR, "+ Hour  + " VHARCHAR, " + Auto  + " VHARCHAR, "+ Zone + " VHARCHAR );";
+  
 	final String CREATE_LIST_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_List + 
     		 " ( "+  Uid + " VHARCHAR(20), "+ DevID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + Class + " VHARCHAR, " + Type + " VHARCHAR, "+Name + " VHARCHAR, " + Status + " VHARCHAR, "+ Other+ " VHARCHAR );";
@@ -69,7 +74,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		Cursor ToReturn = db.rawQuery(str, null);
 		if(0==ToReturn.getCount())
 		{
-		String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\');";
+		String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',\'true\',\'24\',\'true\',\'8\');";
 		db.execSQL(sql);
 		return true;
 		}else{

@@ -74,18 +74,18 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		
 		
 		
-		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
-		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);		
-		TabControl.mViewSelected.setButtonFocusChanged(button[0]);
-		TabControl.mViewSelected.setButtonFocusChanged(button[1]);
-		TabControl.mViewSelected.setButtonFocusChanged(button[2]);
-		TabControl.mViewSelected.setButtonFocusChanged(button[3]);
-		TabControl.mViewSelected.setButtonFocusChanged(button[4]);
-		TabControl.mViewSelected.setButtonFocusChanged(button[5]);
-		TabControl.mViewSelected.setButtonFocusChanged(button[6]);
-		TabControl.mViewSelected.setButtonFocusChanged(button[7]);
-		TabControl.mViewSelected.setButtonFocusChanged(button[8]);		
-		TabControl.mViewSelected.setImageViewFocusChanged(button[9]);
+		TabControl.mViewSelected.setButtonClickChanged(backBtn);
+		TabControl.mViewSelected.setButtonClickChanged(leanrnBtn);		
+		TabControl.mViewSelected.setButtonClickChanged(button[0]);
+		TabControl.mViewSelected.setButtonClickChanged(button[1]);
+		TabControl.mViewSelected.setButtonClickChanged(button[2]);
+		TabControl.mViewSelected.setButtonClickChanged(button[3]);
+		TabControl.mViewSelected.setButtonClickChanged(button[4]);
+		TabControl.mViewSelected.setButtonClickChanged(button[5]);
+		TabControl.mViewSelected.setButtonClickChanged(button[6]);
+		TabControl.mViewSelected.setButtonClickChanged(button[7]);
+		TabControl.mViewSelected.setButtonClickChanged(button[8]);		
+		TabControl.mViewSelected.setImageViewClickChanged(button[9]);
 		
 		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
 		

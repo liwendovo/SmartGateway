@@ -21,38 +21,6 @@ import android.R.integer;
 
 public class AVAPIs {
 	
-	
-	public static final int IOTYPE_BL_BOX_GET_GMT_TIME_REQ  	      		   =0xFF000010;
-	public static final int IOTYPE_BL_BOX_GET_GMT_TIME_RESP  			   =0xFF000011;
-	public static final int IOTYPE_BL_BOX_SET_GMT_TIME_REQ  				   =0xFF000012;
-	public static final int IOTYPE_BL_BOX_SET_GMT_TIME_RESP 				   =0xFF000013;
-
-	public static final int IOTYPE_BL_BOX_GET_LOCAL_TIME_MODE_REQ		   =0xFF000020;
-	public static final int IOTYPE_BL_BOX_GET_LOCAL_TIME_MODE_RESP		   =0xFF000021;
-	public static final int IOTYPE_BL_BOX_SET_LOCAL_TIME_MODE_REQ           =0xFF000022;
-	public static final int IOTYPE_BL_BOX_SET_LOCAL_TIME_MODE_RESP          =0xFF000023;
-
-	public static final int IOTYPE_BL_BOX_GET_TEMPERATURE_HUMIDITY_REQ      =0xFF000030;
-	public static final int IOTYPE_BL_BOX_GET_TEMPERATURE_HUMIDITY_RESP     =0xFF000031;
-
-	public static final int IOTYPE_BL_BOX_SET_TEMPERATURE_MODE_REQ          =0xFF000040;
-	public static final int IOTYPE_BL_BOX_SET_TEMPERATURE_MODE_RESP         =0xFF000041;
-	public static final int IOTYPE_BL_BOX_LEARN_IR_REQ                      =0xFF000050;
-	public static final int IOTYPE_BL_BOX_LEARN_IR_RESP                     =0xFF000051;
-	public static final int IOTYPE_BL_BOX_SEND_IR_REQ                       =0xFF000052;
-	public static final int IOTYPE_BL_BOX_SEND_IR_RESP                      =0xFF000053;
-
-	public static final int IOTYPE_BL_BOX_LEARN_RF_REQ                      =0xFF000060;
-	public static final int IOTYPE_BL_BOX_LEARN_RF_RESP                     =0xFF000061;
-	public static final int IOTYPE_BL_BOX_SEND_RF_REQ                       =0xFF000062;
-	public static final int IOTYPE_BL_BOX_SEND_RF_RESP                      =0xFF000063;
-
-	public static final int IOTYPE_BL_BOX_GET_LEDS_POWER_REQ                =0xFF000070;
-	public static final int IOTYPE_BL_BOX_GET_LEDS_POWER_RESP               =0xFF000071;
-	public static final int IOTYPE_BL_BOX_SET_LEDS_POWER_REQ                =0xFF000072;
-	public static final int IOTYPE_BL_BOX_SET_LEDS_POWER_RESP               =0xFF000073;
-	 
-	 
 	public static final int TIME_DELAY_DELTA				=1;		//ms
 	public static final int TIME_DELAY_MIN					=4;		//ms
 	public static final int TIME_DELAY_MAX					=500;	//ms

@@ -97,8 +97,8 @@ public class EtcAdapter extends BaseAdapter {
         holder.title.setText(item.get("type").toString());
         holder.icon.setImageResource((Integer) item.get("icon"));
         holder.quickBtn1.setImageResource((Integer) item.get("status")); 
-    	TabControl.mViewSelected.setImageViewFocusChanged(holder.quickBtn2);
-    	TabControl.mViewSelected.setImageViewFocusChanged(holder.quickBtn1);
+    	TabControl.mViewSelected.setImageViewClickChanged(holder.quickBtn2);
+    	TabControl.mViewSelected.setImageViewClickChanged(holder.quickBtn1);
         if(item.get("status2") != null){
         holder.quickBtn2.setVisibility(View.VISIBLE);
       

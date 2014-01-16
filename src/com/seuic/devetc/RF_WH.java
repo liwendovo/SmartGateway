@@ -30,10 +30,10 @@ public class RF_WH extends Activity implements android.view.View.OnClickListener
 		leanrnBtn.setOnClickListener(this); 
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);
-		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
-		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
-		TabControl.mViewSelected.setImageViewFocusChanged(button1);
-		TabControl.mViewSelected.setImageViewFocusChanged(button2);
+		TabControl.mViewSelected.setButtonClickChanged(backBtn);
+		TabControl.mViewSelected.setButtonClickChanged(leanrnBtn);
+		TabControl.mViewSelected.setImageViewClickChanged(button1);
+		TabControl.mViewSelected.setImageViewClickChanged(button2);
 		
 	}
 

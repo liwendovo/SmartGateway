@@ -1,91 +1,154 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
     android:background="@drawable/background3"
-      >
-     <include layout="@layout/main_title" android:focusable="true"/>
-       <TextView
-	     android:id="@+id/textView1"
-	     android:layout_width="wrap_content"
-	     android:layout_height="wrap_content"
-	     android:layout_alignParentTop="true"
-	     android:layout_centerHorizontal="true"    
-	     android:layout_marginTop="20dp"
-	     android:text="Device Name"
-	     android:textAppearance="?android:attr/textAppearanceLarge"
-	     android:textColor="@color/black" />
-       <EditText
-           android:id="@+id/devnameEdt"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:ems="10" >
-           <requestFocus />
-       </EditText>
-       
-       <TextView
-	     android:id="@+id/textView2"
-	     android:text="UID"
-	     android:layout_width="wrap_content"
-	     android:layout_height="wrap_content"
-	     android:layout_centerHorizontal="true"
-	     android:layout_marginTop="20dp"
-	     android:textAppearance="?android:attr/textAppearanceLarge"
-	     android:textColor="@color/black" />
+    android:orientation="vertical" >
 
-	 <EditText
-	     android:id="@+id/uidEdt"
-	     android:layout_width="wrap_content"
-	     android:layout_height="wrap_content"    
-	     android:layout_below="@+id/textView2"
-	     android:ems="10"
-	     android:maxEms="16" />
-	
-	 <TextView
-	     android:id="@+id/textView3"
-	     android:layout_width="wrap_content"
-	     android:layout_height="wrap_content"
-	     android:layout_marginTop="20dp"
-	     android:text="Network SSID"
-	     android:textAppearance="?android:attr/textAppearanceLarge"
-	     android:textColor="@color/black" />
-	
-	  <Spinner
-	      android:id="@+id/spinnerSSID"
-	      android:layout_width="wrap_content"
-	      android:layout_height="wrap_content"
-	      android:layout_alignLeft="@+id/uidEditText"
-	      android:layout_alignRight="@+id/uidEditText"
-	      android:layout_below="@+id/textView3" />
-	
-	  <TextView
-	      android:id="@+id/textView4"
-	      android:layout_width="wrap_content"
-	      android:layout_height="wrap_content"
-	      android:layout_marginTop="20dp"
-	      android:text="Password"
-	      android:textAppearance="?android:attr/textAppearanceLarge"
-	      android:textColor="@color/black" />
-	
-	 <EditText
-	     android:id="@+id/passwordEdt"
-	     android:layout_width="wrap_content"
-	     android:layout_height="wrap_content"
-	     android:layout_alignLeft="@+id/spinnerSSID"
-	     android:layout_alignRight="@+id/spinnerSSID"
-	     android:layout_below="@+id/textView4"
-	     android:ems="10"
-	     android:inputType="textPassword" />
-	
-	 <Button
-	     android:id="@+id/addDevBtn"
-	     android:layout_width="wrap_content"
-	     android:layout_height="wrap_content"
-	     android:layout_alignParentBottom="true"
-	     android:layout_centerHorizontal="true"
-	     android:text="Send to Device" />
+    <include
+        layout="@layout/main_title"
+        android:focusable="true" />
 
-  
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+  		<TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="19dp"
+            android:text="Device Name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black" />
+        <EditText
+            android:id="@+id/devnameEdt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
+            android:layout_centerHorizontal="true"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+      
+    </RelativeLayout>
+	 <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+			 <TextView
+	            android:id="@+id/textView2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentTop="true"
+	            android:layout_centerHorizontal="true"
+	            android:layout_marginTop="19dp"
+	            android:text="UID"
+	            android:textAppearance="?android:attr/textAppearanceLarge"
+	            android:textColor="@color/black" />
+	        <EditText
+	            android:id="@+id/uidEdt"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@+id/textView2"
+	            android:layout_centerHorizontal="true"
+	            android:ems="16" >
+	        </EditText>
+	
+	       
+	    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Network SSID"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black" />
+
+        <Spinner
+            android:id="@+id/spinnerSSID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Password"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/passwordEdt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:inputType="textPassword" />
+
+          <RadioGroup
+              android:id="@+id/radioGroup"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/passwordEdt"
+              android:layout_centerHorizontal="true"
+              android:orientation="horizontal" >
+
+              <RadioButton
+                  android:id="@+id/radio0"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:checked="true"
+                  android:text="WPA" />
+
+              <RadioButton
+                  android:id="@+id/radio1"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="NONE" />
+
+              <RadioButton
+                  android:id="@+id/radio2"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="WEP" />
+          </RadioGroup>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/addDevBtn"
+            android:layout_width="170dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/define"
+            android:text="Send to Device" />
+
+      
+
+    </RelativeLayout>
+
 </LinearLayout>

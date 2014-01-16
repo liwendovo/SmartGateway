@@ -1,11 +1,8 @@
 package com.seuic.adapter;
 
-import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 
@@ -85,14 +82,14 @@ public class ViewSelected {
   * 设置图片按钮获取焦点改变状态   
   * @param inImageButton   
   */    
-   public final  void setImageViewFocusChanged(View inView)     
+   public final  void setImageViewClickChanged(View inView)     
    {     
     inView.setOnTouchListener(imageViewOnTouchListener);  
   }    
-   public final void setButtonFocusChanged(View inView)     
+   public final void setButtonClickChanged(View inView)     
    {     
     inView.setOnTouchListener(buttonOnTouchListener);  
- }  
+   }  
    
    public final void buttonClickGreyChanged(View inView)
    {

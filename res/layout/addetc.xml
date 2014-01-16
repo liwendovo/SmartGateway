@@ -54,6 +54,7 @@
          android:layout_alignParentLeft="true"
          android:layout_alignParentRight="true"
          android:layout_below="@+id/spinnerEtc"
+          android:background="@drawable/define"
          android:text="OK" />
 	
 </RelativeLayout>

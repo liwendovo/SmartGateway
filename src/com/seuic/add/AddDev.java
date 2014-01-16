@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
@@ -13,12 +14,10 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -27,41 +26,50 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.seuic.devetc.IR_Custom1;
 import com.seuic.net.FTPUtil;
 import com.seuic.net.NetConfig;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 
+
 public class AddDev extends Activity {
 	public final static String PREFERENCE_NAME = "netconfig";
 	Button addDevBtn;
-//	Button pushap;
-	
+
+	String tag="AddDev";
 	Button titleBtn,homeBtn;
 	ImageView titlePic;	
 	EditText edtUid;
 	EditText edtSSID, edtPassword;
     Spinner spinnerSSID;
 	List<String> listSSID;
-	Handler handler;
-	
+	private ProgressDialog progressDialog; 
+	RadioGroup radioGroup;
+	String Key_mgmt="WPA-PSK";
 	NetConfig netConfig;
 	String target = null;
 	public static final int MESSAGE_PUSHAP_SUBENABLE = 9990;
 	public static final int MESSAGE_PUSHAP_FAILED = 9991;
 	public static final int MESSAGE_PUSHFILE_NOEXIT = 9992;
+	String path = null;
+	String pathFile = null;
 	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.adddev);			
-		
+		path=getSDPath()+"/SmartGateway/Config/";
+		pathFile=path+"wpa_supplicant.conf";
+		Log.e("leewoo", path);
+		Log.e("leewoo", pathFile);
+		netConfig=new NetConfig();
 		homeBtn=(Button)findViewById(R.id.back);
 		titlePic=(ImageView)findViewById(R.id.pic);
 		titleBtn=(Button)findViewById(R.id.titleBtn);
@@ -70,12 +78,14 @@ public class AddDev extends Activity {
     	titlePic.setImageResource(R.drawable.tab_set);
     	titleBtn.setVisibility(View.INVISIBLE);
 		
-		
-		
 		addDevBtn=(Button)findViewById(R.id.addDevBtn);
 		edtUid = (EditText) findViewById(R.id.uidEdt);
 		spinnerSSID=(Spinner)findViewById(R.id.spinnerSSID);		
 		edtPassword = (EditText)findViewById(R.id.passwordEdt);
+		radioGroup= (RadioGroup)findViewById(R.id.radioGroup);
+		
+		TabControl.mViewSelected.setButtonClickChanged(addDevBtn);
+		
 		homeBtn.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {
@@ -91,16 +101,16 @@ public class AddDev extends Activity {
 		if(wifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLED){
 		Log.d("leewoo","wifiinfo:"+wifiInfo.toString());
 		Log.d("leewoo","SSID:"+wifissid);			
-		List<ScanResult> results = wifiManager.getScanResults();  
-		//String otherwifi ="The existing network SSID is: \n\n"; 	
+		List<ScanResult> results = wifiManager.getScanResults();  			
 		  if(!results.isEmpty()){		
 			for (ScanResult result : results) {    	          		   
-			     listSSID.add(result.SSID);
+			     listSSID.add(result.SSID);			     
 			  	}  		
 			}
 		}
 		else {  
 			Toast.makeText(getApplicationContext(), "wifi未连接，请连接wifi", Toast.LENGTH_SHORT).show();
+			addDevBtn.setEnabled(false);
 		}
 		ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, listSSID);
 		
@@ -120,161 +130,67 @@ public class AddDev extends Activity {
 				
 			}
 		});  
-		edtUid.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				//edt.removeTextChangedListener(this);
-				
-				//判断如果是小写的字母的换，就转换
-//				if((UID.charAt(0))-0 >= 97 && (UID.charAt(0))-0 <=122){
-//					new Handler().postDelayed(new Runnable() {
-//						@Override
-//						public void run() {
-//							//小写转大写
-//							edt.setText(UID.toUpperCase());
-//						}
-//					}, 100);
-//				}
-			}
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				
-			}
+		
+		radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
-			public void afterTextChanged(Editable s) {
-				try {
-				 String temp = s.toString();
-				 String tem = temp.substring(temp.length()-1,temp.length());
-				 char[] temC = tem.toCharArray();
-				 int mid = temC[0];
-					if(mid>=48&&mid<=57)
-					{//数字	
-					return;	
-					}
-					if(mid>=65&&mid<=90){//大写字母	
-					return;	
-					}
-					if(mid>97&&mid<=122){//小写字母	
-					return;	
-					}
-				 s.delete(temp.length()-1, temp.length());				
-				} catch (Exception e) {
-
-				// TODO: handle exception
-
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				// TODO Auto-generated method stub
+				RadioButton radioButton = (RadioButton)findViewById(radioGroup.getCheckedRadioButtonId());
+				
+				if(radioButton.getText().toString().equals("WPA")){
+					Key_mgmt="WPA-PSK";
+				}else if(radioButton.getText().toString().equals("WEP")){
+					Key_mgmt="WEP";
+				}else{
+					Key_mgmt="";
 				}
 			}
-
-	   });
-		
+		});
 		addDevBtn.setOnClickListener(new OnClickListener()
 		{		
-			public void onClick(View source){							
-				final String UIDlen  = edtUid.getText().toString();
-				if(UIDlen.length()!=5)
-				{   
-				
-					Toast toast=Toast.makeText(getApplicationContext(),
-			       		     "UID位数不对，请输入5位UID", Toast.LENGTH_SHORT);
-					toast.setGravity(Gravity.CENTER, 0, 0);
-					toast.show();
-				}
-				else
+			public void onClick(View source){			
+				progressDialog = ProgressDialog.show(AddDev.this, "Sending...", "Please wait...", true, false); 
+				Log.e(tag, spinnerSSID.getSelectedItem().toString());
+				String ssid=spinnerSSID.getSelectedItem().toString();
+				netConfig.setSsid(ssid);
+				//加密方式
+				netConfig.setKey_mgmt(Key_mgmt);
+				int psk_leng = edtPassword.getText().length();
+				if (psk_leng == 0)
 				{
-				String UID = StringChange(UIDlen);
+					netConfig.setPsk(null);
+				}else {
+					netConfig.setPsk(edtPassword.getText().toString().trim());
+				}
 				
-					if(TabControl.mSQLHelper.insertSetup(TabControl.writeDB, UID, "Devices", "1"))
-					{
-						finish();
-					//devices判断
-					//调试用默认加入设备
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "TV", "Devices",  "0","0");
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "AC", "Devices",  "0","0");
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "Media", "Devices",  "0","0");
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "STU", "Devices",  "0","0");
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "WH", "Devices",  "0","0");
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "DVD", "Devices",  "0","0");
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "FAN", "Devices",  "0","0");
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM1", "Devices",  "0","0");
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM2", "Devices",  "0","0");
-//					
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Switch", "Devices",  "0","0");
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Lamp", "Devices",  "0","0");				
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Curtain", "Devices",  "0","0");
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Power", "Devices",  "0","0");
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM1", "Devices",  "0","0");
-//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM2", "Devices",  "0","0");
-					}else{
-						
-						Toast toast=Toast.makeText(getApplicationContext(),
-				       		     "UID已存在", Toast.LENGTH_SHORT);					
-						toast.show();
-					}
-			  }
+				addDevBtn.setText("sending");
+				
+				target = netConfig.toString();
+				if (psk_leng != 0)
+				{
+					SaveShared(netConfig.getSsid(),netConfig.getPsk());
+				}
+				SaveFile();
+				Thread pushThread = new Thread(pushRunnable);
+				pushThread.start();
+					
 			}
 		});	
 		
-		
-		  
-//			pushap.setEnabled(true);
-
-			
-//			pushap.setOnClickListener(new OnClickListener()
-//			{
-//				public void onClick(View v)
-//				{
-//					int psk_leng = 5;//spinnerSSID.getContext().length();
-//					if (psk_leng == 0)
-//					{
-//						netConfig.setPsk(null);
-//					}else {
-//						netConfig.setPsk(edtPassword.getText().toString().trim());
-//					}
-//					pushap.setEnabled(false);
-//					pushap.setText("sending");
-//					target = netConfig.toString();
-//					if (psk_leng != 0)
-//					{
-//						SaveShared(netConfig.getSsid(), netConfig.getPsk());
-//					}
-//					SaveFile();
-//					Thread pushThread = new Thread(pushRunnable);
-//					pushThread.start();
-//				
-//				}		
-//			});      
-		
-		
-		
-		
-	}
-      //	小写字母转换为大写字母
-	public String StringChange(String s){
-		  char[] c=s.toCharArray();
-		  for(int i=0;i<s.length();i++){
-		    if(c[i]>='a'&&c[i]<='z')
-			   c[i]=Character.toUpperCase(c[i]);
-//		    else if(c[i]>='A'&&c[i]<='Z') 
-//			   c[i]=Character.toLowerCase(c[i]);
-		   }
-		  return String.valueOf(c);
-		}
+	} 
 	Runnable pushRunnable = new Runnable()
 	{
-		File file = null;
-		String path = "/mnt/sdcard/SmartGateway/Config/wpa_supplicant.conf";
-//		String remoteFilename = "wpa_supplicant.conf";
+		
+		File file = null;	
 		public void run()
-		{
-			file = new File(path);
+		{ 
+			file = new File(pathFile);
 			if (file.exists())
 			{
 				try
 				{
 					boolean success = FTPUtil.getInstance().upload(file);
-//					boolean success=true;
 					if (success)
 					{
 						Message shootpre = new Message();
@@ -300,6 +216,65 @@ public class AddDev extends Activity {
 		}
 		
 	};
+	
+	
+	 Handler handler = new Handler(){
+		@Override
+		public void handleMessage(Message msg)
+		{
+			progressDialog.dismiss();
+			switch (msg.what)
+			{
+			case MESSAGE_PUSHAP_SUBENABLE:	
+				addDevBtn.setEnabled(true);
+				addDevBtn.setText("send success");
+				
+				if(TabControl.mSQLHelper.insertSetup(TabControl.writeDB, edtUid.getText().toString(), "Devices", "1"))
+				{
+					Toast.makeText(AddDev.this, "send success  Please switch  work mode", Toast.LENGTH_LONG).show();
+					finish();
+				//devices判断
+				//调试用默认加入设备
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "TV", "Devices",  "0","0");
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "AC", "Devices",  "0","0");
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "Media", "Devices",  "0","0");
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "STU", "Devices",  "0","0");
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "WH", "Devices",  "0","0");
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "DVD", "Devices",  "0","0");
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "FAN", "Devices",  "0","0");
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM1", "Devices",  "0","0");
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM2", "Devices",  "0","0");
+//				
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Switch", "Devices",  "0","0");
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Lamp", "Devices",  "0","0");				
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Curtain", "Devices",  "0","0");
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Power", "Devices",  "0","0");
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM1", "Devices",  "0","0");
+//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM2", "Devices",  "0","0");
+				}else{					
+					Toast.makeText(AddDev.this, "UID already exits! \n send success  Please switch work mode", Toast.LENGTH_LONG).show();
+				}
+				break;
+			case MESSAGE_PUSHAP_FAILED:
+				addDevBtn.setEnabled(true);
+				addDevBtn.setText("send failed");
+				Toast.makeText(AddDev.this, "Failure, please check the network!", Toast.LENGTH_LONG).show();
+			
+				break;
+			case MESSAGE_PUSHFILE_NOEXIT:	
+				addDevBtn.setEnabled(true);
+				addDevBtn.setText("send failed");
+				Toast.makeText(AddDev.this, "Failure, please to create a configuration file!", Toast.LENGTH_LONG).show();
+				
+				break;
+			default:
+				break;
+			}
+			super.handleMessage(msg);
+			
+		}
+		
+	};
 	public void SaveShared(String ssid, String psk){
 		SharedPreferences myPreferences = getSharedPreferences("netconfig", Activity.MODE_PRIVATE);
 		SharedPreferences.Editor editor = myPreferences.edit();
@@ -307,8 +282,8 @@ public class AddDev extends Activity {
 		editor.commit();
 	}
 	public void SaveFile(){
-		String path = "/mnt/sdcard/SmartGateway/Config/";
-		String pathFile = "/mnt/sdcard/SmartGateway/Config/wpa_supplicant.conf";
+		Log.e(tag, path);Log.e(tag, pathFile);
+		
 		try
 		{
 			File config = new File(path);
@@ -333,7 +308,15 @@ public class AddDev extends Activity {
 			e.printStackTrace();
 		}
 	}
-	
+	public String getSDPath(){ 
+	       File sdDir = null; 
+	       boolean sdCardExist = Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);   //判断sd卡是否存在 
+	       if (sdCardExist)   
+	       {                               
+	         sdDir = Environment.getExternalStorageDirectory();//获取跟目录 
+	      }   
+	       return sdDir.toString(); 
+	}
 	
 	
 }

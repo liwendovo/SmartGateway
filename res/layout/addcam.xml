@@ -26,6 +26,7 @@
         android:layout_alignBaseline="@+id/uidEditText"
         android:layout_alignBottom="@+id/uidEditText"
         android:layout_alignParentRight="true"
+         android:background="@drawable/define"
         android:text="ADD" />
 
     <TextView

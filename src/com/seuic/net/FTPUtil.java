@@ -2,6 +2,9 @@ package com.seuic.net;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+
+import android.util.Log;
 
 import it.sauronsoftware.ftp4j.FTPClient;
 import it.sauronsoftware.ftp4j.FTPException;
@@ -18,6 +21,7 @@ public class FTPUtil
 	 * FTP地址
 	 */
 	private static String ADDRESS = "192.168.1.100";
+	
 	/*
 	 * FTP用户�?
 	 */
@@ -45,14 +49,16 @@ public class FTPUtil
 	 */
 	private FTPClient getClient(){
 		FTPClient client = new FTPClient();
+		Log.e(TAG, "FTP server 1");
 		try
 		{
+			Log.e(TAG, "FTP server 2");
 			client.setCharset("utf-8");
 			client.setType(FTPClient.TYPE_BINARY);
-			//URL url = new URL(ADDRESS);
+//			URL url = new URL(ADDRESS);
 			int port = 21;
 		//	int port = url.getPort() < 1 ? 21:url.getPort();
-			//Log.e(TAG, "FTP server listening on address "+url.toString());
+			Log.e(TAG, "FTP server listening on address "+ADDRESS);
 			client.connect(ADDRESS, port);
 			client.login(USERNAME, PASSWORD);
 		} catch (Exception e)

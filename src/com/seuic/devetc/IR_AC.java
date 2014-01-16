@@ -81,18 +81,18 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		button8.setOnLongClickListener(this);
 		button9.setOnLongClickListener(this);
 		button10.setOnLongClickListener(this);
-		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
-		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
-		TabControl.mViewSelected.setButtonFocusChanged(button1);
-		TabControl.mViewSelected.setButtonFocusChanged(button2);
-		TabControl.mViewSelected.setButtonFocusChanged(button3);
-		TabControl.mViewSelected.setButtonFocusChanged(button4);
-		TabControl.mViewSelected.setButtonFocusChanged(button5);
-		TabControl.mViewSelected.setButtonFocusChanged(button6);
-		TabControl.mViewSelected.setButtonFocusChanged(button7);
-		TabControl.mViewSelected.setButtonFocusChanged(button8);
-		TabControl.mViewSelected.setButtonFocusChanged(button9);
-		TabControl.mViewSelected.setImageViewFocusChanged(button10);
+		TabControl.mViewSelected.setButtonClickChanged(backBtn);
+		TabControl.mViewSelected.setButtonClickChanged(leanrnBtn);
+		TabControl.mViewSelected.setButtonClickChanged(button1);
+		TabControl.mViewSelected.setButtonClickChanged(button2);
+		TabControl.mViewSelected.setButtonClickChanged(button3);
+		TabControl.mViewSelected.setButtonClickChanged(button4);
+		TabControl.mViewSelected.setButtonClickChanged(button5);
+		TabControl.mViewSelected.setButtonClickChanged(button6);
+		TabControl.mViewSelected.setButtonClickChanged(button7);
+		TabControl.mViewSelected.setButtonClickChanged(button8);
+		TabControl.mViewSelected.setButtonClickChanged(button9);
+		TabControl.mViewSelected.setImageViewClickChanged(button10);
 		
 		
 		Intent intent=getIntent();

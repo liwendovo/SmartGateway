@@ -75,10 +75,10 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		button[12].setOnClickListener(this);  
 		button[13].setOnClickListener(this);  
 		
-		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
-		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
+		TabControl.mViewSelected.setButtonClickChanged(backBtn);
+		TabControl.mViewSelected.setButtonClickChanged(leanrnBtn);
 		for(int i=0;i< buttonMaxNum;i++){
-			TabControl.mViewSelected.setImageViewFocusChanged(button[i]);
+			TabControl.mViewSelected.setImageViewClickChanged(button[i]);
 		}
 		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
 		

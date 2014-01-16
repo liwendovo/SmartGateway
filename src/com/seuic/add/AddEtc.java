@@ -52,6 +52,7 @@ public class AddEtc extends Activity {
         spinnerEtc.setAdapter(adapter);            
         //…Ë÷√ƒ¨»œ÷µ  
         spinnerEtc.setVisibility(View.VISIBLE);  
+        TabControl.mViewSelected.setButtonClickChanged(okBtn);
     	okBtn.setOnClickListener(new OnClickListener()
 		{		
 			public void onClick(View source){

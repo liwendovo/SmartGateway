@@ -43,15 +43,15 @@ public class IR_FAN extends Activity implements android.view.View.OnClickListene
 		button5.setOnClickListener(this);  
 		button6.setOnClickListener(this);  
 		button7.setOnClickListener(this);
-		TabControl.mViewSelected.setButtonFocusChanged(backBtn);
-		TabControl.mViewSelected.setButtonFocusChanged(leanrnBtn);
-		TabControl.mViewSelected.setImageViewFocusChanged(button1);
-		TabControl.mViewSelected.setImageViewFocusChanged(button2);
-		TabControl.mViewSelected.setImageViewFocusChanged(button3);
-		TabControl.mViewSelected.setImageViewFocusChanged(button4);
-		TabControl.mViewSelected.setButtonFocusChanged(button5);
-		TabControl.mViewSelected.setButtonFocusChanged(button6);
-		TabControl.mViewSelected.setButtonFocusChanged(button7);
+		TabControl.mViewSelected.setButtonClickChanged(backBtn);
+		TabControl.mViewSelected.setButtonClickChanged(leanrnBtn);
+		TabControl.mViewSelected.setImageViewClickChanged(button1);
+		TabControl.mViewSelected.setImageViewClickChanged(button2);
+		TabControl.mViewSelected.setImageViewClickChanged(button3);
+		TabControl.mViewSelected.setImageViewClickChanged(button4);
+		TabControl.mViewSelected.setButtonClickChanged(button5);
+		TabControl.mViewSelected.setButtonClickChanged(button6);
+		TabControl.mViewSelected.setButtonClickChanged(button7);
 
 	}
 
