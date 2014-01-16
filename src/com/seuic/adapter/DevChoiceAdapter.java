@@ -22,9 +22,12 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -46,7 +49,7 @@ public class DevChoiceAdapter extends BaseAdapter {
     private List<Map<String, Object>> data;
     private Context context; 
     int  currentID = -1;
-    
+    private ProgressDialog progressDialog; 
 //    StatusListener mStatusListener;
     private float x,ux;
     public DevChoiceAdapter(Context context, List<Map<String, Object>> data) {
@@ -74,8 +77,6 @@ public class DevChoiceAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
-
-
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -173,18 +174,10 @@ public class DevChoiceAdapter extends BaseAdapter {
 				currentID=position;  
 				SetupDev.editor.putString("uid",data.get(position).get("uid").toString());
 				SetupDev.editor.commit();
+				showProgressDialog();
 				notifyDataSetChanged();
 			}
 		});
-//        convertView.setOnClickListener(new OnClickListener() {
-//            
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-////                mActivity.openActivity();            	
-//            	currentID=position;            	
-//            }
-//        });
-  
         return convertView;
     }
 
@@ -199,33 +192,29 @@ public class DevChoiceAdapter extends BaseAdapter {
 		currentID = setID;
 	}
 	
+	private Handler handler = new Handler(){ 
+        @Override  
+        public void handleMessage(Message msg) {  
+        	
+        	Toast.makeText(context, "Connect Success", Toast.LENGTH_SHORT).show(); 
+//            //¹Ø±ÕProgressDialog  
+            progressDialog.dismiss(); 
+
+        }};  
+		 public void showProgressDialog(){  
+		 progressDialog = ProgressDialog.show(context, "Connectting...", "Please wait...", true, false); 
+		 new Thread(){        
+		     @Override  
+		     public void run() {  
+		       try {
+						Thread.sleep(3000) ;
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		       handler.sendEmptyMessage(0);  
+		     }}.start();      
+		 }
 	
-	
-//	class OnStatusClickListener implements OnClickListener{
-//		int position;
-//		
-//		public OnStatusClickListener(int position){
-//			this.position = position;
-//		}
-//
-//		@Override
-//		public void onClick(View v) {
-//			// TODO Auto-generated method stub
-//			mStatusListener.onDeleteClicked(position);
-//			currentID=position;  
-//			notifyDataSetChanged();
-//		}
-//		
-//	}
-//		
-//	public interface StatusListener {
-//
-//		void onDeleteClicked(int index);
-//	}
-//	
-//	public void setDeleteListener(StatusListener mListener) {
-//		// TODO Auto-generated method stub
-//		mStatusListener = mListener;
-//	}
 
 }

@@ -10,11 +10,14 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,6 +25,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.seuic.adapter.DevChoiceAdapter;
 import com.seuic.add.AddDev;
@@ -38,7 +42,7 @@ public class SetupDev extends Activity {
 	public static SharedPreferences myPreferences;
 	public static SharedPreferences.Editor editor;	
 
-
+	private ProgressDialog progressDialog; 
 	public SQLiteDatabase writeDB;
 	
 
@@ -146,7 +150,33 @@ public class SetupDev extends Activity {
 //		writeDB.close();
 	}
 	
- 
+	private Handler handler = new Handler(){ 
+        @Override  
+        public void handleMessage(Message msg) {  
+        	
+        	Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show();  
+
+//        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton, true);
+//        	btnLearn[curButton-1]=true;
+//            //关闭ProgressDialog  
+//            progressDialog.dismiss(); 
+//        	TabControl.mViewSelected.imageviewClickRecover(button[curButton-1]);
+//          TabControl.mViewSelected.imageviewClickLearn(button[curButton-1]);
+        }};  
+		 public void showProgressDialog(){  
+		 progressDialog = ProgressDialog.show(SetupDev.this, "Connectting...", "Please wait...", true, false); 
+		 new Thread(){        
+		     @Override  
+		     public void run() {  
+		       try {
+						Thread.sleep(3000) ;
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		       handler.sendEmptyMessage(0);  
+		     }}.start();      
+		 }
 
 }
 

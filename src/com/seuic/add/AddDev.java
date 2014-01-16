@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
@@ -29,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.seuic.devetc.IR_Custom1;
 import com.seuic.net.FTPUtil;
 import com.seuic.net.NetConfig;
 import com.seuic.smartgateway.R;
@@ -40,15 +42,13 @@ public class AddDev extends Activity {
 //	Button pushap;
 	
 	Button titleBtn,homeBtn;
-	ImageView titlePic;
-	
+	ImageView titlePic;	
 	EditText edtUid;
 	EditText edtSSID, edtPassword;
     Spinner spinnerSSID;
 	List<String> listSSID;
-	
-	
 	Handler handler;
+	
 	NetConfig netConfig;
 	String target = null;
 	public static final int MESSAGE_PUSHAP_SUBENABLE = 9990;
@@ -60,8 +60,7 @@ public class AddDev extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.adddev);	
-		
+		setContentView(R.layout.adddev);			
 		
 		homeBtn=(Button)findViewById(R.id.back);
 		titlePic=(ImageView)findViewById(R.id.pic);
@@ -93,26 +92,18 @@ public class AddDev extends Activity {
 		Log.d("leewoo","wifiinfo:"+wifiInfo.toString());
 		Log.d("leewoo","SSID:"+wifissid);			
 		List<ScanResult> results = wifiManager.getScanResults();  
-		//String otherwifi ="The existing network SSID is: \n\n"; 
-		
-		
-		
-		if(!results.isEmpty()){
-		
-		for (ScanResult result : results) {    	          		   
-		     listSSID.add(result.SSID);
-		  				}  		
-				}
+		//String otherwifi ="The existing network SSID is: \n\n"; 	
+		  if(!results.isEmpty()){		
+			for (ScanResult result : results) {    	          		   
+			     listSSID.add(result.SSID);
+			  	}  		
+			}
 		}
-		
-		else {  Toast.makeText(getApplicationContext(), "wifi未连接，请连接wifi", Toast.LENGTH_SHORT).show();
-		
+		else {  
+			Toast.makeText(getApplicationContext(), "wifi未连接，请连接wifi", Toast.LENGTH_SHORT).show();
 		}
-		
-		
 		ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, listSSID);
-		//绑定 Adapter到控件 
-		//设置下拉列表的风格  
+		
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  	 
 		//添加事件Spinner事件监听    
 		spinnerSSID.setAdapter(adapter);
@@ -153,18 +144,11 @@ public class AddDev extends Activity {
 			
 			@Override
 			public void afterTextChanged(Editable s) {
-				
-
 				try {
-
 				 String temp = s.toString();
-
-				        String tem = temp.substring(temp.length()-1,temp.length());
-
-				char[] temC = tem.toCharArray();
-
-				int mid = temC[0];
-
+				 String tem = temp.substring(temp.length()-1,temp.length());
+				 char[] temC = tem.toCharArray();
+				 int mid = temC[0];
 					if(mid>=48&&mid<=57)
 					{//数字	
 					return;	
@@ -172,13 +156,10 @@ public class AddDev extends Activity {
 					if(mid>=65&&mid<=90){//大写字母	
 					return;	
 					}
-
 					if(mid>97&&mid<=122){//小写字母	
 					return;	
 					}
-
-				s.delete(temp.length()-1, temp.length());
-				
+				 s.delete(temp.length()-1, temp.length());				
 				} catch (Exception e) {
 
 				// TODO: handle exception
@@ -188,13 +169,9 @@ public class AddDev extends Activity {
 
 	   });
 		
-		
 		addDevBtn.setOnClickListener(new OnClickListener()
 		{		
-			public void onClick(View source){
-				
-				
-				//edt.setTransformationMethod(new AllCapTransformationMethod ());			
+			public void onClick(View source){							
 				final String UIDlen  = edtUid.getText().toString();
 				if(UIDlen.length()!=5)
 				{   
@@ -206,45 +183,37 @@ public class AddDev extends Activity {
 				}
 				else
 				{
-					
-					
 				String UID = StringChange(UIDlen);
-//				itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"};
-//				itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"};	
-				//插入数据库库
-//				writeDB=ControlBox.mSQLHelper.getWritableDatabase();
-				if(TabControl.mSQLHelper.insertSetup(TabControl.writeDB, UID, "Devices", "1"))
-				{
-				//devices判断
-				//调试用默认加入设备
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "TV", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "AC", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "Media", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "STU", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "WH", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "DVD", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "FAN", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM1", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM2", "Devices",  "0","0");
-//				
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Switch", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Lamp", "Devices",  "0","0");				
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Curtain", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Power", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM1", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM2", "Devices",  "0","0");
-				}else{
-					
-					Toast toast=Toast.makeText(getApplicationContext(),
-			       		     "UID已存在", Toast.LENGTH_SHORT);					
-					toast.show();
-				}
-				//出入三级表
 				
-				finish();
-				}
+					if(TabControl.mSQLHelper.insertSetup(TabControl.writeDB, UID, "Devices", "1"))
+					{
+						finish();
+					//devices判断
+					//调试用默认加入设备
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "TV", "Devices",  "0","0");
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "AC", "Devices",  "0","0");
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "Media", "Devices",  "0","0");
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "STU", "Devices",  "0","0");
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "WH", "Devices",  "0","0");
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "DVD", "Devices",  "0","0");
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "FAN", "Devices",  "0","0");
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM1", "Devices",  "0","0");
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM2", "Devices",  "0","0");
+//					
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Switch", "Devices",  "0","0");
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Lamp", "Devices",  "0","0");				
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Curtain", "Devices",  "0","0");
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Power", "Devices",  "0","0");
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM1", "Devices",  "0","0");
+//					TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM2", "Devices",  "0","0");
+					}else{
+						
+						Toast toast=Toast.makeText(getApplicationContext(),
+				       		     "UID已存在", Toast.LENGTH_SHORT);					
+						toast.show();
+					}
+			  }
 			}
-		
 		});	
 		
 		
@@ -364,6 +333,9 @@ public class AddDev extends Activity {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
 }
 
 

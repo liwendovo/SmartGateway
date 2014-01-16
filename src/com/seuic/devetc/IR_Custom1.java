@@ -33,9 +33,6 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	int curButton=-1;
 	Boolean lenclr=false;
 	private ProgressDialog progressDialog;  
-//	Button  button1,button2,button3,
-//			button4,button5,button6,
-//			button7,button8,button9;
 	ImageView   button10;
 	
 	int devid;
@@ -257,7 +254,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 //          TabControl.mViewSelected.imageviewClickLearn(button[curButton-1]);
         }};  
 		 private void showProgressDialog(){  
-		 progressDialog = ProgressDialog.show(IR_Custom1.this, "Learnning...", "Please wait...", true, false); 
+		 progressDialog = ProgressDialog.show(IR_Custom1.this, "Learning...", "Please wait...", true, false); 
 		 new Thread(){        
 		     @Override  
 		     public void run() {  
@@ -341,49 +338,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 			
 			((Button)button[btnid-1]).setText(et.getText().toString());
 			TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, btnid-1, et.getText().toString());
-			
-			
-//			switch (btnid) {
-//			case 1:
-//				button1.setText(et.getText().toString());
-//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 1, et.getText().toString());
-//				break;
-//			case 2:
-//				button2.setText(et.getText().toString());
-//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 2, et.getText().toString());
-//				break;
-//			case 3:
-//				button3.setText(et.getText().toString());
-//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 3, et.getText().toString());
-//				break;
-//			case 4:
-//				button4.setText(et.getText().toString());
-//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 4, et.getText().toString());
-//				break;
-//			case 5:
-//				button5.setText(et.getText().toString());
-//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 5, et.getText().toString());
-//				break;
-//			case 6:
-//				button6.setText(et.getText().toString());
-//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 6, et.getText().toString());
-//				break;
-//			case 7:
-//				button7.setText(et.getText().toString());
-//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 7, et.getText().toString());
-//				break;				
-//			case 8:
-//				button8.setText(et.getText().toString());
-//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 8, et.getText().toString());
-//				break;
-//			case 9:
-//				button9.setText(et.getText().toString());
-//				TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, 9, et.getText().toString());
-//				break;
-//			default:
-//				break;
-//			}
-		  }
+		   }
 		});
 		  builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
 			@Override

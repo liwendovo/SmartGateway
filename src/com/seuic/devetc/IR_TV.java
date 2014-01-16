@@ -134,24 +134,20 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 //             		btnclr1=true;
 //             		TabControl.mViewSelected.imageviewClickRecover(button1);
 //             		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true);  
-     	        }
-             	
+     	        }             	
              	break;
-             case R.id.button2:
-             	
+             case R.id.button2:             	
              	if(lenclr==true){
              		showProgressDialog(); 
              		curButton=2;
-             	}
-             	
+             	}             	
              	break;
              case R.id.button3:
              	if(lenclr==true){  
              		showProgressDialog();
              		curButton=3;
              	}             	
-             	break;
-             
+             	break;             
              case R.id.button4:
              	if(lenclr==true){
          			showProgressDialog();
@@ -188,8 +184,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
              		showProgressDialog();
          			curButton=9;
      	        }
-             	break;    
-             	
+             	break;
              case R.id.button10:
              	if(lenclr==true){     	        	  
              		showProgressDialog();
@@ -220,9 +215,9 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
          			curButton=14;       	        	
              	}
              	break;                
-        default:  
-        	Log.e("leewoo", "Button id =default " ); 
-            break;  
+	        default:  
+	        	Log.e("leewoo", "Button id =default " ); 
+	            break;  
         }
 	  
 	}
@@ -242,7 +237,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 //	            TabControl.mViewSelected.imageviewClickLearn(button[curButton-1]);
 	        }};  
 			 private void showProgressDialog(){  
-			 progressDialog = ProgressDialog.show(IR_TV.this, "Learnning...", "Please wait...", true, false); 
+			 progressDialog = ProgressDialog.show(IR_TV.this, "Learning...", "Please wait...", true, false); 
 			 new Thread(){        
 			     @Override  
 			     public void run() {  
