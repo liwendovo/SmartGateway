@@ -2,16 +2,10 @@ package com.seuic.net;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-
 import android.util.Log;
-
 import it.sauronsoftware.ftp4j.FTPClient;
 import it.sauronsoftware.ftp4j.FTPException;
 import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
-
-
-
 
 public class FTPUtil
 {

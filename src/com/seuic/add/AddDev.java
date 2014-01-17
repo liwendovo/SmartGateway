@@ -3,6 +3,11 @@ package com.seuic.add;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +25,6 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,10 +41,11 @@ import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 
 
+@SuppressLint("HandlerLeak")
 public class AddDev extends Activity {
 	public final static String PREFERENCE_NAME = "netconfig";
 	Button addDevBtn;
-
+	
 	String tag="AddDev";
 	Button titleBtn,homeBtn;
 	ImageView titlePic;	
@@ -53,7 +57,7 @@ public class AddDev extends Activity {
 	RadioGroup radioGroup;
 	String Key_mgmt="WPA-PSK";
 	NetConfig netConfig;
-	String target = null;
+	String mUid=null;
 	public static final int MESSAGE_PUSHAP_SUBENABLE = 9990;
 	public static final int MESSAGE_PUSHAP_FAILED = 9991;
 	public static final int MESSAGE_PUSHFILE_NOEXIT = 9992;
@@ -70,6 +74,8 @@ public class AddDev extends Activity {
 		Log.e("leewoo", path);
 		Log.e("leewoo", pathFile);
 		netConfig=new NetConfig();
+		netConfig.setPriority("123");
+		
 		homeBtn=(Button)findViewById(R.id.back);
 		titlePic=(ImageView)findViewById(R.id.pic);
 		titleBtn=(Button)findViewById(R.id.titleBtn);
@@ -112,24 +118,33 @@ public class AddDev extends Activity {
 			Toast.makeText(getApplicationContext(), "wifi未连接，请连接wifi", Toast.LENGTH_SHORT).show();
 			addDevBtn.setEnabled(false);
 		}
+		
+		 
+		
+//	    Thread uidThread = new Thread(getuid);
+//		uidThread.start();
+
+//		Log.e(tag, "uid= "+mUid);
+		
+		
 		ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, listSSID);
 		
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  	 
 		//添加事件Spinner事件监听    
 		spinnerSSID.setAdapter(adapter);
-		spinnerSSID.setOnItemSelectedListener(new OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				// TODO Auto-generated method stub
-			}
-		
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-		});  
+//		spinnerSSID.setOnItemSelectedListener(new OnItemSelectedListener() {
+//			@Override
+//			public void onItemSelected(AdapterView<?> arg0, View arg1,
+//					int arg2, long arg3) {
+//				// TODO Auto-generated method stub
+//			}
+//		
+//			@Override
+//			public void onNothingSelected(AdapterView<?> arg0) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		});  
 		
 		radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
@@ -140,10 +155,13 @@ public class AddDev extends Activity {
 				
 				if(radioButton.getText().toString().equals("WPA")){
 					Key_mgmt="WPA-PSK";
+					netConfig.setIsWep(false);
 				}else if(radioButton.getText().toString().equals("WEP")){
 					Key_mgmt="WEP";
+					netConfig.setIsWep(true);
 				}else{
 					Key_mgmt="";
+					netConfig.setIsWep(false);
 				}
 			}
 		});
@@ -164,14 +182,12 @@ public class AddDev extends Activity {
 					netConfig.setPsk(edtPassword.getText().toString().trim());
 				}
 				
-				addDevBtn.setText("sending");
-				
-				target = netConfig.toString();
+				addDevBtn.setText("sending");				
 				if (psk_leng != 0)
 				{
 					SaveShared(netConfig.getSsid(),netConfig.getPsk());
 				}
-				SaveFile();
+				SaveFile(netConfig.toString());
 				Thread pushThread = new Thread(pushRunnable);
 				pushThread.start();
 					
@@ -179,6 +195,51 @@ public class AddDev extends Activity {
 		});	
 		
 	} 
+	
+	Runnable getuid=new Runnable() {
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+                	 byte sendvalue[]={0x0a,0x1b,0x2c,0x3d};
+                	
+                     try {
+                    		Socket socket = new Socket();
+                    		SocketAddress socAddress = new InetSocketAddress("192.168.1.100", 0xabc); 
+                    		socket.connect(socAddress, 5000);
+                    		InputStream in  = socket.getInputStream();
+                            OutputStream out = socket.getOutputStream();
+                     	    out.write(sendvalue);
+							out.flush();
+							int numbytes;							
+							byte[] data = new byte[20];
+//							for(int i=0;i<20;i++)
+//							{data[i]='\0';}
+							if ((numbytes=in.read(data)) == -1) {	
+	                            Log.e(tag, "null"+numbytes);
+	                            Toast.makeText(AddDev.this,"未收到UID，请检查网络", Toast.LENGTH_SHORT).show();
+	                        }else{
+                            	Log.e(tag,""+ numbytes);
+//                            	data[numbytes]='\0';
+                            	String str =new String(data, "ISO-8859-1");
+//	                            	 Toast.makeText(SimpleClient.this,str, Toast.LENGTH_SHORT).show();		
+		                             Log.e(tag, ""+str);
+		                             mUid=str;
+//		                             edtUid.setText(str);
+	                        }
+							Message uidmsg = new Message();
+							uidmsg.what=1;
+							uidHandler.sendMessage(uidmsg);
+							
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							Log.e(tag, "Socket Error");
+//							e.printStackTrace();
+						}
+           
+		}
+	};
+	
 	Runnable pushRunnable = new Runnable()
 	{
 		
@@ -217,7 +278,40 @@ public class AddDev extends Activity {
 		
 	};
 	
-	
+
+	 Handler uidHandler = new Handler(){
+		@Override
+		public void handleMessage(Message msg)
+		{
+			if(TabControl.mSQLHelper.insertSetup(TabControl.writeDB, mUid, "Devices", "1"))
+			{
+				Toast.makeText(AddDev.this, "send success  Please switch  work mode", Toast.LENGTH_LONG).show();
+				finish();
+			//devices判断
+			//调试用默认加入设备
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "TV", "Devices",  "0","0");
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "AC", "Devices",  "0","0");
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "Media", "Devices",  "0","0");
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "STU", "Devices",  "0","0");
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "WH", "Devices",  "0","0");
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "DVD", "Devices",  "0","0");
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "FAN", "Devices",  "0","0");
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM1", "Devices",  "0","0");
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM2", "Devices",  "0","0");
+//			
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Switch", "Devices",  "0","0");
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Lamp", "Devices",  "0","0");				
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Curtain", "Devices",  "0","0");
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Power", "Devices",  "0","0");
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM1", "Devices",  "0","0");
+//			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM2", "Devices",  "0","0");
+			}else{					
+				Toast.makeText(AddDev.this, "UID already exits! \n send success  Please switch work mode", Toast.LENGTH_LONG).show();
+			}
+		 
+		 
+		}
+	 };
 	 Handler handler = new Handler(){
 		@Override
 		public void handleMessage(Message msg)
@@ -228,32 +322,9 @@ public class AddDev extends Activity {
 			case MESSAGE_PUSHAP_SUBENABLE:	
 				addDevBtn.setEnabled(true);
 				addDevBtn.setText("send success");
+			    Thread uidThread = new Thread(getuid);
+				uidThread.start();
 				
-				if(TabControl.mSQLHelper.insertSetup(TabControl.writeDB, edtUid.getText().toString(), "Devices", "1"))
-				{
-					Toast.makeText(AddDev.this, "send success  Please switch  work mode", Toast.LENGTH_LONG).show();
-					finish();
-				//devices判断
-				//调试用默认加入设备
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "TV", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "AC", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "Media", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "STU", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "WH", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "DVD", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "FAN", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM1", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "ir", "CUSTOM2", "Devices",  "0","0");
-//				
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Switch", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Lamp", "Devices",  "0","0");				
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Curtain", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "Power", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM1", "Devices",  "0","0");
-//				TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM2", "Devices",  "0","0");
-				}else{					
-					Toast.makeText(AddDev.this, "UID already exits! \n send success  Please switch work mode", Toast.LENGTH_LONG).show();
-				}
 				break;
 			case MESSAGE_PUSHAP_FAILED:
 				addDevBtn.setEnabled(true);
@@ -281,9 +352,9 @@ public class AddDev extends Activity {
 		editor.putString(ssid, psk);
 		editor.commit();
 	}
-	public void SaveFile(){
-		Log.e(tag, path);Log.e(tag, pathFile);
-		
+	public void SaveFile(String target){
+		Log.e(tag, path);
+		Log.e(tag, pathFile);		
 		try
 		{
 			File config = new File(path);
@@ -299,10 +370,10 @@ public class AddDev extends Activity {
 			}else {
 				config.createNewFile();
 			} 
-		FileOutputStream fout = new FileOutputStream(config);
-		byte[] bytes = target.getBytes();
-		fout.write(bytes);
-		fout.close();
+			FileOutputStream fout = new FileOutputStream(config);
+			byte[] bytes = target.getBytes();
+			fout.write(bytes);
+			fout.close();
 		}catch (IOException e)
 		{
 			e.printStackTrace();
