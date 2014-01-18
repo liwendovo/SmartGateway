@@ -226,10 +226,8 @@ public class AddDev extends Activity {
 		                             Log.e(tag, ""+str);
 		                             mUid=str;
 //		                             edtUid.setText(str);
-	                        }
-							Message uidmsg = new Message();
-							uidmsg.what=1;
-							uidHandler.sendMessage(uidmsg);
+	                        }							
+							uidHandler.sendEmptyMessage(0);
 							
 						} catch (IOException e) {
 							// TODO Auto-generated catch block

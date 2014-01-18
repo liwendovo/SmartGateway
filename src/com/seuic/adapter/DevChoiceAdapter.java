@@ -39,6 +39,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.seuic.net.TUTKClient;
+import com.seuic.smartgateway.LogoActivity;
 import com.seuic.smartgateway.SetupDev;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
@@ -172,9 +175,10 @@ public class DevChoiceAdapter extends BaseAdapter {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				currentID=position;  
-				SetupDev.editor.putString("uid",data.get(position).get("uid").toString());
+				String uid=data.get(position).get("uid").toString();
+				SetupDev.editor.putString("uid",uid);
 				SetupDev.editor.commit();
-				showProgressDialog();
+				showProgressDialog(uid);
 				notifyDataSetChanged();
 			}
 		});
@@ -195,26 +199,32 @@ public class DevChoiceAdapter extends BaseAdapter {
 	private Handler handler = new Handler(){ 
         @Override  
         public void handleMessage(Message msg) {  
-        	
-        	Toast.makeText(context, "Connect Success", Toast.LENGTH_SHORT).show(); 
+        	if(0==msg.what)
+        	{
+        		Toast.makeText(context, "Connect Success", Toast.LENGTH_SHORT).show(); 
+        	}else{
+        		Toast.makeText(context, "Connect Failed", Toast.LENGTH_SHORT).show(); 
+        	}
 //            //¹Ø±ÕProgressDialog  
             progressDialog.dismiss(); 
 
         }};  
-		 public void showProgressDialog(){  
+	 public void showProgressDialog(final String uid){  
 		 progressDialog = ProgressDialog.show(context, "Connectting...", "Please wait...", true, false); 
 		 new Thread(){        
 		     @Override  
 		     public void run() {  
-		       try {
-						Thread.sleep(3000) ;
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-		       handler.sendEmptyMessage(0);  
+		    Message startMsg=new Message();
+		    	TUTKClient.stop();
+			   if(TUTKClient.start(uid))				 
+			   {
+				   startMsg.what=0;
+			   }else{
+				   startMsg.what=1;
+			   }			   
+		       handler.sendMessage(startMsg);  
 		     }}.start();      
-		 }
+	 }
 	
 
 }

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TabHost;
 import com.seuic.adapter.ViewSelected;
-import com.seuic.net.Client;
+import com.seuic.net.TUTKClient;
 import com.seuic.net.TUTKService;
 import com.seuic.sqlite.SQLiteHelper;
 
@@ -31,7 +31,7 @@ public class TabControl extends ActivityGroup {
 	public static ViewSelected mViewSelected;
 	
 	
-	public static Client mClient=null;	
+	public static TUTKClient mClient=null;	
 	String mUid=null;	
 	
 	
@@ -117,7 +117,7 @@ public class TabControl extends ActivityGroup {
 		super.onDestroy();
 		Log.e("leewoo", "TabControl---onDestroy");
 		stopService(serviceIntent);
-		Client.stop();
+		TUTKClient.stop();
 		writeDB.close();
 	}
 

@@ -1,5 +1,7 @@
 package com.seuic.devetc;
 
+import org.apache.http.conn.ClientConnectionManager;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.seuic.net.TUTKClient;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 
@@ -224,14 +227,14 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 	 	private Handler handler = new Handler(){ 
 	        @Override  
 	        public void handleMessage(Message msg) {  
-	        	
+	        	if(0==msg.what){
 	        	Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show();  
-
 	        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton, true);
-	        	btnLearn[curButton-1]=true;
-	        	Log.e("leewoo", "");
+	        	btnLearn[curButton-1]=true;	        	
 	        	curButton=-1;
-	            //关闭ProgressDialog  
+	        	}else{
+	        		Toast.makeText(getApplicationContext(), "学习失败", Toast.LENGTH_SHORT).show();	
+	        	}
 	            progressDialog.dismiss(); 
 //	        	TabControl.mViewSelected.imageviewClickRecover(button[curButton-1]);
 //	            TabControl.mViewSelected.imageviewClickLearn(button[curButton-1]);
@@ -241,13 +244,14 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 			 new Thread(){        
 			     @Override  
 			     public void run() {  
-			       try {
-							Thread.sleep(3000) ;
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-			         handler.sendEmptyMessage(0);  
+			    	 Message learnMsg=new Message();
+			    	 if(TUTKClient.learn(0))
+			    	 {
+			    		 learnMsg.what=0;
+			    	 }else{
+			    		 learnMsg.what=1;	
+			    	 }	 
+			         handler.sendMessage(learnMsg);  
 			     }}.start();      
 			 }
 			private void setbuttonstate()

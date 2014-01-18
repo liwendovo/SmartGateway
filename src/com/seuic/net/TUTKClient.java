@@ -1,15 +1,18 @@
 package com.seuic.net;
 
+import java.io.UnsupportedEncodingException;
+
 import android.util.Log;
 
-import com.tutk.IOTC.IOTCAPIs;
 import com.tutk.IOTC.AVAPIs;
+import com.tutk.IOTC.IOTCAPIs;
 
 
-public class Client {
-	 static int sid;
-	 static int uid;
-	 static int avIndex;
+public class TUTKClient {
+	 static int sid=-1;
+	 static String uid=null;
+	 static int avIndex=-1;
+	 static boolean isConnect = false;
 	//custom request code
 	 final static int LEARNTIMEOUT       =1000*10;
 	 final static int MAX_SIZE_IOCTRL_BUF=1024;	
@@ -45,96 +48,110 @@ public class Client {
 	 final static int IOTYPE_BL_BOX_GET_LEDS_POWER_RESP            =0xFF000071;
 	 final static int IOTYPE_BL_BOX_SET_LEDS_POWER_REQ             =0xFF000072;
 	 final static int IOTYPE_BL_BOX_SET_LEDS_POWER_RESP            =0xFF000073;
-	 
-	 public static void start(String uid) {      
-	        
+//	 static Thread videoThread;
+//	 static Thread audioThread;
+	 public static boolean start(String uid) {  
+		 if (!isConnect) {
+		 	Log.e("TUTKClient", "uid");
 	        System.out.println("StreamClient start...");
 
 	        // use which Master base on location, port 0 means to get a random port
 	        int ret = IOTCAPIs.IOTC_Initialize(0, "m1.iotcplatform.com",
-	                "m2.iotcplatform.com", "m4.iotcplatform.com",
-	                "m5.iotcplatform.com");
+	                	   "m2.iotcplatform.com", "m4.iotcplatform.com",
+	                       "m5.iotcplatform.com");
 	        System.out.printf("IOTC_Initialize() ret = %d\n", ret);
 	        if (ret != IOTCAPIs.IOTC_ER_NoERROR) {
 	            System.out.printf("IOTCAPIs_Device exit...!!\n");
-	            return;
+	            return false;
 	        }
 
 	        // alloc 3 sessions for video and two-way audio
 	        AVAPIs.avInitialize(3);
-
-	        int sid = IOTCAPIs.IOTC_Connect_ByUID(uid);
+	        sid = IOTCAPIs.IOTC_Connect_ByUID(uid);
 	        System.out.printf("Step 2: call IOTC_Connect_ByUID(%s).......\n", uid);
 
 	        long[] srvType = new long[1];
-	        int avIndex = AVAPIs.avClientStart(sid, "admin", "888888", 20000, srvType, 0);
+	        avIndex = AVAPIs.avClientStart(sid, "admin", "888888", 20000, srvType, 0);
 	        System.out.printf("Step 2: call avClientStart(%d).......\n", avIndex);
 
 	        if (avIndex < 0) {
 	            System.out.printf("avClientStart failed[%d]\n", avIndex);
-	            return;
+	            return false;
 	        }
 
 	        if (startIpcamStream(avIndex)) {
-	            Thread videoThread = new Thread(new VideoThread(avIndex),
-	                    "Video Thread");
-	            Thread audioThread = new Thread(new AudioThread(avIndex),
-	                    "Audio Thread");
-	            videoThread.start();
-	            audioThread.start();
-	            try {
-	                videoThread.join();
-	            }
-	            catch (InterruptedException e) {
-	                System.out.println(e.getMessage());
-	                return;
-	            }
-	            try {
-	                audioThread.join();
-	            }
-	            catch (InterruptedException e) {
-	                System.out.println(e.getMessage());
-	                return;
-	            }
+	        	isConnect=true;
+//	             videoThread = new Thread(new VideoThread(avIndex),
+//	                    "Video Thread");
+//	             audioThread = new Thread(new AudioThread(avIndex),
+//	                    "Audio Thread");
+	          
+//	            videoThread.start();
+//	            audioThread.start();
+	            return true;
 	        }
-
+	       
+		 }
+		 return false;
+	    }
+    public static void stop() {
+    	Log.e("TUTKClient", "in stop");
+    	if(isConnect) {
+    		 Log.e("TUTKClient", "stopping");
+	    	isConnect=false;
+//	    	 try {
+//	             videoThread.join();
+//	         }
+//	         catch (InterruptedException e) {
+//	             System.out.println(e.getMessage());             
+//	         }
+//	         try {
+//	             audioThread.join();
+//	         }
+//	         catch (InterruptedException e) {
+//	             System.out.println(e.getMessage());             
+//	         }    	
 	        AVAPIs.avClientStop(avIndex);
 	        System.out.printf("avClientStop OK\n");
 	        IOTCAPIs.IOTC_Session_Close(sid);
 	        System.out.printf("IOTC_Session_Close OK\n");
 			AVAPIs.avDeInitialize();
 			IOTCAPIs.IOTC_DeInitialize();
-	        System.out.printf("StreamClient exit...\n");
-	    }
-    public static void stop() {
-        AVAPIs.avClientStop(avIndex);
-        System.out.printf("avClientStop OK\n");
-        IOTCAPIs.IOTC_Session_Close(sid);
-        System.out.printf("IOTC_Session_Close OK\n");
-		AVAPIs.avDeInitialize();
-		IOTCAPIs.IOTC_DeInitialize();
-        System.out.printf("StreamClient exit...\n");    
+	        System.out.printf("StreamClient exit...\n");	
+    	}
+
     }
-    public static boolean learn(String uid) { 
+    public static boolean learn(int type) { 
     	 //数据发送
         AVAPIs av = new AVAPIs();
-        int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_LEARN_IR_REQ, new byte[2], 2);
+        boolean irflag= (type < 2);
+        byte[] devType=new byte[1];
+        devType[0]=0;
+        if(type==1)devType[0]=1;        
+        int ret = av.avSendIOCtrl(avIndex,irflag?IOTYPE_BL_BOX_LEARN_IR_REQ:IOTYPE_BL_BOX_LEARN_RF_REQ,devType , 1);
         if (ret < 0) {
-            System.out.printf("start_ipcam_stream failed[%d]\n", ret);
+        	Log.e("TUTKClient", "learn failed "+ret);
            return false;
         }
         //数据接收 放到线程里 先这样            
         int ioType[]=new int[1];
-        byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF];
-      
+        byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF];      
         ret = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, LEARNTIMEOUT);
         if (ret > 0&&(ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP)) {
-            Log.e("leewoo", "learn ok");
+            Log.e("TUTKClient", "learn ok");
+            String str = null;
+            try {
+            	str=new String(ioCtrlBuf,"ISO-8859-1");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				
+			}
+            Log.e("TUTKClient", "num:"+ret+" data:"+str);
            return true;
         }
         return false;
     }
-    public static boolean send(String uid) { 
+    public static boolean send() { 
    	 //数据发送
        AVAPIs av = new AVAPIs();
        int ret = av.avSendIOCtrl(avIndex, AVAPIs.IOTYPE_INNER_SND_DATA_DELAY,new byte[2], 2);
@@ -158,9 +175,9 @@ public class Client {
 
         long[] srvType = new long[1];
          avIndex = AVAPIs.avClientStart(sid, "admin", "888888", 20000, srvType, 0);
-        System.out.printf("Step 2: call avClientStart(%d).......\n", avIndex);
+        System.out.printf("Step 2: call avClientRestart(%d).......\n", avIndex);
         if (avIndex < 0) {
-            System.out.printf("avClientStart failed[%d]\n", avIndex);
+            System.out.printf("restart failed[%d]\n", avIndex);
             return false;
         }
         return true;
@@ -178,21 +195,21 @@ public class Client {
         // This IOTYPE constant and its corrsponsing data structure is defined in
         // Sample/Linux/Sample_AVAPIs/AVIOCTRLDEFs.h
         //
-        int IOTYPE_USER_IPCAM_START = 0x1FF;
-        ret = av.avSendIOCtrl(avIndex, IOTYPE_USER_IPCAM_START,
-                new byte[8], 8);
-        if (ret < 0) {
-            System.out.printf("start_ipcam_stream failed[%d]\n", ret);
-            return false;
-        }
-        
-        int IOTYPE_USER_IPCAM_AUDIOSTART = 0x300;
-        ret = av.avSendIOCtrl(avIndex, IOTYPE_USER_IPCAM_AUDIOSTART,
-                new byte[8], 8);
-        if (ret < 0) {
-            System.out.printf("start_ipcam_stream failed[%d]\n", ret);
-            return false;
-        }
+//        int IOTYPE_USER_IPCAM_START = 0x1FF;
+//        ret = av.avSendIOCtrl(avIndex, IOTYPE_USER_IPCAM_START,
+//                new byte[8], 8);
+//        if (ret < 0) {
+//            System.out.printf("start_ipcam_stream failed[%d]\n", ret);
+//            return false;
+//        }
+//        
+//        int IOTYPE_USER_IPCAM_AUDIOSTART = 0x300;
+//        ret = av.avSendIOCtrl(avIndex, IOTYPE_USER_IPCAM_AUDIOSTART,
+//                new byte[8], 8);
+//        if (ret < 0) {
+//            System.out.printf("start_ipcam_stream failed[%d]\n", ret);
+//            return false;
+//        }
 
         return true;
     }
@@ -213,7 +230,7 @@ public class Client {
             AVAPIs av = new AVAPIs();
             byte[] frameInfo = new byte[FRAME_INFO_SIZE];
             byte[] videoBuffer = new byte[VIDEO_BUF_SIZE];
-            while (true) {
+            while (isConnect) {
                 int[] frameNumber = new int[1];
                 int ret = av.avRecvFrameData(avIndex, videoBuffer,
                         VIDEO_BUF_SIZE, frameInfo, FRAME_INFO_SIZE,
@@ -281,7 +298,7 @@ public class Client {
             AVAPIs av = new AVAPIs();
             byte[] frameInfo = new byte[FRAME_INFO_SIZE];
             byte[] audioBuffer = new byte[AUDIO_BUF_SIZE];
-            while (true) {
+            while (isConnect) {
                 int ret = av.avCheckAudioBuf(avIndex);
 
                 if (ret < 0) {
