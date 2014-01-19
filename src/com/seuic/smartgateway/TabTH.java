@@ -1,8 +1,12 @@
 package com.seuic.smartgateway ;  
 
+import com.seuic.net.TUTKClient;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -25,7 +29,15 @@ public class TabTH extends Activity {
     	titlePic.setImageResource(R.drawable.tab_th);
     	titleBtn.setBackgroundResource(R.drawable.title_chart);
 		
-	
+    	titleBtn.setOnClickListener(new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			int[] th=new int[2];
+			TUTKClient.getTH(th);
+		}
+	});
 	}
 	
 }

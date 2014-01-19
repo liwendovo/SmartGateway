@@ -1,7 +1,11 @@
 package com.seuic.smartgateway;
 
+import com.seuic.net.TUTKClient;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -53,7 +57,17 @@ public class SetupTime extends Activity{
 					} else {
 						timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_blue);
 					}
-					//状态记录 数据库			
+					//状态记录 数据库		
+					
+					 new Thread(){        
+					     @Override  
+					     public void run() { 
+					    	 if	(TUTKClient.setTime()){
+					    		 Log.e("Setuptime", "setTime success");
+					    	 }else{
+					    		 Log.e("Setuptime", "setTime failed"); 
+					    	 }			 
+					     }}.start();   
 				}
 			   });
 		
@@ -69,6 +83,8 @@ public class SetupTime extends Activity{
 					//状态记录 数据库			
 				}
 			   });
+		
+		     
 		
 	}
 }

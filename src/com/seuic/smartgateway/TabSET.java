@@ -1,5 +1,7 @@
 package com.seuic.smartgateway ;  
 
+import com.seuic.net.TUTKClient;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -82,8 +84,10 @@ public class TabSET extends Activity {
 			// TODO Auto-generated method stub
 			if (setTempBtn.isChecked()) {
 				setTempBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+				TUTKClient.setTempMode(0);
 			} else {
 				setTempBtn.setBackgroundResource(R.drawable.rf_switch_blue);
+				TUTKClient.setTempMode(1);
 			}
 			//×´Ì¬¼ÇÂ¼ Êý¾Ý¿â			
 		}

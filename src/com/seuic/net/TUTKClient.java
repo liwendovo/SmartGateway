@@ -1,6 +1,7 @@
 package com.seuic.net;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
 
 import android.util.Log;
 
@@ -161,15 +162,141 @@ public class TUTKClient {
        }
        return true;
     }
-    public static boolean restart(String uid) {   
-       
+    
+    public static void getTH(int TH[])
+    {
+        if (!isConnect) {
+            return ;
+        }
+        AVAPIs av = new AVAPIs();
+        av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_GET_TEMPERATURE_HUMIDITY_REQ,new byte[0], 0);
+        int ioType[]=new int[1];
+        byte[]  th=new byte[16];
+        
+        int returnvalue = av.avRecvIOCtrl(avIndex, ioType, th, th.length, LEARNTIMEOUT);
+        if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_GET_TEMPERATURE_HUMIDITY_RESP)) {
+        	Log.e("getTempHum", ""+th);
+//            data[0]= sm.humidityPointLeft+sm.humidityPointRight/10.0;
+//            data[1]=sm.temperaturePointLeft+sm.temperaturePointRight/10.0;
+            return ;
+        }
+        return ;
 
+    }
+    public static boolean setTempMode(int mode){ 
+    	 if (!isConnect) {
+    	        return false;
+    	    }
+    	    int ret;
+    	    AVAPIs av = new AVAPIs();
+    	    int[]  tempMode=new int[]{mode};
+    	    byte[] tempModeByte=intToByte(tempMode);
+    	    ret = av.avSendIOCtrl(avIndex, OTYPE_BL_BOX_SET_TEMPERATURE_MODE_REQ, tempModeByte,tempModeByte.length);
+    	  	if(ret < 0)
+    	    {
+//    	        printf("setdevicetime failed[%d]\n", ret);
+    	        return false;
+    	    }
+    	  	 int ioType[]=new int[1];
+          	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
+    	     int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*5);
+    	     Log.e("setdevicecfmode", ""+ioType[0]);
+    	     if (returnvalue>0&&(ioType[0]==OTYPE_BL_BOX_SET_TEMPERATURE_MODE_RESP)) {
+    	        return true;
+    	    }
+    	     
+    	return false;
+    }
+    public static boolean setdevicecfmode(int cfmode)
+    {
+        if (!isConnect) {
+            return false;
+        }
+        AVAPIs av = new AVAPIs();
+        int[]  tempMode=new int[]{cfmode};
+	    byte[] tempModeByte=intToByte(tempMode);
+        int ret;
+        ret = av.avSendIOCtrl(avIndex, OTYPE_BL_BOX_SET_TEMPERATURE_MODE_REQ, tempModeByte,tempModeByte.length );
+      
+      	if(ret < 0)
+        {          
+            return false;
+        }
+      	int ioType[]=new int[1];
+      	byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
+        int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*5);
+        Log.e("setdevicecfmode", ""+ioType[0]);
+        if (returnvalue>0&&(ioType[0]==OTYPE_BL_BOX_SET_TEMPERATURE_MODE_RESP)) {
+            return true;
+        }
+   
+        return false;
+    }
+    public static boolean setTimeZone(int timeZone){ 
+    	
+    	if (!isConnect) {
+            return false;
+        }
+    	  AVAPIs av = new AVAPIs();
+        
+        int[] tmz=new int[]{timeZone};        
+        byte[] tmzByte =intToByte(tmz);
+        int ret;
+        ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_SET_LOCAL_TIME_MODE_REQ, tmzByte, 4);
+      	if(ret<0)
+        {
+//            printf("setdevicetime failed[%d]\n", ret);
+            return false;
+        }
+      	 int ioType[]=new int[1];
+      	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
+        int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*5);
+        if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SET_LOCAL_TIME_MODE_RESP)) {
+            return true;
+        }
+        return true;
+    }
+    public static boolean setTime() { 
+      	 //Êý¾Ý·¢ËÍ
+    	  Log.e("TUTKClient", "setTime");
+    	  byte[] time =new byte[6];
+    	  long curTime=System.currentTimeMillis();
+    	  final Calendar mCalendar=Calendar.getInstance();
+    	  mCalendar.setTimeInMillis(curTime);
+    	  time[0]=(byte) mCalendar.get(Calendar.YEAR);
+    	  time[1]=(byte) mCalendar.get(Calendar.MONTH);
+    	  time[2]=(byte) mCalendar.get(Calendar.DAY_OF_MONTH);    	 
+    	  time[3]=(byte) mCalendar.get(Calendar.HOUR);
+    	  time[4]=(byte) mCalendar.get(Calendar.MINUTE);
+    	  time[5]=(byte) mCalendar.get(Calendar.SECOND);
+//    	  byte[] timeByte=intToByte(time);
+          AVAPIs av = new AVAPIs();
+          try {
+			Log.e("TUTKClient", "time.length="+time.length+"  "+new String(time,"ISO-8859-1"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+          int ret = av.avSendIOCtrl(avIndex, AVAPIs.IOTYPE_INNER_SND_DATA_DELAY,time, time.length);
+          if (ret < 0) {
+              System.out.printf("start_settime failed[%d]\n", ret); 
+              Log.e("TUTKClient", "start_settime failed  "+ret);
+              return false;
+          }
+          int ioType[]=new int[1];
+          byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
+          int returnvalue = av.avRecvIOCtrl(avIndex, ioType,ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*5);
+          if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SET_GMT_TIME_RESP)) {
+              return true;
+          }
+          Log.e("TUTKClient", "start_settime stop");
+          return false;
+       }
+    public static boolean restart(String uid) {   
 		AVAPIs.avClientStop(avIndex);
 	    System.out.printf("avClientStop OK\n");
 	    IOTCAPIs.IOTC_Session_Close(sid);
-        
-//////////////////////////////////////////////////        
-        
+//////////////////////////////////////////////////   
         sid = IOTCAPIs.IOTC_Connect_ByUID(uid);
         System.out.printf("Step 2: call IOTC_Connect_ByUID(%s).......\n", uid);
 
@@ -351,5 +478,28 @@ public class TUTKClient {
             System.out.printf("[%s] Exit\n",
                     Thread.currentThread().getName());
         }
+    }
+    public static byte[] intToByte(int[] key) { 
+    	  
+    	  byte[] result = new byte[4*key.length]; 
+    	  for(int i=0;i<key.length;i++){
+    	  result[i*4+3] = (byte)((key[i] >> 24) & 0xFF);
+    	  result[i*4+2] = (byte)((key[i] >> 16) & 0xFF);
+    	  result[i*4+1] = (byte)((key[i] >> 8) & 0xFF); 
+    	  result[i*4+0] = (byte)(key[i] & 0xFF);
+    	  }
+    	  return result;
+    	 }
+    public static int byteToInt(byte[] b) {
+
+        int mask=0xff;
+        int temp=0;
+        int n=0;
+        for(int i=0;i<4;i++){
+           n<<=8;
+           temp=b[i]&mask;
+           n|=temp;
+       }
+        return n;
     }
 }
