@@ -1,6 +1,5 @@
 package com.seuic.devetc;
 
-import org.apache.http.conn.ClientConnectionManager;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -27,13 +26,12 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 	ImageView button[]=new ImageView[buttonMaxNum];
 	boolean btnLearn[]=new boolean[buttonMaxNum];
 	int curButton=-1;
-	
+	byte ioCtrlBuf[]=new byte[TUTKClient.MAX_SIZE_IOCTRL_BUF]; 
 	private ProgressDialog progressDialog;  
 	int devid;
-	String mUid;
-	String learnFalse="false"; 
+	String mUid;	
 	Boolean lenclr=false;
-	
+	Cursor learnCursor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,19 +90,18 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 			Log.e("leewoo", "deid error = 0");
 			}
 		
-		Cursor cursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);
-		Log.e("leewoo", "cur: "+cursor.getCount());
-		if(cursor.getCount()>0){				 
+		learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);
+		Log.e("leewoo", "cur: "+learnCursor.getCount());
+		if(learnCursor.getCount()>0){				 
 			//学习	
 			for(int i=0;i<buttonMaxNum;i++){
-				btnLearn[i]=cursor.getString(i+3).equals("true")?true:false;
+				btnLearn[i]=learnCursor.getBlob(i+3)!=null?true:false;
 			}
 		}else{
-			Log.e("leewoo", "cur learn 初始化"+cursor.getCount());
+			Log.e("leewoo", "cur learn 初始化"+learnCursor.getCount());
 			//未初始化
-			TabControl.mSQLHelper.insertBtn(TabControl.writeDB,mUid,devid,"learn" ,learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse);
-		}
-		cursor.close();
+			TabControl.mSQLHelper.insertBtnLearn(TabControl.writeDB,mUid,devid);
+		}		
 		setbuttonstate();
 	}
 
@@ -134,131 +131,185 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
              	if(lenclr==true){
              		showProgressDialog();
              		curButton=1;
-//             		btnclr1=true;
-//             		TabControl.mViewSelected.imageviewClickRecover(button1);
-//             		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, 1, true);  
-     	        }             	
+     	        }else{//发送
+     	        	send(1);
+             	}
              	break;
              case R.id.button2:             	
              	if(lenclr==true){
              		showProgressDialog(); 
              		curButton=2;
+             	}else{
+     	        	send(2);
              	}             	
              	break;
              case R.id.button3:
              	if(lenclr==true){  
              		showProgressDialog();
              		curButton=3;
+             	}else{
+     	        	send(3);
              	}             	
              	break;             
              case R.id.button4:
              	if(lenclr==true){
          			showProgressDialog();
          			curButton=4;
-             	}
+             	}else{
+     	        	send(4);
+             	} 
              	break;
              case R.id.button5:
              	if(lenclr==true){             		 
              		showProgressDialog();
          			curButton=5;     	        	
-             	}
+             	}else{
+     	        	send(5);
+             	} 
              	break;
              case R.id.button6:
              	if(lenclr==true){     	        	 
              		showProgressDialog();
          			curButton=6;    	        	
-             	}
+             	}else{
+     	        	send(6);
+             	} 
              	break;
              case R.id.button7:
              	if(lenclr==true){
              		showProgressDialog();
-         			curButton=7;
-     	        	
-             	}
+         			curButton=7;     	        
+             	}else{
+     	        	send(7);
+             	} 
              	break;
              case R.id.button8:
              	if(lenclr==true){
              		showProgressDialog();
          			curButton=8;    	        	
-             	}
+             	}else{
+     	        	send(8);
+             	} 
              	break;
              case R.id.button9:
              	if(lenclr==true){     	        	 
              		showProgressDialog();
          			curButton=9;
-     	        }
+     	        }else{
+     	        	send(9);
+             	} 
              	break;
              case R.id.button10:
              	if(lenclr==true){     	        	  
              		showProgressDialog();
          			curButton=10;  	        	
-             	}
+             	}else{
+     	        	send(10);
+             	} 
              	break;             	
          	 case R.id.button11:                 	
              	if(lenclr==true){         	        	
              		showProgressDialog();
          			curButton=11;
-     	        }
+     	        }else{
+     	        	send(11);
+             	} 
              	break;
              case R.id.button12:                 	
              	if(lenclr==true){         	        	
              		showProgressDialog();
          			curButton=12;       	        	
-             	}             	
+             	}else{
+     	        	send(12);
+             	}              	
              	break;
              case R.id.button13:
              	if(lenclr==true){         	        
              		showProgressDialog();
          			curButton=13;             		
-             	}                 	
+             	}else{
+     	        	send(13);
+             	}                  	
              	break;                 
              case R.id.button14:
              	if(lenclr==true){         	        	
              		showProgressDialog();
          			curButton=14;       	        	
-             	}
+             	}else{
+     	        	send(14);
+             	} 
              	break;                
 	        default:  
 	        	Log.e("leewoo", "Button id =default " ); 
 	            break;  
-        }
-	  
+        }	  
 	}
-	 	private Handler handler = new Handler(){ 
-	        @Override  
-	        public void handleMessage(Message msg) {  
-	        	if(0==msg.what){
-	        	Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show();  
-	        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton, true);
-	        	btnLearn[curButton-1]=true;	        	
-	        	curButton=-1;
-	        	}else{
-	        		Toast.makeText(getApplicationContext(), "学习失败", Toast.LENGTH_SHORT).show();	
-	        	}
-	            progressDialog.dismiss(); 
-//	        	TabControl.mViewSelected.imageviewClickRecover(button[curButton-1]);
-//	            TabControl.mViewSelected.imageviewClickLearn(button[curButton-1]);
-	        }};  
-			 private void showProgressDialog(){  
-			 progressDialog = ProgressDialog.show(IR_TV.this, "Learning...", "Please wait...", true, false); 
+	 	 
+		 private void showProgressDialog(){  
+		 progressDialog = ProgressDialog.show(IR_TV.this, "Learning...", "Please wait...", true, false); 
+		 new Thread(){        
+		     @Override  
+		     public void run() {  
+		    	 Message learnMsg=new Message();
+		    	 if(TUTKClient.learn(0,ioCtrlBuf))
+		    	 {
+		    		 learnMsg.what=0;
+		    	 }else{
+		    		 learnMsg.what=1;	
+		    	 }	 
+		    	 learnHandler.sendMessage(learnMsg);  
+		     }}.start();      
+		 }
+		 private Handler learnHandler = new Handler(){ 
+		        @Override  
+		        public void handleMessage(Message msg) {  
+		        	if(0==msg.what){
+		        	Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show();  
+		        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton,ioCtrlBuf);
+		        	btnLearn[curButton-1]=true;	        	
+		        	curButton=-1;
+		        	//更新learnCursor
+		        	learnCursor.close();
+		        	learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);
+		        	
+		        	
+		        	}else{
+		        		Toast.makeText(getApplicationContext(), "学习失败", Toast.LENGTH_SHORT).show();	
+		        	}
+		            progressDialog.dismiss(); 
+		        }}; 
+		 private void send(final int btnid){  
+			 progressDialog = ProgressDialog.show(IR_TV.this, "sending...", "Please wait...", true, false); 
 			 new Thread(){        
 			     @Override  
 			     public void run() {  
 			    	 Message learnMsg=new Message();
-			    	 if(TUTKClient.learn(0))
+			    	 Log.e("TV", ""+learnCursor.getBlob(btnid+2));
+			    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2)))
 			    	 {
 			    		 learnMsg.what=0;
 			    	 }else{
 			    		 learnMsg.what=1;	
 			    	 }	 
-			         handler.sendMessage(learnMsg);  
+			    	 sendHandler.sendMessage(learnMsg);  
 			     }}.start();      
 			 }
-			private void setbuttonstate()
-			{
-				for(int i=0;i<buttonMaxNum;i++){
-					if(btnLearn[i])	TabControl.mViewSelected.imageviewClickRecover(button[i]);
-			    	else TabControl.mViewSelected.imageviewClickGreyChanged(button[i]);
-				}
+			private Handler sendHandler = new Handler(){ 
+		        @Override  
+		        public void handleMessage(Message msg) {  
+		        	if(0==msg.what){
+		        	Toast.makeText(getApplicationContext(), "send success", Toast.LENGTH_SHORT).show(); 		        
+		        	}else{
+		        		Toast.makeText(getApplicationContext(), "send failed", Toast.LENGTH_SHORT).show();	
+		        	}
+		            progressDialog.dismiss(); 
+
+		        }}; 
+		private void setbuttonstate()
+		{
+			for(int i=0;i<buttonMaxNum;i++){
+				if(btnLearn[i])	TabControl.mViewSelected.imageviewClickRecover(button[i]);
+		    	else TabControl.mViewSelected.imageviewClickGreyChanged(button[i]);
 			}
+		}
 }

@@ -1,5 +1,6 @@
 package com.seuic.add;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -210,7 +211,8 @@ public class AddDev extends Activity {
                     		InputStream in  = socket.getInputStream();
                             OutputStream out = socket.getOutputStream();
                      	    out.write(sendvalue);
-							out.flush();
+                     	    out.flush();
+							
 							int numbytes;							
 							byte[] data = new byte[20];
 //							for(int i=0;i<20;i++)
@@ -304,7 +306,7 @@ public class AddDev extends Activity {
 //			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM1", "Devices",  "0","0");
 //			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM2", "Devices",  "0","0");
 			}else{					
-				Toast.makeText(AddDev.this, "UID already exits! \n send success  Please switch work mode", Toast.LENGTH_LONG).show();
+				Toast.makeText(AddDev.this, " send success but UID already exits!\n Please switch work mode", Toast.LENGTH_LONG).show();
 			}
 		 
 		 

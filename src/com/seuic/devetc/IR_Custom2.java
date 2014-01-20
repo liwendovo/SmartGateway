@@ -140,8 +140,8 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		}else{
 			Log.e("leewoo", "cur 初始化"+cursor.getCount());
 			//未初始化
-			TabControl.mSQLHelper.insertBtn(TabControl.writeDB,mUid,devid,"learn" ,learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse);
-			TabControl.mSQLHelper.insertBtn(TabControl.writeDB,mUid,devid, "name" ,btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults+14);
+			TabControl.mSQLHelper.insertBtnLearn(TabControl.writeDB,mUid,devid);
+			TabControl.mSQLHelper.insertBtnName(TabControl.writeDB,mUid,devid);
 			//DevSetup.mSQLHelper.insertEtc(DevSetup.writeDB, mUid, 8, "name", "name", "name", "name");			
 		}
 

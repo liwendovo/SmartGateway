@@ -45,7 +45,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 //    		 " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + EtcID + " VHARCHAR, "+ Name + " VHARCHAR, "+ Status + " VHARCHAR, "+  Other+ " VHARCHAR );";
 	final String CREATE_BTN_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_Btn + 
-   		     " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + Type + " VHARCHAR,  button1  VHARCHAR, button2 VHARCHAR, button3  VHARCHAR, button4  VHARCHAR, button5  VHARCHAR, button6  VHARCHAR, button7  VHARCHAR,button8  VHARCHAR,button9  VHARCHAR, button10  VHARCHAR, button11  VHARCHAR,button12  VHARCHAR, button13  VHARCHAR,button14  VHARCHAR);";
+   		     " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + Type + " VHARCHAR,  button1  BLOB, button2 BLOB, button3  BLOB, button4  BLOB, button5  BLOB, button6  BLOB, button7  BLOB,button8  BLOB,button9  BLOB, button10  BLOB, button11  BLOB,button12  BLOB, button13  BLOB,button14  BLOB,button15  BLOB,button16  BLOB);";
 		
 		
 	@Override
@@ -94,9 +94,16 @@ public class SQLiteHelper extends SQLiteOpenHelper
 //		String sql = "INSERT INTO " + Table_Name_Etc  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'"+ Tag_EtcID+"\',\'" +Tag_Name + "\',\'" + Tag_Status + "\',\'"+ Tag_Other + "\');";
 //		db.execSQL(sql);
 //	}
-	public void insertBtn(SQLiteDatabase db, String Tag_Uid, int Tag_DevID, String Tag_Type, String Btn1, String Btn2, String Btn3,String Btn4, String Btn5, String Btn6,String Btn7, String Btn8, String Btn9,String Btn10, String Btn11, String Btn12,String Btn13, String Btn14) {
+	public void insertBtnName(SQLiteDatabase db, String Tag_Uid, int Tag_DevID) {
+		String str=new String("define");
+		byte[] strByte=str.getBytes();
+		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'name\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\');";
+		db.execSQL(sql);
 		
-		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'"+ Tag_Type+"\',\'"+ Btn1+"\',\'" +Btn2 + "\',\'" + Btn3 + "\',\'"+ Btn4 +"\',\'" +Btn5 +"\',\'" +Btn6 +"\',\'" +Btn7 +"\',\'" +Btn8 +"\',\'" +Btn9 +"\',\'" +Btn10 +"\',\'" +Btn11 +"\',\'" +Btn12 +"\',\'" +Btn13 +"\',\'" +Btn14 + "\');";
+	}
+	public void insertBtnLearn(SQLiteDatabase db, String Tag_Uid, int Tag_DevID) {
+		
+		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'learn\',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);";
 		db.execSQL(sql);
 		
 	}
@@ -176,15 +183,12 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	}
 		
 	public void updateBtnName(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID, String Tag_Name) {
-		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+Tag_Name+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
-		
+		byte[] nameByte =Tag_Name.getBytes();
+		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
 		db.execSQL(str);
 	}
-	public void updateBtnlearn(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID, Boolean Tag_Learn) {
-		String flag;
-		if(Tag_Learn){flag="true";}else{flag="false";}
-		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+flag+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"learn\"";
-		
+	public void updateBtnlearn(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID,byte[] data) {		
+		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+data+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"learn\"";
 		db.execSQL(str);
 	}
 //	public void updateEtcStatus(SQLiteDatabase db, String Tag_ID) {

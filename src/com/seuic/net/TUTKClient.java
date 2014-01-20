@@ -2,21 +2,20 @@ package com.seuic.net;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
-
 import android.util.Log;
-
 import com.tutk.IOTC.AVAPIs;
 import com.tutk.IOTC.IOTCAPIs;
 
 
 public class TUTKClient {
 	 static int sid=-1;
-	 static String uid=null;
 	 static int avIndex=-1;
+	 static String uid=null;
+	
 	 static boolean isConnect = false;
-	//custom request code
-	 final static int LEARNTIMEOUT       =1000*10;
-	 final static int MAX_SIZE_IOCTRL_BUF=1024;	
+	 final static int LEARNTIMEOUT    =1000*10;
+	 public final static int MAX_SIZE_IOCTRL_BUF=1024;	
+	 
 	//custom request code
 	 final static int IOTYPE_BL_BOX_GET_GMT_TIME_REQ               =0xFF000010;
 	 final static int IOTYPE_BL_BOX_GET_GMT_TIME_RESP              =0xFF000011;
@@ -49,81 +48,8 @@ public class TUTKClient {
 	 final static int IOTYPE_BL_BOX_GET_LEDS_POWER_RESP            =0xFF000071;
 	 final static int IOTYPE_BL_BOX_SET_LEDS_POWER_REQ             =0xFF000072;
 	 final static int IOTYPE_BL_BOX_SET_LEDS_POWER_RESP            =0xFF000073;
-//	 static Thread videoThread;
-//	 static Thread audioThread;
-	 public static boolean start(String uid) {  
-		 if (!isConnect) {
-		 	Log.e("TUTKClient", "uid");
-	        System.out.println("StreamClient start...");
 
-	        // use which Master base on location, port 0 means to get a random port
-	        int ret = IOTCAPIs.IOTC_Initialize(0, "m1.iotcplatform.com",
-	                	   "m2.iotcplatform.com", "m4.iotcplatform.com",
-	                       "m5.iotcplatform.com");
-	        System.out.printf("IOTC_Initialize() ret = %d\n", ret);
-	        if (ret != IOTCAPIs.IOTC_ER_NoERROR) {
-	            System.out.printf("IOTCAPIs_Device exit...!!\n");
-	            return false;
-	        }
-
-	        // alloc 3 sessions for video and two-way audio
-	        AVAPIs.avInitialize(3);
-	        sid = IOTCAPIs.IOTC_Connect_ByUID(uid);
-	        System.out.printf("Step 2: call IOTC_Connect_ByUID(%s).......\n", uid);
-
-	        long[] srvType = new long[1];
-	        avIndex = AVAPIs.avClientStart(sid, "admin", "888888", 20000, srvType, 0);
-	        System.out.printf("Step 2: call avClientStart(%d).......\n", avIndex);
-
-	        if (avIndex < 0) {
-	            System.out.printf("avClientStart failed[%d]\n", avIndex);
-	            return false;
-	        }
-
-	        if (startIpcamStream(avIndex)) {
-	        	isConnect=true;
-//	             videoThread = new Thread(new VideoThread(avIndex),
-//	                    "Video Thread");
-//	             audioThread = new Thread(new AudioThread(avIndex),
-//	                    "Audio Thread");
-	          
-//	            videoThread.start();
-//	            audioThread.start();
-	            return true;
-	        }
-	       
-		 }
-		 return false;
-	    }
-    public static void stop() {
-    	Log.e("TUTKClient", "in stop");
-    	if(isConnect) {
-    		 Log.e("TUTKClient", "stopping");
-	    	isConnect=false;
-//	    	 try {
-//	             videoThread.join();
-//	         }
-//	         catch (InterruptedException e) {
-//	             System.out.println(e.getMessage());             
-//	         }
-//	         try {
-//	             audioThread.join();
-//	         }
-//	         catch (InterruptedException e) {
-//	             System.out.println(e.getMessage());             
-//	         }    	
-	        AVAPIs.avClientStop(avIndex);
-	        System.out.printf("avClientStop OK\n");
-	        IOTCAPIs.IOTC_Session_Close(sid);
-	        System.out.printf("IOTC_Session_Close OK\n");
-			AVAPIs.avDeInitialize();
-			IOTCAPIs.IOTC_DeInitialize();
-	        System.out.printf("StreamClient exit...\n");	
-    	}
-
-    }
-    public static boolean learn(int type) { 
-    	 //数据发送
+    public static boolean learn(int type,byte[] ioCtrlBuf) {     	
         AVAPIs av = new AVAPIs();
         boolean irflag= (type < 2);
         byte[] devType=new byte[1];
@@ -136,33 +62,26 @@ public class TUTKClient {
         }
         //数据接收 放到线程里 先这样            
         int ioType[]=new int[1];
-        byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF];      
+//        byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF];      
         ret = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, LEARNTIMEOUT);
         if (ret > 0&&(ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP)) {
             Log.e("TUTKClient", "learn ok");
-            String str = null;
-            try {
-            	str=new String(ioCtrlBuf,"ISO-8859-1");
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				
-			}
+            String str=new String(ioCtrlBuf);			
             Log.e("TUTKClient", "num:"+ret+" data:"+str);
            return true;
         }
         return false;
     }
-    public static boolean send() { 
+    public static boolean send(byte[] data) { 
    	 //数据发送
        AVAPIs av = new AVAPIs();
-       int ret = av.avSendIOCtrl(avIndex, AVAPIs.IOTYPE_INNER_SND_DATA_DELAY,new byte[2], 2);
+       int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_SEND_IR_REQ , data , data.length);
        if (ret < 0) {
-           System.out.printf("start_ipcam_stream failed[%d]\n", ret); 
+           System.out.printf("send failed[%d]\n", ret); 
            return false;
        }
        return true;
-    }
-    
+    }    
     public static void getTH(int TH[])
     {
         if (!isConnect) {
@@ -176,15 +95,22 @@ public class TUTKClient {
         int returnvalue = av.avRecvIOCtrl(avIndex, ioType, th, th.length, LEARNTIMEOUT);
         if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_GET_TEMPERATURE_HUMIDITY_RESP)) {
         	Log.e("getTempHum", ""+th);
-//            data[0]= sm.humidityPointLeft+sm.humidityPointRight/10.0;
-//            data[1]=sm.temperaturePointLeft+sm.temperaturePointRight/10.0;
+        	String str=null;
+        	 try {
+             	str=new String(th,"ISO-8859-1");
+ 			} catch (UnsupportedEncodingException e) {
+ 				// TODO Auto-generated catch block
+ 			}
+        	Log.e("getTempHum", ""+str);
+//            TH[0]= sm.humidityPointLeft   +sm.humidityPointRight/10.0;
+//            TH[1]= sm.temperaturePointLeft+sm.temperaturePointRight/10.0;
             return ;
         }
         return ;
 
     }
     public static boolean setTempMode(int mode){ 
-    	 if (!isConnect) {
+    	    if (!isConnect) {
     	        return false;
     	    }
     	    int ret;
@@ -228,17 +154,14 @@ public class TUTKClient {
         Log.e("setdevicecfmode", ""+ioType[0]);
         if (returnvalue>0&&(ioType[0]==OTYPE_BL_BOX_SET_TEMPERATURE_MODE_RESP)) {
             return true;
-        }
-   
+        }   
         return false;
     }
-    public static boolean setTimeZone(int timeZone){ 
-    	
+    public static boolean setTimeZone(int timeZone){     	
     	if (!isConnect) {
             return false;
         }
-    	  AVAPIs av = new AVAPIs();
-        
+    	AVAPIs av = new AVAPIs();        
         int[] tmz=new int[]{timeZone};        
         byte[] tmzByte =intToByte(tmz);
         int ret;
@@ -259,39 +182,134 @@ public class TUTKClient {
     public static boolean setTime() { 
       	 //数据发送
     	  Log.e("TUTKClient", "setTime");
-    	  byte[] time =new byte[6];
+    	  byte[] time =new byte[8];
     	  long curTime=System.currentTimeMillis();
     	  final Calendar mCalendar=Calendar.getInstance();
     	  mCalendar.setTimeInMillis(curTime);
-    	  time[0]=(byte) mCalendar.get(Calendar.YEAR);
-    	  time[1]=(byte) mCalendar.get(Calendar.MONTH);
-    	  time[2]=(byte) mCalendar.get(Calendar.DAY_OF_MONTH);    	 
-    	  time[3]=(byte) mCalendar.get(Calendar.HOUR);
-    	  time[4]=(byte) mCalendar.get(Calendar.MINUTE);
-    	  time[5]=(byte) mCalendar.get(Calendar.SECOND);
-//    	  byte[] timeByte=intToByte(time);
-          AVAPIs av = new AVAPIs();
-          try {
-			Log.e("TUTKClient", "time.length="+time.length+"  "+new String(time,"ISO-8859-1"));
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-          int ret = av.avSendIOCtrl(avIndex, AVAPIs.IOTYPE_INNER_SND_DATA_DELAY,time, time.length);
-          if (ret < 0) {
-              System.out.printf("start_settime failed[%d]\n", ret); 
+    	  time[0]=(byte) (mCalendar.get(Calendar.YEAR)& 0xFF);//
+    	  time[1]=(byte)((mCalendar.get(Calendar.YEAR) >> 8) & 0xFF);    	  
+    	  time[2]=(byte) (mCalendar.get(Calendar.MONTH)+1);
+    	  Log.e("mouth", ""+mCalendar.get(Calendar.MONTH));
+    	  time[3]=(byte) mCalendar.get(Calendar.DAY_OF_MONTH);   
+    	  time[4]=(byte) mCalendar.get(Calendar.DAY_OF_WEEK);	 
+    	  time[5]=(byte) mCalendar.get(Calendar.HOUR);
+    	  time[6]=(byte) mCalendar.get(Calendar.MINUTE);
+    	  time[7]=(byte) mCalendar.get(Calendar.SECOND);
+    	  
+
+          AVAPIs av = new AVAPIs();     
+          int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_SET_GMT_TIME_REQ,time, time.length);
+          if (ret < 0) {              
               Log.e("TUTKClient", "start_settime failed  "+ret);
               return false;
           }
           int ioType[]=new int[1];
           byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
           int returnvalue = av.avRecvIOCtrl(avIndex, ioType,ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*5);
+          Log.e("TUTKClient", "start_settime stop");
           if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SET_GMT_TIME_RESP)) {
               return true;
           }
-          Log.e("TUTKClient", "start_settime stop");
+        
           return false;
-       }
+    }
+    public static boolean getTime()
+    {
+    	 AVAPIs av = new AVAPIs();
+        int ret;
+    	
+    	 byte[] val =new byte[2];
+    	 ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_GET_GMT_TIME_REQ, val,val.length );
+    	if(ret < 0)
+        {
+    		Log.e("getTime", "getdevicetime failed "+ret);           
+            return true;
+        }
+    	int ioType[]=new int[1];
+        byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
+        ret = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*5);        
+        if (ret==0&&(ioType[0]==IOTYPE_BL_BOX_GET_GMT_TIME_RESP)) {
+//            NSLog(@"year  %d",st->year);
+        	Log.e("getTime", "getdevicetime success");     
+            return true;
+        }
+        return false;
+    }
+   
+    
+    
+    
+    
+    
+    
+	 public static boolean start(String uid) {  
+		 if (!isConnect) {
+		 	Log.e("TUTKClient", "uid");
+	        System.out.println("StreamClient start...");
+	        // use which Master base on location, port 0 means to get a random port
+	        int ret = IOTCAPIs.IOTC_Initialize(0, "m1.iotcplatform.com",
+	                	   "m2.iotcplatform.com", "m4.iotcplatform.com",
+	                       "m5.iotcplatform.com");
+	        System.out.printf("IOTC_Initialize() ret = %d\n", ret);
+	        if (ret != IOTCAPIs.IOTC_ER_NoERROR) {
+	            System.out.printf("IOTCAPIs_Device exit...!!\n");
+	            return false;
+	        }
+
+	        // alloc 3 sessions for video and two-way audio
+	        AVAPIs.avInitialize(3);
+	        sid = IOTCAPIs.IOTC_Connect_ByUID(uid);
+	        System.out.printf("Step 2: call IOTC_Connect_ByUID(%s).......\n", uid);
+
+	        long[] srvType = new long[1];
+	        avIndex = AVAPIs.avClientStart(sid, "admin", "888888", 20000, srvType, 0);
+	        System.out.printf("Step 2: call avClientStart(%d).......\n", avIndex);
+
+	        if (avIndex < 0) {
+	            System.out.printf("avClientStart failed[%d]\n", avIndex);
+	            return false;
+	        }
+
+	        if (startIpcamStream(avIndex)) {
+	        	isConnect=true;
+//	             videoThread = new Thread(new VideoThread(avIndex),
+//	                    "Video Thread");
+//	             audioThread = new Thread(new AudioThread(avIndex),
+//	                    "Audio Thread");
+	          
+//	            videoThread.start();
+//	            audioThread.start();
+	            return true;
+	        }
+		 }
+		return false;
+	}
+    public static void stop() {
+    	Log.e("TUTKClient", "in stop");
+    	if(isConnect) {
+    		 Log.e("TUTKClient", "stopping");
+	    	isConnect=false;
+//	    	 try {
+//	             videoThread.join();
+//	         }
+//	         catch (InterruptedException e) {
+//	             System.out.println(e.getMessage());             
+//	         }
+//	         try {
+//	             audioThread.join();
+//	         }
+//	         catch (InterruptedException e) {
+//	             System.out.println(e.getMessage());             
+//	         }    	
+	        AVAPIs.avClientStop(avIndex);
+	        System.out.printf("avClientStop OK\n");
+	        IOTCAPIs.IOTC_Session_Close(sid);
+	        System.out.printf("IOTC_Session_Close OK\n");
+			AVAPIs.avDeInitialize();
+			IOTCAPIs.IOTC_DeInitialize();
+	        System.out.printf("StreamClient exit...\n");	
+    	}
+    }
     public static boolean restart(String uid) {   
 		AVAPIs.avClientStop(avIndex);
 	    System.out.printf("avClientStop OK\n");
@@ -308,7 +326,7 @@ public class TUTKClient {
             return false;
         }
         return true;
- }    
+     }    
       
     public static boolean startIpcamStream(int avIndex) {
         AVAPIs av = new AVAPIs();
@@ -491,7 +509,7 @@ public class TUTKClient {
     	  return result;
     	 }
     public static int byteToInt(byte[] b) {
-
+    	//小端
         int mask=0xff;
         int temp=0;
         int n=0;

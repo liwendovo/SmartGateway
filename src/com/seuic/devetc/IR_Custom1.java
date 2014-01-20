@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.seuic.net.TUTKClient;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 
@@ -34,15 +35,12 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	Boolean lenclr=false;
 	private ProgressDialog progressDialog;  
 	ImageView   button10;
-	
+	byte ioCtrlBuf[]=new byte[TUTKClient.MAX_SIZE_IOCTRL_BUF]; 
 	int devid;
 	String mUid;
-	String learnFalse="false";
-	String learnTrue="true";
-	String btnDefaults="自定义";
 	
 	
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -109,12 +107,12 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		if(cursor.getCount()>0){				 
 			//学习	
 			for(int i=0;i<buttonMaxNum;i++){
-				btnLearn[i]=cursor.getString(i+3).equals("true")?true:false;
+				btnLearn[i]=cursor.getBlob(i+3)==null?true:false;
 			}
 		}else{
 			Log.e("leewoo", "cur learn 初始化"+cursor.getCount());
 			//未初始化
-			TabControl.mSQLHelper.insertBtn(TabControl.writeDB,mUid,devid,"learn" ,learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse, learnFalse);
+			TabControl.mSQLHelper.insertBtnLearn(TabControl.writeDB,mUid,devid);
 		}
 		cursor.close();
 		
@@ -122,14 +120,13 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		Log.e("leewoo", "cur: "+cursor.getCount());
 		if(cursor.getCount()>0){
 			//已初始化		//学习	
-			for(int i=0;i<buttonMaxNum-1;i++){
-				
-				((Button)button[i]).setText(cursor.getString(i+3));
+			for(int i=0;i<buttonMaxNum-1;i++){				
+				((Button)button[i]).setText(new String(cursor.getBlob(i+3),0));
 			}			
 		}else{
 			Log.e("leewoo", "cur name 初始化"+cursor.getCount());
 			//未初始化
-			TabControl.mSQLHelper.insertBtn(TabControl.writeDB,mUid,devid, "name" ,btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults, btnDefaults+14);
+			TabControl.mSQLHelper.insertBtnName(TabControl.writeDB,mUid,devid);
 		}		
 		cursor.close();
 		
@@ -246,7 +243,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	
         	Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show();  
 
-        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton, true);
+        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton, ioCtrlBuf);
         	btnLearn[curButton-1]=true;
             //关闭ProgressDialog  
             progressDialog.dismiss(); 
@@ -258,13 +255,14 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		 new Thread(){        
 		     @Override  
 		     public void run() {  
-		       try {
-						Thread.sleep(3000) ;
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-		         handler.sendEmptyMessage(0);  
+		    	 Message learnMsg=new Message();
+		    	 if(TUTKClient.learn(0,ioCtrlBuf))
+		    	 {
+		    		 learnMsg.what=0;
+		    	 }else{
+		    		 learnMsg.what=1;	
+		    	 }	
+		    	 handler.sendMessage(learnMsg); 
 		     }}.start();      
 		 }
 		 private void setbuttonstate()
@@ -337,7 +335,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 			// TODO Auto-generated method stub	
 			
 			((Button)button[btnid-1]).setText(et.getText().toString());
-			TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, btnid-1, et.getText().toString());
+			TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, btnid, et.getText().toString());
 		   }
 		});
 		  builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {

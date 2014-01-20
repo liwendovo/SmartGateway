@@ -12,7 +12,7 @@ import android.view.Window;
 import android.widget.TabHost;
 import com.seuic.adapter.ViewSelected;
 import com.seuic.net.TUTKClient;
-import com.seuic.net.TUTKService;
+
 import com.seuic.sqlite.SQLiteHelper;
 
 @SuppressWarnings("deprecation")
@@ -35,7 +35,7 @@ public class TabControl extends ActivityGroup {
 	String mUid=null;	
 	
 	
-	final Intent serviceIntent=new Intent(TUTKService.TUTKService_Name);
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -116,7 +116,7 @@ public class TabControl extends ActivityGroup {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		Log.e("leewoo", "TabControl---onDestroy");
-		stopService(serviceIntent);
+		
 		TUTKClient.stop();
 		writeDB.close();
 	}
