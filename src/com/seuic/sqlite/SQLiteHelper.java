@@ -3,6 +3,7 @@
  * copyright@ seuic 
  * */
 package com.seuic.sqlite;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -74,11 +75,11 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		Cursor ToReturn = db.rawQuery(str, null);
 		if(0==ToReturn.getCount())
 		{
-		String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',\'true\',\'24\',\'true\',\'8\');";
-		db.execSQL(sql);
-		return true;
+			String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',\'true\',\'24\',\'true\',\'8\');";
+			db.execSQL(sql);
+			return true;
 		}else{
-		return false;
+			return false;
 		}
 	}
 	// 返回值  成功  重复
@@ -98,14 +99,12 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		String str=new String("define");
 		byte[] strByte=str.getBytes();
 		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'name\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\');";
-		db.execSQL(sql);
-		
+		db.execSQL(sql);		
 	}
 	public void insertBtnLearn(SQLiteDatabase db, String Tag_Uid, int Tag_DevID) {
 		
 		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'learn\',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);";
-		db.execSQL(sql);
-		
+		db.execSQL(sql);		
 	}
 	public void deleteSetup(SQLiteDatabase db, String Tag_Uid) {
 		
@@ -145,8 +144,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		Log.e("leewoo","Cursor="+ToReturn);
 		ToReturn.moveToFirst();
 		return ToReturn;
-	}
-	//未测试
+	}	
 	public Cursor seleteListClass(SQLiteDatabase db, String Tag_UID, String Tag_Class) {
 		String str = "SELECT * FROM " + Table_Name_List + " WHERE " +Uid + "=\"" + Tag_UID + "\" AND "+Class+ "=\""+Tag_Class+"\"";
 		Cursor ToReturn = db.rawQuery(str, null);
@@ -183,13 +181,23 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	}
 		
 	public void updateBtnName(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID, String Tag_Name) {
+		
+		Log.e("Sqlite", "updateBtnName");
 		byte[] nameByte =Tag_Name.getBytes();
-		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
-		db.execSQL(str);
+		ContentValues values = new ContentValues();
+		values.put("button"+Tag_BtnID,nameByte);
+		db.update(Table_Name_Btn, values, DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"", null);
+
+//		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
+//		db.execSQL(str);
 	}
-	public void updateBtnlearn(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID,byte[] data) {		
-		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+data+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"learn\"";
-		db.execSQL(str);
+	public void updateBtnlearn(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID,byte[] data) {	
+		
+		ContentValues values = new ContentValues();
+		values.put("button"+Tag_BtnID,data);
+		db.update(Table_Name_Btn, values, DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"learn\"", null);
+//		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+data+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"learn\"";
+//		db.execSQL(str);
 	}
 //	public void updateEtcStatus(SQLiteDatabase db, String Tag_ID) {
 //		String str = "update " + Table_Name_Etc + " set "+ Status+"='yes' where " + Uid + "=\"" + Tag_ID + "\"";

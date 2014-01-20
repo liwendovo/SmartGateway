@@ -284,7 +284,8 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 			     @Override  
 			     public void run() {  
 			    	 Message learnMsg=new Message();
-			    	 Log.e("TV", ""+learnCursor.getBlob(btnid+2));
+			    	 String str=new String(learnCursor.getBlob(btnid+2));	
+			    	 Log.e("TV", learnCursor.getBlob(btnid+2).length+"  "+str);
 			    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2)))
 			    	 {
 			    		 learnMsg.what=0;
