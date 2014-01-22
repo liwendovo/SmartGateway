@@ -100,7 +100,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		devid=intent.getIntExtra("devid", 0);
 		if(devid==0){
 			Log.e("leewoo", "deid error = 0");
-			}
+		}
 		
 		learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);
 		Log.e("leewoo", "cur: "+learnCursor.getCount());
@@ -119,8 +119,9 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		Log.e("leewoo", "cur: "+cursor.getCount());
 		if(cursor.getCount()>0){
 			//已初始化		//学习	
-			for(int i=0;i<buttonMaxNum-1;i++){				
-				((Button)button[i]).setText(new String(cursor.getBlob(i+3)));
+			for(int i=0;i<buttonMaxNum-1;i++){	
+				String str=cursor.getBlob(i+3)!=null?new String(cursor.getBlob(i+3)):"define";
+				((Button)button[i]).setText(str);
 			}			
 		}else{
 			Log.e("leewoo", "cur name 初始化"+cursor.getCount());

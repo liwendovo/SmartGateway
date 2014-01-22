@@ -96,9 +96,11 @@ public class SQLiteHelper extends SQLiteOpenHelper
 //		db.execSQL(sql);
 //	}
 	public void insertBtnName(SQLiteDatabase db, String Tag_Uid, int Tag_DevID) {
-		String str=new String("define");
-		byte[] strByte=str.getBytes();
-		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'name\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\');";
+//		String str=new String("define");
+//		byte[] strByte=str.getBytes();
+//		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'name\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\',\'"+strByte+"\');";
+		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'name\',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);";
+		
 		db.execSQL(sql);		
 	}
 	public void insertBtnLearn(SQLiteDatabase db, String Tag_Uid, int Tag_DevID) {

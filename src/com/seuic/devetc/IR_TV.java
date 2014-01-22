@@ -295,17 +295,17 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 			    	 sendHandler.sendMessage(learnMsg);  
 			     }}.start();      
 			 }
-			private Handler sendHandler = new Handler(){ 
-		        @Override  
-		        public void handleMessage(Message msg) {  
-		        	if(0==msg.what){
-		        	Toast.makeText(getApplicationContext(), "send success", Toast.LENGTH_SHORT).show(); 		        
-		        	}else{
-		        		Toast.makeText(getApplicationContext(), "send failed", Toast.LENGTH_SHORT).show();	
-		        	}
-		            progressDialog.dismiss(); 
+		private Handler sendHandler = new Handler(){ 
+	        @Override  
+	        public void handleMessage(Message msg) {  
+	        	if(0==msg.what){
+	        	Toast.makeText(getApplicationContext(), "send success", Toast.LENGTH_SHORT).show(); 		        
+	        	}else{
+	        		Toast.makeText(getApplicationContext(), "send failed", Toast.LENGTH_SHORT).show();	
+	        	}
+	            progressDialog.dismiss(); 
 
-		        }}; 
+	        }}; 
 		private void setbuttonstate()
 		{
 			for(int i=0;i<buttonMaxNum;i++){
