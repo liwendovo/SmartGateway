@@ -1,6 +1,8 @@
 package com.seuic.devetc;
 
 
+import java.io.UnsupportedEncodingException;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -88,7 +90,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		devid=intent.getIntExtra("devid", 0);
 		if(devid==0){
 			Log.e("leewoo", "deid error = 0");
-			}
+		}
 		
 		learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);
 		Log.e("leewoo", "cur: "+learnCursor.getCount());
@@ -264,15 +266,13 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		        @Override  
 		        public void handleMessage(Message msg) {  
 		        	if(0==msg.what){
-		        	Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show();  
-		        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton,ioCtrlBuf);
-		        	btnLearn[curButton-1]=true;	        	
-		        	curButton=-1;
-		        	//更新learnCursor
-		        	learnCursor.close();
-		        	learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);
-		        	
-		        	
+			        	Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show();  
+			        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton,ioCtrlBuf);
+			        	btnLearn[curButton-1]=true;	        	
+			        	curButton=-1;
+			        	//更新learnCursor
+			        	learnCursor.close();
+			        	learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);	 
 		        	}else{
 		        		Toast.makeText(getApplicationContext(), "学习失败", Toast.LENGTH_SHORT).show();	
 		        	}
@@ -284,8 +284,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 			     @Override  
 			     public void run() {  
 			    	 Message learnMsg=new Message();
-			    	 String str=new String(learnCursor.getBlob(btnid+2));	
-			    	 Log.e("TV", learnCursor.getBlob(btnid+2).length+"  "+str);
+			    	
 			    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2)))
 			    	 {
 			    		 learnMsg.what=0;
@@ -304,7 +303,6 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 	        		Toast.makeText(getApplicationContext(), "send failed", Toast.LENGTH_SHORT).show();	
 	        	}
 	            progressDialog.dismiss(); 
-
 	        }}; 
 		private void setbuttonstate()
 		{

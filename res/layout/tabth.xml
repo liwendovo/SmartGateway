@@ -27,24 +27,24 @@
         android:src="@drawable/ep_logo" />
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignLeft="@+id/imageView2"
-        android:text="45.7%"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/imageView2"
         android:layout_below="@+id/imageView2"
-        android:layout_marginRight="11dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="82dp"
         android:text="26.5"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_below="@+id/imageView2"
+        android:layout_marginTop="17dp"
+        android:text="45.7%"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

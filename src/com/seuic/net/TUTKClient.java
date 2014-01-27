@@ -67,7 +67,7 @@ public class TUTKClient {
         if (ret > 0&&(ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP)) {
             Log.e("TUTKClient", "learn ok");
             String str=new String(ioCtrlBuf);			
-            Log.e("TUTKClient", "num:"+ret+" data:"+str);
+            Log.e("TUTKClient", "num:"+ret+" data:"+str);    		
            return true;
         }
         return false;
@@ -75,38 +75,51 @@ public class TUTKClient {
     public static boolean send(byte[] data) { 
    	 //数据发送
        AVAPIs av = new AVAPIs();
+       String str=new String(data);	
+      
        int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_SEND_IR_REQ , data , data.length);
        if (ret < 0) {
            System.out.printf("send failed[%d]\n", ret); 
            return false;
        }
+       Log.e("TUTKClient", "send ok");
+       Log.e("TUTKClient", "num:"+data.length+" data:"+str);
        return true;
     }    
-    public static void getTH(int TH[])
+    public static boolean getTH(int TH[])
     {
         if (!isConnect) {
-            return ;
+            return false;
         }
         AVAPIs av = new AVAPIs();
         av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_GET_TEMPERATURE_HUMIDITY_REQ,new byte[0], 0);
         int ioType[]=new int[1];
         byte[]  th=new byte[16];
         
-        int returnvalue = av.avRecvIOCtrl(avIndex, ioType, th, th.length, LEARNTIMEOUT);
-        if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_GET_TEMPERATURE_HUMIDITY_RESP)) {
-        	Log.e("getTempHum", ""+th);
-        	String str=null;
-        	 try {
-             	str=new String(th,"ISO-8859-1");
- 			} catch (UnsupportedEncodingException e) {
- 				// TODO Auto-generated catch block
- 			}
-        	Log.e("getTempHum", ""+str);
-//            TH[0]= sm.humidityPointLeft   +sm.humidityPointRight/10.0;
-//            TH[1]= sm.temperaturePointLeft+sm.temperaturePointRight/10.0;
-            return ;
+        int ret = av.avRecvIOCtrl(avIndex, ioType, th, th.length, LEARNTIMEOUT);
+        if (ret>0&&(ioType[0]==IOTYPE_BL_BOX_GET_TEMPERATURE_HUMIDITY_RESP)) {
+        	String str=null;    
+        	str=new String(th);
+        	Log.e("getTempHum","num="+ret +"data:"+str);
+//          TH[0]= sm.humidityPointLeft   +sm.humidityPointRight/10.0;
+//          TH[1]= sm.temperaturePointLeft+sm.temperaturePointRight/10.0;
+        	
+        	//小端
+            int mask=0xff;
+            int temp=0;
+            int n=0;
+            for(int i=0;i<4;i++){
+	            for(int j=0;j<4;j++){
+	               n<<=8;
+	               temp=th[i*4+j]&mask;
+	               n|=temp;
+	            }
+	            TH[i]=n;  
+	            n=0;temp=0;
+            }
+            return true;
         }
-        return ;
+        return false;
 
     }
     public static boolean setTempMode(int mode){ 
@@ -188,14 +201,12 @@ public class TUTKClient {
     	  mCalendar.setTimeInMillis(curTime);
     	  time[0]=(byte) (mCalendar.get(Calendar.YEAR)& 0xFF);//
     	  time[1]=(byte)((mCalendar.get(Calendar.YEAR) >> 8) & 0xFF);    	  
-    	  time[2]=(byte) (mCalendar.get(Calendar.MONTH)+1);
-    	  Log.e("mouth", ""+mCalendar.get(Calendar.MONTH));
+    	  time[2]=(byte) (mCalendar.get(Calendar.MONTH)+1);    	
     	  time[3]=(byte) mCalendar.get(Calendar.DAY_OF_MONTH);   
-    	  time[4]=(byte) mCalendar.get(Calendar.DAY_OF_WEEK);	 
-    	  time[5]=(byte) mCalendar.get(Calendar.HOUR);
+    	  time[4]=(byte) mCalendar.get(Calendar.DAY_OF_WEEK);    	
+    	  time[5]=(byte) mCalendar.get(Calendar.HOUR_OF_DAY);
     	  time[6]=(byte) mCalendar.get(Calendar.MINUTE);
     	  time[7]=(byte) mCalendar.get(Calendar.SECOND);
-    	  
 
           AVAPIs av = new AVAPIs();     
           int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_SET_GMT_TIME_REQ,time, time.length);
@@ -210,16 +221,14 @@ public class TUTKClient {
           if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SET_GMT_TIME_RESP)) {
               return true;
           }
-        
           return false;
     }
     public static boolean getTime()
     {
-    	 AVAPIs av = new AVAPIs();
-        int ret;
-    	
-    	 byte[] val =new byte[2];
-    	 ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_GET_GMT_TIME_REQ, val,val.length );
+    	AVAPIs av = new AVAPIs();
+        int ret;    	
+    	byte[] val =new byte[2];
+    	ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_GET_GMT_TIME_REQ, val,val.length );
     	if(ret < 0)
         {
     		Log.e("getTime", "getdevicetime failed "+ret);           
@@ -229,19 +238,11 @@ public class TUTKClient {
         byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
         ret = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*5);        
         if (ret==0&&(ioType[0]==IOTYPE_BL_BOX_GET_GMT_TIME_RESP)) {
-//            NSLog(@"year  %d",st->year);
         	Log.e("getTime", "getdevicetime success");     
             return true;
         }
         return false;
-    }
-   
-    
-    
-    
-    
-    
-    
+    }   
 	 public static boolean start(String uid) {  
 		 if (!isConnect) {
 		 	Log.e("TUTKClient", "uid");
@@ -255,16 +256,13 @@ public class TUTKClient {
 	            System.out.printf("IOTCAPIs_Device exit...!!\n");
 	            return false;
 	        }
-
 	        // alloc 3 sessions for video and two-way audio
 	        AVAPIs.avInitialize(3);
 	        sid = IOTCAPIs.IOTC_Connect_ByUID(uid);
 	        System.out.printf("Step 2: call IOTC_Connect_ByUID(%s).......\n", uid);
-
 	        long[] srvType = new long[1];
 	        avIndex = AVAPIs.avClientStart(sid, "admin", "888888", 20000, srvType, 0);
 	        System.out.printf("Step 2: call avClientStart(%d).......\n", avIndex);
-
 	        if (avIndex < 0) {
 	            System.out.printf("avClientStart failed[%d]\n", avIndex);
 	            return false;
@@ -517,7 +515,7 @@ public class TUTKClient {
            n<<=8;
            temp=b[i]&mask;
            n|=temp;
-       }
+        }
         return n;
     }
 }

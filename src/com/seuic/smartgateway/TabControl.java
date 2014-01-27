@@ -1,4 +1,6 @@
 package com.seuic.smartgateway;
+import java.io.UnsupportedEncodingException;
+
 import android.app.Activity;
 import android.app.ActivityGroup;
 import android.content.Intent;
@@ -92,11 +94,26 @@ public class TabControl extends ActivityGroup {
 //		serviceIntent.putExtras(bundle);
 //		startService(serviceIntent);   
 		
-		
-		
-		
-		
- 		
+		String aaa="abc123";
+		byte[] bbb=aaa.getBytes();
+		byte[] isoret = null;
+		try {
+			isoret = aaa.getBytes("ISO-8859-1");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Log.e("test", ""+bbb+" "+isoret);
+		String ccc=new String(bbb);
+		Log.e("test", ccc);	
+		String ddd=null;
+		try {
+			ddd=new String(bbb,"ISO-8859-1");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.e("test", ddd);
 	}
 	
 	@Override
