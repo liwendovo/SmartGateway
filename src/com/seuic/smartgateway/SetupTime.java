@@ -34,11 +34,9 @@ public class SetupTime extends Activity{
     	homeBtn.setBackgroundResource(R.drawable.title_back);
     	titlePic.setImageResource(R.drawable.set_time);
     	titleBtn.setBackgroundResource(R.drawable.title_add);
-    	titleBtn.setVisibility(Button.INVISIBLE);
-    	
+    	titleBtn.setVisibility(Button.INVISIBLE);    	
     	timeAutoBtn=(ToggleButton)findViewById(R.id.timeAutoBtn);
-    	timeHourBtn=(ToggleButton)findViewById(R.id.timeHourBtn);
-    	
+    	timeHourBtn=(ToggleButton)findViewById(R.id.timeHourBtn);    	
     	
     	spinnerZone=(Spinner)findViewById(R.id.spinnerZone);     
     	adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, TabControl.itemsIR);
@@ -54,8 +52,10 @@ public class SetupTime extends Activity{
 					// TODO Auto-generated method stub
 					if (timeAutoBtn.isChecked()) {
 						timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+//						TUTKClient.setTimeMode(0);
 					} else {
 						timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_blue);
+//						TUTKClient.setTimeMode(1);
 					}
 					//状态记录 数据库		
 					
@@ -77,8 +77,10 @@ public class SetupTime extends Activity{
 					// TODO Auto-generated method stub
 					if (timeHourBtn.isChecked()) {
 						timeHourBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+						TUTKClient.setTimeMode(0);
 					} else {
 						timeHourBtn.setBackgroundResource(R.drawable.rf_switch_blue);
+						TUTKClient.setTimeMode(0);
 					}
 					//状态记录 数据库			
 				}

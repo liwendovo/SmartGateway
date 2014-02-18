@@ -12,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.TabHost;
+import android.widget.Toast;
+import android.widget.TabHost.OnTabChangeListener;
+
 import com.seuic.adapter.ViewSelected;
 import com.seuic.net.TUTKClient;
 
@@ -24,7 +27,7 @@ public class TabControl extends ActivityGroup {
 //	itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"};
 //	itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"};
 	
-	private TabHost host = null;
+	public static TabHost host = null;
 	private LayoutInflater mInflater = null;	
 	public static SQLiteHelper mSQLHelper;
 	public static SQLiteDatabase writeDB;
@@ -85,35 +88,17 @@ public class TabControl extends ActivityGroup {
 				.newTabSpec("SET")
 				.setIndicator(tab5Spec)
 				.setContent(intent));
-		
-//		Bundle bundle = new Bundle();
-//		bundle.putInt("timer", bundle_timer_setting);
-//		bundle.putInt("res", bundle_video_res);
-//		bundle.putBoolean("cycle_video", bundle_cycle_video);
-//		Intent serviceIntent = new Intent(TUTKService.TUTKService_Name);
-//		serviceIntent.putExtras(bundle);
-//		startService(serviceIntent);   
-		
-		String aaa="abc123";
-		byte[] bbb=aaa.getBytes();
-		byte[] isoret = null;
-		try {
-			isoret = aaa.getBytes("ISO-8859-1");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		Log.e("test", ""+bbb+" "+isoret);
-		String ccc=new String(bbb);
-		Log.e("test", ccc);	
-		String ddd=null;
-		try {
-			ddd=new String(bbb,"ISO-8859-1");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Log.e("test", ddd);
+		host.setCurrentTab(4);
+		host.setOnTabChangedListener(new OnTabChangeListener() {
+			   @Override
+			   public void onTabChanged(String tabId) {
+			    // TODO Auto-generated method stub
+			    if(mUid=="NULL")
+			     host.setCurrentTab(4);
+			    Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();	
+			   }
+		});   		
+	
 	}
 	
 	@Override
@@ -121,8 +106,7 @@ public class TabControl extends ActivityGroup {
 		// TODO Auto-generated method stub
 		super.onStart();
 		Log.e("leewoo", "TabControl---onStart");
-		mUid=myPreferences.getString("uid", "NULL");	
-		
+		mUid=myPreferences.getString("uid", "NULL");		
 	}
 
 
@@ -132,11 +116,9 @@ public class TabControl extends ActivityGroup {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		Log.e("leewoo", "TabControl---onDestroy");
-		
+		Log.e("leewoo", "TabControl---onDestroy");		
 		TUTKClient.stop();
 		writeDB.close();
 	}
-
 
 }

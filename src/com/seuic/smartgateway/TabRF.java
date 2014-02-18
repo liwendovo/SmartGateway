@@ -187,14 +187,12 @@ public class TabRF extends Activity {
 		
 		mUid=myPreferences.getString("uid", "NULL");	
 		if (mUid.equals("NULL")) {
-			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();		
+//			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();	
+//			finish();
 		}
 		Log.e("leewoo","mUid="+mUid);
 		Cursor cur=TabControl.mSQLHelper.seleteListClass(TabControl.writeDB, mUid,"rf");
-//		if(0==cur.getCount()){
-//			Log.e("leewoo","count="+0);
-//			return;
-//		}	
+
 		List<Map<String, Object>> listItemsRF=new ArrayList<Map<String,Object>>();	
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
 			Map<String,Object> listItem =new HashMap<String,Object>();	
@@ -239,17 +237,6 @@ public class TabRF extends Activity {
 			listItemsRF.add(listItem);
 		}	
 		cur.close();
-		//list排序  需要优化
-//		if (!listItemsRF.isEmpty()) {    
-//	    	 Collections.sort(listItemsRF, new Comparator<Map<String, Object>>() {
-//	     	@Override
-//	     	public int compare(Map<String, Object> object1,
-//	     	Map<String, Object> object2) {
-//			//根据文本排序
-//	          	return ((String) object1.get("name")).compareTo((String) object2.get("name"));
-//	     	}    
-//	    	 });    
-//	     }	
 		rfAdapter=new EtcAdapter(this, listItemsRF);
 		listViewRF.setAdapter(rfAdapter);
 	}

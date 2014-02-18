@@ -181,9 +181,10 @@ public class TabIR extends Activity {
 		super.onStart();
 		Log.e("leewoo","TabIR-->onStart");
 		mUid=myPreferences.getString("uid", "NULL");	
-		if (mUid.equals("NULL")) {
-			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();		
-		}
+//		if (mUid.equals("NULL")) {
+//			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();	
+//			finish();
+//		}
 		Log.e("leewoo","mUid="+mUid);
 		Cursor cur=TabControl.mSQLHelper.seleteListClass(TabControl.writeDB, mUid,"ir");
 		Log.e("leewoo","count="+cur.getCount());
@@ -228,7 +229,6 @@ public class TabIR extends Activity {
 				 listItem.put("icon",R.drawable.ir_logo_custom);
 				 listItem.put("status", R.drawable.ir_logo_close);
 			 }	
-
 			listItem.put("devid", cur.getInt(1));
 			listItemsIR.add(listItem);
 		}	

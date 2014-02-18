@@ -11,9 +11,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TabTH extends Activity {
-
+	String mUid=null;
 	Button titleBtn,homeBtn;
 	ImageView titlePic;
 	TextView  temp,humi;
@@ -45,6 +46,7 @@ public class TabTH extends Activity {
 			
 		}
 	});
+
 	}
 	
 }

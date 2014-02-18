@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="4dp"
             android:layout_marginLeft="20dp"
             android:background="@drawable/title_back" />
 
@@ -32,7 +32,7 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="4dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/title_learn" />
        
