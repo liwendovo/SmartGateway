@@ -1,8 +1,9 @@
 package com.seuic.net;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
+
 import android.util.Log;
+
 import com.tutk.IOTC.AVAPIs;
 import com.tutk.IOTC.IOTCAPIs;
 

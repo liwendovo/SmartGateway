@@ -1,19 +1,18 @@
 package com.seuic.smartgateway;
 
-import com.seuic.net.TUTKClient;
-
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
+
+import com.seuic.net.TUTKClient;
 
 public class SetupTime extends Activity{
 	Button titleBtn,homeBtn;

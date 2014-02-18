@@ -1,17 +1,15 @@
 package com.seuic.smartgateway ;  
 
-import com.seuic.net.TUTKClient;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.seuic.net.TUTKClient;
 
 public class TabTH extends Activity {
 	String mUid=null;

@@ -30,8 +30,6 @@ import com.seuic.add.AddEtc;
 import com.seuic.devetc.IR_Custom1;
 import com.seuic.devetc.IR_Custom2;
 import com.seuic.devetc.RF_Curtain1;
-import com.seuic.devetc.RF_Custom1;
-import com.seuic.devetc.RF_Custom2;
 import com.seuic.devetc.RF_Lamp;
 import com.seuic.devetc.RF_Power;
 import com.seuic.devetc.RF_Switch;

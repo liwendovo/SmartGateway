@@ -1,6 +1,5 @@
 package com.seuic.add;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -50,7 +49,7 @@ public class AddDev extends Activity {
 	String tag="AddDev";
 	Button titleBtn,homeBtn;
 	ImageView titlePic;	
-	EditText edtUid;
+	EditText edtName,edtUid;
 	EditText edtSSID, edtPassword;
     Spinner spinnerSSID;
 	List<String> listSSID;
@@ -84,13 +83,13 @@ public class AddDev extends Activity {
     	homeBtn.setBackgroundResource(R.drawable.title_back);
     	titlePic.setImageResource(R.drawable.tab_set);
     	titleBtn.setVisibility(View.INVISIBLE);
-		
+    	
+    	edtName    = (EditText)findViewById(R.id.devnameEdt);
 		addDevBtn=(Button)findViewById(R.id.addDevBtn);
 		edtUid = (EditText) findViewById(R.id.uidEdt);
 		spinnerSSID=(Spinner)findViewById(R.id.spinnerSSID);		
-		edtPassword = (EditText)findViewById(R.id.passwordEdt);
-		radioGroup= (RadioGroup)findViewById(R.id.radioGroup);
-		
+		edtPassword = (EditText)findViewById(R.id.passwordEdt);	
+		radioGroup= (RadioGroup)findViewById(R.id.radioGroup);		
 		TabControl.mViewSelected.setButtonClickChanged(addDevBtn);
 		
 		homeBtn.setOnClickListener(new OnClickListener() {			
@@ -283,7 +282,7 @@ public class AddDev extends Activity {
 		@Override
 		public void handleMessage(Message msg)
 		{
-			if(TabControl.mSQLHelper.insertSetup(TabControl.writeDB, mUid, "Devices", "1"))
+			if(TabControl.mSQLHelper.insertSetup(TabControl.writeDB, mUid, "Devices", edtPassword.getText().toString()))
 			{
 				Toast.makeText(AddDev.this, "send success  Please switch  work mode", Toast.LENGTH_LONG).show();
 				finish();

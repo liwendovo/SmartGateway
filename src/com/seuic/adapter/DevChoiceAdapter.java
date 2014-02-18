@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
@@ -41,9 +41,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.seuic.net.TUTKClient;
-import com.seuic.smartgateway.LogoActivity;
-import com.seuic.smartgateway.SetupDev;
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.SetupDev;
 import com.seuic.smartgateway.TabControl;
 
 
@@ -88,9 +87,10 @@ public class DevChoiceAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = li.inflate(R.layout.item_list, parent, false);
+            convertView = li.inflate(R.layout.item_list_dev, parent, false);
             holder = new ViewHolder();
             holder.title = (TextView) convertView.findViewById(R.id.title);
+            holder.summary=(TextView) convertView.findViewById(R.id.summary);
             holder.icon = (ImageView) convertView.findViewById(R.id.icon);
             holder.status = (ImageView) convertView.findViewById(R.id.status);
             convertView.setTag(holder);
@@ -103,7 +103,8 @@ public class DevChoiceAdapter extends BaseAdapter {
         else        	
         	holder.status.setImageResource(R.drawable.dev_off);
     
-        holder.title.setText(item.get("uid").toString());
+        holder.title.setText(item.get("name").toString());
+        holder.summary.setText(item.get("uid").toString());
         holder.icon.setImageResource(R.drawable.dev_icon);
         
      
@@ -188,6 +189,7 @@ public class DevChoiceAdapter extends BaseAdapter {
     
     static class ViewHolder {
         TextView title;
+        TextView summary;
         ImageView icon;
         ImageView status;
     }

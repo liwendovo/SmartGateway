@@ -119,8 +119,8 @@ public class SetupDev extends Activity {
         
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
 			Map<String, Object> listItem =new HashMap<String,Object>();
-			listItem.put("uid", cur.getString(0));
-			listItem.put("type", cur.getString(1));
+			listItem.put("uid",  cur.getString(0));//uid
+			listItem.put("name", cur.getString(2));//Ãû³Æ
 			Log.e("leewoo", cur.getString(0)+" "+cur.getString(1));
 			listItems.add(listItem);	
 //			listDev.add(cur.getString(0));

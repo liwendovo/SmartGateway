@@ -1,6 +1,4 @@
 package com.seuic.smartgateway;
-import java.io.UnsupportedEncodingException;
-
 import android.app.Activity;
 import android.app.ActivityGroup;
 import android.content.Intent;
@@ -12,12 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.TabHost;
-import android.widget.Toast;
 import android.widget.TabHost.OnTabChangeListener;
+import android.widget.Toast;
 
 import com.seuic.adapter.ViewSelected;
 import com.seuic.net.TUTKClient;
-
 import com.seuic.sqlite.SQLiteHelper;
 
 @SuppressWarnings("deprecation")
