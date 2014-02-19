@@ -90,10 +90,12 @@ public class TabControl extends ActivityGroup {
 			   @Override
 			   public void onTabChanged(String tabId) {
 			    // TODO Auto-generated method stub
+			
 			    if(mUid=="NULL")
-			     host.setCurrentTab(4);
-			    Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();	
-			   }
+			    { host.setCurrentTab(4);
+			    Toast.makeText(getApplicationContext(),"设备未设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();	
+			    }
+			    }
 		});   		
 	
 	}
@@ -103,10 +105,9 @@ public class TabControl extends ActivityGroup {
 		// TODO Auto-generated method stub
 		super.onStart();
 		Log.e("leewoo", "TabControl---onStart");
-		mUid=myPreferences.getString("uid", "NULL");		
+		mUid=myPreferences.getString("uid", "NULL");
+		Log.e("leewoo", "TabControl---onStart："+mUid);
 	}
-
-
 
 
 	@Override

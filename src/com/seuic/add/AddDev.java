@@ -86,7 +86,7 @@ public class AddDev extends Activity {
     	
     	edtName    = (EditText)findViewById(R.id.devnameEdt);
 		addDevBtn=(Button)findViewById(R.id.addDevBtn);
-		edtUid = (EditText) findViewById(R.id.uidEdt);
+//		edtUid = (EditText) findViewById(R.id.uidEdt);
 		spinnerSSID=(Spinner)findViewById(R.id.spinnerSSID);		
 		edtPassword = (EditText)findViewById(R.id.passwordEdt);	
 		radioGroup= (RadioGroup)findViewById(R.id.radioGroup);		
@@ -282,7 +282,7 @@ public class AddDev extends Activity {
 		@Override
 		public void handleMessage(Message msg)
 		{
-			if(TabControl.mSQLHelper.insertSetup(TabControl.writeDB, mUid, "Devices", edtPassword.getText().toString()))
+			if(TabControl.mSQLHelper.insertSetup(TabControl.writeDB, mUid, "Devices", edtName.getText().toString()))
 			{
 				Toast.makeText(AddDev.this, "send success  Please switch  work mode", Toast.LENGTH_LONG).show();
 				finish();

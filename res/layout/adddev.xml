@@ -47,10 +47,12 @@
 	            android:layout_centerHorizontal="true"
 	            android:layout_marginTop="19dp"
 	            android:text="UID"
+	            android:visibility="gone"
 	            android:textAppearance="?android:attr/textAppearanceLarge"
 	            android:textColor="@color/black" />
 	        <EditText
 	            android:id="@+id/uidEdt"
+	            android:visibility="gone"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_below="@+id/textView2"

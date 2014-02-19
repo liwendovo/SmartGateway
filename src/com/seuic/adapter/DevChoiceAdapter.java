@@ -217,7 +217,7 @@ public class DevChoiceAdapter extends BaseAdapter {
 		     @Override  
 		     public void run() {  
 		    Message startMsg=new Message();
-		    	TUTKClient.stop();
+		       TUTKClient.stop();
 			   if(TUTKClient.start(uid))				 
 			   {
 				   startMsg.what=0;
