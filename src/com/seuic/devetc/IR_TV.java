@@ -62,25 +62,12 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		button[13]=(ImageView)findViewById(R.id.button14);
 		
 		backBtn.setOnClickListener(this); 
-		leanrnBtn.setOnClickListener(this); 
-		button[0].setOnClickListener(this);  
-		button[1].setOnClickListener(this);  
-		button[2].setOnClickListener(this);  
-		button[3].setOnClickListener(this);  
-		button[4].setOnClickListener(this);  
-		button[5].setOnClickListener(this);  
-		button[6].setOnClickListener(this);  
-		button[7].setOnClickListener(this);  
-		button[8].setOnClickListener(this);  
-		button[9].setOnClickListener(this);  
-		button[10].setOnClickListener(this);  
-		button[11].setOnClickListener(this);  
-		button[12].setOnClickListener(this);  
-		button[13].setOnClickListener(this);  
-		
+		leanrnBtn.setOnClickListener(this); 		 
+	
 		TabControl.mViewSelected.setButtonClickChanged(backBtn);
 		TabControl.mViewSelected.setButtonClickChanged(leanrnBtn);
 		for(int i=0;i< buttonMaxNum;i++){
+			button[i].setOnClickListener(this);  
 			TabControl.mViewSelected.setImageViewClickChanged(button[i]);
 		}
 		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
@@ -248,7 +235,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 	}
 	 	 
 		 private void showProgressDialog(){  
-		 progressDialog = ProgressDialog.show(IR_TV.this, "Learning...", "Please wait...", true, false); 
+		 progressDialog = ProgressDialog.show(IR_TV.this,"", getResources().getString(R.string.studying), true, false); 
 		 new Thread(){        
 		     @Override  
 		     public void run() {  
@@ -266,7 +253,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		        @Override  
 		        public void handleMessage(Message msg) {  
 		        	if(0==msg.what){
-			        	Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show();  
+			        	Toast.makeText(getApplicationContext(),  getResources().getString(R.string.studysuccessful), Toast.LENGTH_SHORT).show();  
 			        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton,ioCtrlBuf);
 			        	btnLearn[curButton-1]=true;	        	
 			        	curButton=-1;
@@ -274,7 +261,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 			        	learnCursor.close();
 			        	learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);	 
 		        	}else{
-		        		Toast.makeText(getApplicationContext(), "学习失败", Toast.LENGTH_SHORT).show();	
+		        		Toast.makeText(getApplicationContext(),  getResources().getString(R.string.studyfailed), Toast.LENGTH_SHORT).show();	
 		        	}
 		            progressDialog.dismiss(); 
 		        }}; 
@@ -285,7 +272,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 			     public void run() {  
 			    	 Message learnMsg=new Message();
 			    	
-			    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2)))
+			    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2),true))
 			    	 {
 			    		 learnMsg.what=0;
 			    	 }else{

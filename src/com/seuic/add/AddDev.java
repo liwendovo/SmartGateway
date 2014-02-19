@@ -218,7 +218,7 @@ public class AddDev extends Activity {
 //							{data[i]='\0';}
 							if ((numbytes=in.read(data)) == -1) {	
 	                            Log.e(tag, "null"+numbytes);
-	                            Toast.makeText(AddDev.this,"Î´ÊÕµ½UID£¬Çë¼ì²éÍøÂç", Toast.LENGTH_SHORT).show();
+	                            Toast.makeText(AddDev.this,"Can't get UID, please check network", Toast.LENGTH_SHORT).show();
 	                        }else{
                             	Log.e(tag,""+ numbytes);
 //                            	data[numbytes]='\0';
@@ -307,8 +307,6 @@ public class AddDev extends Activity {
 			}else{					
 				Toast.makeText(AddDev.this, " send success but UID already exits!\n Please switch work mode", Toast.LENGTH_LONG).show();
 			}
-		 
-		 
 		}
 	 };
 	 Handler handler = new Handler(){
@@ -320,10 +318,9 @@ public class AddDev extends Activity {
 			{
 			case MESSAGE_PUSHAP_SUBENABLE:	
 				addDevBtn.setEnabled(true);
-				addDevBtn.setText("send success");
+				addDevBtn.setText("Message sent,Please exit APP and connect to wireless network!");
 			    Thread uidThread = new Thread(getuid);
-				uidThread.start();
-				
+				uidThread.start();				
 				break;
 			case MESSAGE_PUSHAP_FAILED:
 				addDevBtn.setEnabled(true);
@@ -340,10 +337,8 @@ public class AddDev extends Activity {
 			default:
 				break;
 			}
-			super.handleMessage(msg);
-			
-		}
-		
+			super.handleMessage(msg);			
+		}		
 	};
 	public void SaveShared(String ssid, String psk){
 		SharedPreferences myPreferences = getSharedPreferences("netconfig", Activity.MODE_PRIVATE);

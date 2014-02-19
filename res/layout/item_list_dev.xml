@@ -41,7 +41,7 @@
            android:layout_height="wrap_content"
            android:layout_alignParentRight="true"
            android:layout_centerVertical="true"
-           android:layout_marginRight="20.0dip"
+           android:layout_marginRight="15.0dip"
            android:src="@drawable/ic_launcher" />
 
        <TextView
@@ -49,8 +49,8 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignBottom="@+id/relativeLayout1"
-           android:layout_alignTop="@+id/status2"
-           android:layout_centerHorizontal="true"
+           android:layout_below="@+id/title"
+           android:layout_toRightOf="@+id/relativeLayout1"
            android:textAppearance="?android:attr/textAppearanceSmall"
            android:textColor="@drawable/selector_text_color" />
 
@@ -58,9 +58,9 @@
            android:id="@+id/title"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:layout_alignBottom="@+id/status2"
+           android:layout_above="@+id/status2"
            android:layout_alignTop="@+id/relativeLayout1"
-           android:layout_centerHorizontal="true"
+           android:layout_toRightOf="@+id/relativeLayout1"
            android:textAppearance="?android:attr/textAppearanceMedium"
            android:textColor="@drawable/selector_text_color" />
 

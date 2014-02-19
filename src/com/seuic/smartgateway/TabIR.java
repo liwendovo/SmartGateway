@@ -144,7 +144,7 @@ public class TabIR extends Activity {
 			        		 AlertDialog.Builder builder = new Builder(TabIR.this);
 			        		 builder.setMessage(getResources().getString(R.string.deletedevinfo) +irAdapter.getItem(position).get("type"));
 			        		 builder.setTitle(R.string.deletetitle);
-			        		 builder.setPositiveButton(R.string.deleteok, new DialogInterface.OnClickListener() {
+			        		 builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 				        		@Override
 				        		public void onClick(DialogInterface arg0, int arg1) {
 				        			// TODO Auto-generated method stub	
@@ -153,7 +153,7 @@ public class TabIR extends Activity {
 					        		 //Êý¾Ý¿â
 				        			}
 			        		 	});
-			        		 builder.setNegativeButton(R.string.deletecancle, new DialogInterface.OnClickListener() {
+			        		 builder.setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
 				        		@Override
 				        		 public void onClick(DialogInterface dialog, int which) {
 				        		 dialog.dismiss();

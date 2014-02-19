@@ -29,6 +29,7 @@
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
             android:hint="Device"
+            android:maxLength="28"
             android:ems="10" >
  			
             <requestFocus />

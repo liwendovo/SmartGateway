@@ -21,9 +21,7 @@ import com.seuic.sqlite.SQLiteHelper;
 public class TabControl extends ActivityGroup {
 	public final static String[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","CUSTOM1","CUSTOM2"}; 
 	public final static String[] itemsRF = {"Switch", "Lamp", "Curtain","Power","CUSTOM1","CUSTOM2"}; 	
-//	itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","自定义1","自定义2"};
-//	itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"};
-	
+
 	public static TabHost host = null;
 	private LayoutInflater mInflater = null;	
 	public static SQLiteHelper mSQLHelper;
@@ -92,10 +90,11 @@ public class TabControl extends ActivityGroup {
 			    // TODO Auto-generated method stub
 			
 			    if(mUid=="NULL")
-			    { host.setCurrentTab(4);
-			    Toast.makeText(getApplicationContext(),"设备未设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();	
+			    {
+			    	host.setCurrentTab(4);
+			    	Toast.makeText(getApplicationContext(),getResources().getString(R.string.activateinfo), Toast.LENGTH_SHORT).show();	
 			    }
-			    }
+			  }
 		});   		
 	
 	}
@@ -103,8 +102,7 @@ public class TabControl extends ActivityGroup {
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
-		super.onStart();
-		Log.e("leewoo", "TabControl---onStart");
+		super.onStart();	
 		mUid=myPreferences.getString("uid", "NULL");
 		Log.e("leewoo", "TabControl---onStart："+mUid);
 	}

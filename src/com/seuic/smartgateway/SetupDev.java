@@ -114,25 +114,26 @@ public class SetupDev extends Activity {
 
 		String uidstr = myPreferences.getString("uid", "NULL");
 		Log.e("leewoo", "uid="+uidstr);
-		int index=0,mCurSet=-1;
+//		int index=0;
+//		int mCurSet=-1;
 		List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();		
         
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
 			Map<String, Object> listItem =new HashMap<String,Object>();
 			listItem.put("uid",  cur.getString(0));//uid
 			listItem.put("name", cur.getString(2));//Ãû³Æ
-			Log.e("leewoo", cur.getString(0)+" "+cur.getString(1));
+			Log.e("leewoo", cur.getString(0)+" "+cur.getString(1)+" "+cur.getString(2));
 			listItems.add(listItem);	
 //			listDev.add(cur.getString(0));
-			if(uidstr.equals(cur.getString(0))){
-				mCurSet=index;
-			}
-			index++;
+//			if(uidstr.equals(cur.getString(0))){
+//				mCurSet=index;
+//			}
+//			index++;
 		}
-		Log.e("leewoo", "DevSetup index:"+index+"  mCurSet:"+mCurSet);
+//		Log.e("leewoo", "DevSetup index:"+index+"  mCurSet:"+mCurSet);
 //		simpleAdapter = new ArrayAdapter<String> (this,android.R.layout.simple_list_item_single_choice,listDev);		
 		mAdapter = new DevChoiceAdapter(this,listItems);	
-		mAdapter.setItemChecked(mCurSet);
+//		mAdapter.setItemChecked(mCurSet);
 		mListView.setAdapter(mAdapter);
 	}
 

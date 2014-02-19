@@ -39,8 +39,6 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	int devid;
 	String mUid;
 	Cursor learnCursor;
-	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -83,10 +81,8 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		TabControl.mViewSelected.setButtonClickChanged(button[6]);
 		TabControl.mViewSelected.setButtonClickChanged(button[7]);
 		TabControl.mViewSelected.setButtonClickChanged(button[8]);		
-		TabControl.mViewSelected.setImageViewClickChanged(button[9]);
-		
+		TabControl.mViewSelected.setImageViewClickChanged(button[9]);		
 		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
-		
 		devpic=(ImageView)findViewById(R.id.pic);
 		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_custom));
 
@@ -309,7 +305,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	   }
 	
 		 private void showProgressDialog(){  
-		 progressDialog = ProgressDialog.show(IR_Custom1.this, "Learning...", "Please wait...", true, false); 
+		 progressDialog = ProgressDialog.show(IR_Custom1.this, "", getResources().getString(R.string.studying), true, false); 
 		 new Thread(){        
 		     @Override  
 		     public void run() {  
@@ -327,7 +323,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	        @Override  
 	        public void handleMessage(Message msg) {  
 	        	if(0==msg.what){
-		        	Toast.makeText(getApplicationContext(), "学习成功", Toast.LENGTH_SHORT).show();  
+		        	Toast.makeText(getApplicationContext(), getResources().getString(R.string.studysuccessful), Toast.LENGTH_SHORT).show();  
 		        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton,ioCtrlBuf);
 		        	btnLearn[curButton-1]=true;	        	
 		        	curButton=-1;
@@ -336,7 +332,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		        	learnCursor.close();
 		        	learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);	
 		        	}else{
-		        		Toast.makeText(getApplicationContext(), "学习失败", Toast.LENGTH_SHORT).show();	
+		        		Toast.makeText(getApplicationContext(), getResources().getString(R.string.studyfailed), Toast.LENGTH_SHORT).show();	
 		        	}	        
 	            progressDialog.dismiss(); 
 	        }};  
@@ -348,7 +344,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 				    	 Message learnMsg=new Message();
 				    	 String str=new String(learnCursor.getBlob(btnid+2));	
 				    	 Log.e("IR_Custom1", ""+str);
-				    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2)))
+				    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2),true))
 				    	 {
 				    		 learnMsg.what=0;
 				    	 }else{

@@ -45,6 +45,13 @@ public class SetupTime extends Activity{
 		spinnerZone.setAdapter(adapter);            
 		//设置默认值  
 		spinnerZone.setVisibility(View.INVISIBLE);  
+		homeBtn.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		timeAutoBtn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -58,15 +65,15 @@ public class SetupTime extends Activity{
 					}
 					//状态记录 数据库		
 					
-					 new Thread(){        
-					     @Override  
-					     public void run() { 
-					    	 if	(TUTKClient.setTime()){
-					    		 Log.e("Setuptime", "setTime success");
-					    	 }else{
-					    		 Log.e("Setuptime", "setTime failed"); 
-					    	 }			 
-					     }}.start();   
+//					 new Thread(){        
+//					     @Override  
+//					     public void run() { 
+//					    	 if	(TUTKClient.setTime()){
+//					    		 Log.e("Setuptime", "setTime success");
+//					    	 }else{
+//					    		 Log.e("Setuptime", "setTime failed"); 
+//					    	 }			 
+//					     }}.start();   
 				}
 			   });
 		

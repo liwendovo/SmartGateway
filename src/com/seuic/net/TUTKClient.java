@@ -14,7 +14,7 @@ public class TUTKClient {
 	 static String uid=null;
 	
 	 static boolean isConnect = false;
-	 final static int LEARNTIMEOUT    =1000*10;
+	 final static int LEARNTIMEOUT    =1000*20;
 	 public final static int MAX_SIZE_IOCTRL_BUF=1024;	
 	 
 	//custom request code
@@ -54,7 +54,11 @@ public class TUTKClient {
 	 final static int IOTYPE_USER_IPCAM_GET_TIMEZONE_RESP          = 0x3A1;
 	 final static int IOTYPE_USER_IPCAM_SET_TIMEZONE_REQ           = 0x3B0;
 	 final static int IOTYPE_USER_IPCAM_SET_TIMEZONE_RESP          = 0x3B1;
- 
+	 public static boolean checkoutnetwork(){
+		 
+		 return false;
+	 }
+	 //type 0=ir 1=ac 2=rf
     public static boolean learn(int type,byte[] ioCtrlBuf) {     	
         AVAPIs av = new AVAPIs();
         boolean irflag= (type < 2);
@@ -72,18 +76,18 @@ public class TUTKClient {
         ret = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, LEARNTIMEOUT);
         if (ret > 0&&(ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP)) {
             Log.e("TUTKClient", "learn ok");
-//            String str=new String(ioCtrlBuf);			
+		
             Log.e("TUTKClient", "num:"+ret+" data:"+bytes2HexString(ioCtrlBuf));    		
            return true;
         }
         return false;
     }
-    public static boolean send(byte[] data) { 
+    public static boolean send(byte[] data,boolean irflag ) { 
    	 //Êý¾Ý·¢ËÍ
        AVAPIs av = new AVAPIs();
 //       String str=new String(data);	
 
-       int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_SEND_IR_REQ , data , data.length);
+       int ret = av.avSendIOCtrl(avIndex, irflag?IOTYPE_BL_BOX_SEND_IR_REQ:IOTYPE_BL_BOX_SEND_RF_REQ , data , data.length);
        if (ret < 0) {
            System.out.printf("send failed[%d]\n", ret); 
            return false;

@@ -1,21 +1,3 @@
-/*
- * Copyright (C) 2013 47 Degrees, LLC
- *  http://47deg.com
- *  hello@47deg.com
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
-
 package com.seuic.adapter;
 
 import java.util.List;
@@ -131,7 +113,7 @@ public class DevChoiceAdapter extends BaseAdapter {
 	        		 AlertDialog.Builder builder = new Builder(context);
 	        		 builder.setMessage(context.getResources().getString(R.string.deletedevinfo) +data.get(position).get("uid"));
 	        		 builder.setTitle(R.string.deletetitle);
-	        		 builder.setPositiveButton(R.string.deleteok, new DialogInterface.OnClickListener() {
+	        		 builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 		        		@Override
 		        		public void onClick(DialogInterface arg0, int arg1) {
 		        			// TODO Auto-generated method stub
@@ -147,7 +129,7 @@ public class DevChoiceAdapter extends BaseAdapter {
 		        			}
 		        		}
 		        	});
-	        		 builder.setNegativeButton(R.string.deletecancle, new DialogInterface.OnClickListener() {
+	        		 builder.setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
 		        		@Override
 		        		 public void onClick(DialogInterface dialog, int which) {
 		        		 dialog.dismiss();
@@ -157,9 +139,6 @@ public class DevChoiceAdapter extends BaseAdapter {
 	        		 builder.create().show();
 	        	   }
 	        		 
-	        		 
-	        	 
-        	 
         	} else if (event.getAction() == MotionEvent.ACTION_MOVE) {//当滑动时背景为选中状态  
 //        	v.setBackgroundResource(R.drawable.mm_listitem_pressed);  
 //        		 Log.e("leewoo", "onTouch ACTION_MOVE: "+position);
@@ -203,16 +182,19 @@ public class DevChoiceAdapter extends BaseAdapter {
         public void handleMessage(Message msg) {  
         	if(0==msg.what)
         	{
-        		Toast.makeText(context, "Connect Success", Toast.LENGTH_SHORT).show(); 
+        		Toast.makeText(context, "Connect success", Toast.LENGTH_SHORT).show(); 
+        		  
         	}else{
-        		Toast.makeText(context, "Connect Failed", Toast.LENGTH_SHORT).show(); 
+        		Toast.makeText(context, "Can not connect to device, please check your device or if has connect to a wireless network", Toast.LENGTH_LONG).show(); 
+        		currentID=-1;
+        		notifyDataSetChanged();
         	}
 //            //关闭ProgressDialog  
             progressDialog.dismiss(); 
 
         }};  
 	 public void showProgressDialog(final String uid){  
-		 progressDialog = ProgressDialog.show(context, "Connectting...", "Please wait...", true, false); 
+		 progressDialog = ProgressDialog.show(context,"" , "Connectting...", true, false); 
 		 new Thread(){        
 		     @Override  
 		     public void run() {  
