@@ -79,7 +79,6 @@ public class DevChoiceAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        
         if(position==currentID)        	
             holder.status.setImageResource(R.drawable.dev_on);
         else        	
@@ -87,10 +86,7 @@ public class DevChoiceAdapter extends BaseAdapter {
     
         holder.title.setText(item.get("name").toString());
         holder.summary.setText(item.get("uid").toString());
-        holder.icon.setImageResource(R.drawable.dev_icon);
-        
-     
-        
+        holder.icon.setImageResource(R.drawable.dev_icon);        
         convertView.setOnTouchListener(new OnTouchListener() {  
         	public boolean onTouch(View v, MotionEvent event) {  
 //        	final ViewHolder holder = (ViewHolder) v.getTag();  
@@ -187,6 +183,8 @@ public class DevChoiceAdapter extends BaseAdapter {
         	}else{
         		Toast.makeText(context, "Can not connect to device, please check your device or if has connect to a wireless network", Toast.LENGTH_LONG).show(); 
         		currentID=-1;
+        		SetupDev.editor.putString("uid","NULL");
+				SetupDev.editor.commit();
         		notifyDataSetChanged();
         	}
 //            //¹Ø±ÕProgressDialog  
@@ -199,7 +197,7 @@ public class DevChoiceAdapter extends BaseAdapter {
 		     @Override  
 		     public void run() {  
 		    Message startMsg=new Message();
-		       TUTKClient.stop();
+//		       TUTKClient.stop();
 			   if(TUTKClient.start(uid))				 
 			   {
 				   startMsg.what=0;
@@ -207,7 +205,8 @@ public class DevChoiceAdapter extends BaseAdapter {
 				   startMsg.what=1;
 			   }			   
 		       handler.sendMessage(startMsg);  
-		     }}.start();      
+		     }
+		   }.start();      
 	 }
 	
 

@@ -115,7 +115,7 @@ public class AddDev extends Activity {
 			}
 		}
 		else {  
-			Toast.makeText(getApplicationContext(), "wifi未连接，请连接wifi", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "Please connect wireless network", Toast.LENGTH_SHORT).show();
 			addDevBtn.setEnabled(false);
 		}
 		
@@ -284,7 +284,7 @@ public class AddDev extends Activity {
 		{
 			if(TabControl.mSQLHelper.insertSetup(TabControl.writeDB, mUid, "Devices", edtName.getText().toString()))
 			{
-				Toast.makeText(AddDev.this, "send success  Please switch  work mode", Toast.LENGTH_LONG).show();
+				Toast.makeText(AddDev.this, "Message sent,Please exit APP and connect to wireless network!", Toast.LENGTH_LONG).show();
 				finish();
 			//devices判断
 			//调试用默认加入设备
@@ -316,7 +316,7 @@ public class AddDev extends Activity {
 			progressDialog.dismiss();
 			switch (msg.what)
 			{
-			case MESSAGE_PUSHAP_SUBENABLE:	
+			case MESSAGE_PUSHAP_SUBENABLE:
 				addDevBtn.setEnabled(true);
 //				addDevBtn.setText("Send to Device");
 			    Thread uidThread = new Thread(getuid);
@@ -328,11 +328,10 @@ public class AddDev extends Activity {
 				Toast.makeText(AddDev.this, "Failure, please check the network!", Toast.LENGTH_LONG).show();
 //			"SENT FAILED, Please check the network name and password of your router"
 				break;
-			case MESSAGE_PUSHFILE_NOEXIT:	
+			case MESSAGE_PUSHFILE_NOEXIT:
 				addDevBtn.setEnabled(true);
 //				addDevBtn.setText("send failed");
 				Toast.makeText(AddDev.this, "Failure, please to create a configuration file!", Toast.LENGTH_LONG).show();
-				
 				break;
 			default:
 				break;
@@ -382,7 +381,6 @@ public class AddDev extends Activity {
 	      }   
 	       return sdDir.toString(); 
 	}
-	
 	
 }
 

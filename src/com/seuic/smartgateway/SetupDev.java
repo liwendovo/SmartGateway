@@ -28,18 +28,14 @@ import com.seuic.add.AddDev;
 
 public class SetupDev extends Activity {
 	Button titleBtn,homeBtn;
-	ImageView titlePic;	
-	
+	ImageView titlePic;		
 	ListView mListView;
 	private DevChoiceAdapter mAdapter;
 	Button addDevBtn;
-//	Button setupBtn;
-	int currentID=-1;
+	
 	public static SharedPreferences myPreferences;
 	public static SharedPreferences.Editor editor;	
-
 	public SQLiteDatabase writeDB;
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,18 +66,7 @@ public class SetupDev extends Activity {
 					//Æô¶¯Activity
 					startActivity(intent);				
 			}			
-		});	
-//		setupBtn=(Button)findViewById(R.id.SetupBtn);
-//		setupBtn.setOnClickListener(new OnClickListener()
-//		{		
-//			public void onClick(View source)
-//			{
-//				Intent intent = new Intent(SetupDev.this
-//						, SetupAp.class);					
-//					//Æô¶¯Activity
-//					startActivity(intent);				
-//			}			
-//		});	
+		});
 		homeBtn.setOnClickListener(new OnClickListener()
 		{		
 			public void onClick(View source)
@@ -89,16 +74,8 @@ public class SetupDev extends Activity {
 				finish();			
 			}			
 		});
-}
-	
-	
-
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		
 	}
+	
 
 
 	@Override
@@ -114,8 +91,8 @@ public class SetupDev extends Activity {
 
 		String uidstr = myPreferences.getString("uid", "NULL");
 		Log.e("leewoo", "uid="+uidstr);
-//		int index=0;
-//		int mCurSet=-1;
+		int index=0;
+		int mCurSet=-1;
 		List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();		
         
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
@@ -125,15 +102,15 @@ public class SetupDev extends Activity {
 			Log.e("leewoo", cur.getString(0)+" "+cur.getString(1)+" "+cur.getString(2));
 			listItems.add(listItem);	
 //			listDev.add(cur.getString(0));
-//			if(uidstr.equals(cur.getString(0))){
-//				mCurSet=index;
-//			}
-//			index++;
+			if(uidstr.equals(cur.getString(0))){
+				mCurSet=index;
+			}
+			index++;
 		}
-//		Log.e("leewoo", "DevSetup index:"+index+"  mCurSet:"+mCurSet);
+		Log.e("leewoo", "DevSetup index:"+index+"  mCurSet:"+mCurSet);
 //		simpleAdapter = new ArrayAdapter<String> (this,android.R.layout.simple_list_item_single_choice,listDev);		
 		mAdapter = new DevChoiceAdapter(this,listItems);	
-//		mAdapter.setItemChecked(mCurSet);
+		mAdapter.setItemChecked(mCurSet);
 		mListView.setAdapter(mAdapter);
 	}
 

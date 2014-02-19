@@ -44,6 +44,7 @@ public class TabControl extends ActivityGroup {
 		mSQLHelper = new SQLiteHelper(this,"smartgateway.db",1); //Êý¾Ý¿â
 		writeDB=mSQLHelper.getWritableDatabase();
 		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
+		editor= myPreferences.edit();
 		mViewSelected=new ViewSelected();
 
 		mInflater = LayoutInflater.from(this);
@@ -112,7 +113,9 @@ public class TabControl extends ActivityGroup {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		Log.e("leewoo", "TabControl---onDestroy");		
+		Log.e("leewoo", "TabControl---onDestroy");	
+		editor.putString("uid","NULL");
+		editor.commit();
 		TUTKClient.stop();
 		writeDB.close();
 	}

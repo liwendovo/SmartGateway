@@ -292,8 +292,11 @@ public class TUTKClient {
 //	            audioThread.start();
 	            return true;
 	        }
-		 }
+		 }else{
+			 return true;
+			 }
 		return false;
+		
 	}
     public static void stop() {
     	Log.e("TUTKClient", "in stop");
