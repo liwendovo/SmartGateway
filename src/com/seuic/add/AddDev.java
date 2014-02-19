@@ -182,7 +182,7 @@ public class AddDev extends Activity {
 					netConfig.setPsk(edtPassword.getText().toString().trim());
 				}
 				
-				addDevBtn.setText("sending");				
+								
 				if (psk_leng != 0)
 				{
 					SaveShared(netConfig.getSsid(),netConfig.getPsk());
@@ -318,19 +318,19 @@ public class AddDev extends Activity {
 			{
 			case MESSAGE_PUSHAP_SUBENABLE:	
 				addDevBtn.setEnabled(true);
-				addDevBtn.setText("Message sent,Please exit APP and connect to wireless network!");
+//				addDevBtn.setText("Send to Device");
 			    Thread uidThread = new Thread(getuid);
 				uidThread.start();				
 				break;
 			case MESSAGE_PUSHAP_FAILED:
 				addDevBtn.setEnabled(true);
-				addDevBtn.setText("send failed");
+//				addDevBtn.setText("send failed");
 				Toast.makeText(AddDev.this, "Failure, please check the network!", Toast.LENGTH_LONG).show();
-			
+//			"SENT FAILED, Please check the network name and password of your router"
 				break;
 			case MESSAGE_PUSHFILE_NOEXIT:	
 				addDevBtn.setEnabled(true);
-				addDevBtn.setText("send failed");
+//				addDevBtn.setText("send failed");
 				Toast.makeText(AddDev.this, "Failure, please to create a configuration file!", Toast.LENGTH_LONG).show();
 				
 				break;

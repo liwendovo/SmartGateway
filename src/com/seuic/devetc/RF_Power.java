@@ -158,7 +158,7 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 			     public void run() {  
 			    	 Message learnMsg=new Message();
 			    	
-			    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2),true))
+			    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2),false))
 			    	 {
 			    		 learnMsg.what=0;
 			    	 }else{
