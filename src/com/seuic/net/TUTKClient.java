@@ -284,7 +284,9 @@ public class TUTKClient {
         return false;
     }   
 	 public static boolean start(String uid) {  
-		 if (!isConnect) {
+			 if (isConnect) {
+				 stop();
+			 }
 		 	Log.e("TUTKClient", "uid");
 	        System.out.println("StreamClient start...");
 	        // use which Master base on location, port 0 means to get a random port
@@ -298,6 +300,7 @@ public class TUTKClient {
 	        }
 	        // alloc 3 sessions for video and two-way audio
 	        AVAPIs.avInitialize(3);
+	        
 	        sid = IOTCAPIs.IOTC_Connect_ByUID(uid);
 	        System.out.printf("Step 2: call IOTC_Connect_ByUID(%s).......\n", uid);
 	        long[] srvType = new long[1];
@@ -319,9 +322,7 @@ public class TUTKClient {
 //	            audioThread.start();
 	            return true;
 	        }
-		 }else{
-			 return true;
-			 }
+		 
 		return false;
 		
 	}
@@ -346,7 +347,7 @@ public class TUTKClient {
 	        System.out.printf("avClientStop OK\n");
 	        IOTCAPIs.IOTC_Session_Close(sid);
 	        System.out.printf("IOTC_Session_Close OK\n");
-			AVAPIs.avDeInitialize();
+//			AVAPIs.avDeInitialize();
 			IOTCAPIs.IOTC_DeInitialize();
 	        System.out.printf("StreamClient exit...\n");	
     	}
