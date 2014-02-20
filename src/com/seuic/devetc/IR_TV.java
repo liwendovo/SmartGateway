@@ -280,19 +280,19 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		            progressDialog.dismiss(); 
 		        }}; 
 		 private void send(final int btnid){  
-			 progressDialog = ProgressDialog.show(IR_TV.this, "sending...", "Please wait...", true, false); 
+//			 progressDialog = ProgressDialog.show(IR_TV.this, "", "", true, false); 
 			 new Thread(){        
 			     @Override  
 			     public void run() {  
-			    	 Message learnMsg=new Message();
-			    	
-			    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2),true))
-			    	 {
-			    		 learnMsg.what=0;
-			    	 }else{
-			    		 learnMsg.what=1;	
-			    	 }	 
-			    	 sendHandler.sendMessage(learnMsg);  
+//			    	 Message learnMsg=new Message();
+			    	 TUTKClient.send(learnCursor.getBlob(btnid+2),true);
+//			    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2),true))
+//			    	 {
+//			    		 learnMsg.what=0;
+//			    	 }else{
+//			    		 learnMsg.what=1;	
+//			    	 }	 
+//			    	 sendHandler.sendMessage(learnMsg);  
 			     }}.start();      
 			 }
 		private Handler sendHandler = new Handler(){ 

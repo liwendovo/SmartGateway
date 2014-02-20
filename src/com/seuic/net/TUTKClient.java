@@ -70,7 +70,7 @@ public class TUTKClient {
         byte[] devType=new byte[1];
         devType[0]=0;
         if(type==1)devType[0]=1;        
-        int ret = av.avSendIOCtrl(avIndex,irflag?IOTYPE_BL_BOX_LEARN_IR_REQ:IOTYPE_BL_BOX_LEARN_RF_REQ,devType , 1);
+        int ret = av.avSendIOCtrl(avIndex,irflag?IOTYPE_BL_BOX_LEARN_IR_REQ:IOTYPE_BL_BOX_LEARN_RF_REQ,devType, 1);
         if (ret < 0) {
         	Log.e("TUTKClient", "learn failed "+ret);
            return false;
@@ -81,10 +81,11 @@ public class TUTKClient {
         ret = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, LEARNTIMEOUT);
         if (ret > 0&&(ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP)) {
             Log.e("TUTKClient", "learn ok");
-		
-            Log.e("TUTKClient", "num:"+ret+" data:"+bytes2HexString(ioCtrlBuf));    		
+		    Log.e("TUTKClient", "num:"+ret+" data:"+bytes2HexString(ioCtrlBuf));    		
            return true;
         }
+        Log.e("TUTKClient", "learn failed ret="+ret);
+//        cancellearn(irflag);
         return false;
     }
     public static boolean cancellearn(boolean irflag)

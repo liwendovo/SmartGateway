@@ -33,7 +33,7 @@ public class TabControl extends ActivityGroup {
 	
 	
 	public static TUTKClient mClient=null;	
-	public static String mUid="NULL";	
+	public static  String mUid="NULL";	
 	
 	
 	
@@ -117,6 +117,7 @@ public class TabControl extends ActivityGroup {
 		Log.e("leewoo", "TabControl---onDestroy");	
 //		editor.putString("uid","NULL");
 //		editor.commit();
+		mUid="NULL";
 		TUTKClient.stop();
 		writeDB.close();
 	}

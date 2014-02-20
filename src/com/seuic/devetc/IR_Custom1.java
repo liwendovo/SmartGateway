@@ -351,16 +351,17 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 				 new Thread(){        
 				     @Override  
 				     public void run() {  
-				    	 Message learnMsg=new Message();
+//				    	 Message learnMsg=new Message();
 				    	 String str=new String(learnCursor.getBlob(btnid+2));	
 				    	 Log.e("IR_Custom1", ""+str);
-				    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2),true))
-				    	 {
-				    		 learnMsg.what=0;
-				    	 }else{
-				    		 learnMsg.what=1;	
-				    	 }	 
-				    	 sendHandler.sendMessage(learnMsg);  
+				    	 TUTKClient.send(learnCursor.getBlob(btnid+2),true);
+//				    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2),true))
+//				    	 {
+//				    		 learnMsg.what=0;
+//				    	 }else{
+//				    		 learnMsg.what=1;	
+//				    	 }	 
+//				    	 sendHandler.sendMessage(learnMsg);  
 				     }}.start();      
 				 }
 				private Handler sendHandler = new Handler(){ 
