@@ -11,7 +11,7 @@ import com.tutk.IOTC.IOTCAPIs;
 public class TUTKClient {
 	 static int sid=-1;
 	 static int avIndex=-1;
-	 static String uid=null;
+	 static String mUid="NULL";
 	
 	 static boolean isConnect = false;
 	 final static int LEARNTIMEOUT    =1000*20;
@@ -256,9 +256,13 @@ public class TUTKClient {
         }
         return false;
     }   
-	 public static boolean start(String uid) {  
-		 if (!isConnect) {
-		 	Log.e("TUTKClient", "uid");
+	 public static boolean start(String uid) { 
+		 Log.e("TUTKClient", "start-> uid:"+uid+"  isConnect:"+isConnect);
+		 Log.e("TUTKClient", "start->mUid:"+mUid);
+		
+		 if ((!isConnect)||(isConnect&&!mUid.equals(uid))) {
+//		 	Log.e("TUTKClient", "start->uid:"+uid+"isConnect:"+isConnect);
+		 	
 	        System.out.println("StreamClient start...");
 	        // use which Master base on location, port 0 means to get a random port
 	        int ret = IOTCAPIs.IOTC_Initialize(0, "m1.iotcplatform.com",
@@ -283,6 +287,7 @@ public class TUTKClient {
 
 	        if (startIpcamStream(avIndex)) {
 	        	isConnect=true;
+	        	mUid=uid;
 //	             videoThread = new Thread(new VideoThread(avIndex),
 //	                    "Video Thread");
 //	             audioThread = new Thread(new AudioThread(avIndex),
@@ -293,8 +298,11 @@ public class TUTKClient {
 	            return true;
 	        }
 		 }else{
-			 return true;
-			 }
+			 Log.e("TUTKClient", "start->");
+			   if(isConnect){
+			   return true;
+			   }
+		 }
 		return false;
 		
 	}

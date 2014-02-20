@@ -183,10 +183,10 @@ public class AddDev extends Activity {
 				}
 				
 								
-				if (psk_leng != 0)
-				{
-					SaveShared(netConfig.getSsid(),netConfig.getPsk());
-				}
+//				if (psk_leng != 0)
+//				{
+//					SaveShared(netConfig.getSsid(),netConfig.getPsk());
+//				}
 				SaveFile(netConfig.toString());
 				Thread pushThread = new Thread(pushRunnable);
 				pushThread.start();
@@ -339,12 +339,12 @@ public class AddDev extends Activity {
 			super.handleMessage(msg);			
 		}		
 	};
-	public void SaveShared(String ssid, String psk){
-		SharedPreferences myPreferences = getSharedPreferences("netconfig", Activity.MODE_PRIVATE);
-		SharedPreferences.Editor editor = myPreferences.edit();
-		editor.putString(ssid, psk);
-		editor.commit();
-	}
+//	public void SaveShared(String ssid, String psk){
+//		SharedPreferences myPreferences = getSharedPreferences("netconfig", Activity.MODE_PRIVATE);
+//		SharedPreferences.Editor editor = myPreferences.edit();
+//		editor.putString(ssid, psk);
+//		editor.commit();
+//	}
 	public void SaveFile(String target){
 		Log.e(tag, path);
 		Log.e(tag, pathFile);		

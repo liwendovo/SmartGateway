@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.StaticLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,20 +20,20 @@ import com.seuic.sqlite.SQLiteHelper;
 
 @SuppressWarnings("deprecation")
 public class TabControl extends ActivityGroup {
-	public final static String[] itemsIR = {"TV", "AC","Media","STU","WH", "DVD","FAN","CUSTOM1","CUSTOM2"}; 
+	public final static String[] itemsIR = {"TV", "AC","MEDIA","STU","WH", "DVD","FAN","CUSTOM1","CUSTOM2"}; 
 	public final static String[] itemsRF = {"Switch", "Lamp", "Curtain","Power","CUSTOM1","CUSTOM2"}; 	
 
 	public static TabHost host = null;
 	private LayoutInflater mInflater = null;	
 	public static SQLiteHelper mSQLHelper;
 	public static SQLiteDatabase writeDB;
-	public static SharedPreferences myPreferences;
-	public static SharedPreferences.Editor editor;
+//	public static SharedPreferences myPreferences;
+//	public static SharedPreferences.Editor editor;
 	public static ViewSelected mViewSelected;
 	
 	
 	public static TUTKClient mClient=null;	
-	String mUid=null;	
+	public static String mUid="NULL";	
 	
 	
 	
@@ -43,8 +44,8 @@ public class TabControl extends ActivityGroup {
 		
 		mSQLHelper = new SQLiteHelper(this,"smartgateway.db",1); //Êý¾Ý¿â
 		writeDB=mSQLHelper.getWritableDatabase();
-		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
-		editor= myPreferences.edit();
+//		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
+//		editor= myPreferences.edit();
 		mViewSelected=new ViewSelected();
 
 		mInflater = LayoutInflater.from(this);
@@ -104,7 +105,7 @@ public class TabControl extends ActivityGroup {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();	
-		mUid=myPreferences.getString("uid", "NULL");
+//		mUid=myPreferences.getString("uid", "NULL");
 		Log.e("leewoo", "TabControl---onStart£º"+mUid);
 	}
 
@@ -114,8 +115,8 @@ public class TabControl extends ActivityGroup {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		Log.e("leewoo", "TabControl---onDestroy");	
-		editor.putString("uid","NULL");
-		editor.commit();
+//		editor.putString("uid","NULL");
+//		editor.commit();
 		TUTKClient.stop();
 		writeDB.close();
 	}

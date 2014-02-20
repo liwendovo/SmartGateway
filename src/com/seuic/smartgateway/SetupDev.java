@@ -33,8 +33,8 @@ public class SetupDev extends Activity {
 	private DevChoiceAdapter mAdapter;
 	Button addDevBtn;
 	
-	public static SharedPreferences myPreferences;
-	public static SharedPreferences.Editor editor;	
+//	public static SharedPreferences myPreferences;
+//	public static SharedPreferences.Editor editor;	
 	public SQLiteDatabase writeDB;
 
 	@Override
@@ -52,8 +52,8 @@ public class SetupDev extends Activity {
     	titleBtn.setBackgroundResource(R.drawable.title_add);
 		
 		
-		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);		
-		editor= myPreferences.edit();
+//		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);		
+//		editor= myPreferences.edit();
 		mListView = (ListView)findViewById(R.id.devListView);	
 		
 		
@@ -89,8 +89,9 @@ public class SetupDev extends Activity {
 		}	
 	
 
-		String uidstr = myPreferences.getString("uid", "NULL");
-		Log.e("leewoo", "uid="+uidstr);
+//		String uidstr = myPreferences.getString("uid", "NULL");
+//		String uidstr
+		Log.e("leewoo", "uid="+TabControl.mUid);
 		int index=0;
 		int mCurSet=-1;
 		List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();		
@@ -102,7 +103,7 @@ public class SetupDev extends Activity {
 			Log.e("leewoo", cur.getString(0)+" "+cur.getString(1)+" "+cur.getString(2));
 			listItems.add(listItem);	
 //			listDev.add(cur.getString(0));
-			if(uidstr.equals(cur.getString(0))){
+			if(TabControl.mUid.equals(cur.getString(0))){
 				mCurSet=index;
 			}
 			index++;

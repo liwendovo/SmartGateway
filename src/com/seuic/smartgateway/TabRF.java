@@ -40,17 +40,17 @@ public class TabRF extends Activity {
 	Button titleBtn,homeBtn;
 	ImageView titlePic;
 	
-	String mUid=null;
+//	String mUid=null;
 
 	ListView listViewRF;
 	EtcAdapter rfAdapter;
-	SharedPreferences myPreferences;
-	SharedPreferences.Editor editor;
+//	SharedPreferences myPreferences;
+//	SharedPreferences.Editor editor;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabrf);
-		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
+//		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
 
 
 		homeBtn=(Button)findViewById(R.id.back);
@@ -64,12 +64,12 @@ public class TabRF extends Activity {
 		{	
 			@Override	
 			public void onClick(View source){	
-				if(mUid.equals("NULL")){
+				if(TabControl.mUid.equals("NULL")){
 					Toast.makeText(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT).show();		
 					
 				}else{
 				 Intent intent = new Intent(TabRF.this, AddEtc.class);	
-        		 intent.putExtra("uid", mUid);
+        		 intent.putExtra("uid", TabControl.mUid);
 				 intent.putExtra("type", "rf");
 				 startActivity(intent);	
 				}
@@ -104,7 +104,7 @@ public class TabRF extends Activity {
 					 intent = new Intent(TabRF.this,IR_Custom2.class);
 				 }			
 				 
-				 intent.putExtra("uid",  mUid);
+				 intent.putExtra("uid",  TabControl.mUid);
 				 intent.putExtra("devid", devid);
 				 startActivity(intent);	
 			}
@@ -183,13 +183,13 @@ public class TabRF extends Activity {
 		// TODO Auto-generated method stub
 		super.onStart();
 		
-		mUid=myPreferences.getString("uid", "NULL");	
-		if (mUid.equals("NULL")) {
+//		mUid=myPreferences.getString("uid", "NULL");	
+		if (TabControl.mUid.equals("NULL")) {
 //			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();	
 //			finish();
 		}
-		Log.e("leewoo","mUid="+mUid);
-		Cursor cur=TabControl.mSQLHelper.seleteListClass(TabControl.writeDB, mUid,"rf");
+		Log.e("leewoo","mUid="+TabControl.mUid);
+		Cursor cur=TabControl.mSQLHelper.seleteListClass(TabControl.writeDB, TabControl.mUid,"rf");
 
 		List<Map<String, Object>> listItemsRF=new ArrayList<Map<String,Object>>();	
 		for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){

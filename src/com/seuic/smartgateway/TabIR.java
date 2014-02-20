@@ -39,10 +39,10 @@ import com.seuic.devetc.IR_WH;
 public class TabIR extends Activity {
 	Button titleBtn,homeBtn;
 	ImageView titlePic;	
-	String mUid=null;	
+//	String mUid=null;	
 	ListView listViewIR;
 	EtcAdapter irAdapter;
-	SharedPreferences myPreferences;	
+//	SharedPreferences myPreferences;	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,16 +57,16 @@ public class TabIR extends Activity {
     	
     	
     	
-		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
+//		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
 		titleBtn.setOnClickListener(new OnClickListener()
 		{		
 			public void onClick(View source){	
-				if(mUid.equals("NULL")){
+				if(TabControl.mUid.equals("NULL")){
 					Toast.makeText(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT).show();		
 					
 				}else{
 				 Intent intent = new Intent(TabIR.this, AddEtc.class);	
-				 intent.putExtra("uid", mUid);
+				 intent.putExtra("uid", TabControl.mUid);
 				 intent.putExtra("type", "ir");
 				 startActivity(intent);	  
 				}
@@ -110,7 +110,7 @@ public class TabIR extends Activity {
 				 }	
 				 
 				 
-				 intent.putExtra("uid",  mUid);
+				 intent.putExtra("uid",  TabControl.mUid);
 				 intent.putExtra("devid", devid);
 				 startActivity(intent);	
 			}
@@ -180,13 +180,13 @@ public class TabIR extends Activity {
 		// TODO Auto-generated method stub
 		super.onStart();
 		Log.e("leewoo","TabIR-->onStart");
-		mUid=myPreferences.getString("uid", "NULL");	
+//		mUid=myPreferences.getString("uid", "NULL");	
 //		if (mUid.equals("NULL")) {
 //			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();	
 //			finish();
 //		}
-		Log.e("leewoo","mUid="+mUid);
-		Cursor cur=TabControl.mSQLHelper.seleteListClass(TabControl.writeDB, mUid,"ir");
+		Log.e("leewoo","mUid="+TabControl.mUid);
+		Cursor cur=TabControl.mSQLHelper.seleteListClass(TabControl.writeDB, TabControl.mUid,"ir");
 		Log.e("leewoo","count="+cur.getCount());
 //		if(0==cur.getCount()){
 //			Log.e("leewoo","count="+0);

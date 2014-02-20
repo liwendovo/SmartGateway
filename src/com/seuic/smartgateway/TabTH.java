@@ -1,7 +1,6 @@
 package com.seuic.smartgateway ;  
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,8 +15,7 @@ public class TabTH extends Activity {
 	Button titleBtn,homeBtn;
 	ImageView titlePic;
 	TextView  temp,humi;
-	SharedPreferences myPreferences;
-	SharedPreferences.Editor editor;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

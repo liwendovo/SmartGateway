@@ -116,8 +116,9 @@ public class DevChoiceAdapter extends BaseAdapter {
 		        			if(position>=0&&position<data.size()){
 		        			if(currentID==position){
 		        				currentID=-1;	
-		        				SetupDev.editor.putString("uid","NULL");
-		        				SetupDev.editor.commit();
+		        				TabControl.mUid="NULL";//É¾³ýÖÃ¿Õ
+//		        				SetupDev.editor.putString("uid","NULL");
+//		        				SetupDev.editor.commit();
 		        			} 
 		        			TabControl.mSQLHelper.deleteSetup(TabControl.writeDB, data.get(position).get("uid").toString());
 				 			data.remove(position);	
@@ -152,8 +153,9 @@ public class DevChoiceAdapter extends BaseAdapter {
 				// TODO Auto-generated method stub
 				currentID=position;  
 				String uid=data.get(position).get("uid").toString();
-				SetupDev.editor.putString("uid",uid);
-				SetupDev.editor.commit();
+//				SetupDev.editor.putString("uid",uid);
+//				SetupDev.editor.commit();
+				TabControl.mUid=uid;
 				showProgressDialog(uid);
 				notifyDataSetChanged();
 			}
@@ -183,8 +185,9 @@ public class DevChoiceAdapter extends BaseAdapter {
         	}else{
         		Toast.makeText(context, "Can not connect to device, please check your device or if has connect to a wireless network", Toast.LENGTH_LONG).show(); 
         		currentID=-1;
-        		SetupDev.editor.putString("uid","NULL");
-				SetupDev.editor.commit();
+//        		SetupDev.editor.putString("uid","NULL");
+//				SetupDev.editor.commit();
+				TabControl.mUid="NULL";//Î´Á¬½ÓÖÃ¿Õ
         		notifyDataSetChanged();
         	}
 //            //¹Ø±ÕProgressDialog  

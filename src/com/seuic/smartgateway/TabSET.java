@@ -24,13 +24,13 @@ public class TabSET extends Activity {
 
 	ToggleButton setTempBtn;
 	RelativeLayout    layoutDev,layoutCam,layoutTemp,layoutTime,layoutReset,layoutAbout;
-	SharedPreferences myPreferences;
-	SharedPreferences.Editor editor;
+//	SharedPreferences myPreferences;
+//	SharedPreferences.Editor editor;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabset);
-		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
+//		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
 				
 		homeBtn=(Button)findViewById(R.id.back);
 		titlePic=(ImageView)findViewById(R.id.pic);
