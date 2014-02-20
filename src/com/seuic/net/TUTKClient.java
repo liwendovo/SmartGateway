@@ -283,11 +283,12 @@ public class TUTKClient {
         }
         return false;
     }   
-	 public static boolean start(String uid) {  
+	 public static boolean start(String uid) { 
+		    Log.e("TUTKClient", "uid:"+uid+" isConnect:"+isConnect+" sid:"+sid);
 			 if (isConnect) {
 				 stop();
 			 }
-		 	Log.e("TUTKClient", "uid");
+		 
 	        System.out.println("StreamClient start...");
 	        // use which Master base on location, port 0 means to get a random port
 	        int ret = IOTCAPIs.IOTC_Initialize(0, "m1.iotcplatform.com",
@@ -327,9 +328,9 @@ public class TUTKClient {
 		
 	}
     public static void stop() {
-    	Log.e("TUTKClient", "in stop");
+    	Log.e("TUTKClient", "stop()->begin to stop...........");
     	if(isConnect) {
-    		 Log.e("TUTKClient", "stopping");
+    		Log.e("TUTKClient", "stop()->stopping.............");
 	    	isConnect=false;
 //	    	 try {
 //	             videoThread.join();
@@ -350,6 +351,8 @@ public class TUTKClient {
 //			AVAPIs.avDeInitialize();
 			IOTCAPIs.IOTC_DeInitialize();
 	        System.out.printf("StreamClient exit...\n");	
+	        sid=-1;
+	   	    avIndex=-1;
     	}
     }
     public static boolean restart(String uid) {   
