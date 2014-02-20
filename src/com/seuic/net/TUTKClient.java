@@ -11,10 +11,12 @@ import com.tutk.IOTC.IOTCAPIs;
 public class TUTKClient {
 	 static int sid=-1;
 	 static int avIndex=-1;
-	 static String mUid="NULL";
+	 static String uid=null;
 	
 	 static boolean isConnect = false;
 	 final static int LEARNTIMEOUT    =1000*20;
+	 final static int SENDTIMEOUT    =1000*5;
+	 
 	 public final static int MAX_SIZE_IOCTRL_BUF=1024;	
 	 
 	//custom request code
@@ -39,11 +41,14 @@ public class TUTKClient {
 	 final static int IOTYPE_BL_BOX_LEARN_IR_RESP                  =0xFF000051;
 	 final static int IOTYPE_BL_BOX_SEND_IR_REQ                    =0xFF000052;
 	 final static int IOTYPE_BL_BOX_SEND_IR_RESP                   =0xFF000053;
-
+	 final static int IOTYPE_BL_BOX_CANCEL_IR_REQ                  =0xFF000054;
+	 final static int IOTYPE_BL_BOX_CANCEL_IR_RESP                 =0xFF000055;
 	 final static int IOTYPE_BL_BOX_LEARN_RF_REQ                   =0xFF000060;
 	 final static int IOTYPE_BL_BOX_LEARN_RF_RESP                  =0xFF000061;
 	 final static int IOTYPE_BL_BOX_SEND_RF_REQ                    =0xFF000062;
 	 final static int IOTYPE_BL_BOX_SEND_RF_RESP                   =0xFF000063;
+	 final static int IOTYPE_BL_BOX_CANCEL_RF_REQ          	       =0xFF000064;
+	 final static int IOTYPE_BL_BOX_CANCEL_RF_RESP           	   =0xFF000065;
 
 	 final static int IOTYPE_BL_BOX_GET_LEDS_POWER_REQ             =0xFF000070;
 	 final static int IOTYPE_BL_BOX_GET_LEDS_POWER_RESP            =0xFF000071;
@@ -82,6 +87,20 @@ public class TUTKClient {
         }
         return false;
     }
+    public static boolean cancellearn(boolean irflag)
+    {
+        if (!isConnect) {
+            return false;
+        }
+        AVAPIs av = new AVAPIs();
+        int ret = av.avSendIOCtrl(avIndex, irflag?IOTYPE_BL_BOX_CANCEL_IR_REQ:IOTYPE_BL_BOX_CANCEL_RF_REQ,null , 0); 
+        
+    	if(ret< 0)
+    	{
+    		return false;
+    	}    
+        return true;
+    }
     public static boolean send(byte[] data,boolean irflag ) { 
    	 //Êý¾Ý·¢ËÍ
        AVAPIs av = new AVAPIs();
@@ -92,8 +111,16 @@ public class TUTKClient {
            System.out.printf("send failed[%d]\n", ret); 
            return false;
        }
-       Log.e("TUTKClient", "send ok");
-       Log.e("TUTKClient", "num:"+data.length+" data:"+bytes2HexString(data));
+//       int ioType[]=new int[1];
+//       byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF]; 
+      
+//       int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, SENDTIMEOUT);
+//       if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SEND_IR_RESP||ioType[0]==IOTYPE_BL_BOX_SEND_RF_RESP)) {
+//    	   Log.e("TUTKClient", "send ok");
+//           Log.e("TUTKClient", "num:"+data.length+" data:"+bytes2HexString(data));
+//    	   return true;
+//       }
+       
        return true;
     }    
     public static boolean getTH(int TH[])
@@ -256,13 +283,9 @@ public class TUTKClient {
         }
         return false;
     }   
-	 public static boolean start(String uid) { 
-		 Log.e("TUTKClient", "start-> uid:"+uid+"  isConnect:"+isConnect);
-		 Log.e("TUTKClient", "start->mUid:"+mUid);
-		
-		 if ((!isConnect)||(isConnect&&!mUid.equals(uid))) {
-//		 	Log.e("TUTKClient", "start->uid:"+uid+"isConnect:"+isConnect);
-		 	
+	 public static boolean start(String uid) {  
+		 if (!isConnect) {
+		 	Log.e("TUTKClient", "uid");
 	        System.out.println("StreamClient start...");
 	        // use which Master base on location, port 0 means to get a random port
 	        int ret = IOTCAPIs.IOTC_Initialize(0, "m1.iotcplatform.com",
@@ -287,7 +310,6 @@ public class TUTKClient {
 
 	        if (startIpcamStream(avIndex)) {
 	        	isConnect=true;
-	        	mUid=uid;
 //	             videoThread = new Thread(new VideoThread(avIndex),
 //	                    "Video Thread");
 //	             audioThread = new Thread(new AudioThread(avIndex),
@@ -298,11 +320,8 @@ public class TUTKClient {
 	            return true;
 	        }
 		 }else{
-			 Log.e("TUTKClient", "start->");
-			   if(isConnect){
-			   return true;
-			   }
-		 }
+			 return true;
+			 }
 		return false;
 		
 	}
