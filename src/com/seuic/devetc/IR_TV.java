@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -235,7 +236,20 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 	}
 	 	 
 		 private void showProgressDialog(){  
-		 progressDialog = ProgressDialog.show(IR_TV.this,"", getResources().getString(R.string.studying), true, false); 
+			 progressDialog = new ProgressDialog(IR_TV.this);
+			 progressDialog.setMessage(getResources().getString(R.string.studying));
+			 progressDialog.setButton("Cancle", new DialogInterface.OnClickListener() {
+	             public void onClick(DialogInterface dialog, int i)
+	             {
+	            	 if(TUTKClient.cancellearn(true)){
+	            		 dialog.cancel();
+	                 }
+	             }
+	         });
+			 progressDialog.show();
+
+//			 progressDialog = ProgressDialog.show(IR_TV.this,"", getResources().getString(R.string.studying), true, false); 
+		
 		 new Thread(){        
 		     @Override  
 		     public void run() {  

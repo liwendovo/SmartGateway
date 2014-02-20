@@ -305,8 +305,18 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	   }
 	
 		 private void showProgressDialog(){  
-		 progressDialog = ProgressDialog.show(IR_Custom1.this, "", getResources().getString(R.string.studying), true, false); 
-		 new Thread(){        
+			 progressDialog = new ProgressDialog(IR_Custom1.this);
+			 progressDialog.setMessage(getResources().getString(R.string.studying));
+			 progressDialog.setButton("Cancle", new DialogInterface.OnClickListener() {
+	             public void onClick(DialogInterface dialog, int i)
+	             {
+	            	 if(TUTKClient.cancellearn(true)){
+	            		 dialog.cancel();
+	                 }
+	             }
+	         });
+			 progressDialog.show();
+			 new Thread(){        
 		     @Override  
 		     public void run() {  
 		    	 Message learnMsg=new Message();

@@ -2,6 +2,7 @@ package com.seuic.devetc;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -120,8 +121,19 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 	            break;  
         }	  
 	}
-		 private void showProgressDialog(){  
-		 progressDialog = ProgressDialog.show(RF_Power.this,"", getResources().getString(R.string.studying), true, false); 
+		 private void showProgressDialog(){ 
+			 progressDialog = new ProgressDialog(RF_Power.this);
+			 progressDialog.setMessage(getResources().getString(R.string.studying));
+			 progressDialog.setButton("Cancle", new DialogInterface.OnClickListener() {
+	             public void onClick(DialogInterface dialog, int i)
+	             {
+	            	 if(TUTKClient.cancellearn(true)){
+	            		 dialog.cancel();
+	                 }
+	             }
+	         });
+			 progressDialog.show();
+//		 progressDialog = ProgressDialog.show(RF_Power.this,"", getResources().getString(R.string.studying), true, false); 
 		 new Thread(){        
 		     @Override  
 		     public void run() {  

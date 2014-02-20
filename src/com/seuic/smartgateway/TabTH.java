@@ -49,10 +49,10 @@ public class TabTH extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		int[] th=new int[4];
-		TUTKClient.getTH(th);
-		temp.setText(th[0]+"."+th[1]+"%");
-		humi.setText(th[2]+"."+th[3]+"C");
+//		int[] th=new int[4];
+//		TUTKClient.getTH(th);
+//		temp.setText(th[0]+"."+th[1]+"%");
+//		humi.setText(th[2]+"."+th[3]+"C");
 	}
 	
 }
