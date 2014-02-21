@@ -178,7 +178,7 @@
                      android:layout_centerHorizontal="true"
                      android:layout_centerVertical="true"
                      android:gravity="center"
-                     android:text="REST APP"
+                     android:text="RESET APP"
                      android:textColor="@drawable/selector_text_color" 
                      android:textAppearance="?android:attr/textAppearanceLarge" />
        

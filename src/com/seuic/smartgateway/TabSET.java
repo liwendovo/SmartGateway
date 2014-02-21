@@ -117,7 +117,7 @@ public class TabSET extends Activity {
 		   		@Override
 		   		public void onClick(DialogInterface arg0, int arg1) {
 		   			// TODO Auto-generated method stub
-		   	
+		   			TabControl.mSQLHelper.deleteAll(TabControl.writeDB);
 		   			}
 				 });
 				 builder.setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {

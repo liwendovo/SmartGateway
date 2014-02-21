@@ -3,6 +3,8 @@
  * copyright@ seuic 
  * */
 package com.seuic.sqlite;
+import com.seuic.smartgateway.TabControl;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -108,6 +110,19 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		String sql = "INSERT INTO " + Table_Name_Btn  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'learn\',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);";
 		db.execSQL(sql);		
 	}
+	public void deleteAll(SQLiteDatabase db) {		
+//		String 
+//		sql = "DELETE * FROM " + Table_Name_Setup;
+//		db.execSQL(sql);	
+//		sql = "DELETE * FROM " + Table_Name_List;
+//		db.execSQL(sql);
+//		sql = "DELETE FROM " + Table_Name_Btn;
+//		db.execSQL(sql);
+		db.delete(Table_Name_Setup,null,null);
+		db.delete(Table_Name_List,null,null);
+		db.delete(Table_Name_Btn,null,null);
+		TabControl.mUid="NULL";		
+	}
 	public void deleteSetup(SQLiteDatabase db, String Tag_Uid) {
 		
 		String 
@@ -119,6 +134,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		db.execSQL(sql);
 		
 	}
+
 	public void deleteList(SQLiteDatabase db, int Tag_DevID) {
 		
 		String 	
