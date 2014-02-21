@@ -117,6 +117,10 @@
             android:label="RF_Switch" >
         </activity>
         <activity
+            android:name="com.seuic.devetc.RF_Power"
+            android:label="RF_Power" >
+        </activity>
+        <activity
             android:name="com.seuic.devetc.RF_WH"
             android:label="RF_WH" >
         </activity>
@@ -140,16 +144,7 @@
             android:name="com.seuic.devetc.RF_Custom2"
             android:label="RF_Custom2" >
         </activity>
-        <activity
-            android:name="com.seuic.devetc.RF_Power"
-            android:label="@string/title_activity_rf__power" >
-        </activity>
-        <activity
-            android:name=".Camera"
-            android:label="@string/title_activity_camera"
-            android:screenOrientation="landscape" 
-            android:configChanges="orientation|keyboardHidden">
-        </activity>
+   
     </application>
 
 

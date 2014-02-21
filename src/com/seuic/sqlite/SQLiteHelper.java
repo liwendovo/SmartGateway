@@ -38,7 +38,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	
     final String CREATE_SETUP_TABLE_SQL =
     		 "CREATE TABLE IF NOT EXISTS " + Table_Name_Setup + 
-    		 " ( " + Uid + " VHARCHAR PRIMARY KEY, " + Type  + " VHARCHAR, "+ Name + " VHARCHAR, "+ Fah  + " VHARCHAR, "+ Hour  + " VHARCHAR, " + Auto  + " VHARCHAR, "+ Zone + " VHARCHAR );";
+    		 " ( " + Uid + " VHARCHAR PRIMARY KEY, " + Type  + " VHARCHAR, "+ Name + " VHARCHAR, "+ Fah  + " INTEGER, "+ Hour  + " INTEGER, " + Zone  + " INTEGER, "+ Auto + " INTEGER );";
   
 	final String CREATE_LIST_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_List + 
@@ -77,7 +77,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		Cursor ToReturn = db.rawQuery(str, null);
 		if(0==ToReturn.getCount())
 		{
-			String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',\'true\',\'24\',\'true\',\'8\');";
+			String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',0,1,1,63);";
 			db.execSQL(sql);
 			return true;
 		}else{
@@ -197,7 +197,34 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		String str = "update " + Table_Name_List + " set "+ Status+"='"+Tag_Status+"' where " + Uid + "=\"" + Tag_ID + "\"";
 		db.execSQL(str);
 	}
+	public void updateTimezone(SQLiteDatabase db,String Tag_UID, int Tag_Position) {
 		
+		Log.e("Sqlite", "updateTimezone->"+Tag_Position);		
+		ContentValues values = new ContentValues();
+		values.put(Zone,Tag_Position);
+		db.update(Table_Name_Setup, values, Uid + "=\"" + Tag_UID +"\"", null);
+
+//		String str = "update " + Table_Name_Setup + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
+//		db.execSQL(str);
+	}	public void updateFah(SQLiteDatabase db,String Tag_UID,int Tag_Fah) {
+		
+		Log.e("Sqlite", "updateFah->"+Tag_Fah);		
+		ContentValues values = new ContentValues();
+		values.put(Fah,Tag_Fah);
+		db.update(Table_Name_Setup, values,  Uid + "=\"" + Tag_UID +"\"", null);
+
+//		String str = "update " + Table_Name_Setup + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
+//		db.execSQL(str);
+	}	public void updateHour(SQLiteDatabase db,String Tag_UID, int Tag_Hour) {
+		
+		Log.e("Sqlite", "updateHour->"+Tag_Hour);		
+		ContentValues values = new ContentValues();
+		values.put(Hour,Tag_Hour);
+		db.update(Table_Name_Setup, values,  Uid + "=\"" + Tag_UID +"\"", null);
+
+//		String str = "update " + Table_Name_Setup + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
+//		db.execSQL(str);
+	}	
 	public void updateBtnName(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID, String Tag_Name) {
 		
 		Log.e("Sqlite", "updateBtnName");

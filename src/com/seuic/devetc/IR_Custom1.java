@@ -347,7 +347,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	            progressDialog.dismiss(); 
 	        }};  
 			 private void send(final int btnid){  
-				 progressDialog = ProgressDialog.show(IR_Custom1.this, "sending...", "Please wait...", true, false); 
+//				 progressDialog = ProgressDialog.show(IR_Custom1.this, "sending...", "Please wait...", true, false); 
 				 new Thread(){        
 				     @Override  
 				     public void run() {  

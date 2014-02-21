@@ -164,7 +164,7 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 		            progressDialog.dismiss(); 
 		        }}; 
 		 private void send(final int btnid){  
-			 progressDialog = ProgressDialog.show(RF_Power.this, "sending...", "Please wait...", true, false); 
+//			 progressDialog = ProgressDialog.show(RF_Power.this, "sending...", "Please wait...", true, false); 
 			 new Thread(){        
 			     @Override  
 			     public void run() {  

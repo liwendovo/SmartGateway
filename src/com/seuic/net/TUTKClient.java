@@ -188,7 +188,7 @@ public class TUTKClient {
     	     
     	return false;
     }
-    public static boolean setTimeMode(int mode){ 
+    public static boolean setHourMode(int mode){ 
 	    if (!isConnect) {
 	        return false;
 	    }
@@ -204,8 +204,8 @@ public class TUTKClient {
 	    }
 	  	 int ioType[]=new int[1];
       	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
-	     int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*5);
-	     Log.e("setTimeMode", ""+ioType[0]);
+	     int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*3);
+//	     Log.e("setTimeMode", ""+ioType[0]);
 	     if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SET_LOCAL_TIME_MODE_RESP)) {
 	        return true;
 	    }	     
@@ -227,7 +227,7 @@ public class TUTKClient {
         }
       	 int ioType[]=new int[1];
       	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
-        int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*5);
+        int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*3);
         if (returnvalue>0&&(ioType[0]==IOTYPE_USER_IPCAM_SET_TIMEZONE_RESP)) {
             return true;
         }

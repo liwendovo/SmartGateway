@@ -8,6 +8,7 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ public class TabSET extends Activity {
 	Button titleBtn,homeBtn;
 	ImageView titlePic;
 
+	
 	ToggleButton setTempBtn;
 	RelativeLayout    layoutDev,layoutCam,layoutTemp,layoutTime,layoutReset,layoutAbout;
 //	SharedPreferences myPreferences;
@@ -85,12 +87,15 @@ public class TabSET extends Activity {
 			// TODO Auto-generated method stub
 			if (setTempBtn.isChecked()) {
 				setTempBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
-				TUTKClient.setTempMode(0);
+				TUTKClient.setTempMode(1);
+				TabControl.mSQLHelper.updateFah(TabControl.writeDB,TabControl.mUid,1);			
 			} else {
 				setTempBtn.setBackgroundResource(R.drawable.rf_switch_blue);
-				TUTKClient.setTempMode(1);
+				TUTKClient.setTempMode(0);
+				TabControl.mSQLHelper.updateFah(TabControl.writeDB,TabControl.mUid,0);
+				
 			}
-			//×´Ì¬¼ÇÂ¼ Êý¾Ý¿â			
+				
 		}
 	   });
 	   
@@ -150,8 +155,25 @@ public class TabSET extends Activity {
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
-		super.onStart();
-		Log.e("leewoo", "TabSET---onStart");
+		super.onStart();		
+		Cursor cursor=TabControl.mSQLHelper.seleteSetup(TabControl.writeDB,TabControl.mUid);
+		Log.e("leewoo", "Tabset---onStart->cur:"+cursor.getCount()+" mUid:"+TabControl.mUid);
+		if(cursor.getCount()>0){		
+			int fah=cursor.getInt(3);
+			if (fah==1) {
+				Log.e("leewoo", "fah==1");
+				setTempBtn.setChecked(true);
+				setTempBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+			}else{
+				Log.e("leewoo", "fah==0");
+				setTempBtn.setChecked(false);
+				setTempBtn.setBackgroundResource(R.drawable.rf_switch_blue);				
+			}
+		
+		}else{
+		
+		}		
+		cursor.close();
 	}
 	
 	

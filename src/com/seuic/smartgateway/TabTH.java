@@ -2,6 +2,7 @@ package com.seuic.smartgateway ;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -35,10 +36,10 @@ public class TabTH extends Activity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			int[] th=new int[4];
-			TUTKClient.getTH(th);
-			temp.setText(th[0]+"."+th[1]+"%");
-			humi.setText(th[2]+"."+th[3]+"C");
+//			int[] th=new int[4];
+//			TUTKClient.getTH(th);
+//			temp.setText(th[0]+"."+th[1]+"%");
+//			humi.setText(th[2]+"."+th[3]+"C");
 			
 		}
 	});
@@ -49,10 +50,15 @@ public class TabTH extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-//		int[] th=new int[4];
-//		TUTKClient.getTH(th);
-//		temp.setText(th[0]+"."+th[1]+"%");
-//		humi.setText(th[2]+"."+th[3]+"C");
+
+		new Thread(){        
+		     @Override  
+		     public void run() {  
+		 		int[] th=new int[4];
+		 		TUTKClient.getTH(th);
+//		 		temp.setText(th[0]+"."+th[1]+"%");
+//		 		humi.setText(th[2]+"."+th[3]+"C");
+		     }}.start();   
 	}
 	
 }

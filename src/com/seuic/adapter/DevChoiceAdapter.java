@@ -181,7 +181,7 @@ public class DevChoiceAdapter extends BaseAdapter {
         	if(0==msg.what)
         	{
         		Toast.makeText(context, "Connect success", Toast.LENGTH_SHORT).show(); 
-        		  
+//        		TabControl.mUid="NULL";//É¾³ýÖÃ¿Õ  
         	}else{
         		Toast.makeText(context, "Can not connect to device, please check your device or if has connect to a wireless network", Toast.LENGTH_LONG).show(); 
         		currentID=-1;
@@ -195,7 +195,7 @@ public class DevChoiceAdapter extends BaseAdapter {
 
         }};  
 	 public void showProgressDialog(final String uid){  
-		 progressDialog = ProgressDialog.show(context,"" , "Connectting...", true, false); 
+		 progressDialog = ProgressDialog.show(context,"" , "Connecting...", true, false); 
 		 new Thread(){        
 		     @Override  
 		     public void run() {  

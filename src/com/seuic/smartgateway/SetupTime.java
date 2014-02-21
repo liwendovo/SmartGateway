@@ -1,11 +1,14 @@
 package com.seuic.smartgateway;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,7 +22,7 @@ public class SetupTime extends Activity{
 	ImageView titlePic;	
 	Spinner spinnerZone;
 	ToggleButton timeAutoBtn,timeHourBtn;
-	private ArrayAdapter<String> adapter;
+	private ArrayAdapter<CharSequence> adapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,13 +41,29 @@ public class SetupTime extends Activity{
     	timeHourBtn=(ToggleButton)findViewById(R.id.timeHourBtn);    	
     	
     	spinnerZone=(Spinner)findViewById(R.id.spinnerZone);     
-    	adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, TabControl.itemsIR);
+//    	adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, R.array.timezone_entries);
+    	adapter = ArrayAdapter.createFromResource(
+    	            this, R.array.timezone_entries, android.R.layout.simple_spinner_item);
 		//设置下拉列表的风格  
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);            
 		//将adapter 添加到spinner中  
-		spinnerZone.setAdapter(adapter);            
+		spinnerZone.setAdapter(adapter);  
+//		spinnerZone.setSelection(position);
 		//设置默认值  
-		spinnerZone.setVisibility(View.INVISIBLE);  
+//		spinnerZone.setVisibility(View.VISIBLE);
+		spinnerZone.setOnItemSelectedListener(new OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View arg1,
+                int postion, long id) {
+            	  TabControl.mSQLHelper.updateTimezone(TabControl.writeDB,TabControl.mUid,postion);
+            }
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
 		homeBtn.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View arg0) {
@@ -83,16 +102,44 @@ public class SetupTime extends Activity{
 					// TODO Auto-generated method stub
 					if (timeHourBtn.isChecked()) {
 						timeHourBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
-						TUTKClient.setTimeMode(0);
-					} else {
+						TUTKClient.setHourMode(1);
+						TabControl.mSQLHelper.updateHour(TabControl.writeDB,TabControl.mUid,1);
+						} else {
 						timeHourBtn.setBackgroundResource(R.drawable.rf_switch_blue);
-						TUTKClient.setTimeMode(0);
+						TUTKClient.setHourMode(0);
+						TabControl.mSQLHelper.updateHour(TabControl.writeDB,TabControl.mUid,0);
 					}
-					//状态记录 数据库			
+							
 				}
 			   });
 		
 		     
 		
+	}
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		
+		Cursor cursor=TabControl.mSQLHelper.seleteSetup(TabControl.writeDB,TabControl.mUid);
+		Log.e("leewoo", "Tabset---onStart->cur:"+cursor.getCount()+" mUid:"+TabControl.mUid);
+		if(cursor.getCount()>0){
+			int timezone=cursor.getInt(5);
+			spinnerZone.setSelection(timezone);
+			int hour=cursor.getInt(4);
+			
+			if (hour==1) {
+				Log.e("leewoo", "hour==1");
+				timeHourBtn.setChecked(true);
+				timeHourBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+			}else{
+				Log.e("leewoo", "hour==0");
+				timeHourBtn.setChecked(false);
+				timeHourBtn.setBackgroundResource(R.drawable.rf_switch_blue);
+			}
+		}else{
+		
+		}		
+		cursor.close();
 	}
 }
