@@ -8,6 +8,7 @@ import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -181,6 +182,21 @@ public class DevChoiceAdapter extends BaseAdapter {
         	if(0==msg.what)
         	{
         		Toast.makeText(context, "Connect success", Toast.LENGTH_SHORT).show(); 
+        		Cursor cursor=TabControl.mSQLHelper.seleteSetup(TabControl.writeDB,TabControl.mUid);
+//        		Log.e("leewoo", "Tabset---onStart->cur:"+cursor.getCount()+" mUid:"+TabControl.mUid);
+        		if(cursor.getCount()>0){
+        			int fah=cursor.getInt(3);
+        			int hour=cursor.getInt(4);   
+        			int timezone=cursor.getInt(5);  
+        		
+        			TUTKClient.setTempMode(fah);
+        			TUTKClient.setHourMode(hour);
+//        			TUTKClient.setTimeZone(0);
+        			
+        		}	
+        		
+        		
+        		
 //        		TabControl.mUid="NULL";//É¾³ýÖÃ¿Õ  
         	}else{
         		Toast.makeText(context, "Can not connect to device, please check your device or if has connect to a wireless network", Toast.LENGTH_LONG).show(); 
