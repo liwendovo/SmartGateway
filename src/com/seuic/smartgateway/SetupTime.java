@@ -55,7 +55,15 @@ public class SetupTime extends Activity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View arg1,
                 int postion, long id) {
+            	  String selectedName = parent.getItemAtPosition(postion).toString();
+
             	  TabControl.mSQLHelper.updateTimezone(TabControl.writeDB,TabControl.mUid,postion);
+            	  String[] ss=new String[2];
+            	  ss=selectedName.split("UTC"); 
+            	  ss[1]=ss[1].replace("+",""); 
+            	  int i=Integer.parseInt(ss[1]);            	
+            	  Log.e("SetupTime", ss[0]+" "+ss[1]+" "+i);
+            	  TUTKClient.setTimeZone(i);
             }
 
 			@Override

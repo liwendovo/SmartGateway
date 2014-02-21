@@ -191,13 +191,14 @@ public class DevChoiceAdapter extends BaseAdapter {
         		
         			TUTKClient.setTempMode(fah);
         			TUTKClient.setHourMode(hour);
-//        			TUTKClient.setTimeZone(0);
-        			
+        			String a[]=context.getResources().getStringArray(R.array.timezone_entries);   
+        			String[] ss=new String[2];
+                	ss=a[timezone].split("UTC"); 
+                	ss[1]=ss[1].replace("+",""); 
+                	int i=Integer.parseInt(ss[1]);  
+                	TUTKClient.setTimeZone(i);
         		}	
         		
-        		
-        		
-//        		TabControl.mUid="NULL";//É¾³ýÖÃ¿Õ  
         	}else{
         		Toast.makeText(context, "Can not connect to device, please check your device or if has connect to a wireless network", Toast.LENGTH_LONG).show(); 
         		currentID=-1;

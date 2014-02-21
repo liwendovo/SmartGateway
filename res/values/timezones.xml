@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="timezone_entries">
-    <item>Pacific/Majuro/UTC12</item>
+    <item>Pacific/Majuro/UTC+12</item>
     <item>Pacific/Midway/UTC-11</item>
     <item>Pacific/Honolulu/UTC-10</item>
     <item>America/Anchorage/UTC-9</item>
@@ -48,20 +48,14 @@
     <item>Europe/Moscow/UTC+3</item>
     <item>Asia/Kuwait/UTC+3</item>
     <item>Africa/Nairobi/UTC+3</item>
-    <item>Asia/Tehran/UTC+3.5</item>
     <item>Asia/Baku/UTC+4</item>
     <item>Asia/Tbilisi/UTC+4</item>
     <item>Asia/Yerevan/UTC+4</item>
-    <item>Asia/Dubai/UTC+4</item>
-    <item>Asia/Kabul/UTC+4.5</item>
+    <item>Asia/Dubai/UTC+4</item> 
     <item>Asia/Karachi/UTC+5</item>
     <item>Asia/Oral/UTC+5</item>
-    <item>Asia/Yekaterinburg/UTC+6</item>
-    <item>Asia/Calcutta/UTC+5.5</item>
-    <item>Asia/Colombo/UTC+5.5</item>
-    <item>Asia/Katmandu/UTC+5.75</item>
-    <item>Asia/Almaty/UTC+6</item>
-    <item>Asia/Rangoon/UTC+6.5</item>
+    <item>Asia/Yekaterinburg/UTC+6</item> 
+    <item>Asia/Almaty/UTC+6</item>   
     <item>Asia/Krasnoyarsk/UTC+7</item>
     <item>Asia/Bangkok/UTC+7</item>
     <item>Asia/Shanghai/Beijing/UTC+8</item>
@@ -72,9 +66,7 @@
     <item>Asia/Taipei/UTC+8</item>
     <item>Asia/Seoul/UTC+9</item>
     <item>Asia/Tokyo/UTC+9</item>
-    <item>Asia/Yakutsk/UTC+9</item>
-    <item>Australia/Adelaide/UTC+9.5</item>
-    <item>Australia/Darwin/UTC+9.5</item>
+    <item>Asia/Yakutsk/UTC+9</item>    
     <item>Australia/Brisbane/UTC+10</item>
     <item>Australia/Hobart/UTC+10</item>
     <item>Australia/Sydney/UTC+10</item>
@@ -84,90 +76,5 @@
     <item>Pacific/Auckland/UTC+12</item>
     <item>Pacific/Fiji/UTC+12</item>
     <item>Pacific/Tongatapu/UTC+13</item>
-    </string-array>
-    <string-array name="timezone_entry_values">
-    <item>12</item>
-    <item>-11</item>
-    <item>-10</item>
-    <item>-9</item>
-    <item>-8</item>
-    <item>-8</item>
-    <item>-7</item>
-    <item>-7</item>
-    <item>-7</item>
-    <item>-6</item>
-    <item>-6</item>
-    <item>-6</item>
-    <item>-6</item>
-    <item>-5</item>
-    <item>-5</item>
-    <item>-4</item>
-    <item>-4</item>
-    <item>-4</item>
-    <item>-4</item>
-    <item>-4</item>
-    <item>-3</item>
-    <item>-3</item>
-    <item>-3</item>
-    <item>-3</item>
-    <item>-2</item>
-    <item>-1</item>
-    <item>-1</item>
-    <item>0</item>
-    <item>0</item>
-    <item>1</item>
-    <item>1</item>
-    <item>1</item>
-    <item>1</item>
-    <item>1</item>
-    <item>1</item>
-    <item>2</item>
-    <item>2</item>
-    <item>2</item>
-    <item>2</item>
-    <item>2</item>
-    <item>2</item>
-    <item>2</item>
-    <item>2</item>
-    <item>3</item>
-    <item>3</item>
-    <item>3</item>
-    <item>3</item>
-    <item>3.5</item>
-    <item>4</item>
-    <item>4</item>
-    <item>4</item>
-    <item>4</item>
-    <item>4.5</item>
-    <item>5</item>
-    <item>5</item>
-    <item>6</item>
-    <item>5.5</item>
-    <item>5.5</item>
-    <item>5.75</item>
-    <item>6</item>
-    <item>6.5</item>
-    <item>7</item>
-    <item>7</item>
-    <item>8</item>
-    <item>8</item>
-    <item>9</item>
-    <item>8</item>
-    <item>8</item>
-    <item>8</item>
-    <item>9</item>
-    <item>9</item>
-    <item>9</item>
-    <item>9.5</item>
-    <item>9.5</item>
-    <item>10</item>
-    <item>10</item>
-    <item>10</item>
-    <item>10</item>
-    <item>10</item>
-    <item>12</item>
-    <item>12</item>
-    <item>12</item>
-    <item>13</item>
-    </string-array>
+    </string-array>    
 </resources>
