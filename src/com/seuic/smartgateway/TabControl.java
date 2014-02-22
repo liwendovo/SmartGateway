@@ -1,11 +1,13 @@
 package com.seuic.smartgateway;
-import android.app.Activity;
 import android.app.ActivityGroup;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.text.StaticLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,13 +29,10 @@ public class TabControl extends ActivityGroup {
 	private LayoutInflater mInflater = null;	
 	public static SQLiteHelper mSQLHelper;
 	public static SQLiteDatabase writeDB;
-//	public static SharedPreferences myPreferences;
-//	public static SharedPreferences.Editor editor;
 	public static ViewSelected mViewSelected;
-	
-	
+	BroadcastReceiver connectionReceiver;	
 	public static TUTKClient mClient=null;	
-	public static  String mUid="NULL";	
+	public static  String mUid="NULL";	//当有设备online时为相应的uid
 	
 	
 	
@@ -98,7 +97,27 @@ public class TabControl extends ActivityGroup {
 			    }
 			  }
 		});   		
-	
+		connectionReceiver = new BroadcastReceiver(){ 
+			@Override 
+			public void onReceive(Context context, Intent intent) { 
+				ConnectivityManager connectMgr = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE); 
+				NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE); 
+				NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI); 
+				if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) { 
+				Log.e("connectionReceiver", "unconnect"); 
+				Toast.makeText(getApplicationContext(),getResources().getString(R.string.networkunconnect), Toast.LENGTH_SHORT).show();	
+				mUid="NULL";	//   所有device重置为OFFLINE状态
+				host.setCurrentTab(4);
+				// unconnect network 
+				}else if (mobNetInfo.isConnected() || wifiNetInfo.isConnected())  { 
+				// connect network 
+					Log.e("connectionReceiver", "connected"); 
+				} 
+			} 
+		};
+		IntentFilter intentFilter = new IntentFilter(); 
+		intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION); 
+		registerReceiver(connectionReceiver, intentFilter);
 	}
 	
 	@Override
@@ -108,7 +127,6 @@ public class TabControl extends ActivityGroup {
 //		mUid=myPreferences.getString("uid", "NULL");
 		Log.e("leewoo", "TabControl---onStart："+mUid);
 	}
-
 
 	@Override
 	protected void onDestroy() {
@@ -120,6 +138,12 @@ public class TabControl extends ActivityGroup {
 		mUid="NULL";
 		TUTKClient.stop();
 		writeDB.close();
+		if (connectionReceiver != null) { 
+			unregisterReceiver(connectionReceiver); 
+		}
 	}
-
+	
+	
 }
+
+
