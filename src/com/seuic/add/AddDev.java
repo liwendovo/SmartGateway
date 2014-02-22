@@ -25,6 +25,8 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,8 +55,9 @@ public class AddDev extends Activity {
 	EditText edtSSID, edtPassword;
     Spinner spinnerSSID;
 	List<String> listSSID;
+	List<String> listCapabilities;
 	private ProgressDialog progressDialog; 
-	RadioGroup radioGroup;
+//	RadioGroup radioGroup;
 	String Key_mgmt="WPA-PSK";
 	NetConfig netConfig;
 	String mUid=null;
@@ -89,7 +92,7 @@ public class AddDev extends Activity {
 //		edtUid = (EditText) findViewById(R.id.uidEdt);
 		spinnerSSID=(Spinner)findViewById(R.id.spinnerSSID);		
 		edtPassword = (EditText)findViewById(R.id.passwordEdt);	
-		radioGroup= (RadioGroup)findViewById(R.id.radioGroup);		
+//		radioGroup= (RadioGroup)findViewById(R.id.radioGroup);		
 		TabControl.mViewSelected.setButtonClickChanged(addDevBtn);
 		
 		homeBtn.setOnClickListener(new OnClickListener() {			
@@ -104,14 +107,18 @@ public class AddDev extends Activity {
 		WifiInfo wifiInfo = wifiManager.getConnectionInfo();
 		String wifissid = wifiInfo.getSSID();  
 		listSSID =  new ArrayList<String>();
+		listCapabilities =  new ArrayList<String>();
 		if(wifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLED){
 		Log.d("leewoo","wifiinfo:"+wifiInfo.toString());
 		Log.d("leewoo","SSID:"+wifissid);			
 		List<ScanResult> results = wifiManager.getScanResults();  			
 		  if(!results.isEmpty()){		
 			for (ScanResult result : results) {    	          		   
-			     listSSID.add(result.SSID);			     
-			  	}  		
+			    if(!result.SSID.equals("")){
+				listSSID.add(result.SSID);
+			    listCapabilities.add(result.capabilities);
+			    }
+			  }  		
 			}
 		}
 		else {  
@@ -132,44 +139,56 @@ public class AddDev extends Activity {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  	 
 		//添加事件Spinner事件监听    
 		spinnerSSID.setAdapter(adapter);
-//		spinnerSSID.setOnItemSelectedListener(new OnItemSelectedListener() {
-//			@Override
-//			public void onItemSelected(AdapterView<?> arg0, View arg1,
-//					int arg2, long arg3) {
-//				// TODO Auto-generated method stub
-//			}
-//		
-//			@Override
-//			public void onNothingSelected(AdapterView<?> arg0) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		});  
-		
-		radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
+		spinnerSSID.setOnItemSelectedListener(new OnItemSelectedListener() {		
 			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
+			public void onItemSelected(AdapterView<?> parent, View arg1,
+	                int postion, long id) {
 				// TODO Auto-generated method stub
-				RadioButton radioButton = (RadioButton)findViewById(radioGroup.getCheckedRadioButtonId());
-				
-				if(radioButton.getText().toString().equals("WPA")){
+				if(listCapabilities.get(postion).contains("WPA")){
 					Key_mgmt="WPA-PSK";
-					netConfig.setIsWep(false);
-				}else if(radioButton.getText().toString().equals("WEP")){
+					edtPassword.setEnabled(true); 
+				}else if(listCapabilities.get(postion).contains("WEP")){
 					Key_mgmt="WEP";
-					netConfig.setIsWep(true);
+					edtPassword.setEnabled(true); 
 				}else{
 					Key_mgmt="";
-					netConfig.setIsWep(false);
+					edtPassword.setText("");
+					edtPassword.setEnabled(false); 
 				}
+			
 			}
-		});
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});  
+		
+//		radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+//			
+//			@Override
+//			public void onCheckedChanged(RadioGroup group, int checkedId) {
+//				// TODO Auto-generated method stub
+//				RadioButton radioButton = (RadioButton)findViewById(radioGroup.getCheckedRadioButtonId());
+//				
+//				if(radioButton.getText().toString().equals("WPA")){
+//					Key_mgmt="WPA-PSK";
+//					netConfig.setIsWep(false);
+//				}else if(radioButton.getText().toString().equals("WEP")){
+//					Key_mgmt="WEP";
+//					netConfig.setIsWep(true);
+//				}else{
+//					Key_mgmt="";
+//					netConfig.setIsWep(false);
+//				}
+//			}
+//		});
 		addDevBtn.setOnClickListener(new OnClickListener()
 		{		
 			public void onClick(View source){			
 				progressDialog = ProgressDialog.show(AddDev.this, "Sending...", "Please wait...", true, false); 
-				Log.e(tag, spinnerSSID.getSelectedItem().toString());
+				Log.e(tag, spinnerSSID.getSelectedItem().toString()+" "+Key_mgmt+" "+edtPassword.getText());
 				String ssid=spinnerSSID.getSelectedItem().toString();
 				netConfig.setSsid(ssid);
 				//加密方式
@@ -187,6 +206,7 @@ public class AddDev extends Activity {
 //				{
 //					SaveShared(netConfig.getSsid(),netConfig.getPsk());
 //				}
+				
 				SaveFile(netConfig.toString());
 				Thread pushThread = new Thread(pushRunnable);
 				pushThread.start();
@@ -239,6 +259,12 @@ public class AddDev extends Activity {
 		}
 	};
 	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+	}
+
 	Runnable pushRunnable = new Runnable()
 	{
 		

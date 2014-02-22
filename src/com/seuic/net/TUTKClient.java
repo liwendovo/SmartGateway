@@ -14,9 +14,9 @@ public class TUTKClient {
 	 static String uid=null;
 	
 	 static boolean isConnect = false;
-	 final static int LEARNTIMEOUT    =1000*20;
+	 final static int LEARNTIMEOUT    =1000*10;
 	 final static int SENDTIMEOUT    =1000*5;
-	 
+	 final static int WAITTIMEOUT    =1000*3;
 	 public final static int MAX_SIZE_IOCTRL_BUF=1024;	
 	 
 	//custom request code
@@ -67,19 +67,20 @@ public class TUTKClient {
     public static boolean learn(int type,byte[] ioCtrlBuf) {     	
         AVAPIs av = new AVAPIs();
         boolean irflag= (type < 2);
+//        cancellearn(irflag);
         byte[] devType=new byte[1];
         devType[0]=0;
         if(type==1)devType[0]=1;        
-        int ret = av.avSendIOCtrl(avIndex,irflag?IOTYPE_BL_BOX_LEARN_IR_REQ:IOTYPE_BL_BOX_LEARN_RF_REQ,devType, 1);
+        int ret = av.avSendIOCtrl(avIndex,irflag?IOTYPE_BL_BOX_LEARN_IR_REQ:IOTYPE_BL_BOX_LEARN_RF_REQ,devType, devType.length);
         if (ret < 0) {
-        	Log.e("TUTKClient", "learn failed "+ret);
+        	Log.e("TUTKClient", "learn send failed "+ret);
            return false;
         }
         //数据接收 放到线程里 先这样            
         int ioType[]=new int[1];
 //        byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF];      
-        ret = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, LEARNTIMEOUT);
-        if (ret > 0&&(ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP)) {
+        int returnvalue= av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, LEARNTIMEOUT);
+        if (returnvalue > 0&&(ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP)) {
             Log.e("TUTKClient", "learn ok");
 		    Log.e("TUTKClient", "num:"+ret+" data:"+bytes2HexString(ioCtrlBuf));    		
            return true;
@@ -180,7 +181,7 @@ public class TUTKClient {
     	    }
     	  	 int ioType[]=new int[1];
           	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
-    	     int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*5);
+    	     int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
     	     Log.e("setTempMode", ""+ioType[0]);
     	     if (returnvalue>0&&(ioType[0]==OTYPE_BL_BOX_SET_TEMPERATURE_MODE_RESP)) {
     	        return true;
@@ -204,7 +205,7 @@ public class TUTKClient {
 	    }
 	  	 int ioType[]=new int[1];
       	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
-	     int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*3);
+	     int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
 //	     Log.e("setTimeMode", ""+ioType[0]);
 	     if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SET_LOCAL_TIME_MODE_RESP)) {
 	        return true;
@@ -227,7 +228,7 @@ public class TUTKClient {
         }
       	 int ioType[]=new int[1];
       	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
-        int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*3);
+        int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
         if (returnvalue>0&&(ioType[0]==IOTYPE_USER_IPCAM_SET_TIMEZONE_RESP)) {
             return true;
         }
@@ -257,7 +258,7 @@ public class TUTKClient {
           }
           int ioType[]=new int[1];
           byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
-          int returnvalue = av.avRecvIOCtrl(avIndex, ioType,ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*5);
+          int returnvalue = av.avRecvIOCtrl(avIndex, ioType,ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
           Log.e("TUTKClient", "start_settime stop");
           if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SET_GMT_TIME_RESP)) {
               return true;
@@ -277,7 +278,7 @@ public class TUTKClient {
         }
     	int ioType[]=new int[1];
         byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
-        ret = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, 1000*5);        
+        ret = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);        
         if (ret==0&&(ioType[0]==IOTYPE_BL_BOX_GET_GMT_TIME_RESP)) {
         	Log.e("getTime", "getdevicetime success");     
             return true;
@@ -554,18 +555,7 @@ public class TUTKClient {
     	  }
     	  return result;
     	 }
-    public static int byteToInt(byte[] b) {
-    	//小端
-        int mask=0xff;
-        int temp=0;
-        int n=0;
-        for(int i=0;i<4;i++){
-           n<<=8;
-           temp=b[i]&mask;
-           n|=temp;
-        }
-        return n;
-    }
+   
     public static String bytes2HexString(byte[] b) {
     	  String ret = "";
     	  for (int i = 0; i < b.length; i++) {

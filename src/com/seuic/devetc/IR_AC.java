@@ -315,7 +315,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		     @Override  
 		     public void run() {  
 		    	 Message learnMsg=new Message();
-		    	 if(TUTKClient.learn(0,ioCtrlBuf))
+		    	 if(TUTKClient.learn(1,ioCtrlBuf))
 		    	 {
 		    		 learnMsg.what=0;
 		    	 }else{
