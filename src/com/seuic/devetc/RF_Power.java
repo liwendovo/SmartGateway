@@ -127,9 +127,12 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 			 progressDialog.setButton("Cancle", new DialogInterface.OnClickListener() {
 	             public void onClick(DialogInterface dialog, int i)
 	             {
-	            	 if(TUTKClient.cancellearn(true)){
-	            		 dialog.cancel();
-	                 }
+	            	 new Thread(){        
+	    			     @Override  
+	    			     public void run() {  
+	    			     TUTKClient.cancellearn(false);
+	    			     }}.start(); 
+	    			     dialog.cancel();
 	             }
 	         });
 			 progressDialog.show();

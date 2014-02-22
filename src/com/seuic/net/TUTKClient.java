@@ -67,7 +67,6 @@ public class TUTKClient {
     public static boolean learn(int type,byte[] ioCtrlBuf) {     	
         AVAPIs av = new AVAPIs();
         boolean irflag= (type < 2);
-//        cancellearn(irflag);
         byte[] devType=new byte[1];
         devType[0]=0;
         if(type==1)devType[0]=1;        
@@ -75,8 +74,7 @@ public class TUTKClient {
         if (ret < 0) {
         	Log.e("TUTKClient", "learn send failed "+ret);
            return false;
-        }
-        //数据接收 放到线程里 先这样            
+        }               
         int ioType[]=new int[1];
 //        byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF];      
         int returnvalue= av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, LEARNTIMEOUT);
@@ -86,7 +84,7 @@ public class TUTKClient {
            return true;
         }
         Log.e("TUTKClient", "learn failed ret="+ret);
-//        cancellearn(irflag);
+//        cancellearn( irflag);
         return false;
     }
     public static boolean cancellearn(boolean irflag)
@@ -96,11 +94,11 @@ public class TUTKClient {
         }
         AVAPIs av = new AVAPIs();
         int ret = av.avSendIOCtrl(avIndex, irflag?IOTYPE_BL_BOX_CANCEL_IR_REQ:IOTYPE_BL_BOX_CANCEL_RF_REQ,null , 0); 
-        
-    	if(ret< 0)
+       	if(ret< 0)
     	{
     		return false;
-    	}    
+    	}   
+       	Log.e("TUTKClient", "cancellearn ret="+ret);
         return true;
     }
     public static boolean send(byte[] data,boolean irflag ) { 
@@ -113,17 +111,16 @@ public class TUTKClient {
            System.out.printf("send failed[%d]\n", ret); 
            return false;
        }
-//       int ioType[]=new int[1];
-//       byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF]; 
-      
-//       int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, SENDTIMEOUT);
-//       if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SEND_IR_RESP||ioType[0]==IOTYPE_BL_BOX_SEND_RF_RESP)) {
-//    	   Log.e("TUTKClient", "send ok");
-//           Log.e("TUTKClient", "num:"+data.length+" data:"+bytes2HexString(data));
-//    	   return true;
-//       }
-       
-       return true;
+       int ioType[]=new int[1];
+       byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF]; 
+       int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, SENDTIMEOUT);
+       if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SEND_IR_RESP||ioType[0]==IOTYPE_BL_BOX_SEND_RF_RESP)) {
+    	   Log.e("TUTKClient", "send ok->"+returnvalue);
+           Log.e("TUTKClient", "num:"+data.length+" data:"+bytes2HexString(data));
+    	   return true;
+       }
+       Log.e("TUTKClient", "send failed->"+returnvalue);
+       return false;
     }    
     public static boolean getTH(int TH[])
     {
@@ -173,6 +170,7 @@ public class TUTKClient {
     	    AVAPIs av = new AVAPIs();
     	    int[]  tempMode=new int[]{mode};
     	    byte[] tempModeByte=intToByte(tempMode);
+    	    Log.e("setTempMode", " "+tempMode[0]+" "+bytes2HexString(tempModeByte));
     	    ret = av.avSendIOCtrl(avIndex, OTYPE_BL_BOX_SET_TEMPERATURE_MODE_REQ, tempModeByte,tempModeByte.length);
     	  	if(ret < 0)
     	    {
@@ -182,8 +180,8 @@ public class TUTKClient {
     	  	 int ioType[]=new int[1];
           	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
     	     int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
-    	     Log.e("setTempMode", ""+ioType[0]);
     	     if (returnvalue>0&&(ioType[0]==OTYPE_BL_BOX_SET_TEMPERATURE_MODE_RESP)) {
+    	    	  Log.e("setTempMode", " OK");
     	        return true;
     	    }
     	     
@@ -197,6 +195,7 @@ public class TUTKClient {
 	    AVAPIs av = new AVAPIs();
 	    int[]  timeMode=new int[]{mode};
 	    byte[] timeModeByte=intToByte(timeMode);
+	    Log.e("setHourMode", " "+mode+" "+bytes2HexString(timeModeByte));
 	    ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_SET_LOCAL_TIME_MODE_REQ, timeModeByte,timeModeByte.length);
 	  	if(ret < 0)
 	    {
@@ -208,7 +207,8 @@ public class TUTKClient {
 	     int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
 //	     Log.e("setTimeMode", ""+ioType[0]);
 	     if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SET_LOCAL_TIME_MODE_RESP)) {
-	        return true;
+	   	  Log.e("setHourMode", " OK");
+	    	 return true;
 	    }	     
 	return false;
 }
@@ -216,23 +216,25 @@ public class TUTKClient {
     	if (!isConnect) {
             return false;
         }
+    	
     	AVAPIs av = new AVAPIs();        
         int[] tmz=new int[]{timeZone};        
         byte[] tmzByte =intToByte(tmz);
+        Log.e("setTimeZone", " "+tmz[0]+" "+bytes2HexString(tmzByte));
         int ret;
-        ret = av.avSendIOCtrl(avIndex, IOTYPE_USER_IPCAM_SET_TIMEZONE_REQ, tmzByte, 4);
+        ret = av.avSendIOCtrl(avIndex, IOTYPE_USER_IPCAM_SET_TIMEZONE_REQ, tmzByte, tmzByte.length);
       	if(ret<0)
         {
-//            printf("setdevicetime failed[%d]\n", ret);
             return false;
         }
       	 int ioType[]=new int[1];
       	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
         int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
         if (returnvalue>0&&(ioType[0]==IOTYPE_USER_IPCAM_SET_TIMEZONE_RESP)) {
+        	  Log.e("setTimeZone", " OK");
             return true;
         }
-        return true;
+        return false;
     }
     public static boolean setTime() { 
       	 //数据发送
@@ -346,13 +348,13 @@ public class TUTKClient {
 //	         catch (InterruptedException e) {
 //	             System.out.println(e.getMessage());             
 //	         }    	
-	        AVAPIs.avClientStop(avIndex);
-	        System.out.printf("avClientStop OK\n");
-	        IOTCAPIs.IOTC_Session_Close(sid);
-	        System.out.printf("IOTC_Session_Close OK\n");
-//			AVAPIs.avDeInitialize();
-			IOTCAPIs.IOTC_DeInitialize();
-	        System.out.printf("StreamClient exit...\n");	
+	    	 AVAPIs.avClientStop(avIndex);
+	         System.out.printf("avClientStop OK\n");
+	         IOTCAPIs.IOTC_Session_Close(sid);
+	         System.out.printf("IOTC_Session_Close OK\n");
+//	 		 AVAPIs.avDeInitialize();
+	 		 IOTCAPIs.IOTC_DeInitialize();
+	         System.out.printf("StreamClient exit...\n");
 	        sid=-1;
 	   	    avIndex=-1;
     	}

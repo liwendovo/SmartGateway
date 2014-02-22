@@ -305,9 +305,12 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 			 progressDialog.setButton("Cancle", new DialogInterface.OnClickListener() {
 	             public void onClick(DialogInterface dialog, int i)
 	             {
-	            	 if(TUTKClient.cancellearn(true)){
-	            		 dialog.cancel();
-	                 }
+	            	 new Thread(){        
+	    			     @Override  
+	    			     public void run() {  
+	    			     TUTKClient.cancellearn(true);
+	    			     }}.start(); 
+	    			     dialog.cancel();
 	             }
 	         });
 			 progressDialog.show();
