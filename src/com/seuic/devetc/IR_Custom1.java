@@ -149,9 +149,9 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
             	TabControl.mViewSelected.buttonClickLearn(leanrnBtn); 
             	
             	for(int i=0;i<buttonMaxNum-1;i++){    				
-            		TabControl.mViewSelected.buttonClickLearn(button[i]);
+            		TabControl.mViewSelected.buttonClickLearnDefault(button[i]);
     			}	            
-            	TabControl.mViewSelected.imageviewClickLearn(button[9]);			        	
+            	TabControl.mViewSelected.imageviewClickLearnDefault(button[9]);			        	
 
         	}else{
         		TabControl.mViewSelected.buttonClickRecover(leanrnBtn); 

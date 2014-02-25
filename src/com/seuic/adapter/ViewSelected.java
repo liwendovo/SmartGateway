@@ -27,6 +27,15 @@ public class ViewSelected {
         0, 1, 0, 0, 0,      
         0, 0, 1, 0, 0,      
         0, 0, 0, 1, 0 };     
+     
+     /**   
+     11.   * 学习键按下时按钮颜色过滤   
+     */    
+       public final static float[] BTN_SELECTED=new float[] {      
+    	  1.6f, 0, 0, 0, 0,      
+           0, 1.6f, 0, 0, 0,      
+           0, 0, 1.6f, 0, 0,      
+           0, 0, 0, 1, 0 };     
 	 /**   
       * 学习这个按钮进行的颜色过滤   
       */    
@@ -139,6 +148,21 @@ public class ViewSelected {
 	   inView.setEnabled(true);
    }
    
+   
+   public final void buttonClickLearnDefault(View inView)
+   {
+
+	   inView.getBackground().setColorFilter(new ColorMatrixColorFilter(BTN_SELECTED)); 
+	   inView.setBackgroundDrawable(inView.getBackground());
+	   inView.setEnabled(true);
+   }
+   
+   public final void imageviewClickLearnDefault(View inView)
+   {
+
+	   ((ImageView) inView).setColorFilter(new ColorMatrixColorFilter(BTN_SELECTED)); 	  
+	   inView.setEnabled(true);
+   }
 
 }
 

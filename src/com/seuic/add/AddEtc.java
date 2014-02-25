@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,6 +20,8 @@ import com.seuic.smartgateway.TabControl;
 
 public class AddEtc extends Activity {
 	Button okBtn;	
+	Button titleBtn,homeBtn;
+	ImageView titlePic;	
 	Spinner spinnerEtc;
 	String mUid,mClass;
 	int mDevID;
@@ -29,7 +32,14 @@ public class AddEtc extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.addetc);		
+		setContentView(R.layout.addetc);	
+		homeBtn=(Button)findViewById(R.id.back);
+		titlePic=(ImageView)findViewById(R.id.pic);
+		titleBtn=(Button)findViewById(R.id.titleBtn);
+		
+    	homeBtn.setBackgroundResource(R.drawable.title_back);
+    	titlePic.setVisibility(View.INVISIBLE);
+    	titleBtn.setVisibility(View.INVISIBLE);
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");	
 		if(mUid.equals("NULL")){

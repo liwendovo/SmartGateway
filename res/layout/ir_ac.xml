@@ -23,6 +23,8 @@
         android:layout_width="fill_parent" 
    				 android:layout_height="wrap_content"
    				 android:layout_marginTop="50dp" 
+   				 android:layout_marginLeft="10dp"
+   				 android:layout_marginRight="10dp"
    				 android:stretchColumns="0,1,2">
         
         <TableRow >
@@ -38,6 +40,8 @@
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                  android:background="@drawable/define"
                  android:text="Mode2"/>
 
@@ -63,6 +67,8 @@
                 android:id="@+id/button5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                  android:background="@drawable/define"
                  android:text="Mode5"/>
 
@@ -88,15 +94,17 @@
                 android:id="@+id/button8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                 android:background="@drawable/define"
-                 android:text="Mode8"/>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/define"
+                android:text="Mode8"/>
 
             <Button
                 android:id="@+id/button9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                 android:background="@drawable/define"
-                 android:text="Mode9"/>
+                android:background="@drawable/define"
+                android:text="Mode9"/>
         </TableRow>
     </TableLayout>
 
