@@ -14,6 +14,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
@@ -25,6 +26,7 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 	String btnDefaults="×Ô¶¨Òå";
 	String mUid;
 	Button  backBtn,leanrnBtn;
+	LinearLayout back_ll,titleBtn_ll;
 	ImageView   devpic;
 	ImageView  button1,button2,
 			button3,button4,button5,
@@ -52,9 +54,14 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		button7=(ImageView)findViewById(R.id.button7);		
 		button8=(ImageView)findViewById(R.id.button8);
 		button9=(ImageView)findViewById(R.id.button9);
-		button10=(ImageView)findViewById(R.id.button10);		
+		button10=(ImageView)findViewById(R.id.button10);	
+		
+		back_ll=(LinearLayout)findViewById(R.id.back_ll);
+		titleBtn_ll=(LinearLayout)findViewById(R.id.titleBtn_ll);
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
+		back_ll.setOnClickListener(this); 
+		titleBtn_ll.setOnClickListener(this);
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);  
 		button3.setOnClickListener(this);  
@@ -211,9 +218,12 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		
     		switch(v.getId())  
             {  
+            case R.id.back_ll:
             case R.id.back:
             	finish();
             	break;
+            	
+            case R.id.titleBtn_ll:
             case R.id.titleBtn:
        		break;
             case R.id.button1: 

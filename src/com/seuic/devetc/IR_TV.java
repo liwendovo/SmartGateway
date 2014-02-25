@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.seuic.net.TUTKClient;
@@ -24,6 +25,7 @@ import com.seuic.smartgateway.TabControl;
 
 public class IR_TV extends Activity implements android.view.View.OnClickListener{
 	Button backBtn,leanrnBtn;
+	LinearLayout back_ll,titleBtn_ll;
 	ImageView   devpic;
 	final int buttonMaxNum=14;
 	ImageView button[]=new ImageView[buttonMaxNum];
@@ -45,6 +47,8 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 
 		backBtn=(Button)findViewById(R.id.back);	
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);	
+		back_ll=(LinearLayout)findViewById(R.id.back_ll);	
+		titleBtn_ll=(LinearLayout)findViewById(R.id.titleBtn_ll);	
 		devpic=(ImageView)findViewById(R.id.pic);
 		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_tv));
 		button[0]=(ImageView)findViewById(R.id.button1);
@@ -67,6 +71,8 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 	
 		TabControl.mViewSelected.setButtonClickChanged(backBtn);
 		TabControl.mViewSelected.setButtonClickChanged(leanrnBtn);
+		back_ll.setOnClickListener(this); 
+		titleBtn_ll.setOnClickListener(this);
 		for(int i=0;i< buttonMaxNum;i++){
 			button[i].setOnClickListener(this);  
 			TabControl.mViewSelected.setImageViewClickChanged(button[i]);
@@ -100,10 +106,12 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		// TODO Auto-generated method stub
 		switch(v.getId())  
         {  
+            case R.id.back_ll:
 	        case R.id.back:
 	        	finish();
 	        	break;
          
+	        case R.id.titleBtn_ll:
 	        case R.id.titleBtn:	
 	        	lenclr=!lenclr;  
 	        	if(lenclr==true){	

@@ -21,13 +21,15 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.seuic.adapter.DevChoiceAdapter;
 import com.seuic.add.AddDev;
 
-public class SetupDev extends Activity {
+public class SetupDev extends Activity implements android.view.View.OnClickListener{
 	Button titleBtn,homeBtn;
+	LinearLayout back_ll,titleBtn_ll;
 	ImageView titlePic;		
 	ListView mListView;
 	private DevChoiceAdapter mAdapter;
@@ -51,29 +53,18 @@ public class SetupDev extends Activity {
     	titlePic.setImageResource(R.drawable.dev_icon);
     	titleBtn.setBackgroundResource(R.drawable.title_add);
 		
-		
+    	back_ll=(LinearLayout)findViewById(R.id.back_ll);
+		titleBtn_ll=(LinearLayout)findViewById(R.id.titleBtn_ll);
 //		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);		
 //		editor= myPreferences.edit();
 		mListView = (ListView)findViewById(R.id.devListView);	
 		
+		homeBtn.setOnClickListener(this); 
+		titleBtn.setOnClickListener(this);
+		back_ll.setOnClickListener(this); 
+		titleBtn_ll.setOnClickListener(this);
 		
-		titleBtn.setOnClickListener(new OnClickListener()
-		{		
-			public void onClick(View source)
-			{
-				Intent intent = new Intent(SetupDev.this
-						, AddDev.class);					
-					//启动Activity
-					startActivity(intent);				
-			}			
-		});
-		homeBtn.setOnClickListener(new OnClickListener()
-		{		
-			public void onClick(View source)
-			{
-				finish();			
-			}			
-		});
+				
 	}
 	
 
@@ -123,10 +114,35 @@ public class SetupDev extends Activity {
 		super.onDestroy();
 //		writeDB.close();
 	}
-	
 
+
+
+	@Override
+	public void onClick(View v) {
+		// TODO 自动生成的方法存根
+		switch(v.getId())  
+        {  
+        case R.id.back_ll:
+        case R.id.back:
+        	finish();
+        	break;
+        	
+        case R.id.titleBtn_ll:
+        case R.id.titleBtn:
+        	Intent intent = new Intent(SetupDev.this
+					, AddDev.class);					
+				//启动Activity
+				startActivity(intent);	
+        	break;
+            
+        default:  
+            break;  
+       
+        }
+	}
 
 }
+
 
 
 

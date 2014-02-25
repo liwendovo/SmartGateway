@@ -7,15 +7,18 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.seuic.adapter.CamChoiceAdapter;
 
-public class SetupCam extends Activity{
+public class SetupCam extends Activity implements android.view.View.OnClickListener{
 	Button titleBtn,homeBtn;
+	LinearLayout back_ll;
 	ImageView titlePic;	
 	ListView mListView;
 	private CamChoiceAdapter mAdapter;
@@ -33,7 +36,10 @@ public class SetupCam extends Activity{
     	titlePic.setImageResource(R.drawable.tab_cam);
     	titleBtn.setBackgroundResource(R.drawable.title_add);
     	
+    	back_ll=(LinearLayout)findViewById(R.id.back_ll);
     	
+    	homeBtn.setOnClickListener(this); 
+    	back_ll.setOnClickListener(this); 
     	
 //    	
 //    	titleBtn.setOnClickListener(new OnClickListener()
@@ -66,6 +72,23 @@ public class SetupCam extends Activity{
 		mAdapter = new CamChoiceAdapter(this,listItems);	
 		mAdapter.setItemChecked(1);
 		mListView.setAdapter(mAdapter);
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO 自动生成的方法存根
+		switch(v.getId())  
+        {  
+        case R.id.back_ll:
+        case R.id.back:
+        	finish();
+        	break;
+        	
+                   
+        default:  
+            break;  
+       
+        }
 	}
 
 }

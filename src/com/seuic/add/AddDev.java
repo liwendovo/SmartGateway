@@ -31,6 +31,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -44,12 +45,13 @@ import com.seuic.smartgateway.TabControl;
 
 
 @SuppressLint("HandlerLeak")
-public class AddDev extends Activity {
+public class AddDev extends Activity implements android.view.View.OnClickListener{
 	public final static String PREFERENCE_NAME = "netconfig";
 	Button addDevBtn;
 	
 	String tag="AddDev";
 	Button titleBtn,homeBtn;
+	LinearLayout back_ll;
 	ImageView titlePic;	
 	EditText edtName,edtUid;
 	EditText edtSSID, edtPassword;
@@ -83,6 +85,8 @@ public class AddDev extends Activity {
 		titlePic=(ImageView)findViewById(R.id.pic);
 		titleBtn=(Button)findViewById(R.id.titleBtn);
 		
+		back_ll=(LinearLayout)findViewById(R.id.back_ll);
+		
     	homeBtn.setBackgroundResource(R.drawable.title_back);
     	titlePic.setImageResource(R.drawable.tab_set);
     	titleBtn.setVisibility(View.INVISIBLE);
@@ -95,13 +99,11 @@ public class AddDev extends Activity {
 //		radioGroup= (RadioGroup)findViewById(R.id.radioGroup);		
 		TabControl.mViewSelected.setButtonClickChanged(addDevBtn);
 		
-		homeBtn.setOnClickListener(new OnClickListener() {			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				finish();
-			}
-		});
+		
+		homeBtn.setOnClickListener(this); 
+		addDevBtn.setOnClickListener(this);
+		back_ll.setOnClickListener(this); 
+		
 		
 		WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 		WifiInfo wifiInfo = wifiManager.getConnectionInfo();
@@ -184,35 +186,7 @@ public class AddDev extends Activity {
 //				}
 //			}
 //		});
-		addDevBtn.setOnClickListener(new OnClickListener()
-		{		
-			public void onClick(View source){			
-				progressDialog = ProgressDialog.show(AddDev.this, "Sending...", "Please wait...", true, false); 
-				Log.e(tag, spinnerSSID.getSelectedItem().toString()+" "+Key_mgmt+" "+edtPassword.getText());
-				String ssid=spinnerSSID.getSelectedItem().toString();
-				netConfig.setSsid(ssid);
-				//加密方式
-				netConfig.setKey_mgmt(Key_mgmt);
-				int psk_leng = edtPassword.getText().length();
-				if (psk_leng == 0)
-				{
-					netConfig.setPsk(null);
-				}else {
-					netConfig.setPsk(edtPassword.getText().toString().trim());
-				}
-				
-								
-//				if (psk_leng != 0)
-//				{
-//					SaveShared(netConfig.getSsid(),netConfig.getPsk());
-//				}
-				
-				SaveFile(netConfig.toString());
-				Thread pushThread = new Thread(pushRunnable);
-				pushThread.start();
-					
-			}
-		});	
+		
 		
 	} 
 	
@@ -407,7 +381,51 @@ public class AddDev extends Activity {
 	      }   
 	       return sdDir.toString(); 
 	}
-	
+	@Override
+	public void onClick(View v) {
+		// TODO 自动生成的方法存根
+		
+		switch(v.getId())  
+        {  
+        case R.id.back_ll:
+        case R.id.back:
+        	finish();
+        	break;
+        	
+        case R.id.addDevBtn:
+        	
+        	progressDialog = ProgressDialog.show(AddDev.this, "Sending...", "Please wait...", true, false); 
+			Log.e(tag, spinnerSSID.getSelectedItem().toString()+" "+Key_mgmt+" "+edtPassword.getText());
+			String ssid=spinnerSSID.getSelectedItem().toString();
+			netConfig.setSsid(ssid);
+			//加密方式
+			netConfig.setKey_mgmt(Key_mgmt);
+			int psk_leng = edtPassword.getText().length();
+			if (psk_leng == 0)
+			{
+				netConfig.setPsk(null);
+			}else {
+				netConfig.setPsk(edtPassword.getText().toString().trim());
+			}
+			
+							
+//			if (psk_leng != 0)
+//			{
+//				SaveShared(netConfig.getSsid(),netConfig.getPsk());
+//			}
+			
+			SaveFile(netConfig.toString());
+			Thread pushThread = new Thread(pushRunnable);
+			pushThread.start();
+			break;
+       
+            
+        default:  
+            break;  
+       
+        }
+	}
+
 }
 
 

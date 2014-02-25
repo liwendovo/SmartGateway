@@ -12,13 +12,15 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
 
 import com.seuic.net.TUTKClient;
 
-public class SetupTime extends Activity{
+public class SetupTime extends Activity implements android.view.View.OnClickListener{
 	Button titleBtn,homeBtn;
+	LinearLayout back_ll;
 	ImageView titlePic;	
 	Spinner spinnerZone;
 	ToggleButton timeAutoBtn,timeHourBtn;
@@ -33,12 +35,19 @@ public class SetupTime extends Activity{
 		titlePic=(ImageView)findViewById(R.id.pic);
 		titleBtn=(Button)findViewById(R.id.titleBtn);
 		
+		back_ll=(LinearLayout)findViewById(R.id.back_ll);
+		
     	homeBtn.setBackgroundResource(R.drawable.title_back);
     	titlePic.setImageResource(R.drawable.set_time);
     	titleBtn.setBackgroundResource(R.drawable.title_add);
     	titleBtn.setVisibility(Button.INVISIBLE);    	
     	timeAutoBtn=(ToggleButton)findViewById(R.id.timeAutoBtn);
-    	timeHourBtn=(ToggleButton)findViewById(R.id.timeHourBtn);    	
+    	timeHourBtn=(ToggleButton)findViewById(R.id.timeHourBtn);   
+    	
+    	homeBtn.setOnClickListener(this); 
+    	back_ll.setOnClickListener(this);
+		timeHourBtn.setOnClickListener(this); 
+		timeAutoBtn.setOnClickListener(this);
     	
     	spinnerZone=(Spinner)findViewById(R.id.spinnerZone);     
 //    	adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, R.array.timezone_entries);
@@ -72,54 +81,48 @@ public class SetupTime extends Activity{
 				
 			}
         });
-		homeBtn.setOnClickListener(new OnClickListener() {			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				finish();
-			}
-		});
-		timeAutoBtn.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					if (timeAutoBtn.isChecked()) {
-						timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
-//						TUTKClient.setTimeMode(0);
-					} else {
-						timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_blue);
-//						TUTKClient.setTimeMode(1);
-					}
-					//状态记录 数据库		
-					
-//					 new Thread(){        
-//					     @Override  
-//					     public void run() { 
-//					    	 if	(TUTKClient.setTime()){
-//					    		 Log.e("Setuptime", "setTime success");
-//					    	 }else{
-//					    		 Log.e("Setuptime", "setTime failed"); 
-//					    	 }			 
-//					     }}.start();   
-				}
-			   });
 		
-		timeHourBtn.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					if (timeHourBtn.isChecked()) {
-						timeHourBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
-						TUTKClient.setHourMode(1);
-						TabControl.mSQLHelper.updateHour(TabControl.writeDB,TabControl.mUid,1);
-						} else {
-						timeHourBtn.setBackgroundResource(R.drawable.rf_switch_blue);
-						TUTKClient.setHourMode(0);
-						TabControl.mSQLHelper.updateHour(TabControl.writeDB,TabControl.mUid,0);
-					}
-							
-				}
-			   });
+//		timeAutoBtn.setOnClickListener(new OnClickListener() {
+//				@Override
+//				public void onClick(View v) {
+//					// TODO Auto-generated method stub
+//					if (timeAutoBtn.isChecked()) {
+//						timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+////						TUTKClient.setTimeMode(0);
+//					} else {
+//						timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_blue);
+////						TUTKClient.setTimeMode(1);
+//					}
+//					//状态记录 数据库		
+//					
+////					 new Thread(){        
+////					     @Override  
+////					     public void run() { 
+////					    	 if	(TUTKClient.setTime()){
+////					    		 Log.e("Setuptime", "setTime success");
+////					    	 }else{
+////					    		 Log.e("Setuptime", "setTime failed"); 
+////					    	 }			 
+////					     }}.start();   
+//				}
+//			   });
+		
+//		timeHourBtn.setOnClickListener(new OnClickListener() {
+//				@Override
+//				public void onClick(View v) {
+//					// TODO Auto-generated method stub
+//					if (timeHourBtn.isChecked()) {
+//						timeHourBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+//						TUTKClient.setHourMode(1);
+//						TabControl.mSQLHelper.updateHour(TabControl.writeDB,TabControl.mUid,1);
+//						} else {
+//						timeHourBtn.setBackgroundResource(R.drawable.rf_switch_blue);
+//						TUTKClient.setHourMode(0);
+//						TabControl.mSQLHelper.updateHour(TabControl.writeDB,TabControl.mUid,0);
+//					}
+//							
+//				}
+//			   });
 		
 		     
 		
@@ -150,4 +153,43 @@ public class SetupTime extends Activity{
 		}		
 		cursor.close();
 	}
+	@Override
+	public void onClick(View v) {
+		// TODO 自动生成的方法存根
+		switch(v.getId())  
+        {  
+        case R.id.back_ll:
+        case R.id.back:
+        	finish();
+        	break;
+        	
+        case R.id.timeAutoBtn:
+			if (timeAutoBtn.isChecked()) {
+				timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+//				TUTKClient.setTimeMode(0);
+			} else {
+				timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_blue);
+//				TUTKClient.setTimeMode(1);
+			}
+			 break; 
+			 
+        case R.id.timeHourBtn:
+        	if (timeHourBtn.isChecked()) {
+				timeHourBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+				TUTKClient.setHourMode(1);
+				TabControl.mSQLHelper.updateHour(TabControl.writeDB,TabControl.mUid,1);
+				} else {
+				timeHourBtn.setBackgroundResource(R.drawable.rf_switch_blue);
+				TUTKClient.setHourMode(0);
+				TabControl.mSQLHelper.updateHour(TabControl.writeDB,TabControl.mUid,0);
+			}
+        	break;
+            
+        default:  
+            break;  
+       
+        }
+	}
+
 }
+

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.seuic.net.TUTKClient;
@@ -21,6 +22,7 @@ import com.seuic.smartgateway.TabControl;
 public class RF_Power extends Activity implements android.view.View.OnClickListener{
 	
 	Button  backBtn,leanrnBtn;
+	LinearLayout back_ll,titleBtn_ll;
 	ImageView   devpic;
 	final int buttonMaxNum=2;
 	ImageView button[]=new ImageView[buttonMaxNum];
@@ -38,11 +40,15 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
         setContentView(R.layout.rf_power);
         backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
+		back_ll=(LinearLayout)findViewById(R.id.back_ll);
+		titleBtn_ll=(LinearLayout)findViewById(R.id.titleBtn_ll);
 		button[0]=(ImageView)findViewById(R.id.button1);
 		button[1]=(ImageView)findViewById(R.id.button2);
 	
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
+		back_ll.setOnClickListener(this); 
+		titleBtn_ll.setOnClickListener(this);
 		button[0].setOnClickListener(this);  
 		button[1].setOnClickListener(this); 
 		
@@ -82,10 +88,12 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 		// TODO Auto-generated method stub
 		switch(v.getId())  
         {  
+            case R.id.back_ll:
 	        case R.id.back:
 	        	finish();
 	        	break;
          
+	        case R.id.titleBtn_ll:	
 	        case R.id.titleBtn:	
 	        	lenclr=!lenclr;  
 	        	if(lenclr==true){	

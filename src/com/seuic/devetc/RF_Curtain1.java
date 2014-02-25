@@ -6,12 +6,14 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 
 public class RF_Curtain1 extends Activity implements android.view.View.OnClickListener{
 	Button  backBtn,leanrnBtn;
+	LinearLayout back_ll,titleBtn_ll;
 	ImageView   devpic;
 	ImageView  button1,button2,button3;
 			
@@ -21,6 +23,8 @@ public class RF_Curtain1 extends Activity implements android.view.View.OnClickLi
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.rf_curtain1);
 
+		back_ll=(LinearLayout)findViewById(R.id.back_ll);
+		titleBtn_ll=(LinearLayout)findViewById(R.id.titleBtn_ll);
 		backBtn=(Button)findViewById(R.id.back);
 		leanrnBtn=(Button)findViewById(R.id.titleBtn);
 		button1=(ImageView)findViewById(R.id.button1);
@@ -33,6 +37,8 @@ public class RF_Curtain1 extends Activity implements android.view.View.OnClickLi
 		button1.setOnClickListener(this);  
 		button2.setOnClickListener(this);  
 		button3.setOnClickListener(this);  
+		back_ll.setOnClickListener(this); 
+		titleBtn_ll.setOnClickListener(this);
 		TabControl.mViewSelected.setButtonClickChanged(backBtn);
 		TabControl.mViewSelected.setButtonClickChanged(leanrnBtn);
 		TabControl.mViewSelected.setImageViewClickChanged(button1);
@@ -48,9 +54,12 @@ public class RF_Curtain1 extends Activity implements android.view.View.OnClickLi
 		// TODO Auto-generated method stub
 		switch(v.getId())  
         {  
+        case R.id.back_ll:
         case R.id.back:
         	finish();
         	break;
+        	
+        case R.id.titleBtn_ll:
         case R.id.titleBtn:
    		break;
         case R.id.button1: 

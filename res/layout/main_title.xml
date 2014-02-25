@@ -7,16 +7,27 @@
         android:layout_weight="0.00"
         android:background="@drawable/background"
         android:orientation="horizontal" >
+        
+     
+     <LinearLayout
+        android:id="@+id/back_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+         android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true">
 
         <Button
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/title_back" />
+    </LinearLayout>
+
+        
 
         <ImageView
             android:id="@+id/pic"
@@ -25,16 +36,27 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ir_ac" />
+        
+        
+         <LinearLayout
+        android:id="@+id/titleBtn_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true">
 
         <Button
             android:id="@+id/titleBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/title_learn" />
+    </LinearLayout>
+
+       
        
 
 </RelativeLayout>

@@ -12,15 +12,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 
-public class AddEtc extends Activity {
+public class AddEtc extends Activity implements android.view.View.OnClickListener{
 	Button okBtn;	
 	Button titleBtn,homeBtn;
+	LinearLayout back_ll;
 	ImageView titlePic;	
 	Spinner spinnerEtc;
 	String mUid,mClass;
@@ -37,9 +39,14 @@ public class AddEtc extends Activity {
 		titlePic=(ImageView)findViewById(R.id.pic);
 		titleBtn=(Button)findViewById(R.id.titleBtn);
 		
+		back_ll=(LinearLayout)findViewById(R.id.back_ll);
+		
     	homeBtn.setBackgroundResource(R.drawable.title_back);
     	titlePic.setVisibility(View.INVISIBLE);
     	titleBtn.setVisibility(View.INVISIBLE);
+    	
+    	
+		
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");	
 		if(mUid.equals("NULL")){
@@ -63,27 +70,37 @@ public class AddEtc extends Activity {
         //设置默认值  
         spinnerEtc.setVisibility(View.VISIBLE);  
         TabControl.mViewSelected.setButtonClickChanged(okBtn);
-    	okBtn.setOnClickListener(new OnClickListener()
-		{		
-			public void onClick(View source){
-				String name = ((EditText)findViewById(R.id.devName)).getText().toString();
-				//插入数据库库				
-				writeDB=TabControl.mSQLHelper.getWritableDatabase();
-				TabControl.mSQLHelper.insertList(writeDB, mUid, mClass,spinnerEtc.getSelectedItem().toString(), name, "0","0");
-				//三级页表的创建
-				//Log.e("leewoo", mUid+" "+name+" "+mClass+" "+listBtn.getText().toString());
-				finish();
-			}			
-		});			
+        
+        homeBtn.setOnClickListener(this); 
+		back_ll.setOnClickListener(this); 
+		okBtn.setOnClickListener(this); 
+		
+    	
 	}
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+				switch(v.getId())  
+		        {  
+		        case R.id.back_ll:
+		        case R.id.back:
+		        	finish();
+		        	break;
+		        	
+		        case R.id.okBtn:
+		        	String name = ((EditText)findViewById(R.id.devName)).getText().toString();
+					//插入数据库库				
+					writeDB=TabControl.mSQLHelper.getWritableDatabase();
+					TabControl.mSQLHelper.insertList(writeDB, mUid, mClass,spinnerEtc.getSelectedItem().toString(), name, "0","0");
+					//三级页表的创建
+					//Log.e("leewoo", mUid+" "+name+" "+mClass+" "+listBtn.getText().toString());
+					finish();
+		        	break;
+		            
+		        default:  
+		            break;  
+		       
+		        }
+			}
 
-	
-	
-	
-	
-	
-	
-	
-	
-}
-				
+		}

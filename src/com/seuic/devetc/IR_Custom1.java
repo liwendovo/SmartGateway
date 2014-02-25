@@ -18,6 +18,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.seuic.net.TUTKClient;
@@ -27,7 +28,7 @@ import com.seuic.smartgateway.TabControl;
 public class IR_Custom1 extends Activity implements android.view.View.OnClickListener,OnLongClickListener {
 	Button  backBtn,leanrnBtn;
 	ImageView   devpic;	
-	
+	LinearLayout back_ll,titleBtn_ll;
 	final int buttonMaxNum=10;
 	View button[]=new View[buttonMaxNum];
 	boolean btnLearn[]=new boolean[buttonMaxNum];
@@ -59,9 +60,14 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		button[7]=(Button)findViewById(R.id.button8);
 		button[8]=(Button)findViewById(R.id.button9);
 		button[9]=(ImageView)findViewById(R.id.button10);	
+		
+		back_ll=(LinearLayout)findViewById(R.id.back_ll);
+		titleBtn_ll=(LinearLayout)findViewById(R.id.titleBtn_ll);
 
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this);
+		back_ll.setOnClickListener(this); 
+		titleBtn_ll.setOnClickListener(this);
 		for(int i=0;i<buttonMaxNum-1;i++){
 			button[i].setOnClickListener(this);
 			button[i].setOnLongClickListener(this);
@@ -139,8 +145,10 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 //		Log.e("leewoo", "Button id = " + v.getId());  
 		switch(v.getId())  
         {  
+        case R.id.back_ll:
         case R.id.back: finish();break;
         
+        case R.id.titleBtn_ll:
         case R.id.titleBtn:
         	lenclr=!lenclr; 
         	if(lenclr==true){
