@@ -300,7 +300,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 			TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, btnid, et.getText().toString());
 		   }
 		});
-		  builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+		  builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			@Override
 			 public void onClick(DialogInterface dialog, int which) {
 			 dialog.dismiss();
@@ -312,7 +312,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		 private void showProgressDialog(){  
 			 progressDialog = new ProgressDialog(IR_AC.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
-			 progressDialog.setButton("Cancle", new DialogInterface.OnClickListener() {
+			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {
 	             public void onClick(DialogInterface dialog, int i)
 	             {
 	            	 new Thread(){        
@@ -386,7 +386,10 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 			 private void setbuttonstate()
 				{				
 					for(int i=0;i<(buttonMaxNum-1);i++){
-						if(btnLearn[i])	TabControl.mViewSelected.buttonClickRecover(button[i]);
+						if(btnLearn[i])	{TabControl.mViewSelected.buttonClickRecover(button[i]);
+						Log.e("IR_Custom1", "buttonClickRecover");
+						Log.e("IR_Custom1", "btnLearn="+btnLearn[i]);
+						}
 				    	else TabControl.mViewSelected.buttonClickGreyChanged(button[i]);
 					}
 					if(btnLearn[9])TabControl.mViewSelected.imageviewClickRecover(button[9]);

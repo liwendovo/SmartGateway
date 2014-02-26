@@ -32,9 +32,9 @@ public class ViewSelected {
      11.   * 学习键按下时按钮颜色过滤   
      */    
        public final static float[] BTN_SELECTED=new float[] {      
-    	  1.6f, 0, 0, 0, 0,      
-           0, 1.6f, 0, 0, 0,      
-           0, 0, 1.6f, 0, 0,      
+    	  0.2f, 0, 0, 0, 50.8f,      
+           0, 0.2f, 0, 0, 50.8f,      
+           0, 0, 0.2f, 0, 50.8f,      
            0, 0, 0, 1, 0 };     
 	 /**   
       * 学习这个按钮进行的颜色过滤   

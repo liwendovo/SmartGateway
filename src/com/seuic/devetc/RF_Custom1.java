@@ -173,7 +173,7 @@ public class RF_Custom1 extends Activity implements android.view.View.OnClickLis
 			
 		}
 		});
-		  builder.setNegativeButton("Cancle", new OnClickListener() {
+		  builder.setNegativeButton("Cancel", new OnClickListener() {
 		@Override
 		 public void onClick(DialogInterface dialog, int which) {
 		 dialog.dismiss();

@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -293,6 +294,8 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		 builder.setMessage("Please input name");
 		 builder.setTitle("Button name");
 		 final EditText et=new EditText(this);
+//		 InputFilter[] filters = {new LengthFilter(10)}; 
+//		 et.setFilters(filters); 
 		 builder.setView(et);
 		 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 		@Override
@@ -303,7 +306,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 			TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, btnid, et.getText().toString());
 		   }
 		});
-		  builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+		  builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			@Override
 			 public void onClick(DialogInterface dialog, int which) {
 			 dialog.dismiss();
@@ -315,7 +318,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		 private void showProgressDialog(){  
 			 progressDialog = new ProgressDialog(IR_Custom1.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
-			 progressDialog.setButton("Cancle", new DialogInterface.OnClickListener() {
+			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {
 	             public void onClick(DialogInterface dialog, int i)
 	             {
 	            	 new Thread(){        

@@ -132,7 +132,7 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 		 private void showProgressDialog(){ 
 			 progressDialog = new ProgressDialog(RF_Power.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
-			 progressDialog.setButton("Cancle", new DialogInterface.OnClickListener() {
+			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {
 	             public void onClick(DialogInterface dialog, int i)
 	             {
 	            	 new Thread(){        

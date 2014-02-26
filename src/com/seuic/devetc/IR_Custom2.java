@@ -298,7 +298,7 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 			}
 		}
 		});
-		  builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+		  builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 		@Override
 		 public void onClick(DialogInterface dialog, int which) {
 		 dialog.dismiss();

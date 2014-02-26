@@ -17,7 +17,7 @@
     <string name="deletetitle">Info</string>
     <string name="resettitle">Info</string>
     <string name="ok">OK</string>
-    <string name="cancle">Cancle</string>
+    <string name="cancle">Cancel</string>
     <string name="deletedevinfo">Would you want to delete device:\n</string>
     <string name="deletecaminfo">Would you want to delete camera:\n</string>
     <string name="activateinfo">Sorry,You must activate a device</string>

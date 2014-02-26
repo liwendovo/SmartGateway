@@ -14,7 +14,7 @@ public class TUTKClient {
 	 static String uid=null;
 	
 	 static boolean isConnect = false;
-	 final static int LEARNTIMEOUT    =1000*10;
+	 final static int LEARNTIMEOUT    =1000*60;
 	 final static int SENDTIMEOUT    =1000*5;
 	 final static int WAITTIMEOUT    =1000*3;
 	 public final static int MAX_SIZE_IOCTRL_BUF=1024;	

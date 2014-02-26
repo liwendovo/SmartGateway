@@ -34,6 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                  android:background="@drawable/define"
+                 android:maxLength = "5"
                  android:text="Mode1"/>
 
             <Button
@@ -43,6 +44,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                  android:background="@drawable/define"
+                 android:maxLength = "5"
                  android:text="Mode2"/>
 
             <Button
@@ -50,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                  android:background="@drawable/define"
+                 android:maxLength = "5"
                  android:text="Mode3"/>
         </TableRow>
 
@@ -61,6 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                  android:background="@drawable/define"
+                 android:maxLength = "5"
                  android:text="Mode4"/>
 
            <Button
@@ -70,6 +74,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                  android:background="@drawable/define"
+                 android:maxLength = "5"
                  android:text="Mode5"/>
 
           <Button
@@ -77,6 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                  android:background="@drawable/define"
+                 android:maxLength = "5"
                  android:text="Mode6"/>
         </TableRow>
 
@@ -88,6 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                  android:background="@drawable/define"
+                 android:maxLength = "5"
                  android:text="Mode7"/>
 
             <Button
@@ -97,6 +104,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/define"
+                android:maxLength = "5"
                 android:text="Mode8"/>
 
             <Button
@@ -104,6 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/define"
+                android:maxLength = "5"
                 android:text="Mode9"/>
         </TableRow>
     </TableLayout>

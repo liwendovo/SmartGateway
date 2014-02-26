@@ -246,7 +246,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		 private void showProgressDialog(){  
 			 progressDialog = new ProgressDialog(IR_TV.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
-			 progressDialog.setButton("Cancle", new DialogInterface.OnClickListener() {
+			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {
 	             public void onClick(DialogInterface dialog, int i)
 	             {
 	            	 new Thread(){        
