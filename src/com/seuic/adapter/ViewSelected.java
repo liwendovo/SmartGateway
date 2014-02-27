@@ -1,6 +1,7 @@
 package com.seuic.adapter;
 
 import android.graphics.ColorMatrixColorFilter;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -77,11 +78,13 @@ public class ViewSelected {
     public boolean onTouch(View v, MotionEvent event) {     
       if(event.getAction() == MotionEvent.ACTION_DOWN){     
     	  v.getBackground().setColorFilter(new ColorMatrixColorFilter(SELECTED)); 
-    	  v.setBackgroundDrawable(v.getBackground());      
+    	  v.setBackgroundDrawable(v.getBackground());   
+    	  Log.e("ViewSelected", " SELECTED");
       }     
      else if(event.getAction() == MotionEvent.ACTION_UP){     
     	 v.getBackground().setColorFilter(new ColorMatrixColorFilter(NOT_SELECTED));
 	     v.setBackgroundDrawable(v.getBackground());  
+	     Log.e("ViewSelected", "NOT_SELECTED");
          
      }     
     return false;     

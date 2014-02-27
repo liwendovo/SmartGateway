@@ -68,7 +68,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 		 
-	
+	    
 		TabControl.mViewSelected.setButtonClickChanged(backBtn);
 		TabControl.mViewSelected.setButtonClickChanged(leanrnBtn);
 		back_ll.setOnClickListener(this); 

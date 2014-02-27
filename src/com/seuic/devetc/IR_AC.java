@@ -64,6 +64,8 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		back_ll=(LinearLayout)findViewById(R.id.back_ll);
 		titleBtn_ll=(LinearLayout)findViewById(R.id.titleBtn_ll);
 		
+		Log.e("IR_AC", "init");
+		
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this);
 		back_ll.setOnClickListener(this); 
@@ -74,7 +76,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		}		
 		button[9].setOnClickListener(this);
 		
-		
+		Log.e("IR_AC", "init click listener");
 		
 		TabControl.mViewSelected.setButtonClickChanged(backBtn);
 		TabControl.mViewSelected.setButtonClickChanged(leanrnBtn);		
@@ -93,7 +95,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_custom));
 
 		
-
+		Log.e("IR_AC", "setButtonClickChanged");
 	
 
 		
@@ -119,6 +121,8 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		
 		Cursor cursor=TabControl.mSQLHelper.seleteBtnName(TabControl.writeDB,devid);
 		Log.e("leewoo", "cur: "+cursor.getCount());
+		
+		Log.e("IR_AC", "cursor.getCount()");
 		if(cursor.getCount()>0){
 			//已初始化		//学习	
 			for(int i=0;i<buttonMaxNum-1;i++){	
@@ -131,7 +135,9 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 			TabControl.mSQLHelper.insertBtnName(TabControl.writeDB,mUid,devid);
 		}		
 		cursor.close();
+		Log.e("IR_AC", "cursor.close()");
 	    setbuttonstate();
+	    Log.e("IR_AC", " setbuttonstate()");
 		
 		
 	}
@@ -165,8 +171,10 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
         	break;
   	    case R.id.button1:        	
         	if(lenclr==true){	        	
-        		showProgressDialog();
+        		
          		curButton=1;
+         		showProgressDialog(curButton);
+         		Log.e("IR_AC", " curButton"+curButton);
 	        	
 	        }
         	
@@ -174,58 +182,69 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
         	break;
         case R.id.button2:        	
         	if(lenclr==true){	        	
-        		showProgressDialog();
-         		curButton=2;	        	
+//        		showProgressDialog();
+         		curButton=2;	
+         		showProgressDialog(curButton);
+         		Log.e("IR_AC", " curButton"+curButton);
         	}        	
         	break;
         case R.id.button3:
         	if(lenclr==true){	        
-        		showProgressDialog();
-         		curButton=3;      		
+//        		showProgressDialog();
+         		curButton=3;  
+         		showProgressDialog(curButton);
+         		Log.e("IR_AC", " curButton"+curButton);
         	}        	
         	break;        
         case R.id.button4:
         	if(lenclr==true){	        	
-        		showProgressDialog();
+//        		showProgressDialog();
          		curButton=4;
+         		showProgressDialog(curButton);
 
         	}
         	break;
         case R.id.button5:
         	if(lenclr==true){	         
-        		showProgressDialog();
-         		curButton=5;        	
+//        		showProgressDialog();
+         		curButton=5;  
+         		showProgressDialog(curButton);
         	}
         	break;
         case R.id.button6:
         	if(lenclr==true){	        	 
-        		showProgressDialog();
+//        		showProgressDialog();
          		curButton=6;
+         		showProgressDialog(curButton);
         	}
         	break;
         case R.id.button7:
         	if(lenclr==true){	        	  
-        		showProgressDialog();
-         		curButton=7;        	
+//        		showProgressDialog();
+         		curButton=7;   
+         		showProgressDialog(curButton);
         	}
         	break;
         case R.id.button8:
         	if(lenclr==true){	        	 
-        		showProgressDialog();
-         		curButton=8;	        	
+//        		showProgressDialog();
+         		curButton=8;	
+         		showProgressDialog(curButton);
         	}
         	break;
         case R.id.button9:
         	if(lenclr==true){	        	 
-        		showProgressDialog();
+//        		showProgressDialog();
          		curButton=9;
+         		showProgressDialog(curButton);
 	        	}
         	break;     
         	
         case R.id.button10:
         	if(lenclr==true){	        	 
-        		showProgressDialog();
+//        		showProgressDialog();
          		curButton=10;
+         		showProgressDialog(curButton);
 	        }
         	break;     
         	
@@ -285,6 +304,8 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 	}
 
 	 protected void dialog(final int btnid) {
+//		 Log.e("ir_ac", "dialog   btnid"+btnid);
+//		 if(btnLearn[btnid]) TabControl.mViewSelected.buttonClickLearnDefault(button[btnid]);
 		 AlertDialog.Builder builder = new Builder(IR_AC.this);
 		// final String mStr = null;
 		 builder.setMessage("Please input name");
@@ -295,7 +316,8 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		@Override
 		public void onClick(DialogInterface arg0, int arg1) {
 			// TODO Auto-generated method stub	
-			
+			Log.e("ir_ac", "dialog   btnid"+btnid);
+			 if(!btnLearn[btnid-1]) TabControl.mViewSelected.buttonClickLearnDefault(button[btnid-1]);
 			((Button)button[btnid-1]).setText(et.getText().toString());
 			TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, btnid, et.getText().toString());
 		   }
@@ -303,13 +325,18 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		  builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			@Override
 			 public void onClick(DialogInterface dialog, int which) {
+			 if(!btnLearn[btnid-1]) TabControl.mViewSelected.buttonClickLearnDefault(button[btnid-1]);
 			 dialog.dismiss();
 			  }
 			 });
-		 builder.create().show();		
+		 builder.create().show();	
+		 
 	   }
 	
-		 private void showProgressDialog(){  
+		 private void showProgressDialog(int num){  
+			 Log.e("IR_Custom1", "num"+num);
+			 if(num==10)   TabControl.mViewSelected.imageviewClickLearnDefault(button[9]);	
+			 else TabControl.mViewSelected.buttonClickLearnDefault(button[num-1]);
 			 progressDialog = new ProgressDialog(IR_AC.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
 			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {

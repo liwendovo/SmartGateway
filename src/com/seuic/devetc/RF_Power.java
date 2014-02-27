@@ -100,7 +100,7 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 	            	Log.e("leewoo", "clr"+v.getId() ); 
 	            	TabControl.mViewSelected.buttonClickLearn(leanrnBtn);	 
 	            	for(int i=0;i< buttonMaxNum;i++){
-	        			TabControl.mViewSelected.imageviewClickLearn(button[i]);
+	            		TabControl.mViewSelected.imageviewClickLearnDefault(button[i]);
 	        		}
 	        	}else{
 	        		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
@@ -109,16 +109,18 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 	        	break;
         	 case R.id.button1:             	
              	if(lenclr==true){
-             		showProgressDialog();
+             		
              		curButton=1;
+             		showProgressDialog(curButton);
      	        }else{//·¢ËÍ
      	        	send(1);
              	}
              	break;
              case R.id.button2:             	
              	if(lenclr==true){
-             		showProgressDialog(); 
+             		
              		curButton=2;
+             		showProgressDialog(curButton);
              	}else{
      	        	send(2);
              	}             	
@@ -129,7 +131,8 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 	            break;  
         }	  
 	}
-		 private void showProgressDialog(){ 
+		 private void showProgressDialog(int num){ 
+			 TabControl.mViewSelected.imageviewClickLearnDefault(button[num-1]);
 			 progressDialog = new ProgressDialog(RF_Power.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
 			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {

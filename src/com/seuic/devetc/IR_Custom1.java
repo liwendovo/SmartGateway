@@ -169,8 +169,9 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	break;
   	    case R.id.button1:        	
         	if(lenclr==true){	        	
-        		showProgressDialog();
+        		
          		curButton=1;
+         		showProgressDialog(curButton);
 	        	
 	        }
         	
@@ -178,58 +179,67 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         	break;
         case R.id.button2:        	
         	if(lenclr==true){	        	
-        		showProgressDialog();
-         		curButton=2;	        	
+        		
+         		curButton=2;
+         		showProgressDialog(curButton);
         	}        	
         	break;
         case R.id.button3:
         	if(lenclr==true){	        
-        		showProgressDialog();
-         		curButton=3;      		
+        		
+         		curButton=3; 
+         		showProgressDialog(curButton);
         	}        	
         	break;        
         case R.id.button4:
         	if(lenclr==true){	        	
-        		showProgressDialog();
+        		
          		curButton=4;
+         		showProgressDialog(curButton);
 
         	}
         	break;
         case R.id.button5:
         	if(lenclr==true){	         
-        		showProgressDialog();
-         		curButton=5;        	
+        		
+         		curButton=5;
+         		showProgressDialog(curButton);
         	}
         	break;
         case R.id.button6:
         	if(lenclr==true){	        	 
-        		showProgressDialog();
+        		
          		curButton=6;
+         		showProgressDialog(curButton);
         	}
         	break;
         case R.id.button7:
         	if(lenclr==true){	        	  
-        		showProgressDialog();
-         		curButton=7;        	
+        		
+         		curButton=7; 
+         		showProgressDialog(curButton);
         	}
         	break;
         case R.id.button8:
         	if(lenclr==true){	        	 
-        		showProgressDialog();
-         		curButton=8;	        	
+        		
+         		curButton=8;	
+         		showProgressDialog(curButton);
         	}
         	break;
         case R.id.button9:
         	if(lenclr==true){	        	 
-        		showProgressDialog();
+        		
          		curButton=9;
+         		showProgressDialog(curButton);
 	        	}
         	break;     
         	
         case R.id.button10:
         	if(lenclr==true){	        	 
-        		showProgressDialog();
+        		
          		curButton=10;
+         		showProgressDialog(curButton);
 	        }
         	break;     
         	
@@ -301,7 +311,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		@Override
 		public void onClick(DialogInterface arg0, int arg1) {
 			// TODO Auto-generated method stub	
-			
+			 if(!btnLearn[btnid-1]) TabControl.mViewSelected.buttonClickLearnDefault(button[btnid-1]);
 			((Button)button[btnid-1]).setText(et.getText().toString());
 			TabControl.mSQLHelper.updateBtnName(TabControl.writeDB, devid, btnid, et.getText().toString());
 		   }
@@ -309,13 +319,17 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		  builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			@Override
 			 public void onClick(DialogInterface dialog, int which) {
+			if(!btnLearn[btnid-1]) TabControl.mViewSelected.buttonClickLearnDefault(button[btnid-1]);
 			 dialog.dismiss();
 			  }
 			 });
 		 builder.create().show();		
 	   }
 	
-		 private void showProgressDialog(){  
+		 private void showProgressDialog(int num){  
+			 Log.e("IR_Custom1", "num"+num);
+			 if(num==10)   TabControl.mViewSelected.imageviewClickLearnDefault(button[9]);	
+			 else TabControl.mViewSelected.buttonClickLearnDefault(button[num-1]);
 			 progressDialog = new ProgressDialog(IR_Custom1.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
 			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {
