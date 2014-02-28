@@ -116,13 +116,33 @@
                 android:text="Mode9"/>
         </TableRow>
     </TableLayout>
+    
+    
+    <TableLayout 
+               android:layout_width="fill_parent" 
+   				 android:layout_height="wrap_content"
+   				 android:layout_marginLeft="30dp" 
+   				 android:layout_marginRight="30dp" 
+   				 android:layout_marginBottom="35dp" 
+   				 android:layout_marginTop="10dp" 
+   				 android:stretchColumns="0,1">
 
+         <TableRow>
     <ImageView
         android:id="@+id/button10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/close" />
+        android:layout_marginTop="40dp"
+        android:src="@drawable/rf_power_on" />
+     <ImageView
+        android:id="@+id/button11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/rf_power_off" />
+     
+     </TableRow>
+     
+     </TableLayout>
 
 </LinearLayout>

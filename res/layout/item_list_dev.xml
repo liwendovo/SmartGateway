@@ -16,7 +16,7 @@
            android:layout_height="wrap_content"
            android:layout_alignParentLeft="true"
            android:layout_centerVertical="true"
-           android:layout_marginLeft="20.0dip" >
+           android:layout_marginLeft="8dip" >
 
            <ImageView
                android:id="@+id/icon"
@@ -41,7 +41,7 @@
            android:layout_height="wrap_content"
            android:layout_alignParentRight="true"
            android:layout_centerVertical="true"
-           android:layout_marginRight="15.0dip"
+           android:layout_marginRight="5dip"
            android:src="@drawable/ic_launcher" />
 
        <TextView

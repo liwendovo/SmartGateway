@@ -28,13 +28,13 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 	Button  backBtn,leanrnBtn;
 	ImageView   devpic;	
 	LinearLayout back_ll,titleBtn_ll;
-	final int buttonMaxNum=10;
+	final int buttonMaxNum=11;
 	View button[]=new View[buttonMaxNum];
 	boolean btnLearn[]=new boolean[buttonMaxNum];
 	int curButton=-1;
 	Boolean lenclr=false;
 	private ProgressDialog progressDialog;  
-	ImageView   button10;
+	ImageView   button10,button11;
 	byte ioCtrlBuf[]=new byte[TUTKClient.MAX_SIZE_IOCTRL_BUF]; 
 	int devid;
 	String mUid;
@@ -60,6 +60,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		button[7]=(Button)findViewById(R.id.button8);
 		button[8]=(Button)findViewById(R.id.button9);
 		button[9]=(ImageView)findViewById(R.id.button10);	
+		button[10]=(ImageView)findViewById(R.id.button11);	
 		
 		back_ll=(LinearLayout)findViewById(R.id.back_ll);
 		titleBtn_ll=(LinearLayout)findViewById(R.id.titleBtn_ll);
@@ -75,6 +76,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 			button[i].setOnLongClickListener(this);
 		}		
 		button[9].setOnClickListener(this);
+		button[10].setOnClickListener(this);
 		
 		Log.e("IR_AC", "init click listener");
 		
@@ -89,10 +91,11 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		TabControl.mViewSelected.setButtonClickChanged(button[6]);
 		TabControl.mViewSelected.setButtonClickChanged(button[7]);
 		TabControl.mViewSelected.setButtonClickChanged(button[8]);		
-		TabControl.mViewSelected.setImageViewClickChanged(button[9]);		
+		TabControl.mViewSelected.setImageViewClickChanged(button[9]);
+		TabControl.mViewSelected.setImageViewClickChanged(button[10]);
 		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
 		devpic=(ImageView)findViewById(R.id.pic);
-		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_custom));
+		devpic.setImageDrawable(getResources().getDrawable(R.drawable.ir_ac));
 
 		
 		Log.e("IR_AC", "setButtonClickChanged");
@@ -125,7 +128,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		Log.e("IR_AC", "cursor.getCount()");
 		if(cursor.getCount()>0){
 			//已初始化		//学习	
-			for(int i=0;i<buttonMaxNum-1;i++){	
+			for(int i=0;i<buttonMaxNum-2;i++){	
 				String str=cursor.getBlob(i+3)!=null?new String(cursor.getBlob(i+3)):"define";
 				((Button)button[i]).setText(str);
 			}			
@@ -159,10 +162,11 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 
             	TabControl.mViewSelected.buttonClickLearn(leanrnBtn); 
             	
-            	for(int i=0;i<buttonMaxNum-1;i++){    				
+            	for(int i=0;i<buttonMaxNum-2;i++){    				
             		TabControl.mViewSelected.buttonClickLearnDefault(button[i]);
     			}	            
-            	TabControl.mViewSelected.imageviewClickLearnDefault(button[9]);			        	
+            	TabControl.mViewSelected.imageviewClickLearnDefault(button[9]);	
+            	TabControl.mViewSelected.imageviewClickLearnDefault(button[10]);	
 
         	}else{
         		TabControl.mViewSelected.buttonClickRecover(leanrnBtn); 
@@ -248,6 +252,13 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 	        }
         	break;     
         	
+        case R.id.button11:
+        	if(lenclr==true){	        	 
+//        		showProgressDialog();
+         		curButton=11;
+         		showProgressDialog(curButton);
+	        }
+        	break;   
 
         default:  
         	Log.e("leewoo", "Button id =default " ); 
@@ -335,7 +346,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 	
 		 private void showProgressDialog(int num){  
 			 Log.e("IR_Custom1", "num"+num);
-			 if(num==10)   TabControl.mViewSelected.imageviewClickLearnDefault(button[9]);	
+			 if(num==10||num==11)   TabControl.mViewSelected.imageviewClickLearnDefault(button[num-1]);	
 			 else TabControl.mViewSelected.buttonClickLearnDefault(button[num-1]);
 			 progressDialog = new ProgressDialog(IR_AC.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
@@ -412,15 +423,17 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 			        }}; 
 			 private void setbuttonstate()
 				{				
-					for(int i=0;i<(buttonMaxNum-1);i++){
+					for(int i=0;i<(buttonMaxNum-2);i++){
 						if(btnLearn[i])	{TabControl.mViewSelected.buttonClickRecover(button[i]);
 						Log.e("IR_Custom1", "buttonClickRecover");
 						Log.e("IR_Custom1", "btnLearn="+btnLearn[i]);
 						}
 				    	else TabControl.mViewSelected.buttonClickGreyChanged(button[i]);
 					}
-					if(btnLearn[9])TabControl.mViewSelected.imageviewClickRecover(button[9]);
-			    	else TabControl.mViewSelected.imageviewClickGreyChanged(button[9]);
+					for(int i=9;i<buttonMaxNum;i++)
+					if(btnLearn[i])TabControl.mViewSelected.imageviewClickRecover(button[i]);
+			    	else TabControl.mViewSelected.imageviewClickGreyChanged(button[i]);
+					
 				}
 				
 }
