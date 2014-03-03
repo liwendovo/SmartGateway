@@ -25,6 +25,7 @@ public class TabControl extends ActivityGroup {
 	public final static String[] itemsIR = {"TV", "AC","MEDIA","STU","WH", "DVD","FAN","CUSTOM1","CUSTOM2"}; 
 	public final static String[] itemsRF = {"Switch", "Lamp", "Curtain","Power","CUSTOM1","CUSTOM2"}; 	
 
+	public static boolean tempmode = true;
 	public static TabHost host = null;
 	private LayoutInflater mInflater = null;	
 	public static SQLiteHelper mSQLHelper;

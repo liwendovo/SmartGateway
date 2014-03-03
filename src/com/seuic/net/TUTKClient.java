@@ -1,7 +1,9 @@
 package com.seuic.net;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
+import android.R.string;
 import android.util.Log;
 
 import com.tutk.IOTC.AVAPIs;
@@ -199,9 +201,10 @@ public class TUTKClient {
 	    ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_SET_LOCAL_TIME_MODE_REQ, timeModeByte,timeModeByte.length);
 	  	if(ret < 0)
 	    {
-//	        printf("setdevicetime failed[%d]\n", ret);
+	  		 Log.e("setHourMode", "setdevicetime failed  ret="+ ret);
 	        return false;
 	    }
+	  	 Log.e("setHourMode", "setdevicetime success "+ ret);
 	  	 int ioType[]=new int[1];
       	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
 	     int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
@@ -209,7 +212,8 @@ public class TUTKClient {
 	     if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SET_LOCAL_TIME_MODE_RESP)) {
 	   	  Log.e("setHourMode", " OK");
 	    	 return true;
-	    }	     
+	    }	 
+	     Log.e("setHourMode", "setdevicetime receive failed   returnvalue="+ returnvalue);
 	return false;
 }
     public static boolean setTimeZone(int timeZone){     	
@@ -218,15 +222,27 @@ public class TUTKClient {
         }
     	
     	AVAPIs av = new AVAPIs();        
-        int[] tmz=new int[]{timeZone};        
-        byte[] tmzByte =intToByte(tmz);
-        Log.e("setTimeZone", " "+tmz[0]+" "+bytes2HexString(tmzByte));
+        int[] tmz=new int[]{timeZone};  
+//        ByteArrayOutputStream bOut = new ByteArrayOutputStream();
+       
+//        byte[]  tmzByte=intToByte(tmz);
+        byte[]  tmzByte=new byte[268];
+        tmzByte[11]=(byte) timeZone;
+        string ss=bytetostring(tmzByte);
+//        ByteArrayOutputStream tmzByte;
+//		tmzByte.write(bOut,9, 12);
+        
+//        Log.e("setTimeZone", " "+tmz[0]+" "+bytes2HexString(tmzByte)+"tmzByte[11]="+tmzByte[11]);
+        Log.e("setTimeZone", " "+tmz[0]+" "+ss+"tmzByte[11]="+tmzByte[11]);
         int ret;
-        ret = av.avSendIOCtrl(avIndex, IOTYPE_USER_IPCAM_SET_TIMEZONE_REQ, tmzByte, tmzByte.length);
+        ret = av.avSendIOCtrl(avIndex, IOTYPE_USER_IPCAM_SET_TIMEZONE_REQ, tmzByte, 268);
+        Log.e("setTimeZone", "tmzByte.length="+ tmzByte.length);
       	if(ret<0)
         {
+      		 Log.e("setTimeZone", "setTimeZone send failed ret="+ ret);
             return false;
         }
+      	 Log.e("setTimeZone", "setTimeZone send success ret="+ ret);
       	 int ioType[]=new int[1];
       	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
         int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
@@ -234,9 +250,14 @@ public class TUTKClient {
         	  Log.e("setTimeZone", " OK");
             return true;
         }
+        Log.e("setTimeZone", "setTimeZone receive failed  returnvalue="+ returnvalue);
         return false;
     }
-    public static boolean setTime() { 
+    private static string bytetostring(byte[] tmzByte) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+	public static boolean setTime() { 
       	 //数据发送
     	  Log.e("TUTKClient", "setTime");
     	  byte[] time =new byte[8];

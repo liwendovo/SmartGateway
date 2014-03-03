@@ -128,9 +128,19 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		Log.e("IR_AC", "cursor.getCount()");
 		if(cursor.getCount()>0){
 			//已初始化		//学习	
-			for(int i=0;i<buttonMaxNum-2;i++){	
-				String str=cursor.getBlob(i+3)!=null?new String(cursor.getBlob(i+3)):"define";
-				((Button)button[i]).setText(str);
+//			for(int i=0;i<buttonMaxNum-2;i++){	
+////				String str=cursor.getBlob(i+3)!=null?new String(cursor.getBlob(i+3)):"define";
+//				String str;
+//				if(cursor.getBlob(i+3)!=null) str=new String(cursor.getBlob(i+3));
+//				else str="Mode"+i;
+//				((Button)button[i]).setText(str);
+//			}			
+			
+			for(int i=1;i<buttonMaxNum-1;i++){	
+				String str;
+				if(cursor.getBlob(i+2)!=null) str=new String(cursor.getBlob(i+2));
+				else str="Mode"+i;
+				((Button)button[i-1]).setText(str);
 			}			
 		}else{
 			Log.e("leewoo", "cur name 初始化"+cursor.getCount());

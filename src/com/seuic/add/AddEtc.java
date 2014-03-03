@@ -93,7 +93,7 @@ public class AddEtc extends Activity implements android.view.View.OnClickListene
 					writeDB=TabControl.mSQLHelper.getWritableDatabase();
 					TabControl.mSQLHelper.insertList(writeDB, mUid, mClass,spinnerEtc.getSelectedItem().toString(), name, "0","0");
 					//三级页表的创建
-					//Log.e("leewoo", mUid+" "+name+" "+mClass+" "+listBtn.getText().toString());
+					Log.e("leewoo", mUid+" name= "+name);
 					finish();
 		        	break;
 		            

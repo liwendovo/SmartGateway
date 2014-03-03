@@ -80,8 +80,9 @@ public class TabTH extends Activity {
 	         super.onResume();	 
 	         int[] th=new int[4];
 	 		TUTKClient.getTH(th);
-	 		humi.setText(th[2]+"."+th[2]+"%");
-	 		temp.setText(th[0]+"."+th[1]+"¨H");
+	 		humi.setText(th[2]+"%");
+	 		if(!TabControl.tempmode) temp.setText(th[0]+"¡æ");
+	 		else temp.setText(th[0]+"¨H");
 	         Log.e("TabTH", "start onResume");
 	        	 
 	     }
