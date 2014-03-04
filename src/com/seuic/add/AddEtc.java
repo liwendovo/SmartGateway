@@ -64,7 +64,8 @@ public class AddEtc extends Activity implements android.view.View.OnClickListene
 			adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, TabControl.itemsRF);
 		}
         //设置下拉列表的风格  
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);            
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  
+//        adapter.setDropDownViewResource(R.layout.timezone_dropdown_item); 
         //将adapter 添加到spinner中  
         spinnerEtc.setAdapter(adapter);            
         //设置默认值  

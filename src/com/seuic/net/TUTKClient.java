@@ -227,7 +227,7 @@ public class TUTKClient {
        
 //        byte[]  tmzByte=intToByte(tmz);
         byte[]  tmzByte=new byte[268];
-        tmzByte[11]=(byte) timeZone;
+        tmzByte[8]=(byte) timeZone;
         string ss=bytetostring(tmzByte);
 //        ByteArrayOutputStream tmzByte;
 //		tmzByte.write(bOut,9, 12);
@@ -320,7 +320,7 @@ public class TUTKClient {
 	                	   "m2.iotcplatform.com", "m4.iotcplatform.com",
 	                       "m5.iotcplatform.com");
 	        System.out.printf("IOTC_Initialize() ret = %d\n", ret);
-	        if (ret != IOTCAPIs.IOTC_ER_NoERROR) {
+	        if ((ret != IOTCAPIs.IOTC_ER_NoERROR)&&(ret != IOTCAPIs. IOTC_ER_ALREADY_INITIALIZED)) {
 	            System.out.printf("IOTCAPIs_Device exit...!!\n");
 	            return false;
 	        }

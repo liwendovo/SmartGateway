@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.seuic.net.TUTKClient;
@@ -51,12 +52,16 @@ public class SetupTime extends Activity implements android.view.View.OnClickList
     	
     	spinnerZone=(Spinner)findViewById(R.id.spinnerZone);     
 //    	adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, R.array.timezone_entries);
+//    	adapter = ArrayAdapter.createFromResource(
+//    	            this, R.array.timezone_entries, android.R.layout.simple_spinner_item);
     	adapter = ArrayAdapter.createFromResource(
-    	            this, R.array.timezone_entries, android.R.layout.simple_spinner_item);
+	            this, R.array.timezone_entries, R.layout.timezone_item);
 		//设置下拉列表的风格  
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);            
+//		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);    
+    	 adapter.setDropDownViewResource(R.layout.timezone_dropdown_item); 
 		//将adapter 添加到spinner中  
-		spinnerZone.setAdapter(adapter);  
+		spinnerZone.setAdapter(adapter); 
+//		spinnerZone.setTextSize(14.0f);
 //		spinnerZone.setSelection(position);
 		//设置默认值  
 //		spinnerZone.setVisibility(View.VISIBLE);
@@ -65,7 +70,9 @@ public class SetupTime extends Activity implements android.view.View.OnClickList
             public void onItemSelected(AdapterView<?> parent, View arg1,
                 int postion, long id) {
             	  String selectedName = parent.getItemAtPosition(postion).toString();
-
+//            	   TextView tv=(TextView)arg1;
+//                   tv.setTextSize(14.0f);
+//                   parent.setVisibility(View.VISIBLE);
             	  TabControl.mSQLHelper.updateTimezone(TabControl.writeDB,TabControl.mUid,postion);
             	  String[] ss=new String[2];
             	  ss=selectedName.split("UTC"); 
