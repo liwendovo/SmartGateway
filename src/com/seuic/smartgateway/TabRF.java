@@ -204,32 +204,32 @@ public class TabRF extends Activity {
 			 //itemsRF = {"Switch", "WH", "Lamp","Curtain","自定义1","自定义2"}; 	
 			 if(type.equals("Switch")){
 				 listItem.put("icon", R.drawable.rf_logo_switch);
-				 listItem.put("status", R.drawable.rf_logo_on);
-				 listItem.put("status2", R.drawable.rf_logo_off);
+				 listItem.put("status2", R.drawable.rf_logo_on);
+				 listItem.put("status", R.drawable.rf_logo_off);
 			 }else if(type.equals("WH")){//wh
 				 listItem.put("icon", R.drawable.ir_logo_wh);
-				 listItem.put("status", R.drawable.rf_logo_on);
-				 listItem.put("status2", R.drawable.rf_logo_off);
+				 listItem.put("status2", R.drawable.rf_logo_on);
+				 listItem.put("status", R.drawable.rf_logo_off);
 			 }else if(type.equals("Lamp")){//lamp
 				 listItem.put("icon", R.drawable.rf_logo_lamp);
-				 listItem.put("status", R.drawable.rf_logo_on);
-				 listItem.put("status2", R.drawable.rf_logo_off);
+				 listItem.put("status2", R.drawable.rf_logo_on);
+				 listItem.put("status", R.drawable.rf_logo_off);
 			 }else if(type.equals("Curtain")){
 				 listItem.put("icon", R.drawable.rf_logo_curtain);
-				 listItem.put("status", R.drawable.rf_logo_open);
-				 listItem.put("status2", R.drawable.rf_logo_close);
+				 listItem.put("status2", R.drawable.rf_logo_open);
+				 listItem.put("status", R.drawable.rf_logo_close);
 			 }else if(type.equals("Power")){
 				 listItem.put("icon", R.drawable.rf_logo_power);
-				 listItem.put("status", R.drawable.rf_logo_on);
-				 listItem.put("status2", R.drawable.rf_logo_off);
+				 listItem.put("status2", R.drawable.rf_logo_on);
+				 listItem.put("status", R.drawable.rf_logo_off);
 			 }else if(type.equals("CUSTOM1")){
 				 listItem.put("icon",R.drawable.ir_logo_custom );
-				 listItem.put("status", R.drawable.rf_logo_on);
-				 listItem.put("status2", R.drawable.rf_logo_off);
+				 listItem.put("status2", R.drawable.rf_logo_on);
+				 listItem.put("status", R.drawable.rf_logo_off);
 			 }else {
 				 listItem.put("icon",R.drawable.ir_logo_custom );
-				 listItem.put("status", R.drawable.rf_logo_on);
-				 listItem.put("status2", R.drawable.rf_logo_off);
+				 listItem.put("status2", R.drawable.rf_logo_on);
+				 listItem.put("status", R.drawable.rf_logo_off);
 			 }	
 
 			listItemsRF.add(listItem);

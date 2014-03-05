@@ -51,7 +51,7 @@
            android:layout_alignBottom="@+id/relativeLayout1"
            android:layout_below="@+id/title"
            android:layout_toRightOf="@+id/relativeLayout1"
-           android:textAppearance="?android:attr/textAppearanceSmall"
+           android:textSize="12dp"
            android:textColor="@drawable/selector_text_color" />
 
        <TextView
@@ -61,7 +61,7 @@
            android:layout_above="@+id/status2"
            android:layout_alignTop="@+id/relativeLayout1"
            android:layout_toRightOf="@+id/relativeLayout1"
-           android:textAppearance="?android:attr/textAppearanceMedium"
+           android:textSize="15dp"
            android:textColor="@drawable/selector_text_color" />
 
    </RelativeLayout>

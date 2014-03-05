@@ -93,7 +93,7 @@ public class TabIR extends Activity {
 					 intent = new Intent(TabIR.this,IR_TV.class);	
 				 }else if(type.equals("AC")){
 					 intent = new Intent(TabIR.this,IR_AC.class);
-				 }else if(type.equals("Media")){
+				 }else if(type.equals("MEDIA")){
 					 intent = new Intent(TabIR.this,IR_Media.class);
 				 }else if(type.equals("STU")){
 					 intent = new Intent(TabIR.this,IR_STU.class);
@@ -205,9 +205,9 @@ public class TabIR extends Activity {
 				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else if(type.equals("AC")){
 				 listItem.put("icon", R.drawable.ir_logo_ac); 
-				 listItem.put("status", R.drawable.rf_logo_on);
-				 listItem.put("status2", R.drawable.rf_logo_off);
-			 }else if(type.equals("Media")){//media
+				 listItem.put("status2", R.drawable.rf_logo_on);
+				 listItem.put("status", R.drawable.rf_logo_off);
+			 }else if(type.equals("MEDIA")){//media
 				 listItem.put("icon", R.drawable.ir_logo_media);
 				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else if(type.equals("STU")){
@@ -215,8 +215,8 @@ public class TabIR extends Activity {
 				 listItem.put("status", R.drawable.ir_logo_close);			
 			 }else if(type.equals("WH")){
 				 listItem.put("icon",R.drawable.ir_logo_wh );
-				 listItem.put("status", R.drawable.ir_logo_up);
-				 listItem.put("status2", R.drawable.ir_logo_down);
+				 listItem.put("status2", R.drawable.ir_logo_up);
+				 listItem.put("status", R.drawable.ir_logo_down);
 			 }else if(type.equals("DVD")){
 				 listItem.put("icon", R.drawable.ir_logo_dvd);
 				 listItem.put("status", R.drawable.ir_logo_close);

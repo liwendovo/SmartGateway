@@ -97,10 +97,13 @@ public class RF_Custom1 extends Activity implements android.view.View.OnClickLis
         case R.id.titleBtn:
    		break;
         case R.id.button1: 
+        	Log.e("RF_Custom1", "button1 onClick");
             break;  
-        case R.id.button2:  
+        case R.id.button2: 
+        	Log.e("RF_Custom1", "button2 onClick");
            break;  
         case R.id.button3:  
+        	Log.e("RF_Custom1", "button2 onClick");
             break;  
         default:  
             break;  

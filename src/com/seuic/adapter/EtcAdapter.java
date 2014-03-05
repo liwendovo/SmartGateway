@@ -94,7 +94,7 @@ public class EtcAdapter extends BaseAdapter {
         
              	
          
-        holder.title.setText(item.get("type").toString());
+        holder.title.setText(item.get("name").toString());
         holder.icon.setImageResource((Integer) item.get("icon"));
         holder.quickBtn1.setImageResource((Integer) item.get("status")); 
     	TabControl.mViewSelected.setImageViewClickChanged(holder.quickBtn2);
