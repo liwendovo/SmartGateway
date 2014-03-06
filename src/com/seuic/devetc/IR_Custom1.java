@@ -347,9 +347,11 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	    			     TUTKClient.cancellearn(true);
 	    			     }}.start(); 
 	    			     dialog.cancel();
+	    			     Log.e("IR_Custom1", "in the progressDialog.setButton");
 	             }
 	         });
 			 progressDialog.show();
+			 Log.e("IR_Custom1", "in the progressDialog");
 			 new Thread(){        
 		     @Override  
 		     public void run() {  
@@ -360,6 +362,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		    	 }else{
 		    		 learnMsg.what=1;	
 		    	 }	
+		    	 Log.e("IR_Custom1", "learnMsg.what"+learnMsg.what);
 		    	 learnHandler.sendMessage(learnMsg); 
 		     }}.start();      
 		 }

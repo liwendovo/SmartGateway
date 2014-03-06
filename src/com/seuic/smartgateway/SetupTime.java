@@ -48,7 +48,7 @@ public class SetupTime extends Activity implements android.view.View.OnClickList
     	homeBtn.setOnClickListener(this); 
     	back_ll.setOnClickListener(this);
 		timeHourBtn.setOnClickListener(this); 
-		timeAutoBtn.setOnClickListener(this);
+//		timeAutoBtn.setOnClickListener(this);
     	
     	spinnerZone=(Spinner)findViewById(R.id.spinnerZone);     
 //    	adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, R.array.timezone_entries);
