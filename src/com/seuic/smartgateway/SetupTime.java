@@ -42,7 +42,7 @@ public class SetupTime extends Activity implements android.view.View.OnClickList
     	titlePic.setImageResource(R.drawable.set_time);
     	titleBtn.setBackgroundResource(R.drawable.title_add);
     	titleBtn.setVisibility(Button.INVISIBLE);    	
-    	timeAutoBtn=(ToggleButton)findViewById(R.id.timeAutoBtn);
+//    	timeAutoBtn=(ToggleButton)findViewById(R.id.timeAutoBtn);
     	timeHourBtn=(ToggleButton)findViewById(R.id.timeHourBtn);   
     	
     	homeBtn.setOnClickListener(this); 
@@ -170,15 +170,15 @@ public class SetupTime extends Activity implements android.view.View.OnClickList
         	finish();
         	break;
         	
-        case R.id.timeAutoBtn:
-			if (timeAutoBtn.isChecked()) {
-				timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
-//				TUTKClient.setTimeMode(0);
-			} else {
-				timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_blue);
-//				TUTKClient.setTimeMode(1);
-			}
-			 break; 
+//        case R.id.timeAutoBtn:
+//			if (timeAutoBtn.isChecked()) {
+//				timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+////				TUTKClient.setTimeMode(0);
+//			} else {
+//				timeAutoBtn.setBackgroundResource(R.drawable.rf_switch_blue);
+////				TUTKClient.setTimeMode(1);
+//			}
+//			 break; 
 			 
         case R.id.timeHourBtn:
         	if (timeHourBtn.isChecked()) {

@@ -320,10 +320,21 @@ public class TUTKClient {
 	                	   "m2.iotcplatform.com", "m4.iotcplatform.com",
 	                       "m5.iotcplatform.com");
 	        System.out.printf("IOTC_Initialize() ret = %d\n", ret);
+	        
+//	        if(ret == IOTCAPIs.IOTC_ER_ALREADY_INITIALIZED)
+//	        {
+//	        	IOTCAPIs.IOTC_DeInitialize();
+//	        	ret = IOTCAPIs.IOTC_Initialize(0, "m1.iotcplatform.com",
+//	                	   "m2.iotcplatform.com", "m4.iotcplatform.com",
+//	                       "m5.iotcplatform.com");
+//	        }
+	        
 	        if ((ret != IOTCAPIs.IOTC_ER_NoERROR)&&(ret != IOTCAPIs. IOTC_ER_ALREADY_INITIALIZED)) {
 	            System.out.printf("IOTCAPIs_Device exit...!!\n");
 	            return false;
 	        }
+	        
+	       
 	        // alloc 3 sessions for video and two-way audio
 	        AVAPIs.avInitialize(3);
 	        
@@ -332,6 +343,11 @@ public class TUTKClient {
 	        long[] srvType = new long[1];
 	        avIndex = AVAPIs.avClientStart(sid, "admin", "888888", 20000, srvType, 0);
 	        System.out.printf("Step 2: call avClientStart(%d).......\n", avIndex);
+	        if (avIndex == IOTCAPIs.IOTC_ER_SERVER_NOT_RESPONSE) {
+	        	stop();
+	        }
+	        
+	        
 	        if (avIndex < 0) {
 	            System.out.printf("avClientStart failed[%d]\n", avIndex);
 	            return false;

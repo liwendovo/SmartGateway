@@ -16,16 +16,37 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:src="@drawable/ir_wh_logo" />
+    
+     <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+     <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Timer:"
+            android:layout_marginLeft="80dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+      <ImageView
+	        android:id="@+id/imageView2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="5dp"
+	        android:src="@drawable/rf_switch_yellow" />
+     
+     </LinearLayout>
     
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/ir_background"
         android:orientation="vertical" >
         
@@ -86,7 +107,7 @@
         android:layout_height="80dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/ir_background"
         android:orientation="vertical" >
         
@@ -147,7 +168,7 @@
     <TableLayout 
                android:layout_width="fill_parent" 
    				 android:layout_height="wrap_content"
-   				 android:layout_marginTop="30dp"
+   				 android:layout_marginTop="10dp"
    				 android:stretchColumns="0,1,2">
         <TableRow>
         
@@ -155,20 +176,33 @@
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+             android:layout_marginRight="10dp"
             android:src="@drawable/ir_wh_up" />
 
+      
         <ImageView
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/close" />
-
+            android:src="@drawable/ir_wh_down" />
+       </TableRow>
+       
+         <TableRow   android:layout_marginTop="15dp" >
+        
         <ImageView
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ir_wh_down" />
+             android:layout_marginLeft="36dp"
+            android:src="@drawable/rf_power_on" />
+
+      
+        <ImageView
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:src="@drawable/rf_power_off" />
        </TableRow>
         
     </TableLayout>

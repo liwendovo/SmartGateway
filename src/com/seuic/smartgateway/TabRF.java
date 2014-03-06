@@ -123,6 +123,7 @@ public class TabRF extends Activity {
 		        	//获取按下时的x轴坐标  
 		        	x = event.getX();  
 		        	y = event.getY();  
+		        	return true;
 	        	} else if (event.getAction() == MotionEvent.ACTION_UP) {// 松开处理  
 	        	//设置背景为未选中正常状态  
 //	        	v.setBackgroundResource(R.drawable.mm_listitem_simple);  
@@ -160,7 +161,7 @@ public class TabRF extends Activity {
 				        	});
 			        		 builder.create().show();	
 		        		 }
-		        		 return true;  
+		        		 return false;  
 		        	 } 
 	        	} 
 //	        	else if (event.getAction() == MotionEvent.ACTION_MOVE) {//当滑动时背景为选中状态  
