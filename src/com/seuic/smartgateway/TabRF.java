@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.seuic.adapter.CustomToast;
 import com.seuic.adapter.EtcAdapter;
 import com.seuic.add.AddEtc;
 import com.seuic.devetc.IR_Custom1;
@@ -65,7 +66,7 @@ public class TabRF extends Activity {
 			@Override	
 			public void onClick(View source){	
 				if(TabControl.mUid.equals("NULL")){
-					Toast.makeText(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT).show();		
+					CustomToast.showToast(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT);		
 					
 				}else{
 				 Intent intent = new Intent(TabRF.this, AddEtc.class);	

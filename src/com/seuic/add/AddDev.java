@@ -38,6 +38,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.seuic.adapter.CustomToast;
 import com.seuic.net.FTPUtil;
 import com.seuic.net.NetConfig;
 import com.seuic.smartgateway.R;
@@ -124,7 +125,7 @@ public class AddDev extends Activity implements android.view.View.OnClickListene
 			}
 		}
 		else {  
-			Toast.makeText(getApplicationContext(), "Please connect wireless network", Toast.LENGTH_SHORT).show();
+			CustomToast.showToast(getApplicationContext(), "Please connect wireless network", Toast.LENGTH_SHORT);
 			addDevBtn.setEnabled(false);
 		}
 		
@@ -212,7 +213,7 @@ public class AddDev extends Activity implements android.view.View.OnClickListene
 //							{data[i]='\0';}
 							if ((numbytes=in.read(data)) == -1) {	
 	                            Log.e(tag, "null"+numbytes);
-	                            Toast.makeText(AddDev.this,"Can't get UID, please check network", Toast.LENGTH_SHORT).show();
+	                            CustomToast.showToast(AddDev.this,"Can't get UID, please check network", Toast.LENGTH_SHORT);
 	                        }else{
                             	Log.e(tag,""+ numbytes);
 //                            	data[numbytes]='\0';
@@ -284,7 +285,7 @@ public class AddDev extends Activity implements android.view.View.OnClickListene
 		{
 			if(TabControl.mSQLHelper.insertSetup(TabControl.writeDB, mUid, "Devices", edtName.getText().toString()))
 			{
-				Toast.makeText(AddDev.this, "Message sent,Please exit APP and connect to wireless network!", Toast.LENGTH_LONG).show();
+				CustomToast.showToast(AddDev.this, "Message sent,Please exit APP and connect to wireless network!", Toast.LENGTH_LONG);
 				finish();
 			//devices判断
 			//调试用默认加入设备
@@ -305,7 +306,7 @@ public class AddDev extends Activity implements android.view.View.OnClickListene
 //			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM1", "Devices",  "0","0");
 //			TabControl.mSQLHelper.insertList(TabControl.writeDB, UID, "rf", "CUSTOM2", "Devices",  "0","0");
 			}else{					
-				Toast.makeText(AddDev.this, " send success but UID already exits!\n Please switch work mode", Toast.LENGTH_LONG).show();
+				CustomToast.showToast(AddDev.this, " send success but UID already exits!\n Please switch work mode", Toast.LENGTH_LONG);
 			}
 		}
 	 };
@@ -325,13 +326,13 @@ public class AddDev extends Activity implements android.view.View.OnClickListene
 			case MESSAGE_PUSHAP_FAILED:
 				addDevBtn.setEnabled(true);
 //				addDevBtn.setText("send failed");
-				Toast.makeText(AddDev.this, "Failure, please check the network!", Toast.LENGTH_LONG).show();
+				CustomToast.showToast(AddDev.this, "Failure, please check the network!", Toast.LENGTH_LONG);
 //			"SENT FAILED, Please check the network name and password of your router"
 				break;
 			case MESSAGE_PUSHFILE_NOEXIT:
 				addDevBtn.setEnabled(true);
 //				addDevBtn.setText("send failed");
-				Toast.makeText(AddDev.this, "Failure, please to create a configuration file!", Toast.LENGTH_LONG).show();
+				CustomToast.showToast(AddDev.this, "Failure, please to create a configuration file!", Toast.LENGTH_LONG);
 				break;
 			default:
 				break;

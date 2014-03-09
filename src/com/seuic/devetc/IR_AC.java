@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.seuic.adapter.CustomToast;
 import com.seuic.net.TUTKClient;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
@@ -389,8 +390,9 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 	        @Override  
 	        public void handleMessage(Message msg) {  
 	        	if(0==msg.what){
-		        	Toast.makeText(getApplicationContext(), getResources().getString(R.string.studysuccessful), Toast.LENGTH_SHORT).show();  
-		        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton,ioCtrlBuf);
+//		        	Toast.makeText(getApplicationContext(), getResources().getString(R.string.studysuccessful), Toast.LENGTH_SHORT).show();  
+	        		CustomToast.showToast(getApplicationContext(), getResources().getString(R.string.studysuccessful), Toast.LENGTH_SHORT);
+	        		TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton,ioCtrlBuf);
 		        	btnLearn[curButton-1]=true;	        	
 		        	curButton=-1;
 		        	//¸üÐÂlearnCursor
@@ -398,7 +400,8 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		        	learnCursor.close();
 		        	learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);	
 		        	}else{
-		        		Toast.makeText(getApplicationContext(), getResources().getString(R.string.studyfailed), Toast.LENGTH_SHORT).show();	
+//		        		Toast.makeText(getApplicationContext(), getResources().getString(R.string.studyfailed), Toast.LENGTH_SHORT).show();	
+		        		CustomToast.showToast(getApplicationContext(), getResources().getString(R.string.studyfailed), Toast.LENGTH_SHORT);
 		        	}	        
 	            progressDialog.dismiss(); 
 	        }};  
@@ -424,9 +427,11 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 			        @Override  
 			        public void handleMessage(Message msg) {  
 			        	if(0==msg.what){
-			        	Toast.makeText(getApplicationContext(), "send success", Toast.LENGTH_SHORT).show(); 		        
+//			        	    Toast.makeText(getApplicationContext(), "send success", Toast.LENGTH_SHORT).show(); 
+			        		CustomToast.showToast(getApplicationContext(), "send success", Toast.LENGTH_SHORT);
 			        	}else{
-			        		Toast.makeText(getApplicationContext(), "send failed", Toast.LENGTH_SHORT).show();	
+//			        		Toast.makeText(getApplicationContext(), "send failed", Toast.LENGTH_SHORT).show();	
+			        		CustomToast.showToast(getApplicationContext(), "send failed", Toast.LENGTH_SHORT);
 			        	}
 			            progressDialog.dismiss(); 
 

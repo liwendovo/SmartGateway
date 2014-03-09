@@ -16,6 +16,7 @@ import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.Toast;
 
+import com.seuic.adapter.CustomToast;
 import com.seuic.adapter.ViewSelected;
 import com.seuic.net.TUTKClient;
 import com.seuic.sqlite.SQLiteHelper;
@@ -94,7 +95,8 @@ public class TabControl extends ActivityGroup {
 			    if(mUid=="NULL")
 			    {
 			    	host.setCurrentTab(4);
-			    	Toast.makeText(getApplicationContext(),getResources().getString(R.string.activateinfo), Toast.LENGTH_SHORT).show();	
+//			    	Toast.makeText(getApplicationContext(),getResources().getString(R.string.activateinfo), Toast.LENGTH_SHORT).show();	
+			    	CustomToast.showToast(getApplicationContext(),getResources().getString(R.string.activateinfo), Toast.LENGTH_SHORT);
 			    }
 			  }
 		});   		
@@ -106,7 +108,7 @@ public class TabControl extends ActivityGroup {
 				NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI); 
 				if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) { 
 				Log.e("connectionReceiver", "unconnect"); 
-				Toast.makeText(getApplicationContext(),getResources().getString(R.string.networkunconnect), Toast.LENGTH_SHORT).show();	
+				CustomToast.showToast(getApplicationContext(),getResources().getString(R.string.networkunconnect), Toast.LENGTH_SHORT);	
 				mUid="NULL";	//   所有device重置为OFFLINE状态
 				host.setCurrentTab(4);
 				// unconnect network 
@@ -121,7 +123,7 @@ public class TabControl extends ActivityGroup {
 		registerReceiver(connectionReceiver, intentFilter);
 	}
 	
-	@Override
+	@Override                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();	

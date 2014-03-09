@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.seuic.adapter.CustomToast;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 
@@ -50,7 +51,7 @@ public class AddEtc extends Activity implements android.view.View.OnClickListene
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");	
 		if(mUid.equals("NULL")){
-			Toast.makeText(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT).show();		
+			CustomToast.showToast(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT);		
 			finish();
 			}
 		mClass=intent.getStringExtra("type");		

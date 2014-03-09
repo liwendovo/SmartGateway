@@ -181,7 +181,7 @@ public class DevChoiceAdapter extends BaseAdapter {
         public void handleMessage(Message msg) {  
         	if(0==msg.what)
         	{
-        		Toast.makeText(context, "Connect success", Toast.LENGTH_SHORT).show(); 
+        		CustomToast.showToast(context, "Connect success", Toast.LENGTH_SHORT); 
         		Cursor cursor=TabControl.mSQLHelper.seleteSetup(TabControl.writeDB,TabControl.mUid);
 //        		Log.e("leewoo", "Tabset---onStart->cur:"+cursor.getCount()+" mUid:"+TabControl.mUid);
         		if(cursor.getCount()>0){
@@ -201,7 +201,7 @@ public class DevChoiceAdapter extends BaseAdapter {
         		}	
         		
         	}else{
-        		Toast.makeText(context, "Can not connect to device, please check your device or if has connect to a wireless network", Toast.LENGTH_LONG).show(); 
+        		CustomToast.showToast(context, "Can not connect to device, please check your device or if has connect to a wireless network", Toast.LENGTH_LONG); 
         		currentID=-1;
 //        		SetupDev.editor.putString("uid","NULL");
 //				SetupDev.editor.commit();
@@ -229,6 +229,6 @@ public class DevChoiceAdapter extends BaseAdapter {
 		     }
 		   }.start();      
 	 }
-	
+	  
 
 }

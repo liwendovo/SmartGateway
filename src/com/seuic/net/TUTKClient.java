@@ -4,8 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
 import android.R.string;
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.seuic.adapter.CustomToast;
+import com.seuic.smartgateway.TabControl;
 import com.tutk.IOTC.AVAPIs;
 import com.tutk.IOTC.IOTCAPIs;
 
@@ -355,12 +359,12 @@ public class TUTKClient {
 
 	        if (startIpcamStream(avIndex)) {
 	        	isConnect=true;
-//	             videoThread = new Thread(new VideoThread(avIndex),
-//	                    "Video Thread");
+	        	Thread videoThread = new Thread(new VideoThread(avIndex),
+	                    "Video Thread");
 //	             audioThread = new Thread(new AudioThread(avIndex),
 //	                    "Audio Thread");
 	          
-//	            videoThread.start();
+	            videoThread.start();
 //	            audioThread.start();
 	            return true;
 	        }
@@ -426,13 +430,14 @@ public class TUTKClient {
         // This IOTYPE constant and its corrsponsing data structure is defined in
         // Sample/Linux/Sample_AVAPIs/AVIOCTRLDEFs.h
         //
-//        int IOTYPE_USER_IPCAM_START = 0x1FF;
-//        ret = av.avSendIOCtrl(avIndex, IOTYPE_USER_IPCAM_START,
-//                new byte[8], 8);
-//        if (ret < 0) {
-//            System.out.printf("start_ipcam_stream failed[%d]\n", ret);
-//            return false;
-//        }
+        
+        int IOTYPE_USER_IPCAM_START = 0x1FF;
+        ret = av.avSendIOCtrl(avIndex, IOTYPE_USER_IPCAM_START,
+                new byte[8], 8);
+        if (ret < 0) {
+            System.out.printf("start_ipcam_stream failed[%d]\n", ret);
+            return false;
+        }
 //        
 //        int IOTYPE_USER_IPCAM_AUDIOSTART = 0x300;
 //        ret = av.avSendIOCtrl(avIndex, IOTYPE_USER_IPCAM_AUDIOSTART,
@@ -447,6 +452,7 @@ public class TUTKClient {
     public static class VideoThread implements Runnable {
         static final int VIDEO_BUF_SIZE = 100000;
         static final int FRAME_INFO_SIZE = 16;
+		private static final Context Context = null;
 
         private int avIndex;
         public VideoThread(int avIndex) {
@@ -466,6 +472,7 @@ public class TUTKClient {
                 int ret = av.avRecvFrameData(avIndex, videoBuffer,
                         VIDEO_BUF_SIZE, frameInfo, FRAME_INFO_SIZE,
                         frameNumber);
+                Log.e("TUTKClient","VideoThread ret"+ret);
                 if (ret == AVAPIs.AV_ER_DATA_NOREADY) {
                     try {
                         Thread.sleep(30);
@@ -499,6 +506,13 @@ public class TUTKClient {
                 else if (ret == AVAPIs.AV_ER_INVALID_SID) {
                     System.out.printf("[%s] Session cant be used anymore\n",
                             Thread.currentThread().getName());
+                    break;
+                }
+                else if (ret == IOTCAPIs.IOTC_ER_REMOTE_TIMEOUT_DISCONNECT) {
+                    System.out.printf("[%s] IOTC_ER_REMOTE_TIMEOUT_DISCONNECT\n",
+                            Thread.currentThread().getName());
+                    TabControl.mUid="NULL";
+                    CustomToast.showToast(Context, "send success", Toast.LENGTH_SHORT); 
                     break;
                 }
 
