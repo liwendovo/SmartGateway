@@ -100,8 +100,10 @@ public class TabRF extends Activity {
 				 }else if(type.equals("Power")){
 					 intent = new Intent(TabRF.this,RF_Power.class);
 				 }else if(type.equals("CUSTOM1")){
+					 Command.IrSelected = false;
 					 intent = new Intent(TabRF.this,IR_Custom1.class);
 				 }else {
+					 Command.IrSelected = false;
 					 intent = new Intent(TabRF.this,IR_Custom2.class);
 				 }			
 				 

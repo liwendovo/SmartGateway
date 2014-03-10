@@ -4,12 +4,17 @@ import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
 import android.R.string;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.seuic.adapter.CustomToast;
 import com.seuic.smartgateway.TabControl;
+import com.seuic.smartgateway.TabSET;
 import com.tutk.IOTC.AVAPIs;
 import com.tutk.IOTC.IOTCAPIs;
 
@@ -77,32 +82,37 @@ public class TUTKClient {
         devType[0]=0;
         if(type==1)devType[0]=1;        
         int ret = av.avSendIOCtrl(avIndex,irflag?IOTYPE_BL_BOX_LEARN_IR_REQ:IOTYPE_BL_BOX_LEARN_RF_REQ,devType, devType.length);
-        if (ret < 0) {
+        Log.e("TUTKClient", "learn  ret="+ret);
+        if ((ret < 0)&&(ret !=-105)) {
         	Log.e("TUTKClient", "learn send failed "+ret);
            return false;
         }               
         int ioType[]=new int[1];
 //        byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF];      
         int returnvalue= av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, LEARNTIMEOUT);
-        if (returnvalue > 0&&(ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP)) {
+        Log.e("TUTKClient", "returnvalue"+returnvalue);  
+        if (returnvalue >= 0&&(ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP)) {
             Log.e("TUTKClient", "learn ok");
 		    Log.e("TUTKClient", "num:"+ret+" data:"+bytes2HexString(ioCtrlBuf));    		
            return true;
         }
-        Log.e("TUTKClient", "learn failed ret="+ret);
+       
 //        cancellearn( irflag);
         return false;
     }
     public static boolean cancellearn(boolean irflag)
     {
         if (!isConnect) {
+        	Log.e("TUTKClient", "cancellearn disconnect");
             return false;
         }
         AVAPIs av = new AVAPIs();
         int ret = av.avSendIOCtrl(avIndex, irflag?IOTYPE_BL_BOX_CANCEL_IR_REQ:IOTYPE_BL_BOX_CANCEL_RF_REQ,null , 0); 
        	if(ret< 0)
     	{
+       		Log.e("TUTKClient", "cancellearn SendIOCtrl false"+ret);
     		return false;
+    		
     	}   
        	Log.e("TUTKClient", "cancellearn ret="+ret);
         return true;
@@ -472,7 +482,7 @@ public class TUTKClient {
                 int ret = av.avRecvFrameData(avIndex, videoBuffer,
                         VIDEO_BUF_SIZE, frameInfo, FRAME_INFO_SIZE,
                         frameNumber);
-                Log.e("TUTKClient","VideoThread ret"+ret);
+//                Log.e("TUTKClient","VideoThread ret"+ret);
                 if (ret == AVAPIs.AV_ER_DATA_NOREADY) {
                     try {
                         Thread.sleep(30);
@@ -512,7 +522,20 @@ public class TUTKClient {
                     System.out.printf("[%s] IOTC_ER_REMOTE_TIMEOUT_DISCONNECT\n",
                             Thread.currentThread().getName());
                     TabControl.mUid="NULL";
-                    CustomToast.showToast(Context, "send success", Toast.LENGTH_SHORT); 
+                    
+//                    AlertDialog.Builder builder = new Builder(IR_WH.this); 
+//                    builder.setMessage("Are you sure you want to exit?") 
+//                           .setCancelable(false) 
+//                           .setPositiveButton("Yes", new DialogInterface.OnClickListener() { 
+//                               public void onClick(DialogInterface dialog, int id) { 
+//                            	   Intent intent = new Intent();
+//                            	   intent.setClass(dialog.this, TabSET.class);
+//                            	   startActivity(intent);
+//                               } 
+//                           }); 
+//                    AlertDialog alert = builder.create(); 
+                    
+                    CustomToast.showToast(Context, "it has disconnected with the device ", Toast.LENGTH_LONG); 
                     break;
                 }
 

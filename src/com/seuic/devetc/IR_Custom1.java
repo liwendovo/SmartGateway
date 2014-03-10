@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.seuic.adapter.CustomToast;
 import com.seuic.net.TUTKClient;
+import com.seuic.smartgateway.Command;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 
@@ -357,13 +358,25 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		     @Override  
 		     public void run() {  
 		    	 Message learnMsg=new Message();
-		    	 if(TUTKClient.learn(0,ioCtrlBuf))
-		    	 {
-		    		 learnMsg.what=0;
-		    	 }else{
-		    		 learnMsg.what=1;	
-		    	 }	
-		    	 Log.e("IR_Custom1", "learnMsg.what"+learnMsg.what);
+		    	 if(Command.IrSelected){
+			    	 if(TUTKClient.learn(0,ioCtrlBuf))
+			    	 {
+			    		 learnMsg.what=0;
+			    	 }else{
+			    		 learnMsg.what=1;	
+			    	 }	
+			    	 Log.e("IR_Custom1", "learnMsg.what"+learnMsg.what);
+			    }else{
+			    	if(TUTKClient.learn(2,ioCtrlBuf))
+			    	 {
+			    		 learnMsg.what=0;
+			    	 }else{
+			    		 learnMsg.what=1;	
+			    	 }	
+			    	 Log.e("RF_Custom1", "learnMsg.what"+learnMsg.what);
+			    	
+			    }
+		    	 
 		    	 learnHandler.sendMessage(learnMsg); 
 		     }}.start();      
 		 }
