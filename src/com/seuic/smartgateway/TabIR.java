@@ -64,7 +64,7 @@ public class TabIR extends Activity {
 			public void onClick(View source){	
 				if(TabControl.mUid.equals("NULL")){
 //					Toast.makeText(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT).show();		
-					CustomToast.showToast(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT);
+					CustomToast.showToast(getApplicationContext(),"can't add remote controller，please go to set interface to setup", Toast.LENGTH_SHORT);
 				}else{
 				 Intent intent = new Intent(TabIR.this, AddEtc.class);	
 				 intent.putExtra("uid", TabControl.mUid);

@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.seuic.adapter.CustomToast;
@@ -523,17 +524,26 @@ public class TUTKClient {
                             Thread.currentThread().getName());
                     TabControl.mUid="NULL";
                     
-//                    AlertDialog.Builder builder = new Builder(IR_WH.this); 
+//                    AlertDialog.Builder builder = new Builder(Context); 
 //                    builder.setMessage("Are you sure you want to exit?") 
 //                           .setCancelable(false) 
 //                           .setPositiveButton("Yes", new DialogInterface.OnClickListener() { 
 //                               public void onClick(DialogInterface dialog, int id) { 
+//                            	   
 //                            	   Intent intent = new Intent();
-//                            	   intent.setClass(dialog.this, TabSET.class);
+//                            	   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
+//                            	   intent.setClass(Context, TabSET.class);
 //                            	   startActivity(intent);
-//                               } 
+//                               }
+//
+//							private void startActivity(Intent intent) {
+//								// TODO Auto-generated method stub
+//								
+//							} 
 //                           }); 
 //                    AlertDialog alert = builder.create(); 
+//                    alert.getWindow().setType((WindowManager.LayoutParams.TYPE_SYSTEM_ALERT));
+//                    alert.show();
                     
                     CustomToast.showToast(Context, "it has disconnected with the device ", Toast.LENGTH_LONG); 
                     break;
