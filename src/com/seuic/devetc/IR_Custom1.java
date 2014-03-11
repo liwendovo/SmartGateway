@@ -334,7 +334,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		 builder.create().show();		
 	   }
 	
-		 private void showProgressDialog(int num){  
+		 private void showProgressDialog( int num){  
 			 Log.e("IR_Custom1", "num"+num);
 			 if(num==10)   TabControl.mViewSelected.imageviewClickLearnDefault(button[9]);	
 			 else TabControl.mViewSelected.buttonClickLearnDefault(button[num-1]);
@@ -378,12 +378,20 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 			    }
 		    	 
 		    	 learnHandler.sendMessage(learnMsg); 
-		     }}.start();      
+		     }}.start();  
+		     if(btnLearn[num-1]){
+	    		 if(num==10)   TabControl.mViewSelected.imageviewClickRecover(button[9]);	
+				 else TabControl.mViewSelected.buttonClickRecover(button[num-1]);
+		     }
 		 }
 	 	private Handler learnHandler = new Handler(){ 
 	        @Override  
 	        public void handleMessage(Message msg) {  
 	        	if(0==msg.what){
+
+//		    		 if(num==10)   TabControl.mViewSelected.imageviewClickRecover(button[9]);	
+//					 else TabControl.mViewSelected.buttonClickRecover(button[num-1]);
+		    		 
 //		        	Toast.makeText(getApplicationContext(), getResources().getString(R.string.studysuccessful), Toast.LENGTH_SHORT).show(); 
 	        		CustomToast.showToast(getApplicationContext(), getResources().getString(R.string.studysuccessful), Toast.LENGTH_SHORT); 
 		        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton,ioCtrlBuf);

@@ -20,20 +20,20 @@ public class TabTH extends Activity {
 	TextView  temp,humi;
 	
 	
-	Handler mhandler=new Handler(){
-	     public void handleMessage(Message msg){
-	         System.out.println("mhandler");
-	         int[] th=new int[4];
-	         TUTKClient.cancellearn(false);
-	 		 TUTKClient.getTH(th);
-	 		 if(th[2]>=0){
-		 		humi.setText(th[2]+"%");
-		 		if(!TabControl.tempmode) temp.setText(th[0]+"¡æ");
-		 		else temp.setText(th[0]+"¨H");
-	 		 }
-	         Log.e("TabTH", "end onResume");
-   	    }
-    };
+//	Handler mhandler=new Handler(){
+//	     public void handleMessage(Message msg){
+//	         System.out.println("mhandler");
+//	         int[] th=new int[4];
+//	         TUTKClient.cancellearn(false);
+//	 		 TUTKClient.getTH(th);
+//	 		 if(th[2]>=0){
+//		 		humi.setText(th[2]+"%");
+//		 		if(!TabControl.tempmode) temp.setText(th[0]+"¡æ");
+//		 		else temp.setText(th[0]+"¨H");
+//	 		 }
+//	         Log.e("TabTH", "end onResume");
+//   	    }
+//    };
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,24 +109,24 @@ public class TabTH extends Activity {
 	 
 		         super.onResume();	 
 		         Log.e("TabTH", "start onResume");
-//		         int[] th=new int[4];
-//		         TUTKClient.cancellearn(false);
-//		 		 TUTKClient.getTH(th);
-//		 		 if(th[2]>=0){
-//			 		humi.setText(th[2]+"%");
-//			 		if(!TabControl.tempmode) temp.setText(th[0]+"¡æ");
-//			 		else temp.setText(th[0]+"¨H");
-//		 		 }
-//		         Log.e("TabTH", "end onResume");
+		         int[] th=new int[4];
+		         TUTKClient.cancellearn(false);
+		 		 TUTKClient.getTH(th);
+		 		 if(th[2]>=0){
+			 		humi.setText(th[2]+"%");
+			 		if(!TabControl.tempmode) temp.setText(th[0]+"¡æ");
+			 		else temp.setText(th[0]+"¨H");
+		 		 }
+		         Log.e("TabTH", "end onResume");
 		         
   
-		         new Thread(){        
-				     @Override  
-				     public void run() {  
-				    	 Message learnMsg=new Message();
-				    	 Log.e("TabTH", "start thread");
-				    	 mhandler.sendMessage(learnMsg);  
-				     }}.start();      
+//		         new Thread(){        
+//				     @Override  
+//				     public void run() {  
+//				    	 Message learnMsg=new Message();
+//				    	 Log.e("TabTH", "start thread");
+//				    	 mhandler.sendMessage(learnMsg);  
+//				     }}.start();      
 				
 		         
 	 }
