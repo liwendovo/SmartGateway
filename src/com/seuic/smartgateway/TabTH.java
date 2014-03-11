@@ -19,6 +19,22 @@ public class TabTH extends Activity {
 	ImageView titlePic;
 	TextView  temp,humi;
 	
+	
+	Handler mhandler=new Handler(){
+	     public void handleMessage(Message msg){
+	         System.out.println("mhandler");
+	         int[] th=new int[4];
+	         TUTKClient.cancellearn(false);
+	 		 TUTKClient.getTH(th);
+	 		 if(th[2]>=0){
+		 		humi.setText(th[2]+"%");
+		 		if(!TabControl.tempmode) temp.setText(th[0]+"¡æ");
+		 		else temp.setText(th[0]+"¨H");
+	 		 }
+	         Log.e("TabTH", "end onResume");
+   	    }
+    };
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,6 +50,20 @@ public class TabTH extends Activity {
     	titleBtn.setBackgroundResource(R.drawable.title_chart);
     	Log.e("TabTH", "TabTH init " ); 
     	
+    	
+
+    	
+    	
+//    	 Log.e("TabTH", "start onCreate");
+//         int[] th=new int[4];
+// 		 TUTKClient.getTH(th);
+// 		 if(th[2]>=0){
+//	 		humi.setText(th[2]+"%");
+//	 		if(!TabControl.tempmode) temp.setText(th[0]+"¡æ");
+//	 		else temp.setText(th[0]+"¨H");
+// 		 }
+//         Log.e("TabTH", "end onCreate");
+//    	
     	
     	
     	
@@ -75,39 +105,31 @@ public class TabTH extends Activity {
 	
 	
 	 @Override
-	 	     protected void onResume() {
+	 protected void onResume() {
 	 
-	         super.onResume();	 
-	         Log.e("TabTH", "start onResume");
-	         int[] th=new int[4];
-	 		 TUTKClient.getTH(th);
-	 		 if(th[2]>=0){
-		 		humi.setText(th[2]+"%");
-		 		if(!TabControl.tempmode) temp.setText(th[0]+"¡æ");
-		 		else temp.setText(th[0]+"¨H");
-	 		 }
-	         Log.e("TabTH", "end onResume");
-	        	 
-	     }
-
-
-//	@Override
-//	protected void onStart() {
-//		// TODO Auto-generated method stub
-//		super.onStart();
-//		Log.e("TabTH", "TabTH start" ); 
-//		new Thread(){        
-//		     @Override  
-//		     public void run() {  
-//		 		int[] th=new int[4];
-//		 		TUTKClient.getTH(th);
-////		 		temp.setText(th[0]+"."+th[1]+"%");
-//		 		humi.setText(th[2]+"."+th[3]+"C");
-//		     }}.start();   
-//	}
-	
-//}
-
+		         super.onResume();	 
+		         Log.e("TabTH", "start onResume");
+//		         int[] th=new int[4];
+//		         TUTKClient.cancellearn(false);
+//		 		 TUTKClient.getTH(th);
+//		 		 if(th[2]>=0){
+//			 		humi.setText(th[2]+"%");
+//			 		if(!TabControl.tempmode) temp.setText(th[0]+"¡æ");
+//			 		else temp.setText(th[0]+"¨H");
+//		 		 }
+//		         Log.e("TabTH", "end onResume");
+		         
+  
+		         new Thread(){        
+				     @Override  
+				     public void run() {  
+				    	 Message learnMsg=new Message();
+				    	 Log.e("TabTH", "start thread");
+				    	 mhandler.sendMessage(learnMsg);  
+				     }}.start();      
+				
+		         
+	 }
 
 }
   

@@ -81,7 +81,8 @@ public class TUTKClient {
         boolean irflag= (type < 2);
         byte[] devType=new byte[1];
         devType[0]=0;
-        if(type==1)devType[0]=1;        
+        if(type==1)devType[0]=1;    
+        Log.e("TUTKClient", "start to learn");
         int ret = av.avSendIOCtrl(avIndex,irflag?IOTYPE_BL_BOX_LEARN_IR_REQ:IOTYPE_BL_BOX_LEARN_RF_REQ,devType, devType.length);
         Log.e("TUTKClient", "learn  ret="+ret);
         if ((ret < 0)&&(ret !=-105)) {
@@ -91,6 +92,7 @@ public class TUTKClient {
         int ioType[]=new int[1];
 //        byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF];      
         int returnvalue= av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, LEARNTIMEOUT);
+        Log.e("TUTKClient", "receive learn data");
         Log.e("TUTKClient", "returnvalue"+returnvalue);  
         if (returnvalue >= 0&&(ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP)) {
             Log.e("TUTKClient", "learn ok");
@@ -103,6 +105,7 @@ public class TUTKClient {
     }
     public static boolean cancellearn(boolean irflag)
     {
+    	Log.e("TUTKClient", "start to cancellearn");
         if (!isConnect) {
         	Log.e("TUTKClient", "cancellearn disconnect");
             return false;
@@ -146,10 +149,12 @@ public class TUTKClient {
         }
         AVAPIs av = new AVAPIs();
         av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_GET_TEMPERATURE_HUMIDITY_REQ,new byte[0], 0);
+        Log.e("getTempHum","start send getth command");
         int ioType[]=new int[1];
         byte[]  th=new byte[16];
         
-        int ret = av.avRecvIOCtrl(avIndex, ioType, th, th.length, LEARNTIMEOUT);
+        int ret = av.avRecvIOCtrl(avIndex, ioType, th, th.length, SENDTIMEOUT);
+        Log.e("getTempHum","start receive getth data");
         if (ret>0&&(ioType[0]==IOTYPE_BL_BOX_GET_TEMPERATURE_HUMIDITY_RESP)) {
 //        	String str=null;    
 //        	str=new String(th);
@@ -535,6 +540,7 @@ public class TUTKClient {
 //                            	   intent.setClass(Context, TabSET.class);
 //                            	   startActivity(intent);
 //                               }
+//                               
 //
 //							private void startActivity(Intent intent) {
 //								// TODO Auto-generated method stub

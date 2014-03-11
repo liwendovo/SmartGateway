@@ -139,11 +139,13 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {
 	             public void onClick(DialogInterface dialog, int i)
 	             {
+	            	 Log.e("RF_Power","start cancle button");
 	            	 new Thread(){        
 	    			     @Override  
 	    			     public void run() {  
 	    			     TUTKClient.cancellearn(false);
 	    			     }}.start(); 
+	    			     Log.e("RF_Power","cancle button success");
 	    			     dialog.cancel();
 	             }
 	         });
@@ -153,12 +155,14 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 		     @Override  
 		     public void run() {  
 		    	 Message learnMsg=new Message();
+		    	 Log.e("RF_Power","start to learn");
 		    	 if(TUTKClient.learn(2,ioCtrlBuf))
 		    	 {
 		    		 learnMsg.what=0;
 		    	 }else{
 		    		 learnMsg.what=1;	
 		    	 }
+		    	 Log.e("RF_Power","return learn result");
 		    	 learnHandler.sendMessage(learnMsg);  
 		     }}.start();      
 		 }
