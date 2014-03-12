@@ -245,6 +245,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 	}
 	 	 
 		 private void showProgressDialog(){  
+			 TabControl.mViewSelected.imageviewClickLearnDefault(button[9]);
 			 progressDialog = new ProgressDialog(IR_TV.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
 			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {
@@ -281,7 +282,8 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 		        	if(0==msg.what){
 		        		CustomToast.showToast(getApplicationContext(),  getResources().getString(R.string.studysuccessful), Toast.LENGTH_SHORT);  
 			        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton,ioCtrlBuf);
-			        	btnLearn[curButton-1]=true;	        	
+			        	btnLearn[curButton-1]=true;	 
+			        	TabControl.mViewSelected.imageviewClickRecover(button[curButton-1]);
 			        	curButton=-1;
 			        	//¸üÐÂlearnCursor
 			        	learnCursor.close();

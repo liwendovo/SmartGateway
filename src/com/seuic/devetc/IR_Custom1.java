@@ -335,7 +335,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	   }
 	
 		 private void showProgressDialog( int num){  
-			 Log.e("IR_Custom1", "num"+num);
+//			 Log.e("IR_Custom1", "num"+num);
 			 if(num==10)   TabControl.mViewSelected.imageviewClickLearnDefault(button[9]);	
 			 else TabControl.mViewSelected.buttonClickLearnDefault(button[num-1]);
 			 progressDialog = new ProgressDialog(IR_Custom1.this);
@@ -353,7 +353,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	             }
 	         });
 			 progressDialog.show();
-			 Log.e("IR_Custom1", "in the progressDialog");
+//			 Log.e("IR_Custom1", "in the progressDialog");
 			 new Thread(){        
 		     @Override  
 		     public void run() {  
@@ -379,10 +379,6 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		    	 
 		    	 learnHandler.sendMessage(learnMsg); 
 		     }}.start();  
-		     if(btnLearn[num-1]){
-	    		 if(num==10)   TabControl.mViewSelected.imageviewClickRecover(button[9]);	
-				 else TabControl.mViewSelected.buttonClickRecover(button[num-1]);
-		     }
 		 }
 	 	private Handler learnHandler = new Handler(){ 
 	        @Override  
@@ -395,7 +391,9 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 //		        	Toast.makeText(getApplicationContext(), getResources().getString(R.string.studysuccessful), Toast.LENGTH_SHORT).show(); 
 	        		CustomToast.showToast(getApplicationContext(), getResources().getString(R.string.studysuccessful), Toast.LENGTH_SHORT); 
 		        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton,ioCtrlBuf);
-		        	btnLearn[curButton-1]=true;	        	
+		        	btnLearn[curButton-1]=true;	  
+		        	if(curButton==10)   TabControl.mViewSelected.imageviewClickRecover(button[9]);	
+					 else TabControl.mViewSelected.buttonClickRecover(button[curButton-1]);
 		        	curButton=-1;
 		        	//¸üÐÂlearnCursor
 		        	Log.e("IR_Custom1", "updateBtnlearn");

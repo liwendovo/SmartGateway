@@ -82,7 +82,7 @@ public class TUTKClient {
         byte[] devType=new byte[1];
         devType[0]=0;
         if(type==1)devType[0]=1;    
-        Log.e("TUTKClient", "start to learn");
+//        Log.e("TUTKClient", "start to learn");
         int ret = av.avSendIOCtrl(avIndex,irflag?IOTYPE_BL_BOX_LEARN_IR_REQ:IOTYPE_BL_BOX_LEARN_RF_REQ,devType, devType.length);
         Log.e("TUTKClient", "learn  ret="+ret);
         if ((ret < 0)&&(ret !=-105)) {
@@ -90,11 +90,22 @@ public class TUTKClient {
            return false;
         }               
         int ioType[]=new int[1];
-//        byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF];      
+//        byte ioCtrlBuf[]=new byte[MAX_SIZE_IOCTRL_BUF];  
+//        Log.e("TUTKClient", "start receive learn data");
+        long time_before = System.currentTimeMillis();
+        Log.e("avRecvIOCtrl",""+time_before);
         int returnvalue= av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, LEARNTIMEOUT);
-        Log.e("TUTKClient", "receive learn data");
-        Log.e("TUTKClient", "returnvalue"+returnvalue);  
-        if (returnvalue >= 0&&(ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP)) {
+        long time_after = System.currentTimeMillis();
+        Log.e("avRecvIOCtrl",""+time_after);
+        Log.e("avRecvIOCtrl","Cost Time:"+(time_after - time_before));
+//        Log.e("TUTKClient", "returnvalue"+returnvalue);  
+        Log.e("TUTKClient", "returnvalue"+returnvalue+"  num:"+ret+" data:"+bytes2HexString(ioCtrlBuf)); 
+        Log.e("TUTKClient", "learn false"+"ioType[0]="+ioType[0]);
+        if (ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP) {
+            Log.e("TUTKClient", "receive IOTYPE_BL_BOX_LEARN_IR_RESP");
+		   
+        }
+        if (returnvalue > 0&&(ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP)) {
             Log.e("TUTKClient", "learn ok");
 		    Log.e("TUTKClient", "num:"+ret+" data:"+bytes2HexString(ioCtrlBuf));    		
            return true;
