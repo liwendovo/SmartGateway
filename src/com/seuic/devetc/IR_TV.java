@@ -119,7 +119,7 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 	            	Log.e("leewoo", "clr"+v.getId() ); 
 	            	TabControl.mViewSelected.buttonClickLearn(leanrnBtn);	 
 	            	for(int i=0;i< buttonMaxNum;i++){
-	        			TabControl.mViewSelected.imageviewClickLearn(button[i]);
+	        			TabControl.mViewSelected.imageviewClickLearnDefault(button[i]);
 	        		}
 	        	}else{
 	        		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
@@ -128,112 +128,112 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
 	        	break;
         	 case R.id.button1:             	
              	if(lenclr==true){
-             		showProgressDialog();
              		curButton=1;
+             		showProgressDialog(curButton);
      	        }else{//·¢ËÍ
      	        	send(1);
              	}
              	break;
              case R.id.button2:             	
              	if(lenclr==true){
-             		showProgressDialog(); 
              		curButton=2;
+             		showProgressDialog(curButton);
              	}else{
      	        	send(2);
              	}             	
              	break;
              case R.id.button3:
              	if(lenclr==true){  
-             		showProgressDialog();
              		curButton=3;
+             		showProgressDialog(curButton);
              	}else{
      	        	send(3);
              	}             	
              	break;             
              case R.id.button4:
              	if(lenclr==true){
-         			showProgressDialog();
          			curButton=4;
+         			showProgressDialog(curButton);
              	}else{
      	        	send(4);
              	} 
              	break;
              case R.id.button5:
-             	if(lenclr==true){             		 
-             		showProgressDialog();
-         			curButton=5;     	        	
+             	if(lenclr==true){   
+         			curButton=5;    
+         			showProgressDialog(curButton);
              	}else{
      	        	send(5);
              	} 
              	break;
              case R.id.button6:
-             	if(lenclr==true){     	        	 
-             		showProgressDialog();
-         			curButton=6;    	        	
+             	if(lenclr==true){  
+         			curButton=6;   
+         			showProgressDialog(curButton);
              	}else{
      	        	send(6);
              	} 
              	break;
              case R.id.button7:
              	if(lenclr==true){
-             		showProgressDialog();
-         			curButton=7;     	        
+         			curButton=7;  
+         			showProgressDialog(curButton);
              	}else{
      	        	send(7);
              	} 
              	break;
              case R.id.button8:
              	if(lenclr==true){
-             		showProgressDialog();
-         			curButton=8;    	        	
+         			curButton=8; 
+         			showProgressDialog(curButton);
              	}else{
      	        	send(8);
              	} 
              	break;
              case R.id.button9:
-             	if(lenclr==true){     	        	 
-             		showProgressDialog();
+             	if(lenclr==true){   
          			curButton=9;
+         			showProgressDialog(curButton);
      	        }else{
      	        	send(9);
              	} 
              	break;
              case R.id.button10:
-             	if(lenclr==true){     	        	  
-             		showProgressDialog();
-         			curButton=10;  	        	
+             	if(lenclr==true){   
+         			curButton=10; 
+         			showProgressDialog(curButton);
              	}else{
      	        	send(10);
              	} 
              	break;             	
          	 case R.id.button11:                 	
-             	if(lenclr==true){         	        	
-             		showProgressDialog();
+             	if(lenclr==true){   
          			curButton=11;
+         			showProgressDialog(curButton);
      	        }else{
      	        	send(11);
              	} 
              	break;
              case R.id.button12:                 	
-             	if(lenclr==true){         	        	
-             		showProgressDialog();
-         			curButton=12;       	        	
+             	if(lenclr==true){   
+         			curButton=12;  
+         			showProgressDialog(curButton);
              	}else{
      	        	send(12);
              	}              	
              	break;
              case R.id.button13:
-             	if(lenclr==true){         	        
-             		showProgressDialog();
-         			curButton=13;             		
+             	if(lenclr==true){  
+         			curButton=13;  
+         			showProgressDialog(curButton);
              	}else{
      	        	send(13);
              	}                  	
              	break;                 
              case R.id.button14:
-             	if(lenclr==true){         	        	
-             		showProgressDialog();
-         			curButton=14;       	        	
+             	if(lenclr==true){  
+         			curButton=14;  
+         			showProgressDialog(curButton);
              	}else{
      	        	send(14);
              	} 
@@ -244,8 +244,8 @@ public class IR_TV extends Activity implements android.view.View.OnClickListener
         }	  
 	}
 	 	 
-		 private void showProgressDialog(){  
-			 TabControl.mViewSelected.imageviewClickLearnDefault(button[9]);
+		 private void showProgressDialog(int num){  
+			 TabControl.mViewSelected.imageviewClickLearnDefault(button[num-1]);
 			 progressDialog = new ProgressDialog(IR_TV.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
 			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {

@@ -172,7 +172,8 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 		        	if(0==msg.what){
 		        		CustomToast.showToast(getApplicationContext(),  getResources().getString(R.string.studysuccessful), Toast.LENGTH_SHORT);  
 			        	TabControl.mSQLHelper.updateBtnlearn(TabControl.writeDB, devid, curButton,ioCtrlBuf);
-			        	btnLearn[curButton-1]=true;	        	
+			        	btnLearn[curButton-1]=true;	  
+			        	TabControl.mViewSelected.imageviewClickRecover(button[curButton-1]);
 			        	curButton=-1;
 			        	//¸üÐÂlearnCursor
 			        	learnCursor.close();
