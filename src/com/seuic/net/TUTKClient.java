@@ -85,7 +85,7 @@ public class TUTKClient {
 //        Log.e("TUTKClient", "start to learn");
         int ret = av.avSendIOCtrl(avIndex,irflag?IOTYPE_BL_BOX_LEARN_IR_REQ:IOTYPE_BL_BOX_LEARN_RF_REQ,devType, devType.length);
         Log.e("TUTKClient", "learn  ret="+ret);
-        if ((ret < 0)&&(ret !=-105)) {
+        if (ret < 0) {
         	Log.e("TUTKClient", "learn send failed "+ret);
            return false;
         }               
@@ -100,7 +100,7 @@ public class TUTKClient {
         Log.e("avRecvIOCtrl","Cost Time:"+(time_after - time_before));
 //        Log.e("TUTKClient", "returnvalue"+returnvalue);  
         Log.e("TUTKClient", "returnvalue"+returnvalue+"  num:"+ret+" data:"+bytes2HexString(ioCtrlBuf)); 
-        Log.e("TUTKClient", "learn false"+"ioType[0]="+ioType[0]);
+        Log.e("TUTKClient", "learn false"+"ioType[0]="+Integer.toHexString(ioType[0]));
         if (ioType[0]==IOTYPE_BL_BOX_LEARN_IR_RESP||ioType[0]== IOTYPE_BL_BOX_LEARN_RF_RESP) {
             Log.e("TUTKClient", "receive IOTYPE_BL_BOX_LEARN_IR_RESP");
 		   
@@ -264,7 +264,7 @@ public class TUTKClient {
 //		tmzByte.write(bOut,9, 12);
         
 //        Log.e("setTimeZone", " "+tmz[0]+" "+bytes2HexString(tmzByte)+"tmzByte[11]="+tmzByte[11]);
-        Log.e("setTimeZone", " "+tmz[0]+" "+ss+"tmzByte[11]="+tmzByte[11]);
+        Log.e("setTimeZone", " "+tmz[0]+" "+ss+"tmzByte[8]="+tmzByte[8]);
         int ret;
         ret = av.avSendIOCtrl(avIndex, IOTYPE_USER_IPCAM_SET_TIMEZONE_REQ, tmzByte, 268);
         Log.e("setTimeZone", "tmzByte.length="+ tmzByte.length);

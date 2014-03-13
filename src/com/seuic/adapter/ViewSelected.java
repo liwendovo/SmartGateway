@@ -21,7 +21,7 @@ public class ViewSelected {
         0, 0, 0, 1, 0 };     
          
     /**   
-   11.   * 按钮恢复原状的颜色过滤   
+      * 按钮恢复原状的颜色过滤   
    */    
      public final static float[] NOT_SELECTED=new float[] {      
         1, 0, 0, 0, 0,      
@@ -30,7 +30,7 @@ public class ViewSelected {
         0, 0, 0, 1, 0 };     
      
      /**   
-     11.   * 学习键按下时按钮颜色过滤   
+        * 学习键按下时按钮颜色过滤   
      */    
        public final static float[] BTN_SELECTED=new float[] {      
     	  0.2f, 0, 0, 0, 50.8f,      
@@ -47,13 +47,13 @@ public class ViewSelected {
          0, 0, 0, 1, 0 };   
    
     /**   
-   20.   * 按钮焦点改变   
-   21.   */    
+      * 按钮焦点改变   
+      */    
 
     
     /**   
-   39.   * 按钮触碰按下效果   
-   40.   */    
+     * 按钮触碰按下效果   
+      */    
    public final static OnTouchListener imageViewOnTouchListener=new OnTouchListener() {     
     @Override    
     public boolean onTouch(View v, MotionEvent event) {   
@@ -71,8 +71,8 @@ public class ViewSelected {
   
     
     /**   
-   39.   * 按钮触碰按下效果   
-   40.   */    
+      * 按钮触碰按下效果   
+      */    
    public final static OnTouchListener buttonOnTouchListener=new OnTouchListener() {     
     @Override    
     public boolean onTouch(View v, MotionEvent event) {     

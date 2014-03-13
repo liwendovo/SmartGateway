@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.seuic.net.TUTKClient;
 
@@ -130,6 +132,27 @@ public class TabTH extends Activity {
 				
 		         
 	 }
+	 
+	 
+	 
+	 private long mExitTime;
+		public boolean onKeyDown(int keyCode, KeyEvent event) {
+			 Log.e("TabControl","get the keyback");
+	       if (keyCode == KeyEvent.KEYCODE_BACK) {
+	      	     Log.e("TabControl","get keyback");
+					if ((System.currentTimeMillis() - mExitTime) > 2000) {
+	                       Object mHelperUtils;
+	                       Toast.makeText(this, "press again to exit the app", Toast.LENGTH_SHORT).show();
+	                       mExitTime = System.currentTimeMillis();
+
+	               } else {
+	              	 finish();
+//	              	System.exit(0);
+	               }
+	               return true;
+	       }
+	       return super.onKeyDown(keyCode, event);
+	}
 
 }
   

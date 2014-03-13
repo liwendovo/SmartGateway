@@ -303,6 +303,7 @@ public class IR_FAN extends Activity implements android.view.View.OnClickListene
 			 else TabControl.mViewSelected.buttonClickLearnDefault(button[num-1]);
 			 progressDialog = new ProgressDialog(IR_FAN.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
+			 progressDialog.setCancelable(false);
 			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {
 	             public void onClick(DialogInterface dialog, int i)
 	             {

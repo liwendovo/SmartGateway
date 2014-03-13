@@ -5,8 +5,11 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class TabCam extends Activity {
 
@@ -30,5 +33,24 @@ public class TabCam extends Activity {
 		super.onDestroy();
 	}
 	
+	
+	private long mExitTime;
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		 Log.e("TabControl","get the keyback");
+       if (keyCode == KeyEvent.KEYCODE_BACK) {
+      	     Log.e("TabControl","get keyback");
+				if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                       Object mHelperUtils;
+                       Toast.makeText(this, "press again to exit the app", Toast.LENGTH_SHORT).show();
+                       mExitTime = System.currentTimeMillis();
+
+               } else {
+              	 finish();
+//              	 System.exit(0);
+               }
+               return true;
+       }
+       return super.onKeyDown(keyCode, event);
+}
 }
   

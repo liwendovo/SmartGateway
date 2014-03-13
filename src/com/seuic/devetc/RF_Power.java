@@ -136,6 +136,7 @@ public class RF_Power extends Activity implements android.view.View.OnClickListe
 			 TabControl.mViewSelected.imageviewClickLearnDefault(button[num-1]);
 			 progressDialog = new ProgressDialog(RF_Power.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
+			 progressDialog.setCancelable(false);
 			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {
 	             public void onClick(DialogInterface dialog, int i)
 	             {

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.Window;
@@ -361,6 +362,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 			 else TabControl.mViewSelected.buttonClickLearnDefault(button[num-1]);
 			 progressDialog = new ProgressDialog(IR_AC.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));
+			 progressDialog.setCancelable(false);
 			 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {
 	             public void onClick(DialogInterface dialog, int i)
 	             {
@@ -448,5 +450,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 			    	else TabControl.mViewSelected.imageviewClickGreyChanged(button[i]);
 					
 				}
+			 
+			
 				
 }

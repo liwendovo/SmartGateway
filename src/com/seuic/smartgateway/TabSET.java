@@ -1,5 +1,6 @@
 package com.seuic.smartgateway ;  
 
+import com.seuic.adapter.DevChoiceAdapter;
 import com.seuic.net.TUTKClient;
 
 import android.app.Activity;
@@ -11,11 +12,13 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class TabSET extends Activity {
@@ -61,6 +64,13 @@ public class TabSET extends Activity {
 		
 		
 		setTempBtn=(ToggleButton)findViewById(R.id.setTempBtn);
+		
+//		if(TabControl.mUid!="NULL"){
+//			String uid = TabControl.mUid;
+//			DevChoiceAdapter.showProgressDialog(uid);
+//			
+//		}
+		
 
 		layoutDev.setOnClickListener(new OnClickListener() {
 			@Override
@@ -154,6 +164,11 @@ public class TabSET extends Activity {
 		 builder.setMessage(this.getString(R.string.aboutus));		
 		 builder.create().show();
 	   }
+	 
+
+	
+
+	 
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -179,6 +194,25 @@ public class TabSET extends Activity {
 	}
 	
 	
+	
+	 private long mExitTime;
+	 public boolean onKeyDown(int keyCode, KeyEvent event) {
+		 Log.e("TabControl","get the keyback");
+         if (keyCode == KeyEvent.KEYCODE_BACK) {
+        	     Log.e("TabControl","get keyback");
+				if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                         Object mHelperUtils;
+                         Toast.makeText(this, "press again to exit the app", Toast.LENGTH_SHORT).show();
+                         mExitTime = System.currentTimeMillis();
+
+                 } else {
+                	 finish();
+//                	 System.exit(0);
+                 }
+                 return true;
+         }
+         return super.onKeyDown(keyCode, event);
+ }
 	
 		
 		

@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -252,6 +253,26 @@ public class TabIR extends Activity {
 		irAdapter=new EtcAdapter(this, listItemsIR);
 		listViewIR.setAdapter(irAdapter);
 	}
+	
+
+	private long mExitTime;
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		 Log.e("TabControl","get the keyback");
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+       	     Log.e("TabControl","get keyback");
+				if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                        Object mHelperUtils;
+                        Toast.makeText(this, "press again to exit the app", Toast.LENGTH_SHORT).show();
+                        mExitTime = System.currentTimeMillis();
+
+                } else {
+               	 finish();
+//               	System.exit(0);
+                }
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+}
 
 
 }

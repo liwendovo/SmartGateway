@@ -221,6 +221,7 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		 TabControl.mViewSelected.imageviewClickLearnDefault(button[num-1]);
 		 progressDialog = new ProgressDialog(IR_Custom2.this);
 		 progressDialog.setMessage(getResources().getString(R.string.studying));
+		 progressDialog.setCancelable(false);
 		 progressDialog.setButton("Cancel", new DialogInterface.OnClickListener() {
              public void onClick(DialogInterface dialog, int i)
              {

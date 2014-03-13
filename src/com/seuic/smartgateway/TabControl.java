@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -123,6 +124,10 @@ public class TabControl extends ActivityGroup {
 		registerReceiver(connectionReceiver, intentFilter);
 	}
 	
+	
+	 
+
+	
 	@Override                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -144,6 +149,8 @@ public class TabControl extends ActivityGroup {
 		if (connectionReceiver != null) { 
 			unregisterReceiver(connectionReceiver); 
 		}
+        
+		System.exit(0);
 	}
 	
 	
