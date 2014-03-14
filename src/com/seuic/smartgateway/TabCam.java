@@ -41,7 +41,7 @@ public class TabCam extends Activity {
       	     Log.e("TabControl","get keyback");
 				if ((System.currentTimeMillis() - mExitTime) > 2000) {
                        Object mHelperUtils;
-                       Toast.makeText(this, "press again to exit the app", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(this, "press again to exit the app", TabControl.time).show();
                        mExitTime = System.currentTimeMillis();
 
                } else {

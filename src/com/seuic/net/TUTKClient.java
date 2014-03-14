@@ -262,7 +262,6 @@ public class TUTKClient {
         string ss=bytetostring(tmzByte);
 //        ByteArrayOutputStream tmzByte;
 //		tmzByte.write(bOut,9, 12);
-        
 //        Log.e("setTimeZone", " "+tmz[0]+" "+bytes2HexString(tmzByte)+"tmzByte[11]="+tmzByte[11]);
         Log.e("setTimeZone", " "+tmz[0]+" "+ss+"tmzByte[8]="+tmzByte[8]);
         int ret;

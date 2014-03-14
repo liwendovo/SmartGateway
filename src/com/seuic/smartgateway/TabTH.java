@@ -37,6 +37,27 @@ public class TabTH extends Activity {
 //   	    }
 //    };
 	
+	
+	 private Handler handler = new Handler();
+	    private Runnable runnable = new Runnable() {
+	        public void run() {
+	            this.update();
+	            handler.postDelayed(this, 1000 * 5);// 间隔120秒
+	        }
+	        void update() {
+	            //刷新msg的内容
+		         int[] th=new int[4];
+		 		 TUTKClient.getTH(th);
+		 		 if(th[2]>=0){
+			 		humi.setText(th[2]+"%");
+			 		if(!TabControl.tempmode) temp.setText(th[0]+"℃");
+			 		else temp.setText(th[0]+"℉");
+		 		 }
+		         Log.e("TabTH", "end onResume");
+	        }
+	    }; 
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -109,18 +130,8 @@ public class TabTH extends Activity {
 	 @Override
 	 protected void onResume() {
 	 
-		         super.onResume();	 
-		         Log.e("TabTH", "start onResume");
-		         int[] th=new int[4];
-		         TUTKClient.cancellearn(false);
-		 		 TUTKClient.getTH(th);
-		 		 if(th[2]>=0){
-			 		humi.setText(th[2]+"%");
-			 		if(!TabControl.tempmode) temp.setText(th[0]+"℃");
-			 		else temp.setText(th[0]+"℉");
-		 		 }
-		         Log.e("TabTH", "end onResume");
-		         
+		  super.onResume();	 
+		  handler.postDelayed(runnable, 10);// 打开定时器，执行操作  
   
 //		         new Thread(){        
 //				     @Override  
@@ -133,6 +144,13 @@ public class TabTH extends Activity {
 		         
 	 }
 	 
+	 @Override
+	    protected void onPause() {
+	        handler.removeCallbacks(runnable); //停止刷新
+	        super.onPause();
+	    }
+
+	 
 	 
 	 
 	 private long mExitTime;
@@ -142,7 +160,7 @@ public class TabTH extends Activity {
 	      	     Log.e("TabControl","get keyback");
 					if ((System.currentTimeMillis() - mExitTime) > 2000) {
 	                       Object mHelperUtils;
-	                       Toast.makeText(this, "press again to exit the app", Toast.LENGTH_SHORT).show();
+	                       Toast.makeText(this, "press again to exit the app", TabControl.time).show();
 	                       mExitTime = System.currentTimeMillis();
 
 	               } else {

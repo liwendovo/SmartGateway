@@ -68,7 +68,7 @@ public class IR_FAN extends Activity implements android.view.View.OnClickListene
 		leanrnBtn.setOnClickListener(this);
 		back_ll.setOnClickListener(this); 
 		titleBtn_ll.setOnClickListener(this);
-		for(int i=0;i<buttonMaxNum-1;i++){
+		for(int i=0;i<buttonMaxNum-4;i++){
 			button[i].setOnClickListener(this);
 			button[i].setOnLongClickListener(this);
 		}		
@@ -299,7 +299,7 @@ public class IR_FAN extends Activity implements android.view.View.OnClickListene
 	
 		 private void showProgressDialog(int num){  
 			 Log.e("IR_FAN", "num"+num);
-			 if(num==10||num==11)   TabControl.mViewSelected.imageviewClickLearnDefault(button[num-1]);	
+			 if(num>=4&&num<=7)   TabControl.mViewSelected.imageviewClickLearnDefault(button[num-1]);	
 			 else TabControl.mViewSelected.buttonClickLearnDefault(button[num-1]);
 			 progressDialog = new ProgressDialog(IR_FAN.this);
 			 progressDialog.setMessage(getResources().getString(R.string.studying));

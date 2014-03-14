@@ -195,9 +195,9 @@ public class DevChoiceAdapter extends BaseAdapter {
         			String[] ss=new String[2];
                 	ss=a[timezone].split("UTC"); 
                 	ss[1]=ss[1].replace("+",""); 
-                	int i=4*Integer.parseInt(ss[1]);  
+                	float i=4*Float.parseFloat(ss[1]);  
                 	Log.e("Device ", "timezone length="+ timezone);
-                	TUTKClient.setTimeZone(i);
+                	TUTKClient.setTimeZone((int)i);
         		}	
         		
         	}else{

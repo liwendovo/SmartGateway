@@ -77,9 +77,9 @@ public class SetupTime extends Activity implements android.view.View.OnClickList
             	  String[] ss=new String[2];
             	  ss=selectedName.split("UTC"); 
             	  ss[1]=ss[1].replace("+",""); 
-            	  int i=Integer.parseInt(ss[1]);            	
+            	  float i=4*Float.parseFloat(ss[1]);            	
             	  Log.e("SetupTime", ss[0]+" "+ss[1]+" "+i);
-            	  TUTKClient.setTimeZone(i);
+            	  TUTKClient.setTimeZone((int)i);
             }
 
 			@Override

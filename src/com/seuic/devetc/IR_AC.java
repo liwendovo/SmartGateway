@@ -73,7 +73,7 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 		leanrnBtn.setOnClickListener(this);
 		back_ll.setOnClickListener(this); 
 		titleBtn_ll.setOnClickListener(this);
-		for(int i=0;i<buttonMaxNum-1;i++){
+		for(int i=0;i<buttonMaxNum-2;i++){
 			button[i].setOnClickListener(this);
 			button[i].setOnLongClickListener(this);
 		}		

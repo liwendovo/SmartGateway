@@ -29,7 +29,8 @@ public class TabControl extends ActivityGroup {
 
 	public static boolean tempmode = true;
 	public static TabHost host = null;
-	private LayoutInflater mInflater = null;	
+	private LayoutInflater mInflater = null;
+	public static int time = 500;
 	public static SQLiteHelper mSQLHelper;
 	public static SQLiteDatabase writeDB;
 	public static ViewSelected mViewSelected;
