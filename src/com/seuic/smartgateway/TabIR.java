@@ -106,16 +106,15 @@ public class TabIR extends Activity {
 				 }else if(type.equals("FAN")){
 					 intent = new Intent(TabIR.this,IR_FAN.class);
 				 }else if(type.equals("CUSTOM1")){
-					 Command.IrSelected = true;
 					 intent = new Intent(TabIR.this, IR_Custom1.class);
 				 }else {
-					 Command.IrSelected = true;
 					 intent = new Intent(TabIR.this,IR_Custom2.class);
 				 }	
 				 
 				 
 				 intent.putExtra("uid",  TabControl.mUid);
 				 intent.putExtra("devid", devid);
+				 intent.putExtra("devType", "ir");
 				 startActivity(intent);	
 			}
 			});

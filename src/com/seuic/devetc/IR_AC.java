@@ -192,7 +192,9 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
          		showProgressDialog(curButton);
          		Log.e("IR_AC", " curButton"+curButton);
 	        	
-	        }
+	        }else{
+ 	        	send(1);
+         	} 
         	
 
         	break;
@@ -202,7 +204,9 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
          		curButton=2;	
          		showProgressDialog(curButton);
          		Log.e("IR_AC", " curButton"+curButton);
-        	}        	
+        	} else{
+ 	        	send(2);
+         	}        	
         	break;
         case R.id.button3:
         	if(lenclr==true){	        
@@ -210,7 +214,9 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
          		curButton=3;  
          		showProgressDialog(curButton);
          		Log.e("IR_AC", " curButton"+curButton);
-        	}        	
+        	}else{
+ 	        	send(3);
+         	}         	
         	break;        
         case R.id.button4:
         	if(lenclr==true){	        	
@@ -218,42 +224,54 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
          		curButton=4;
          		showProgressDialog(curButton);
 
-        	}
+        	}else{
+ 	        	send(4);
+         	} 
         	break;
         case R.id.button5:
         	if(lenclr==true){	         
 //        		showProgressDialog();
          		curButton=5;  
          		showProgressDialog(curButton);
-        	}
+        	}else{
+ 	        	send(5);
+         	} 
         	break;
         case R.id.button6:
         	if(lenclr==true){	        	 
 //        		showProgressDialog();
          		curButton=6;
          		showProgressDialog(curButton);
-        	}
+        	}else{
+ 	        	send(6);
+         	} 
         	break;
         case R.id.button7:
         	if(lenclr==true){	        	  
 //        		showProgressDialog();
          		curButton=7;   
          		showProgressDialog(curButton);
-        	}
+        	}else{
+ 	        	send(7);
+         	} 
         	break;
         case R.id.button8:
         	if(lenclr==true){	        	 
 //        		showProgressDialog();
          		curButton=8;	
          		showProgressDialog(curButton);
-        	}
+        	}else{
+ 	        	send(8);
+         	} 
         	break;
         case R.id.button9:
         	if(lenclr==true){	        	 
 //        		showProgressDialog();
          		curButton=9;
          		showProgressDialog(curButton);
-	        	}
+	        	}else{
+     	        	send(9);
+             	} 
         	break;     
         	
         case R.id.button10:
@@ -261,7 +279,9 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 //        		showProgressDialog();
          		curButton=10;
          		showProgressDialog(curButton);
-	        }
+	        }else{
+ 	        	send(10);
+         	} 
         	break;     
         	
         case R.id.button11:
@@ -269,7 +289,9 @@ public class IR_AC extends Activity implements android.view.View.OnClickListener
 //        		showProgressDialog();
          		curButton=11;
          		showProgressDialog(curButton);
-	        }
+	        }else{
+ 	        	send(11);
+         	} 
         	break;   
 
         default:  

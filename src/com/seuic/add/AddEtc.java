@@ -51,7 +51,7 @@ public class AddEtc extends Activity implements android.view.View.OnClickListene
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");	
 		if(mUid.equals("NULL")){
-			CustomToast.showToast(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT);		
+			CustomToast.showToast(getApplicationContext(),"can't add remote controller，please go to set interface to setup", Toast.LENGTH_SHORT);		
 			finish();
 			}
 		mClass=intent.getStringExtra("type");		

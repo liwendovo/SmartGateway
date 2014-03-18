@@ -96,12 +96,12 @@ public class TabSET extends Activity {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			if (setTempBtn.isChecked()) {
-				setTempBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+				setTempBtn.setBackgroundResource(R.drawable.rf_switch_blue);
 				TUTKClient.setTempMode(1);
 				TabControl.tempmode = false;
 				TabControl.mSQLHelper.updateFah(TabControl.writeDB,TabControl.mUid,1);			
 			} else {
-				setTempBtn.setBackgroundResource(R.drawable.rf_switch_blue);
+				setTempBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
 				TUTKClient.setTempMode(0);
 				TabControl.tempmode = true;
 				TabControl.mSQLHelper.updateFah(TabControl.writeDB,TabControl.mUid,0);

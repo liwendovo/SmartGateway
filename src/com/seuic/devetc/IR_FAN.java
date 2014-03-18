@@ -186,7 +186,9 @@ public class IR_FAN extends Activity implements android.view.View.OnClickListene
          		showProgressDialog(curButton);
          		Log.e("IR_AC", " curButton"+curButton);
 	        	
-	        }
+	        }else{
+ 	        	send(1);
+         	} 
         	
 
         	break;
@@ -196,7 +198,9 @@ public class IR_FAN extends Activity implements android.view.View.OnClickListene
          		curButton=2;	
          		showProgressDialog(curButton);
          		Log.e("IR_AC", " curButton"+curButton);
-        	}        	
+        	}else{
+ 	        	send(2);
+         	}         	
         	break;
         case R.id.button3:
         	if(lenclr==true){	        
@@ -204,7 +208,9 @@ public class IR_FAN extends Activity implements android.view.View.OnClickListene
          		curButton=3;  
          		showProgressDialog(curButton);
          		Log.e("IR_AC", " curButton"+curButton);
-        	}        	
+        	}else{
+ 	        	send(3);
+         	}         	
         	break;        
         case R.id.button4:
         	if(lenclr==true){	        	
@@ -212,28 +218,36 @@ public class IR_FAN extends Activity implements android.view.View.OnClickListene
          		curButton=4;
          		showProgressDialog(curButton);
 
-        	}
+        	}else{
+ 	        	send(4);
+         	} 
         	break;
         case R.id.button5:
         	if(lenclr==true){	         
 //        		showProgressDialog();
          		curButton=5;  
          		showProgressDialog(curButton);
-        	}
+        	}else{
+ 	        	send(5);
+         	} 
         	break;
         case R.id.button6:
         	if(lenclr==true){	        	 
 //        		showProgressDialog();
          		curButton=6;
          		showProgressDialog(curButton);
-        	}
+        	}else{
+ 	        	send(6);
+         	} 
         	break;
         case R.id.button7:
         	if(lenclr==true){	        	  
 //        		showProgressDialog();
          		curButton=7;   
          		showProgressDialog(curButton);
-        	}
+        	}else{
+ 	        	send(7);
+         	} 
         	break;
   
         default:  

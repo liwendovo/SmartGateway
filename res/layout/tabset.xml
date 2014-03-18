@@ -110,7 +110,7 @@
 	                     android:id="@+id/setTempBtn"
 	                     android:textOn=" " 
         				 android:textOff=" " 
-        				 android:background="@drawable/rf_switch_blue"
+        				 android:background="@drawable/rf_switch_yellow"
 	                     android:layout_width="wrap_content"
 	                     android:layout_height="wrap_content"	                     
 	                     android:layout_alignParentRight="true"

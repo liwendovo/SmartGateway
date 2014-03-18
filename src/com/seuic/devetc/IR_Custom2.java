@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import com.seuic.adapter.CustomToast;
 import com.seuic.net.TUTKClient;
-import com.seuic.smartgateway.Command;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 
@@ -34,7 +33,8 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 	int curButton=-1;
 	byte ioCtrlBuf[]=new byte[TUTKClient.MAX_SIZE_IOCTRL_BUF]; 
 	private ProgressDialog progressDialog;  
-	String mUid;	
+	String mUid;
+	String devType;
 	Boolean lenclr=false;
 	Cursor learnCursor;
 	Button  backBtn,leanrnBtn;
@@ -85,6 +85,7 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");
+		devType=intent.getStringExtra("devType");
 		devid=intent.getIntExtra("devid", 0);
 		if(devid==0){
 			Log.e("leewoo", "deid error = 0");
@@ -241,7 +242,7 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 	     @Override  
 	     public void run() {  
 	    	 Message learnMsg=new Message();
-	    	 if(Command.IrSelected){
+	    	 if(devType.equals("ir")){
 		    	 if(TUTKClient.learn(0,ioCtrlBuf))
 		    	 {
 		    		 learnMsg.what=0;
@@ -285,7 +286,11 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 		     @Override  
 		     public void run() {  
 //		    	 Message learnMsg=new Message();
-		    	 TUTKClient.send(learnCursor.getBlob(btnid+2),true);
+		    	 if(devType.equals("ir")){
+		    	     TUTKClient.send(learnCursor.getBlob(btnid+2),true);
+		    	 }else{
+		    		 TUTKClient.send(learnCursor.getBlob(btnid+2),false);
+		    	 }
 //		    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2),true))
 //		    	 {
 //		    		 learnMsg.what=0;

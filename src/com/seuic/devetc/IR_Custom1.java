@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import com.seuic.adapter.CustomToast;
 import com.seuic.net.TUTKClient;
-import com.seuic.smartgateway.Command;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 
@@ -42,6 +41,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	byte ioCtrlBuf[]=new byte[TUTKClient.MAX_SIZE_IOCTRL_BUF]; 
 	int devid;
 	String mUid;
+	String devType;
 	Cursor learnCursor;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -181,7 +181,9 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
          		curButton=1;
          		showProgressDialog(curButton);
 	        	
-	        }
+	        }else{
+ 	        	send(1);
+         	} 
         	
 
         	break;
@@ -190,14 +192,18 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         		
          		curButton=2;
          		showProgressDialog(curButton);
-        	}        	
+        	}else{
+ 	        	send(2);
+         	}         	
         	break;
         case R.id.button3:
         	if(lenclr==true){	        
         		
          		curButton=3; 
          		showProgressDialog(curButton);
-        	}        	
+        	}else{
+ 	        	send(3);
+         	}         	
         	break;        
         case R.id.button4:
         	if(lenclr==true){	        	
@@ -205,42 +211,54 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
          		curButton=4;
          		showProgressDialog(curButton);
 
-        	}
+        	}else{
+ 	        	send(4);
+         	} 
         	break;
         case R.id.button5:
         	if(lenclr==true){	         
         		
          		curButton=5;
          		showProgressDialog(curButton);
-        	}
+        	}else{
+ 	        	send(5);
+         	} 
         	break;
         case R.id.button6:
         	if(lenclr==true){	        	 
         		
          		curButton=6;
          		showProgressDialog(curButton);
-        	}
+        	}else{
+ 	        	send(6);
+         	} 
         	break;
         case R.id.button7:
         	if(lenclr==true){	        	  
         		
          		curButton=7; 
          		showProgressDialog(curButton);
-        	}
+        	}else{
+ 	        	send(7);
+         	} 
         	break;
         case R.id.button8:
         	if(lenclr==true){	        	 
         		
          		curButton=8;	
          		showProgressDialog(curButton);
-        	}
+        	}else{
+ 	        	send(8);
+         	} 
         	break;
         case R.id.button9:
         	if(lenclr==true){	        	 
         		
          		curButton=9;
          		showProgressDialog(curButton);
-	        	}
+	        	}else{
+     	        	send(9);
+             	} 
         	break;     
         	
         case R.id.button10:
@@ -248,7 +266,9 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
         		
          		curButton=10;
          		showProgressDialog(curButton);
-	        }
+	        }else{
+ 	        	send(10);
+         	} 
         	break;     
         	
 
@@ -359,7 +379,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		     @Override  
 		     public void run() {  
 		    	 Message learnMsg=new Message();
-		    	 if(Command.IrSelected){
+		    	 if(devType.equals("ir")){
 			    	 if(TUTKClient.learn(0,ioCtrlBuf))
 			    	 {
 			    		 learnMsg.what=0;
@@ -414,7 +434,12 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 //				    	 Message learnMsg=new Message();
 				    	 String str=new String(learnCursor.getBlob(btnid+2));	
 				    	 Log.e("IR_Custom1", ""+str);
-				    	 TUTKClient.send(learnCursor.getBlob(btnid+2),true);
+				    	 
+				    	 if(devType.equals("ir")){
+				    	     TUTKClient.send(learnCursor.getBlob(btnid+2),true);
+				    	 }else{
+				    		 TUTKClient.send(learnCursor.getBlob(btnid+2),false);
+				    	 }
 //				    	 if(TUTKClient.send(learnCursor.getBlob(btnid+2),true))
 //				    	 {
 //				    		 learnMsg.what=0;

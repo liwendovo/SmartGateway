@@ -67,7 +67,7 @@ public class TabRF extends Activity {
 			@Override	
 			public void onClick(View source){	
 				if(TabControl.mUid.equals("NULL")){
-					CustomToast.showToast(getApplicationContext(),"无法添加遥控器，请先到Set界面进行设置", Toast.LENGTH_SHORT);		
+					CustomToast.showToast(getApplicationContext(),"can't add remote controller，please go to set interface to setup", Toast.LENGTH_SHORT);		
 					
 				}else{
 				 Intent intent = new Intent(TabRF.this, AddEtc.class);	
@@ -101,10 +101,8 @@ public class TabRF extends Activity {
 				 }else if(type.equals("Power")){
 					 intent = new Intent(TabRF.this,RF_Power.class);
 				 }else if(type.equals("CUSTOM1")){
-					 Command.IrSelected = false;
 					 intent = new Intent(TabRF.this,IR_Custom1.class);
 				 }else {
-					 Command.IrSelected = false;
 					 intent = new Intent(TabRF.this,IR_Custom2.class);
 				 }			
 				 
