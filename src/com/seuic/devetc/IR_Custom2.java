@@ -242,6 +242,7 @@ public class IR_Custom2 extends Activity implements android.view.View.OnClickLis
 	     @Override  
 	     public void run() {  
 	    	 Message learnMsg=new Message();
+	    	 Log.e("IR_Custom1 devType", "devType"+devType);
 	    	 if(devType.equals("ir")){
 		    	 if(TUTKClient.learn(0,ioCtrlBuf))
 		    	 {

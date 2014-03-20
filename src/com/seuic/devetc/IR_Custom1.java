@@ -103,6 +103,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		Intent intent=getIntent();
 		mUid=intent.getStringExtra("uid");
 		devid=intent.getIntExtra("devid", 0);
+		devType=intent.getStringExtra("devType");
 		if(devid==0){
 			Log.e("leewoo", "deid error = 0");
 		}
@@ -332,8 +333,9 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		 builder.setMessage("Please input name");
 		 builder.setTitle("Button name");
 		 final EditText et=new EditText(this);
-//		 InputFilter[] filters = {new LengthFilter(10)}; 
-//		 et.setFilters(filters); 
+		 InputFilter[] filters = {new InputFilter.LengthFilter(8)};   
+		 et.setFilters(filters); 
+		 et.setSingleLine(true);
 		 builder.setView(et);
 		 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 		@Override
@@ -379,6 +381,7 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 		     @Override  
 		     public void run() {  
 		    	 Message learnMsg=new Message();
+		    	 Log.e("IR_Custom1 devType", "devType"+devType);
 		    	 if(devType.equals("ir")){
 			    	 if(TUTKClient.learn(0,ioCtrlBuf))
 			    	 {

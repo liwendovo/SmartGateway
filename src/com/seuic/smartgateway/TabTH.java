@@ -42,7 +42,7 @@ public class TabTH extends Activity {
 	    private Runnable runnable = new Runnable() {
 	        public void run() {
 	            this.update();
-	            handler.postDelayed(this, 1000 * 5);// 间隔120秒
+	            handler.postDelayed(this, 1000 * 5);// 间隔5秒
 	        }
 	        void update() {
 	            //刷新msg的内容

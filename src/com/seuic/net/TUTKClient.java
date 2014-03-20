@@ -538,7 +538,7 @@ public class TUTKClient {
                     System.out.printf("[%s] IOTC_ER_REMOTE_TIMEOUT_DISCONNECT\n",
                             Thread.currentThread().getName());
                     TabControl.mUid="NULL";
-                    
+                    TabControl.tempmode=true;
 //                    AlertDialog.Builder builder = new Builder(Context); 
 //                    builder.setMessage("Are you sure you want to exit?") 
 //                           .setCancelable(false) 

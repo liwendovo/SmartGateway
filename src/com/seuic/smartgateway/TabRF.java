@@ -108,6 +108,7 @@ public class TabRF extends Activity {
 				 
 				 intent.putExtra("uid",  TabControl.mUid);
 				 intent.putExtra("devid", devid);
+				 intent.putExtra("devType", "rf");
 				 startActivity(intent);	
 			}
 			

@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -289,6 +290,9 @@ public class IR_FAN extends Activity implements android.view.View.OnClickListene
 		 builder.setMessage("Please input name");
 		 builder.setTitle("Button name");
 		 final EditText et=new EditText(this);
+		 InputFilter[] filters = {new InputFilter.LengthFilter(8)};   
+		 et.setFilters(filters); 
+		 et.setSingleLine(true);
 		 builder.setView(et);
 		 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 		@Override
