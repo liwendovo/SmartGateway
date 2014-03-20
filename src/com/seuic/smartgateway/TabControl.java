@@ -1,18 +1,24 @@
 package com.seuic.smartgateway;
 import android.app.ActivityGroup;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.Toast;
@@ -37,6 +43,30 @@ public class TabControl extends ActivityGroup {
 	BroadcastReceiver connectionReceiver;	
 	public static TUTKClient mClient=null;	
 	public static  String mUid="NULL";	//当有设备online时为相应的uid
+	
+	
+	public Handler tutkHandler = new Handler(){ 
+        @Override  
+        public void handleMessage(Message msg) {  
+          AlertDialog.Builder builder = new Builder(TabControl.this); 
+          builder.setMessage("Are you sure you want to exit?") 
+                 .setCancelable(false) 
+                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() { 
+                     public void onClick(DialogInterface dialog, int id) { 
+                  	   
+                  	   Intent intent = new Intent();
+                  	   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
+                  	   intent.setClass(TabControl.this, TabSET.class);
+                  	   startActivity(intent);
+                     }
+         
+                 }); 
+          AlertDialog alert = builder.create(); 
+          alert.getWindow().setType((WindowManager.LayoutParams.TYPE_SYSTEM_ALERT));
+          alert.show();
+        	
+        }
+	};
 	
 	
 	
@@ -135,6 +165,7 @@ public class TabControl extends ActivityGroup {
 		super.onStart();	
 //		mUid=myPreferences.getString("uid", "NULL");
 		Log.e("leewoo", "TabControl---onStart："+mUid);
+	
 	}
 
 	@Override

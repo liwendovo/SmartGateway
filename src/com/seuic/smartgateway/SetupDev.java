@@ -35,8 +35,8 @@ public class SetupDev extends Activity implements android.view.View.OnClickListe
 	private DevChoiceAdapter mAdapter;
 	Button addDevBtn;
 	
-//	public static SharedPreferences myPreferences;
-//	public static SharedPreferences.Editor editor;	
+	public static SharedPreferences myPreferences;
+	public static SharedPreferences.Editor editor;	
 	public SQLiteDatabase writeDB;
 
 	@Override
@@ -55,8 +55,8 @@ public class SetupDev extends Activity implements android.view.View.OnClickListe
 		
     	back_ll=(LinearLayout)findViewById(R.id.back_ll);
 		titleBtn_ll=(LinearLayout)findViewById(R.id.titleBtn_ll);
-//		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);		
-//		editor= myPreferences.edit();
+		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);		
+		editor= myPreferences.edit();
 		mListView = (ListView)findViewById(R.id.devListView);	
 		
 		homeBtn.setOnClickListener(this); 

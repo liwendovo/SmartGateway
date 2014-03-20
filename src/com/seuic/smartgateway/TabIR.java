@@ -7,7 +7,9 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -42,6 +44,8 @@ public class TabIR extends Activity {
 	Button titleBtn,homeBtn;
 	ImageView titlePic;	
 //	String mUid=null;	
+	private Context context; 
+	private ProgressDialog progressDialog; 
 	ListView listViewIR;
 	EtcAdapter irAdapter;
 //	SharedPreferences myPreferences;	

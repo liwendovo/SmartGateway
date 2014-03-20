@@ -9,6 +9,7 @@ import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Message;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -539,27 +540,12 @@ public class TUTKClient {
                             Thread.currentThread().getName());
                     TabControl.mUid="NULL";
                     TabControl.tempmode=true;
-//                    AlertDialog.Builder builder = new Builder(Context); 
-//                    builder.setMessage("Are you sure you want to exit?") 
-//                           .setCancelable(false) 
-//                           .setPositiveButton("Yes", new DialogInterface.OnClickListener() { 
-//                               public void onClick(DialogInterface dialog, int id) { 
-//                            	   
-//                            	   Intent intent = new Intent();
-//                            	   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
-//                            	   intent.setClass(Context, TabSET.class);
-//                            	   startActivity(intent);
-//                               }
-//                               
-//
-//							private void startActivity(Intent intent) {
-//								// TODO Auto-generated method stub
-//								
-//							} 
-//                           }); 
-//                    AlertDialog alert = builder.create(); 
-//                    alert.getWindow().setType((WindowManager.LayoutParams.TYPE_SYSTEM_ALERT));
-//                    alert.show();
+                    
+// 
+//           		Message learnMsg=new Message();
+//           		tutkHandler.sendMessage(learnMsg); 
+
+
                     
                     CustomToast.showToast(Context, "it has disconnected with the device ", Toast.LENGTH_LONG); 
                     break;
@@ -601,7 +587,7 @@ public class TUTKClient {
                             Thread.currentThread().getName(), ret);
                     break;
                 }
-                else if (ret < 3) {
+                else if (ret < 3) {              
                     try {
                         Thread.sleep(120);
                         continue;

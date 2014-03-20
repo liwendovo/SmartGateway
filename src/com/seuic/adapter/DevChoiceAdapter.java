@@ -33,7 +33,7 @@ public class DevChoiceAdapter extends BaseAdapter {
 
     private List<Map<String, Object>> data;
     private Context context; 
-    int  currentID = -1;
+    public static int  currentID = -1;
     private ProgressDialog progressDialog; 
 //    StatusListener mStatusListener;
     private float x,ux;
