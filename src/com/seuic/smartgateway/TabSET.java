@@ -30,12 +30,10 @@ public class TabSET extends Activity {
 
 	Button titleBtn,homeBtn;
 	ImageView titlePic;
-	private Context context; 
-	private ProgressDialog progressDialog; 
+	SharedPreferences myPre;	
 	ToggleButton setTempBtn;
 	RelativeLayout    layoutDev,layoutCam,layoutTemp,layoutTime,layoutReset,layoutAbout;
-//	SharedPreferences myPreferences;
-//	SharedPreferences.Editor editor;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,12 +68,8 @@ public class TabSET extends Activity {
 		
 		setTempBtn=(ToggleButton)findViewById(R.id.setTempBtn);
 		
-		if(TabControl.mUid!="NULL"){
-			String uid = TabControl.mUid; 
-			showProgressDialog(uid);
-			
-			
-		}
+		
+
 		
 
 		layoutDev.setOnClickListener(new OnClickListener() {
@@ -220,61 +214,8 @@ public class TabSET extends Activity {
          return super.onKeyDown(keyCode, event);
  }
 	
-	 
-	 public void showProgressDialog(final String uid){  
-		 progressDialog = ProgressDialog.show(context,"" , "Connecting...", true, false); 
-		 new Thread(){        
-		     @Override  
-		     public void run() {  
-		    Message startMsg=new Message();
-//		       TUTKClient.stop();
-			   if(TUTKClient.start(uid))				 
-			   {
-				   startMsg.what=0;
-			   }else{
-				   startMsg.what=1;
-			   }			   
-		       handler.sendMessage(startMsg);  
-		     }
-		   }.start();      
-	 }
-	 
-	 private Handler handler = new Handler(){ 
-	        @Override  
-	        public void handleMessage(Message msg) {  
-	        	if(0==msg.what)
-	        	{
-	        		CustomToast.showToast(context, "Connect success", Toast.LENGTH_SHORT); 
-	        		Cursor cursor=TabControl.mSQLHelper.seleteSetup(TabControl.writeDB,TabControl.mUid);
-//	        		Log.e("leewoo", "Tabset---onStart->cur:"+cursor.getCount()+" mUid:"+TabControl.mUid);
-	        		if(cursor.getCount()>0){
-	        			int fah=cursor.getInt(3);
-	        			int hour=cursor.getInt(4);   
-	        			int timezone=cursor.getInt(5);  
-	        		
-	        			TUTKClient.setTempMode(fah);
-	        			TUTKClient.setHourMode(hour);
-	        			String a[]=context.getResources().getStringArray(R.array.timezone_entries);   
-	        			String[] ss=new String[2];
-	                	ss=a[timezone].split("UTC"); 
-	                	ss[1]=ss[1].replace("+",""); 
-	                	float i=4*Float.parseFloat(ss[1]);  
-	                	Log.e("Device ", "timezone length="+ timezone);
-	                	TUTKClient.setTimeZone((int)i);
-	        		}	
-	        		
-	        	}else{
-	        		CustomToast.showToast(context, "Can not connect to device, please check your device or if has connect to a wireless network", Toast.LENGTH_LONG); 
-	        		DevChoiceAdapter.currentID=-1;
-//	        		SetupDev.editor.putString("uid","NULL");
-//					SetupDev.editor.commit();
-					TabControl.mUid="NULL";//Œ¥¡¨Ω”÷√ø’
-//	        		notifyDataSetChanged();
-	        	}
-//	            //πÿ±’ProgressDialog  
-	            progressDialog.dismiss(); 
-
-	        }};  
+	
+	
 		
 		
 	

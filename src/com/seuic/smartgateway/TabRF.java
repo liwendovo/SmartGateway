@@ -53,7 +53,7 @@ public class TabRF extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabrf);
 //		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
-
+		Log.e("leewoo","TabRF-->onCreate");
 
 		homeBtn=(Button)findViewById(R.id.back);
 		titlePic=(ImageView)findViewById(R.id.pic);
@@ -186,7 +186,7 @@ public class TabRF extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		
+		Log.e("leewoo","TabRF-->onStart");
 //		mUid=myPreferences.getString("uid", "NULL");	
 		if (TabControl.mUid.equals("NULL")) {
 //			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();	

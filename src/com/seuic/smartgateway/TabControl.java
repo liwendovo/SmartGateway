@@ -1,4 +1,5 @@
 package com.seuic.smartgateway;
+import android.app.Activity;
 import android.app.ActivityGroup;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -43,6 +45,7 @@ public class TabControl extends ActivityGroup {
 	BroadcastReceiver connectionReceiver;	
 	public static TUTKClient mClient=null;	
 	public static  String mUid="NULL";	//当有设备online时为相应的uid
+	SharedPreferences myPre;
 	
 	
 	public Handler tutkHandler = new Handler(){ 
@@ -80,6 +83,9 @@ public class TabControl extends ActivityGroup {
 //		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
 //		editor= myPreferences.edit();
 		mViewSelected=new ViewSelected();
+		
+		myPre= getSharedPreferences("devset", Activity.MODE_PRIVATE);
+		TabControl.mUid = myPre.getString("uid", "NULL");	
 
 		mInflater = LayoutInflater.from(this);
 		host = (TabHost) findViewById(R.id.tabhost);
@@ -118,16 +124,26 @@ public class TabControl extends ActivityGroup {
 				.newTabSpec("SET")
 				.setIndicator(tab5Spec)
 				.setContent(intent));
-		host.setCurrentTab(4);
+		
+		
+		if (!TabControl.mUid.equals("NULL")) {	
+			Log.e("TabControl","mUid is not NULL");
+		    host.setCurrentTab(0);
+		}else{
+			Log.e("TabControl","mUid is NULL");
+			host.setCurrentTab(4);
+		}
+		
+		
 		host.setOnTabChangedListener(new OnTabChangeListener() {
 			   @Override
 			   public void onTabChanged(String tabId) {
 			    // TODO Auto-generated method stub
 			
-			    if(mUid=="NULL")
-			    {
+				   myPre= getSharedPreferences("devset", Activity.MODE_PRIVATE);
+					String mUid = myPre.getString("uid", "NULL");	
+					if (mUid.equals("NULL")) {	
 			    	host.setCurrentTab(4);
-//			    	Toast.makeText(getApplicationContext(),getResources().getString(R.string.activateinfo), Toast.LENGTH_SHORT).show();	
 			    	CustomToast.showToast(getApplicationContext(),getResources().getString(R.string.activateinfo), Toast.LENGTH_SHORT);
 			    }
 			  }

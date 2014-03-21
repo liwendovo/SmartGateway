@@ -48,7 +48,7 @@ public class TabTH extends Activity {
 	            //Ë¢ÐÂmsgµÄÄÚÈÝ
 		         int[] th=new int[4];
 		 		 TUTKClient.getTH(th);
-		 		 if(th[2]>=0){
+		 		 if(th[2]>0){
 			 		humi.setText(th[2]+"%");
 			 		if(!TabControl.tempmode) temp.setText(th[0]+"¡æ");
 			 		else temp.setText(th[0]+"¨H");

@@ -15,6 +15,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -28,6 +30,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.seuic.adapter.CustomToast;
+import com.seuic.adapter.DevChoiceAdapter;
 import com.seuic.adapter.EtcAdapter;
 import com.seuic.add.AddEtc;
 import com.seuic.devetc.IR_AC;
@@ -39,6 +42,7 @@ import com.seuic.devetc.IR_Media;
 import com.seuic.devetc.IR_STU;
 import com.seuic.devetc.IR_TV;
 import com.seuic.devetc.IR_WH;
+import com.seuic.net.TUTKClient;
 
 public class TabIR extends Activity {
 	Button titleBtn,homeBtn;
@@ -48,7 +52,9 @@ public class TabIR extends Activity {
 	private ProgressDialog progressDialog; 
 	ListView listViewIR;
 	EtcAdapter irAdapter;
-//	SharedPreferences myPreferences;	
+	SharedPreferences myPre;	
+//	SharedPreferences myPreferences;
+//	SharedPreferences.Editor editor;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,6 +66,16 @@ public class TabIR extends Activity {
     	homeBtn.setBackgroundResource(R.drawable.ep_logo);
     	titlePic.setImageResource(R.drawable.tab_ir);
     	titleBtn.setBackgroundResource(R.drawable.title_add);
+    	
+
+		
+		
+		if (!TabControl.mUid.equals("NULL")) {	 
+			Log.e("TabIR","connecting mUid is not NULL");
+			showProgressDialog(TabControl.mUid);
+		}else{
+			Log.e("TabIR","connecting mUid is NULL");
+		}
     	
     	
     	
@@ -193,6 +209,18 @@ public class TabIR extends Activity {
 //			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();	
 //			finish();
 //		}
+		
+//		myPre= getSharedPreferences("devset", Activity.MODE_PRIVATE);
+//		String mUid = myPre.getString("uid", "NULL");	
+//		if (!mUid.equals("NULL")) {	 
+//			Log.e("TabIR","connecting mUid is not NULL");
+//			showProgressDialog(mUid);
+//		}else{
+//			Log.e("TabIR","connecting mUid is not NULL");
+//		}
+		
+		
+		
 		Log.e("leewoo","mUid="+TabControl.mUid);
 		Cursor cur=TabControl.mSQLHelper.seleteListClass(TabControl.writeDB, TabControl.mUid,"ir");
 		Log.e("leewoo","count="+cur.getCount());
@@ -276,7 +304,63 @@ public class TabIR extends Activity {
         }
         return super.onKeyDown(keyCode, event);
 }
+	
+	
+	 public void showProgressDialog(final String uid){  
+		 progressDialog = ProgressDialog.show(this,"" , "Connecting...", true, false); 
+		 new Thread(){        
+		     @Override  
+		     public void run() {  
+		    Message startMsg=new Message();
+//		       TUTKClient.stop();
+			   if(TUTKClient.start(uid))				 
+			   {
+				   startMsg.what=0;
+			   }else{
+				   startMsg.what=1;
+			   }			   
+		       handler.sendMessage(startMsg);  
+		     }
+		   }.start();      
+	 }
+	 
+	 private Handler handler = new Handler(){ 
+	        @Override  
+	        public void handleMessage(Message msg) {  
+	        	if(0==msg.what)
+	        	{
+	        		CustomToast.showToast(getApplicationContext(), "Connect success", Toast.LENGTH_LONG); 
+	        		Cursor cursor=TabControl.mSQLHelper.seleteSetup(TabControl.writeDB,TabControl.mUid);
+//	        		Log.e("leewoo", "Tabset---onStart->cur:"+cursor.getCount()+" mUid:"+TabControl.mUid);
+	        		if(cursor.getCount()>0){
+	        			int fah=cursor.getInt(3);
+	        			int hour=cursor.getInt(4);   
+	        			int timezone=cursor.getInt(5);  
+	        		
+	        			TUTKClient.setTempMode(fah);
+	        			TUTKClient.setHourMode(hour);
+	        			String a[]=getApplicationContext().getResources().getStringArray(R.array.timezone_entries);   
+	        			String[] ss=new String[2];
+	                	ss=a[timezone].split("UTC"); 
+	                	ss[1]=ss[1].replace("+",""); 
+	                	float i=4*Float.parseFloat(ss[1]);  
+	                	Log.e("Device ", "timezone length="+ timezone);
+	                	TUTKClient.setTimeZone((int)i);
+	        		}	
+	        		
+	        	}else{
+	        		CustomToast.showToast(getApplicationContext(), "Can not connect to device, please check your device or if has connect to a wireless network", Toast.LENGTH_LONG); 
+	        		DevChoiceAdapter.currentID=-1;
+	        		SetupDev.editor.putString("uid","NULL");
+					SetupDev.editor.commit();
+					TabControl.mUid="NULL";//未连接置空
+//	        		notifyDataSetChanged();
+	        	}
+//	            //关闭ProgressDialog  
+	            progressDialog.dismiss(); 
 
+	        }};  
+	 
 
 }
   
