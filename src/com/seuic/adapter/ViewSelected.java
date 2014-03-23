@@ -57,13 +57,14 @@ public class ViewSelected {
    public final static OnTouchListener imageViewOnTouchListener=new OnTouchListener() {     
     @Override    
     public boolean onTouch(View v, MotionEvent event) {   
-
+    	Log.e("ViewSelected", " event.getAction() ="+event.getAction());
       if(event.getAction() == MotionEvent.ACTION_DOWN){     
     	  	((ImageView) v).setColorFilter(new ColorMatrixColorFilter(SELECTED)); 
-
+    	  	Log.e("ViewSelected", " ImageView SELECTED");
       }     
-     else if(event.getAction() == MotionEvent.ACTION_UP){   
+     else if(event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_MOVE){   
     	  ((ImageView) v).setColorFilter(new ColorMatrixColorFilter(NOT_SELECTED)); 
+    	  Log.e("ViewSelected", " ImageView NOT_SELECTED");
      }     
     return false;     
     }     
@@ -79,12 +80,12 @@ public class ViewSelected {
       if(event.getAction() == MotionEvent.ACTION_DOWN){     
     	  v.getBackground().setColorFilter(new ColorMatrixColorFilter(SELECTED)); 
     	  v.setBackgroundDrawable(v.getBackground());   
-    	  Log.e("ViewSelected", " SELECTED");
+    	  Log.e("ViewSelected", " button SELECTED");
       }     
-     else if(event.getAction() == MotionEvent.ACTION_UP){     
+     else if(event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_MOVE){     
     	 v.getBackground().setColorFilter(new ColorMatrixColorFilter(NOT_SELECTED));
 	     v.setBackgroundDrawable(v.getBackground());  
-	     Log.e("ViewSelected", "NOT_SELECTED");
+	     Log.e("ViewSelected", "button NOT_SELECTED");
          
      }     
     return false;     
@@ -107,7 +108,6 @@ public class ViewSelected {
    {
 
 	   inView.getBackground().setColorFilter(new ColorMatrixColorFilter(LEARNED)); 
-	 
 	   inView.setBackgroundDrawable(inView.getBackground());
 	   inView.setEnabled(false);
    }
@@ -116,7 +116,6 @@ public class ViewSelected {
    {
 
 	   ((ImageView) inView).setColorFilter(new ColorMatrixColorFilter(LEARNED)); 
-	 
 	   inView.setEnabled(false);
    }
    

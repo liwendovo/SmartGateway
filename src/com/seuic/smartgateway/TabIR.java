@@ -203,7 +203,7 @@ public class TabIR extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		Log.e("leewoo","TabIR-->onStart");
+		Log.e("TabIR","TabIR-->onStart");
 //		mUid=myPreferences.getString("uid", "NULL");	
 //		if (mUid.equals("NULL")) {
 //			Toast.makeText(getApplicationContext(),"设备为设置，请到Set界面添加设备", Toast.LENGTH_SHORT).show();	
@@ -221,7 +221,7 @@ public class TabIR extends Activity {
 		
 		
 		
-		Log.e("leewoo","mUid="+TabControl.mUid);
+		Log.e("TabIR","mUid="+TabControl.mUid);
 		Cursor cur=TabControl.mSQLHelper.seleteListClass(TabControl.writeDB, TabControl.mUid,"ir");
 		Log.e("leewoo","count="+cur.getCount());
 //		if(0==cur.getCount()){
