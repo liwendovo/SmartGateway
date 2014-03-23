@@ -336,7 +336,7 @@ public class TabIR extends Activity {
 	        			int fah=cursor.getInt(3);
 	        			int hour=cursor.getInt(4);   
 	        			int timezone=cursor.getInt(5);  
-	        		
+	        			Log.e("TabIR ", "fah="+ fah);
 	        			TUTKClient.setTempMode(fah);
 	        			TUTKClient.setHourMode(hour);
 	        			String a[]=getApplicationContext().getResources().getStringArray(R.array.timezone_entries);   
@@ -351,8 +351,8 @@ public class TabIR extends Activity {
 	        	}else{
 	        		CustomToast.showToast(getApplicationContext(), "Can not connect to device, please check your device or if has connect to a wireless network", Toast.LENGTH_LONG); 
 	        		DevChoiceAdapter.currentID=-1;
-	        		SetupDev.editor.putString("uid","NULL");
-					SetupDev.editor.commit();
+	        		TabControl.editor.putString("uid","NULL");
+	        		TabControl.editor.commit();
 					TabControl.mUid="NULL";//Œ¥¡¨Ω”÷√ø’
 //	        		notifyDataSetChanged();
 	        	}

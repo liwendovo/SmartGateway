@@ -29,8 +29,7 @@ import android.widget.ToggleButton;
 public class TabSET extends Activity {
 
 	Button titleBtn,homeBtn;
-	ImageView titlePic;
-	SharedPreferences myPre;	
+	ImageView titlePic;	
 	ToggleButton setTempBtn;
 	RelativeLayout    layoutDev,layoutCam,layoutTemp,layoutTime,layoutReset,layoutAbout;
 
@@ -98,12 +97,16 @@ public class TabSET extends Activity {
 			if (setTempBtn.isChecked()) {
 				setTempBtn.setBackgroundResource(R.drawable.rf_switch_blue);
 				TUTKClient.setTempMode(1);
-				TabControl.tempmode = false;
+				TabControl.editor.putBoolean("tempmode",false);
+				TabControl.editor.commit();
+//				TabControl.tempmode = false;
 				TabControl.mSQLHelper.updateFah(TabControl.writeDB,TabControl.mUid,1);			
 			} else {
 				setTempBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
 				TUTKClient.setTempMode(0);
-				TabControl.tempmode = true;
+				TabControl.editor.putBoolean("tempmode",true);
+				TabControl.editor.commit();
+//				TabControl.tempmode = true;
 				TabControl.mSQLHelper.updateFah(TabControl.writeDB,TabControl.mUid,0);
 				
 			}
@@ -179,12 +182,12 @@ public class TabSET extends Activity {
 			int fah=cursor.getInt(3);
 			if (fah==1) {
 				Log.e("leewoo", "fah==1");
-				setTempBtn.setChecked(true);
-				setTempBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
+				setTempBtn.setChecked(false);
+				setTempBtn.setBackgroundResource(R.drawable.rf_switch_blue);	
 			}else{
 				Log.e("leewoo", "fah==0");
-				setTempBtn.setChecked(false);
-				setTempBtn.setBackgroundResource(R.drawable.rf_switch_blue);				
+				setTempBtn.setChecked(true);
+				setTempBtn.setBackgroundResource(R.drawable.rf_switch_yellow);
 			}
 		
 		}else{

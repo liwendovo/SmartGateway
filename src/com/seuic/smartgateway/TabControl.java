@@ -35,7 +35,7 @@ public class TabControl extends ActivityGroup {
 	public final static String[] itemsIR = {"TV", "AC","MEDIA","STU","WH", "DVD","FAN","CUSTOM1","CUSTOM2"}; 
 	public final static String[] itemsRF = {"Switch", "Lamp", "Curtain","Power","CUSTOM1","CUSTOM2"}; 	
 
-	public static boolean tempmode = true;
+//	public static boolean tempmode = true;
 	public static TabHost host = null;
 	private LayoutInflater mInflater = null;
 	public static int time = 500;
@@ -45,7 +45,9 @@ public class TabControl extends ActivityGroup {
 	BroadcastReceiver connectionReceiver;	
 	public static TUTKClient mClient=null;	
 	public static  String mUid="NULL";	//当有设备online时为相应的uid
-	SharedPreferences myPre;
+	public static SharedPreferences myPre;
+	public static SharedPreferences myPreferences;
+	public static SharedPreferences.Editor editor;	
 	
 	
 	public Handler tutkHandler = new Handler(){ 
@@ -80,8 +82,9 @@ public class TabControl extends ActivityGroup {
 		
 		mSQLHelper = new SQLiteHelper(this,"smartgateway.db",1); //数据库
 		writeDB=mSQLHelper.getWritableDatabase();
-//		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);
-//		editor= myPreferences.edit();
+
+		myPreferences= getSharedPreferences("devset", Activity.MODE_PRIVATE);		
+		editor= myPreferences.edit();
 		mViewSelected=new ViewSelected();
 		
 		myPre= getSharedPreferences("devset", Activity.MODE_PRIVATE);
@@ -140,8 +143,8 @@ public class TabControl extends ActivityGroup {
 			   public void onTabChanged(String tabId) {
 			    // TODO Auto-generated method stub
 			
-				   myPre= getSharedPreferences("devset", Activity.MODE_PRIVATE);
-					String mUid = myPre.getString("uid", "NULL");	
+//				   myPre= getSharedPreferences("devset", Activity.MODE_PRIVATE);
+//					String mUid = myPre.getString("uid", "NULL");	
 					if (mUid.equals("NULL")) {	
 			    	host.setCurrentTab(4);
 			    	CustomToast.showToast(getApplicationContext(),getResources().getString(R.string.activateinfo), Toast.LENGTH_SHORT);

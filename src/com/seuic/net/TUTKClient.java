@@ -208,12 +208,13 @@ public class TUTKClient {
     	    ret = av.avSendIOCtrl(avIndex, OTYPE_BL_BOX_SET_TEMPERATURE_MODE_REQ, tempModeByte,tempModeByte.length);
     	  	if(ret < 0)
     	    {
-//    	        printf("setdevicetime failed[%d]\n", ret);
+    	        Log.e("setTempMode", " FAILED");
     	        return false;
     	    }
     	  	 int ioType[]=new int[1];
           	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
     	     int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
+    	     Log.e("setTempMode", "avRecvIOCtrl returnvalue="+returnvalue);
     	     if (returnvalue>0&&(ioType[0]==OTYPE_BL_BOX_SET_TEMPERATURE_MODE_RESP)) {
     	    	  Log.e("setTempMode", " OK");
     	        return true;
@@ -539,7 +540,6 @@ public class TUTKClient {
                     System.out.printf("[%s] IOTC_ER_REMOTE_TIMEOUT_DISCONNECT\n",
                             Thread.currentThread().getName());
                     TabControl.mUid="NULL";
-                    TabControl.tempmode=true;
                     
 // 
 //           		Message learnMsg=new Message();

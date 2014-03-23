@@ -50,7 +50,8 @@ public class TabTH extends Activity {
 		 		 TUTKClient.getTH(th);
 		 		 if(th[2]>0){
 			 		humi.setText(th[2]+"%");
-			 		if(!TabControl.tempmode) temp.setText(th[0]+"¡æ");
+			 		boolean tempmode = TabControl.myPre.getBoolean("tempmode", true);
+			 		if(!tempmode) temp.setText(th[0]+"¡æ");
 			 		else temp.setText(th[0]+"¨H");
 		 		 }
 		         Log.e("TabTH", "end onResume");
