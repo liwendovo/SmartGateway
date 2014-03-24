@@ -48,28 +48,35 @@ public class TabControl extends ActivityGroup {
 	public static SharedPreferences myPre;
 	public static SharedPreferences myPreferences;
 	public static SharedPreferences.Editor editor;	
+	public static TabControl instance;
 	
 	
 	public Handler tutkHandler = new Handler(){ 
         @Override  
         public void handleMessage(Message msg) {  
-          AlertDialog.Builder builder = new Builder(TabControl.this); 
-          builder.setMessage("Are you sure you want to exit?") 
-                 .setCancelable(false) 
-                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() { 
-                     public void onClick(DialogInterface dialog, int id) { 
-                  	   
-                  	   Intent intent = new Intent();
-                  	   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
-                  	   intent.setClass(TabControl.this, TabSET.class);
-                  	   startActivity(intent);
-                     }
-         
-                 }); 
-          AlertDialog alert = builder.create(); 
-          alert.getWindow().setType((WindowManager.LayoutParams.TYPE_SYSTEM_ALERT));
-          alert.show();
+          if(0xff01==msg.what){
+        	  Log.e("TabControl","receive handler message");
+	          AlertDialog.Builder builder = new Builder(TabControl.this); 
+	          builder.setMessage("Are you sure you want to exit?") 
+	                 .setCancelable(false) 
+	                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() { 
+	                     public void onClick(DialogInterface dialog, int id) { 
+	                  	  /* 
+	                  	   Intent intent = new Intent();
+	                  	   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
+	                  	   intent.setClass(TabControl.this, TabSET.class);
+	                  	   startActivity(intent);
+	                  	   */
+	                    	 host.setCurrentTab(4);
+	                  	   
+	                     }
+	         
+	                 }); 
+	          AlertDialog alert = builder.create(); 
+	          alert.getWindow().setType((WindowManager.LayoutParams.TYPE_SYSTEM_ALERT));
+	          alert.show();
         	
+          }
         }
 	};
 	
@@ -79,6 +86,8 @@ public class TabControl extends ActivityGroup {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tabcontrol);	
+		
+		instance = this;
 		
 		mSQLHelper = new SQLiteHelper(this,"smartgateway.db",1); //Êý¾Ý¿â
 		writeDB=mSQLHelper.getWritableDatabase();
