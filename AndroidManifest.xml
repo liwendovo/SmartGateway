@@ -7,13 +7,14 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="14" />
-	
+
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<!--  授权访问互联网-->
-	<uses-permission android:name="android.permission.INTERNET"/>	
+    <!-- 授权访问互联网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -21,15 +22,14 @@
         android:theme="@android:style/Theme.NoTitleBar" >
         <activity
             android:name="com.seuic.smartgateway.LogoActivity"
-            android:label="@string/app_name" 
-            android:screenOrientation="portrait">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.seuic.smartgateway.TabControl"
             android:label="TabControl"
@@ -37,18 +37,18 @@
         </activity>
         <activity
             android:name="com.seuic.smartgateway.TabIR"
-            android:label="TabIR" 
-            android:screenOrientation="portrait">
+            android:label="TabIR"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.smartgateway.TabRF"
-            android:label="TabRF" 
-            android:screenOrientation="portrait">
+            android:label="TabRF"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.smartgateway.TabTH"
-            android:label="TabTH" 
-            android:screenOrientation="portrait">
+            android:label="TabTH"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.smartgateway.TabSET"
@@ -57,8 +57,8 @@
         </activity>
         <activity
             android:name="com.seuic.smartgateway.TabCam"
-            android:label="TabCam" 
-            android:screenOrientation="portrait">
+            android:label="TabCam"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.smartgateway.SetupDev"
@@ -72,13 +72,13 @@
         </activity>
         <activity
             android:name="com.seuic.smartgateway.SetupTime"
-            android:label="SetupTime" 
-            android:screenOrientation="portrait">
+            android:label="SetupTime"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.add.AddDev"
-            android:label="AddDev" 
-            android:screenOrientation="portrait">
+            android:label="AddDev"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.add.AddEtc"
@@ -87,8 +87,8 @@
         </activity>
         <activity
             android:name="com.seuic.add.AddCam"
-            android:label="AddEtc" 
-            android:screenOrientation="portrait">
+            android:label="AddEtc"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.devetc.IR_TV"
@@ -97,8 +97,8 @@
         </activity>
         <activity
             android:name="com.seuic.devetc.IR_AC"
-            android:label="AC" 
-            android:screenOrientation="portrait">
+            android:label="AC"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.devetc.IR_Media"
@@ -107,8 +107,8 @@
         </activity>
         <activity
             android:name="com.seuic.devetc.IR_STU"
-            android:label="STU" 
-            android:screenOrientation="portrait">
+            android:label="STU"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.devetc.IR_WH"
@@ -117,8 +117,8 @@
         </activity>
         <activity
             android:name="com.seuic.devetc.IR_DVD"
-            android:label="DVD" 
-            android:screenOrientation="portrait">
+            android:label="DVD"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.devetc.IR_FAN"
@@ -127,18 +127,18 @@
         </activity>
         <activity
             android:name="com.seuic.devetc.IR_Custom1"
-            android:label="IR_Custom1" 
-            android:screenOrientation="portrait">
+            android:label="IR_Custom1"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.devetc.IR_Custom2"
-            android:label="IR_Custom2" 
-            android:screenOrientation="portrait">
+            android:label="IR_Custom2"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.devetc.RF_Switch"
-            android:label="RF_Switch" 
-            android:screenOrientation="portrait">
+            android:label="RF_Switch"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.devetc.RF_Power"
@@ -147,13 +147,13 @@
         </activity>
         <activity
             android:name="com.seuic.devetc.RF_WH"
-            android:label="RF_WH" 
-            android:screenOrientation="portrait">
+            android:label="RF_WH"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.devetc.RF_Lamp"
-            android:label="RF_Lamp" 
-            android:screenOrientation="portrait">
+            android:label="RF_Lamp"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.seuic.devetc.RF_Curtain1"
@@ -172,11 +172,15 @@
         </activity>
         <activity
             android:name="com.seuic.devetc.RF_Custom2"
-            android:label="RF_Custom2" 
-            android:screenOrientation="portrait">
+            android:label="RF_Custom2"
+            android:screenOrientation="portrait" >
         </activity>
-   
+        <activity
+            android:name="com.seuic.smartgateway.TutkConnectActivity"
+            android:label="@string/title_activity_tutk_connect" 
+            android:screenOrientation="portrait"
+            android:theme="@style/MyDialogStyle" >
+        </activity>
     </application>
-
 
 </manifest>

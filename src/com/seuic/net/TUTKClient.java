@@ -554,7 +554,7 @@ public class TUTKClient {
 //
 //                    }
                     
-                    CustomToast.showToast(Context, "it has disconnected with the device ", Toast.LENGTH_LONG); 
+//                    CustomToast.showToast(Context, "it has disconnected with the device ", Toast.LENGTH_LONG); 
                     break;
                 }
 

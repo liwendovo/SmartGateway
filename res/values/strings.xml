@@ -31,7 +31,6 @@
     <string name="studying">Study...,Please press the remotecontrol key</string>
     <string name="studyfailed">Study Unsuccessful, Please Try Again!</string>
     <string name="networkunconnect">network unconnect, Please check network!</string>
-
-
+    <string name="title_activity_tutk_connect">TutkConnectActivity</string>
 
 </resources>
