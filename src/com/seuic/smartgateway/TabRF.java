@@ -201,7 +201,7 @@ public class TabRF extends Activity {
 		
 			listItem.put("name", cur.getString(4));			
 			listItem.put("devid", cur.getInt(1));
-			
+			listItem.put("irflag", "rf");
 			String type=cur.getString(3);
 			 listItem.put("type",type);	
 

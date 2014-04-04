@@ -62,12 +62,12 @@
             android:src="@drawable/rf_curtain1_left" />
 
         <ImageView
-            android:id="@+id/button2"
+            android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rf_curtain1_medium" />
          <ImageView
-            android:id="@+id/button3"
+            android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rf_curtain1_right" />

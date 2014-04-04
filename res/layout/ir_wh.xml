@@ -50,17 +50,18 @@
         android:background="@drawable/ir_background"
         android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/editText1"
+        <TextView
+            android:id="@+id/textOn"
             android:layout_marginLeft="10dp"
 	        android:layout_marginRight="10dp"
 	        android:layout_marginTop="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="time" >
-
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="40px"
+            android:text="00:00">
             <requestFocus />
-        </EditText>
+        </TextView>
        
      
         <ImageView
@@ -83,17 +84,19 @@
         android:background="@drawable/ir_background"
         android:orientation="vertical" >
         
-        <EditText
-            android:id="@+id/editText2"
+        <TextView
+            android:id="@+id/textOff"
             android:layout_marginLeft="10dp"
 	        android:layout_marginRight="10dp"
 	        android:layout_marginTop="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="time" >
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="00:00"
+            android:textSize="40px" >
 
             <requestFocus />
-        </EditText>
+        </TextView>
         
         <ImageView
         android:id="@+id/imageView13"

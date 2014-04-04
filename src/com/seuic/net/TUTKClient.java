@@ -68,6 +68,13 @@ public class TUTKClient {
 	 final static int IOTYPE_BL_BOX_SET_LEDS_POWER_REQ             =0xFF000072;
 	 final static int IOTYPE_BL_BOX_SET_LEDS_POWER_RESP            =0xFF000073;
 	 
+	 final static int IOTYPE_BL_BOX_DO_LATER_REQ                   =0xFF000080;
+	 final static int IOTYPE_BL_BOX_DO_LATER_RESP                  =0xFF000081;
+	 final static int IOTYPE_BL_BOX_DO_LATER_DONE_REQ              =0xFF000082;
+	 final static int IOTYPE_BL_BOX_DO_LATER_DONE_RESP             =0xFF000083;
+	 final static int IOTYPE_BL_BOX_DO_LATER_DEL_REQ               =0xFF000084;
+	 final static int IOTYPE_BL_BOX_DO_LATER_DEL_RESP              =0xFF000085;
+	 
 	 final static int IOTYPE_USER_IPCAM_GET_TIMEZONE_REQ           = 0x3A0;
 	 final static int IOTYPE_USER_IPCAM_GET_TIMEZONE_RESP          = 0x3A1;
 	 final static int IOTYPE_USER_IPCAM_SET_TIMEZONE_REQ           = 0x3B0;
@@ -249,6 +256,34 @@ public class TUTKClient {
 	     Log.e("setHourMode", "setdevicetime receive failed   returnvalue="+ returnvalue);
 	return false;
 }
+    
+    public static boolean setdevicetime(int mode){ 
+	    if (!isConnect) {
+	        return false;
+	    }
+	    int ret;
+	    AVAPIs av = new AVAPIs();
+	    int[]  timeMode=new int[]{mode};
+	    byte[] timeModeByte=intToByte(timeMode);
+	    Log.e("setHourMode", " "+mode+" "+bytes2HexString(timeModeByte));
+	    ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_SET_GMT_TIME_REQ, timeModeByte,timeModeByte.length);
+	  	if(ret < 0)
+	    {
+	  		 Log.e("setHourMode", "setdevicetime failed  ret="+ ret);
+	        return false;
+	    }
+	  	 Log.e("setHourMode", "setdevicetime success "+ ret);
+	  	 int ioType[]=new int[1];
+      	 byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
+	     int returnvalue = av.avRecvIOCtrl(avIndex, ioType, ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
+//	     Log.e("setTimeMode", ""+ioType[0]);
+	     if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_SET_LOCAL_TIME_MODE_RESP)) {
+	   	  Log.e("setHourMode", " OK");
+	    	 return true;
+	    }	 
+	     Log.e("setHourMode", "setdevicetime receive failed   returnvalue="+ returnvalue);
+	return false;
+}
     public static boolean setTimeZone(int timeZone){     	
     	if (!isConnect) {
             return false;
@@ -320,6 +355,38 @@ public class TUTKClient {
           }
           return false;
     }
+	
+	
+	public static boolean timeradd(int uid,int bit_week, int hour, int min,byte[] data, boolean irflag) { 
+     	 //Êý¾Ý·¢ËÍ
+   	    Log.e("TUTKClient", "timeradd");
+   	    byte[] time =new byte[1013];
+     	int request_command=irflag?IOTYPE_BL_BOX_SEND_IR_REQ:IOTYPE_BL_BOX_SEND_RF_REQ;
+   	    time[3]=(byte)uid;
+   	    time[5]=(byte)bit_week;
+	   	time[6]=(byte)hour;
+	   	time[7]=(byte)min;
+	   	time[8]=(byte)((request_command&0xFF000000)>>24);
+	   	time[9]=(byte)((request_command&0x00FF0000)>>16);
+	   	time[10]=(byte)((request_command&0x0000FF00)>>8);
+	   	time[11]=(byte)(request_command&0x000000FF);
+   	
+
+         AVAPIs av = new AVAPIs();     
+         int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_DO_LATER_REQ,time, time.length);
+         if (ret < 0) {              
+             Log.e("TUTKClient", "start_timeradd failed  "+ret);
+             return false;
+         }
+         int ioType[]=new int[1];
+         byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
+         int returnvalue = av.avRecvIOCtrl(avIndex, ioType,ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
+         Log.e("TUTKClient", "start_timeradd stop");
+         if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_DO_LATER_RESP)) {
+             return true;
+         }
+         return false;
+   }
     public static boolean getTime()
     {
     	AVAPIs av = new AVAPIs();
@@ -662,4 +729,15 @@ public class TUTKClient {
     	  }
     	  return ret;
     	}
+    
+    public class avIoctrlDoLater{
+    	
+    	private int uid;
+    	private short bit_week;
+    	private char hour;
+    	private char min;
+    	private int request_command;
+    	private char command_data[];
+    	
+    }
 }

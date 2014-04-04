@@ -77,7 +77,9 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		Cursor ToReturn = db.rawQuery(str, null);
 		if(0==ToReturn.getCount())
 		{
-			String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',0,1,1,57);";
+			String sql = "INSERT INTO" + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Uid + "\',\'" + Tag_Name + "\',0,1,1,57);";
+//			INSERT INTO aaa  Values('Tag_Uid','Tag_Uid','name',0,1,1,57);
+			Log.e("SQL","sql:"+sql);
 			db.execSQL(sql);
 			return true;
 		}else{

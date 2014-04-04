@@ -1,7 +1,11 @@
 package com.seuic.devetc;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,8 +16,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.seuic.adapter.CustomToast;
@@ -23,12 +30,19 @@ import com.seuic.smartgateway.TabControl;
 
 public class IR_WH extends Activity implements android.view.View.OnClickListener{
 	int devid;
-	final int buttonMaxNum=5;
+	final int buttonMaxNum=4;
 	ImageView button[]=new ImageView[buttonMaxNum];
 	boolean btnLearn[]=new boolean[buttonMaxNum];
 	int curButton=-1;
 	byte ioCtrlBuf[]=new byte[TUTKClient.MAX_SIZE_IOCTRL_BUF]; 
 	private ProgressDialog progressDialog;  
+	private int mHour;
+	private int mMinute;
+	int onHour;
+	int onMinute;
+	int offHour;
+	int offMinute;
+	Calendar calendar=Calendar.getInstance(TimeZone.getDefault());
 	String mUid;	
 	Boolean lenclr=false;
 	Cursor learnCursor;
@@ -37,6 +51,7 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 	ImageView   devpic;
 	ImageView  button1,button2,
 			button3,button4,button5;
+	TextView textOn,textOff;
 	
 	
 	@Override
@@ -52,10 +67,14 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 		button[1]=(ImageView)findViewById(R.id.button2);
 		button[2]=(ImageView)findViewById(R.id.button3);		
 		button[3]=(ImageView)findViewById(R.id.button4);		
-		button[4]=(ImageView)findViewById(R.id.button5);
+		button5=(ImageView)findViewById(R.id.button5);
 		
 		back_ll=(LinearLayout)findViewById(R.id.back_ll);
 		titleBtn_ll=(LinearLayout)findViewById(R.id.titleBtn_ll);
+		textOn=(TextView)findViewById(R.id.textOn);
+		textOff=(TextView)findViewById(R.id.textOff);
+		textOn.setOnClickListener(this); 
+		textOff.setOnClickListener(this); 
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
 		back_ll.setOnClickListener(this); 
@@ -152,20 +171,77 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
              	} 
              	break;
              case R.id.button5:
-             	if(lenclr==true){   
-         			curButton=5;    
-         			showProgressDialog(curButton);
-             	}else{
-     	        	send(5);
-             	} 
+            	 TUTKClient.timeradd(devid,0,onHour,onMinute,learnCursor.getBlob(5),true);
+            	 TUTKClient.timeradd(devid,0,offHour,offMinute,learnCursor.getBlob(6),true);
+//            	 timeradd(int uid,int bit_week, int hour, int min,byte[] data, boolean irflag);
              	break;
+             case R.id.textOn:
+            	 timePicker(v);
+              	break;
+              case R.id.textOff:
+            	  timePicker(v);
+              	break;
                     
             default:  
                 break; 
             }		
 	}
 
+	private void timePicker(final View v){
+		
+		Log.e("ir_wh", "go to timePicker");
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		mHour=calendar.get(Calendar.HOUR_OF_DAY);  
+		mMinute=calendar.get(Calendar.MINUTE);  
+		new TimePickerDialog(this,
+
+		        new TimePickerDialog.OnTimeSetListener()
+
+		        {   
+
+			          public void onTimeSet(TimePicker view,int hourOfDay,int minute)
+			          {
+	//		        	  updateDisplay();
+			            /* 这里放更新时间的方法 */
+			        	  calendar.setTimeInMillis(System.currentTimeMillis());  
+			        	  calendar.set(Calendar.HOUR_OF_DAY,hourOfDay);   
+			        	  calendar.set(Calendar.MINUTE, minute);        
+			        	  calendar.set(Calendar.SECOND, 0);        
+			        	  calendar.set(Calendar.MILLISECOND, 0);   
+			        	  if(v == textOn){
+				        	  onHour = hourOfDay;
+				        	  onMinute = minute;
+			        	  }else if(v == textOff){
+			        		  offHour = hourOfDay;
+				        	  offMinute = minute;
+			        	  }
+			        	  Log.e("ir_wh", "go to updateDisplay   hourOfDay="+hourOfDay+"minute="+minute);
+			        	  ((TextView) v).setText(
+			        		      new StringBuilder().append(format(hourOfDay)).append(":")
 	
+			        		                         .append(format(minute))
+			              );
+		             }         
+
+		       },mHour,mMinute,true).show();
+	}
+	
+
+	  /*日期时间显示两位数的方法*/
+
+	  private String format(int x)
+
+	  {
+
+	    String s=""+x;
+
+	    if(s.length()==1) s="0"+s;
+
+	    return s;
+
+	  }
+	  
+	  
 	 private void showProgressDialog(int num){  
 		 TabControl.mViewSelected.imageviewClickLearnDefault(button[num-1]);
 		 progressDialog = new ProgressDialog(IR_WH.this);
