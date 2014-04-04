@@ -17,6 +17,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 {
 
 	private final static String Table_Name_Setup = "devsetup";
+	private final static String Table_Name_Timer = "timer";
 	private final static String Table_Name_List = "devlist";
 //	private final static String Table_Name_Etc = "devetc";
 	private final static String Table_Name_Btn = "devbtn";
@@ -33,12 +34,27 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	private final static String Hour = "hour";
 	private final static String Auto = "auto";
 	private final static String Zone = "zone";
+	private final static String WhTimerOn  = "whtimeron";
+	private final static String WhTimerOff  = "whtimeroff";
+	private final static String SwitchTimerOn1 = "switchtimeron1";	
+	private final static String SwitchTimerOff1= "switchtimeroff1";	
+	private final static String SwitchTimerOn2 = "switchtimeron2";
+	private final static String SwitchTimerOff2 =  "switchtimeroff2";
+	private final static String Week = "week";
+	private final static String DeferOnHour = "deferonhour";
+	private final static String DeferOnMin = "deferonmin";
+	private final static String DeferOffHour = "deferoffhour";
+	private final static String DeferOffMin = "deferoffmin";
 	
 	
 	
     final String CREATE_SETUP_TABLE_SQL =
     		 "CREATE TABLE IF NOT EXISTS " + Table_Name_Setup + 
     		 " ( " + Uid + " VHARCHAR PRIMARY KEY, " + Type  + " VHARCHAR, "+ Name + " VHARCHAR, "+ Fah  + " INTEGER, "+ Hour  + " INTEGER, " + Zone  + " INTEGER, "+ Auto + " INTEGER );";
+    
+    final String CREATE_TIMER_TABLE_SQL =
+   		 "CREATE TABLE IF NOT EXISTS " + Table_Name_Timer + 
+   		 " ( " + Uid + " VHARCHAR PRIMARY KEY, " + WhTimerOn  + " VHARCHAR, "+ WhTimerOff + " VHARCHAR, "+SwitchTimerOn1  + " VHARCHAR, "+ SwitchTimerOff1 + " VHARCHAR, "+SwitchTimerOn2  + " VHARCHAR, "+ SwitchTimerOff2 + " VHARCHAR, "+ Week  + " VHARCHAR, "+ DeferOnHour  + " INTEGER, " + DeferOnMin  + " INTEGER, "+ Auto + " INTEGER );";
   
 	final String CREATE_LIST_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_List + 
