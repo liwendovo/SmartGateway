@@ -87,15 +87,13 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		super(context, name, null, version);
 	}
 	// 返回值  成功  重复
-	public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, String Tag_Name) {
+public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, String Tag_Name) {
 		
 		String str = "SELECT * FROM " + Table_Name_Setup + " WHERE " +Uid + "=\""+ Tag_Uid + "\"";
 		Cursor ToReturn = db.rawQuery(str, null);
 		if(0==ToReturn.getCount())
 		{
-			String sql = "INSERT INTO" + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Uid + "\',\'" + Tag_Name + "\',0,1,1,57);";
-//			INSERT INTO aaa  Values('Tag_Uid','Tag_Uid','name',0,1,1,57);
-			Log.e("SQL","sql:"+sql);
+			String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',0,1,1,57);";
 			db.execSQL(sql);
 			return true;
 		}else{
