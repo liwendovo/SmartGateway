@@ -30,23 +30,28 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Timer:"
+            
             android:layout_marginLeft="80dp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-      <ImageView
+      <ToggleButton
 	        android:id="@+id/button5"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="5dp"
-	        android:src="@drawable/rf_switch_yellow" />
+	        android:textOn=" " 
+        	android:textOff=" "
+        	android:layout_centerHorizontal="true"
+	        android:gravity="center"
+	        android:background="@drawable/rf_switch_blue" />
      
      </LinearLayout>
     
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_height="75dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/ir_background"
         android:orientation="vertical" >
 
@@ -77,7 +82,7 @@
         
      <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_height="75dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
         android:layout_marginTop="5dp"

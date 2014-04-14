@@ -142,8 +142,8 @@ public class EtcAdapter extends BaseAdapter {
 					// TODO Auto-generated method stub
 //					Toast.makeText(context,	"Btn2 onclick", Toast.LENGTH_SHORT).show();
 					learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,(Integer) item.get("devid"));
-//					Log.e("EtcAdapter", "devid:"+(Integer) item.get("devid"));
-//					Log.e("EtcAdapter", "learnCursor.getBlob(btnOn+3):"+(learnCursor.getBlob(btnOn+3)));
+					Log.e("EtcAdapter", "devid:"+(Integer) item.get("devid"));
+					Log.e("EtcAdapter", "learnCursor.getBlob(btnOn+3):"+(learnCursor.getBlob(btnOn+3)));
 					if(irflag.equals("rf"))	TUTKClient.send(learnCursor.getBlob(btnOn+3),false);
 					else TUTKClient.send(learnCursor.getBlob(btnOn+3),true);
 					Log.e("EtcAdapter", "quickBtn1 onclick");
@@ -161,8 +161,8 @@ public class EtcAdapter extends BaseAdapter {
 				// TODO Auto-generated method stub
 //				Toast.makeText(context,	"Btn1 onclick", Toast.LENGTH_SHORT).show();if(irflag.equals("rf"))if(irflag.equals("rf"))
 				learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,(Integer) item.get("devid"));
-//				Log.e("EtcAdapter", "devid:"+(Integer) item.get("devid"));
-//				 Log.e("TUTKClient", "learnCursor.getBlob(btnOff+3):"+(learnCursor.getBlob(btnOff+3)));
+				Log.e("EtcAdapter", "devid:"+(Integer) item.get("devid"));
+				 Log.e("TUTKClient", "learnCursor.getBlob(btnOff+3):"+(learnCursor.getBlob(btnOff+3)));
 					if(irflag.equals("rf"))	TUTKClient.send(learnCursor.getBlob(btnOff+3),false);
 					else TUTKClient.send(learnCursor.getBlob(btnOff+3),true);
 					Log.e("EtcAdapter", "quickBtn2 onclick");
@@ -191,7 +191,7 @@ public class EtcAdapter extends BaseAdapter {
 					 }
 					 
 				
-				
+				 
 			  }else{
 				  
 				  if(type.equals("TV")){

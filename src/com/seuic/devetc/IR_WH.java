@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.seuic.adapter.CustomToast;
 import com.seuic.net.TUTKClient;
@@ -38,19 +39,24 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 	private ProgressDialog progressDialog;  
 	private int mHour;
 	private int mMinute;
-	int onHour;
-	int onMinute;
-	int offHour;
-	int offMinute;
+	byte onHour;
+	byte onMinute;
+	byte offHour;
+	byte offMinute;
+	StringBuilder sb;
+	String WhTimerOn;
+	String WhTimerOff;
 	Calendar calendar=Calendar.getInstance(TimeZone.getDefault());
 	String mUid;	
 	Boolean lenclr=false;
 	Cursor learnCursor;
+	Cursor timerCursor;
 	Button  backBtn,leanrnBtn;
 	LinearLayout back_ll,titleBtn_ll;
 	ImageView   devpic;
 	ImageView  button1,button2,
-			button3,button4,button5;
+			button3,button4;
+	ToggleButton button5;
 	TextView textOn,textOff;
 	
 	
@@ -67,7 +73,7 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 		button[1]=(ImageView)findViewById(R.id.button2);
 		button[2]=(ImageView)findViewById(R.id.button3);		
 		button[3]=(ImageView)findViewById(R.id.button4);		
-		button5=(ImageView)findViewById(R.id.button5);
+		button5=(ToggleButton)findViewById(R.id.button5);
 		
 		back_ll=(LinearLayout)findViewById(R.id.back_ll);
 		titleBtn_ll=(LinearLayout)findViewById(R.id.titleBtn_ll);
@@ -79,6 +85,7 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 		leanrnBtn.setOnClickListener(this); 
 		back_ll.setOnClickListener(this); 
 		titleBtn_ll.setOnClickListener(this);
+		button5.setOnClickListener(this);
 		for(int i=0;i< buttonMaxNum;i++){
 			button[i].setOnClickListener(this);  
 			TabControl.mViewSelected.setImageViewClickChanged(button[i]);
@@ -109,6 +116,27 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 			//未初始化
 			TabControl.mSQLHelper.insertBtnLearn(TabControl.writeDB,mUid,devid);
 		}		
+		
+		Log.e("IR_WH","start insert Timer Table");
+		TabControl.mSQLHelper.insertTimer(TabControl.writeDB,mUid,devid);
+		Log.e("IR_WH","finish insert Timer Table");
+		timerCursor=TabControl.mSQLHelper.seleteTimer(TabControl.writeDB,devid);
+		Log.e("leewoo", "cur: "+timerCursor.getCount());
+		if(timerCursor.getCount()>0){				 
+			
+			WhTimerOn = timerCursor.getString(2);
+			WhTimerOff = timerCursor.getString(3);
+//			byte[] data = null;
+//			WhTimerOn.getBytes(0, 1, data, 0);
+//			onHour = (byte)data;
+			textOn.setText(WhTimerOn);
+			textOff.setText(WhTimerOff);
+			
+		}else{
+			Log.e("IR_WH", "timerCursor 初始化"+timerCursor.getCount());
+			//未初始化
+			TabControl.mSQLHelper.insertTimer(TabControl.writeDB,mUid,devid);
+		}	
 		setbuttonstate();
 	}
 
@@ -171,8 +199,14 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
              	} 
              	break;
              case R.id.button5:
-            	 TUTKClient.timeradd(devid,0,onHour,onMinute,learnCursor.getBlob(5),true);
-            	 TUTKClient.timeradd(devid,0,offHour,offMinute,learnCursor.getBlob(6),true);
+            	 Log.e("IR_WH","button5.isChecked()="+button5.isChecked());
+            	 if (button5.isChecked()) {
+            		button5.setBackgroundResource(R.drawable.rf_switch_yellow);
+     			 } else {
+     				button5.setBackgroundResource(R.drawable.rf_switch_blue);
+     			 }
+            	 TUTKClient.timeradd(devid,(short)0x7f,onHour,onMinute,learnCursor.getBlob(5),true);
+            	 TUTKClient.timeradd(devid,(short)0x7f,offHour,offMinute,learnCursor.getBlob(6),true);
 //            	 timeradd(int uid,int bit_week, int hour, int min,byte[] data, boolean irflag);
              	break;
              case R.id.textOn:
@@ -208,19 +242,26 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 			        	  calendar.set(Calendar.MINUTE, minute);        
 			        	  calendar.set(Calendar.SECOND, 0);        
 			        	  calendar.set(Calendar.MILLISECOND, 0);   
-			        	  if(v == textOn){
-				        	  onHour = hourOfDay;
-				        	  onMinute = minute;
-			        	  }else if(v == textOff){
-			        		  offHour = hourOfDay;
-				        	  offMinute = minute;
-			        	  }
+			        	 
 			        	  Log.e("ir_wh", "go to updateDisplay   hourOfDay="+hourOfDay+"minute="+minute);
-			        	  ((TextView) v).setText(
-			        		      new StringBuilder().append(format(hourOfDay)).append(":")
-	
-			        		                         .append(format(minute))
-			              );
+			        	  sb = new StringBuilder().append(format(hourOfDay)).append(":")
+			        				
+ 		                         .append(format(minute));
+			        	  ((TextView) v).setText(sb);
+			        	  if(v == textOn){
+				        	  onHour = (byte)hourOfDay;
+				        	  onMinute = (byte)minute;
+				        	  WhTimerOn = sb.toString( );
+				        	  Log.e("IR_WH","WhTimerOn:"+WhTimerOn);
+			        	  }else if(v == textOff){
+			        		  offHour = (byte)hourOfDay;
+				        	  offMinute = (byte)minute;
+				        	  WhTimerOff = sb.toString( );
+				        	  Log.e("IR_WH","WhTimerOff:"+WhTimerOff);
+			        	  }
+			        	  TabControl.mSQLHelper.updateWh(TabControl.writeDB, devid,WhTimerOn,WhTimerOff);
+			        	  button5.setChecked(false);
+			        	  button5.setBackgroundResource(R.drawable.rf_switch_blue);
 		             }         
 
 		       },mHour,mMinute,true).show();

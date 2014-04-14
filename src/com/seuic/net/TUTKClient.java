@@ -1,6 +1,7 @@
 package com.seuic.net;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 
 import android.R.string;
@@ -79,6 +80,8 @@ public class TUTKClient {
 	 final static int IOTYPE_USER_IPCAM_GET_TIMEZONE_RESP          = 0x3A1;
 	 final static int IOTYPE_USER_IPCAM_SET_TIMEZONE_REQ           = 0x3B0;
 	 final static int IOTYPE_USER_IPCAM_SET_TIMEZONE_RESP          = 0x3B1;
+	 
+	
 	 public static boolean checkoutnetwork(){
 		 
 		 return false;
@@ -357,23 +360,48 @@ public class TUTKClient {
     }
 	
 	
-	public static boolean timeradd(int uid,int bit_week, int hour, int min,byte[] data, boolean irflag) { 
+	public static boolean timeradd(int uid,short i, byte hour, byte min,byte[] data, boolean irflag) { 
      	 //数据发送
    	    Log.e("TUTKClient", "timeradd");
-   	    byte[] time =new byte[1013];
+	   	 if (!isConnect) {
+	         return false;
+	     }
+//   	    byte[] time =new byte[1013];
      	int request_command=irflag?IOTYPE_BL_BOX_SEND_IR_REQ:IOTYPE_BL_BOX_SEND_RF_REQ;
-   	    time[3]=(byte)uid;
-   	    time[5]=(byte)bit_week;
-	   	time[6]=(byte)hour;
-	   	time[7]=(byte)min;
-	   	time[8]=(byte)((request_command&0xFF000000)>>24);
-	   	time[9]=(byte)((request_command&0x00FF0000)>>16);
-	   	time[10]=(byte)((request_command&0x0000FF00)>>8);
-	   	time[11]=(byte)(request_command&0x000000FF);
-   	
 
+	   	ByteArrayOutputStream bOut = new ByteArrayOutputStream();
+	   	try {
+			bOut.write(int32ToByteArray(uid));
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+	   	try {
+			bOut.write(int16ToByteArray(i));
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+	   	bOut.write(hour);
+	   	bOut.write(min);
+	   	try {
+			bOut.write(int32ToByteArray(request_command));
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+	   	bOut.write(data,12,1001);
+	   	
+		
+//	   	byte[] str = 
+		Log.e("TUTKClient timeradd", "bOut="+bytes2HexString(bOut.toByteArray()));
+//		bOut.toByteArray().
+		Log.e("TUTKClient timeradd", "hour="+hour);
+		Log.e("TUTKClient timeradd", "min="+min);
+		
+	   	Log.e("TUTKClient timeradd", "bOut.size()="+bOut.size());
          AVAPIs av = new AVAPIs();     
-         int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_DO_LATER_REQ,time, time.length);
+         int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_DO_LATER_REQ,bOut.toByteArray(), bOut.size());
          if (ret < 0) {              
              Log.e("TUTKClient", "start_timeradd failed  "+ret);
              return false;
@@ -387,6 +415,34 @@ public class TUTKClient {
          }
          return false;
    }
+	
+	
+	public static boolean timerdel(int uid) { 
+    	 //数据发送
+  	    Log.e("TUTKClient", "timeradd");
+  	  if (!isConnect) {
+          return false;
+      }
+  	  
+  	    int[]  timeMode=new int[]{uid};
+	    byte[] timeModeByte=intToByte(timeMode);
+        AVAPIs av = new AVAPIs();     
+        int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_DO_LATER_DEL_REQ,timeModeByte, timeModeByte.length);
+        if (ret < 0) {              
+            Log.e("TUTKClient", "start_timeradd failed  "+ret);
+            return false;
+        }
+        int ioType[]=new int[1];
+        byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
+        int returnvalue = av.avRecvIOCtrl(avIndex, ioType,ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
+        Log.e("TUTKClient", "start_timeradd stop");
+        if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_DO_LATER_RESP)) {
+            return true;
+        }
+        return false;
+  }
+	
+	
     public static boolean getTime()
     {
     	AVAPIs av = new AVAPIs();
@@ -730,14 +786,32 @@ public class TUTKClient {
     	  return ret;
     	}
     
-    public class avIoctrlDoLater{
+    public static byte[] int32ToByteArray(int value) {
+		byte[] b = new byte[4];
+		for (int i = 0; i < 4; i++) {
+			int offset = i * 8;
+			b[i] = (byte) ((value >>> offset) & 0xFF);
+		}
+		return b;
+	}
+
+	public static byte[] int16ToByteArray(int value) {
+		byte[] b = new byte[2];
+		for (int i = 0; i < 2; i++) {
+			int offset = i * 8;
+			b[i] = (byte) ((value >>> offset) & 0xFF);
+		}
+		return b;
+	}
+    
+    public static class avIoctrlDoLater{
     	
     	private int uid;
     	private short bit_week;
     	private char hour;
     	private char min;
     	private int request_command;
-    	private char command_data[];
+    	private byte command_data[] = new byte[1001];
     	
     }
 }

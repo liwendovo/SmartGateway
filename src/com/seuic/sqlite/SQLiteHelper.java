@@ -54,7 +54,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
     
     final String CREATE_TIMER_TABLE_SQL =
    		 "CREATE TABLE IF NOT EXISTS " + Table_Name_Timer + 
-   		 " ( " + Uid + " VHARCHAR PRIMARY KEY, " + WhTimerOn  + " VHARCHAR, "+ WhTimerOff + " VHARCHAR, "+SwitchTimerOn1  + " VHARCHAR, "+ SwitchTimerOff1 + " VHARCHAR, "+SwitchTimerOn2  + " VHARCHAR, "+ SwitchTimerOff2 + " VHARCHAR, "+ Week  + " VHARCHAR, "+ DeferOnHour  + " INTEGER, " + DeferOnMin  + " INTEGER, "+ Auto + " INTEGER );";
+   		  " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + WhTimerOn  + " VHARCHAR, "+ WhTimerOff + " VHARCHAR, "+ SwitchTimerOn1  + " VHARCHAR, "+ SwitchTimerOff1 + " VHARCHAR, "+SwitchTimerOn2  + " VHARCHAR, "+ SwitchTimerOff2 + " VHARCHAR, "+ Week  + " VHARCHAR, "+ DeferOnHour  + " INTEGER, " + DeferOnMin  + " INTEGER, "+DeferOffHour  + " INTEGER, " + DeferOffMin  + " INTEGER, "+ Auto + " INTEGER );";
   
 	final String CREATE_LIST_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_List + 
@@ -73,7 +73,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
 		// 第一个使用数据库时自动建表
 		db.execSQL(CREATE_SETUP_TABLE_SQL);
 		db.execSQL(CREATE_LIST_TABLE_SQL);
-	//	db.execSQL(CREATE_ETC_TABLE_SQL);
+		db.execSQL(CREATE_TIMER_TABLE_SQL);
 		db.execSQL(CREATE_BTN_TABLE_SQL);		
 	}
 	
@@ -108,11 +108,17 @@ public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, S
 		db.execSQL(sql);
 		
 	}
-//	public void insertEtc(SQLiteDatabase db, String Tag_Uid, int Tag_DevID, String Tag_EtcID, String Tag_Name, String Tag_Status, String Tag_Other) {
-//		
-//		String sql = "INSERT INTO " + Table_Name_Etc  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'"+ Tag_EtcID+"\',\'" +Tag_Name + "\',\'" + Tag_Status + "\',\'"+ Tag_Other + "\');";
-//		db.execSQL(sql);
-//	}
+	
+//	final String CREATE_TIMER_TABLE_SQL =
+//	   		 "CREATE TABLE IF NOT EXISTS " + Table_Name_Timer + 
+//	   		  " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + WhTimerOn  + " VHARCHAR, "+ WhTimerOff + " VHARCHAR, "+ SwitchTimerOn1  + " VHARCHAR, "+ SwitchTimerOff1 + " VHARCHAR, "+SwitchTimerOn2  + " VHARCHAR, "+ SwitchTimerOff2 + " VHARCHAR, "+ Week  + " VHARCHAR, "+ DeferOnHour  + " INTEGER, " + DeferOnMin  + " INTEGER, "+DeferOffHour  + " INTEGER, " + DeferOffMin  + " INTEGER, "+ Auto + " INTEGER );";
+//	  
+//	
+	public void insertTimer(SQLiteDatabase db, String Tag_Uid, int Tag_DevID) {
+		
+		String sql = "INSERT INTO " + Table_Name_Timer  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'0\',0,0,0,0,0);";
+		db.execSQL(sql);
+	}
 	public void insertBtnName(SQLiteDatabase db, String Tag_Uid, int Tag_DevID) {
 //		String str=new String("define");
 //		byte[] strByte=str.getBytes();
@@ -136,6 +142,7 @@ public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, S
 //		db.execSQL(sql);
 		db.delete(Table_Name_Setup,null,null);
 		db.delete(Table_Name_List,null,null);
+		db.delete(Table_Name_Timer,null,null);
 		db.delete(Table_Name_Btn,null,null);
 		TabControl.mUid="NULL";		
 	}
@@ -146,6 +153,8 @@ public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, S
 		db.execSQL(sql);
 		sql = "DELETE FROM " + Table_Name_List  + " WHERE " + Uid + "=\"" + Tag_Uid + "\"";
 		db.execSQL(sql);
+		sql = "DELETE FROM " + Table_Name_Timer   + " WHERE " + Uid + "=\"" + Tag_Uid + "\"";
+		db.execSQL(sql);
 		sql = "DELETE FROM " + Table_Name_Btn   + " WHERE " + Uid + "=\"" + Tag_Uid + "\"";
 		db.execSQL(sql);
 		
@@ -155,6 +164,8 @@ public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, S
 		
 		String 	
 		sql = "DELETE FROM " + Table_Name_List  + " WHERE " + DevID + "=\"" + Tag_DevID + "\"";
+		db.execSQL(sql);
+		sql = "DELETE FROM " + Table_Name_Timer   + " WHERE " + DevID + "=\"" + Tag_DevID + "\"";
 		db.execSQL(sql);
 		sql = "DELETE FROM " + Table_Name_Btn   + " WHERE " + DevID + "=\"" + Tag_DevID + "\"";
 		db.execSQL(sql);
@@ -185,12 +196,12 @@ public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, S
 		ToReturn.moveToFirst();
 		return ToReturn;
 	}
-//	public Cursor seleteEtc(SQLiteDatabase db, int Tag_ID) {
-//		String str = "SELECT * FROM " + Table_Name_Etc + " WHERE " +Uid + "=\""	+ Tag_ID + "\"";
-//		Cursor ToReturn = db.rawQuery(str, null);
-//		ToReturn.moveToFirst();
-//		return ToReturn;
-//	}
+	public Cursor seleteTimer(SQLiteDatabase db, int Tag_DevID) {
+		String str = "SELECT * FROM " + Table_Name_Timer + " WHERE " +DevID + "=\""	+ Tag_DevID + "\"";
+		Cursor ToReturn = db.rawQuery(str, null);
+		ToReturn.moveToFirst();
+		return ToReturn;
+	}
 	public Cursor seleteBtnLearn(SQLiteDatabase db, int Tag_DevID) {
 		String str = "SELECT * FROM " + Table_Name_Btn + " WHERE " +DevID + "=\""+ Tag_DevID + "\" AND "+Type+ "=\"learn\"";
 		Cursor ToReturn = db.rawQuery(str, null);
@@ -241,6 +252,31 @@ public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, S
 //		String str = "update " + Table_Name_Setup + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
 //		db.execSQL(str);
 	}	
+	
+	
+		public void updateWh(SQLiteDatabase db,int Tag_DevID, String Wh_On, String Wh_Off) {
+				
+				Log.e("Sqlite", "updateWh");
+				ContentValues values = new ContentValues();
+				values.put(WhTimerOn,Wh_On);
+				values.put(WhTimerOff,Wh_Off);
+				db.update(Table_Name_Timer, values, DevID + "=\"" + Tag_DevID +"\"", null);
+		
+		//		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
+		//		db.execSQL(str);
+			}
+		public void updateSwitch(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID, String Tag_Name) {
+			
+			Log.e("Sqlite", "updateBtnName");
+			byte[] nameByte =Tag_Name.getBytes();
+			ContentValues values = new ContentValues();
+			values.put("button"+Tag_BtnID,nameByte);
+			db.update(Table_Name_Timer, values, DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"", null);
+		
+		//	String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
+		//	db.execSQL(str);
+		}
+
 	public void updateBtnName(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID, String Tag_Name) {
 		
 		Log.e("Sqlite", "updateBtnName");
