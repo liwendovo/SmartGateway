@@ -390,7 +390,7 @@ public class TUTKClient {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-	   	bOut.write(data,12,1001);
+	   	bOut.write(data,0,1001);
 	   	
 		
 //	   	byte[] str = 
@@ -402,13 +402,15 @@ public class TUTKClient {
 	   	Log.e("TUTKClient timeradd", "bOut.size()="+bOut.size());
          AVAPIs av = new AVAPIs();     
          int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_DO_LATER_REQ,bOut.toByteArray(), bOut.size());
+         Log.e("TUTKClient", "start_timeradd "+ret);
          if (ret < 0) {              
-             Log.e("TUTKClient", "start_timeradd failed  "+ret);
+             Log.e("TUTKClient", "start_timeradd failed  ");
              return false;
          }
          int ioType[]=new int[1];
          byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
          int returnvalue = av.avRecvIOCtrl(avIndex, ioType,ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
+         Log.e("TUTKClient", "start_timeradd returnvalue= "+returnvalue);
          Log.e("TUTKClient", "start_timeradd stop");
          if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_DO_LATER_RESP)) {
              return true;
@@ -789,7 +791,7 @@ public class TUTKClient {
     public static byte[] int32ToByteArray(int value) {
 		byte[] b = new byte[4];
 		for (int i = 0; i < 4; i++) {
-			int offset = i * 8;
+			int offset = (3-i) * 8;
 			b[i] = (byte) ((value >>> offset) & 0xFF);
 		}
 		return b;
@@ -798,7 +800,7 @@ public class TUTKClient {
 	public static byte[] int16ToByteArray(int value) {
 		byte[] b = new byte[2];
 		for (int i = 0; i < 2; i++) {
-			int offset = i * 8;
+			int offset = (1-i) * 8;
 			b[i] = (byte) ((value >>> offset) & 0xFF);
 		}
 		return b;

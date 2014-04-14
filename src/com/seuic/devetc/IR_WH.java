@@ -127,8 +127,15 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 			WhTimerOn = timerCursor.getString(2);
 			WhTimerOff = timerCursor.getString(3);
 //			byte[] data = null;
-//			WhTimerOn.getBytes(0, 1, data, 0);
-//			onHour = (byte)data;
+			byte[] data = new byte[2] ;
+			char[] prefix = null;
+			prefix = new char[2];
+			WhTimerOn.getChars(0, 2, prefix, 0);
+//			WhTimerOn.getChars(3, 4, prefix, 0);
+			String tmp = new String(prefix);
+			data[0] = (byte)Integer.parseInt(tmp);
+			onHour = data[0];
+//			offHour = 
 			textOn.setText(WhTimerOn);
 			textOff.setText(WhTimerOff);
 			
@@ -262,6 +269,7 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 			        	  TabControl.mSQLHelper.updateWh(TabControl.writeDB, devid,WhTimerOn,WhTimerOff);
 			        	  button5.setChecked(false);
 			        	  button5.setBackgroundResource(R.drawable.rf_switch_blue);
+			        	  TUTKClient.timerdel(devid);
 		             }         
 
 		       },mHour,mMinute,true).show();
