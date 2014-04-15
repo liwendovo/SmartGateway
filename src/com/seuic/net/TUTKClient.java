@@ -368,10 +368,10 @@ public class TUTKClient {
 	     }
 //   	    byte[] time =new byte[1013];
      	int request_command=irflag?IOTYPE_BL_BOX_SEND_IR_REQ:IOTYPE_BL_BOX_SEND_RF_REQ;
-
+     	int[]  timeMode=new int[]{uid};
 	   	ByteArrayOutputStream bOut = new ByteArrayOutputStream();
 	   	try {
-			bOut.write(int32ToByteArray(uid));
+			bOut.write(intToByte(timeMode));
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -393,13 +393,13 @@ public class TUTKClient {
 	   	bOut.write(data,0,1001);
 	   	
 		
-//	   	byte[] str = 
-		Log.e("TUTKClient timeradd", "bOut="+bytes2HexString(bOut.toByteArray()));
-//		bOut.toByteArray().
-		Log.e("TUTKClient timeradd", "hour="+hour);
-		Log.e("TUTKClient timeradd", "min="+min);
-		
-	   	Log.e("TUTKClient timeradd", "bOut.size()="+bOut.size());
+////	   	byte[] str = 
+//		Log.e("TUTKClient timeradd", "bOut="+bytes2HexString(bOut.toByteArray()));
+////		bOut.toByteArray().
+//		Log.e("TUTKClient timeradd", "hour="+hour);
+//		Log.e("TUTKClient timeradd", "min="+min);
+//		
+//	   	Log.e("TUTKClient timeradd", "bOut.size()="+bOut.size());
          AVAPIs av = new AVAPIs();     
          int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_DO_LATER_REQ,bOut.toByteArray(), bOut.size());
          Log.e("TUTKClient", "start_timeradd "+ret);
@@ -428,17 +428,20 @@ public class TUTKClient {
   	  
   	    int[]  timeMode=new int[]{uid};
 	    byte[] timeModeByte=intToByte(timeMode);
+	    Log.e("TUTKClient", "timeModeByte="+timeModeByte.toString()+"   timeModeByte.length="+timeModeByte.length);
         AVAPIs av = new AVAPIs();     
         int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_DO_LATER_DEL_REQ,timeModeByte, timeModeByte.length);
+        Log.e("TUTKClient", "start_timerdel ret="+ret);
         if (ret < 0) {              
-            Log.e("TUTKClient", "start_timeradd failed  "+ret);
+            Log.e("TUTKClient", "start_timerdel failed  "+ret);
             return false;
         }
         int ioType[]=new int[1];
         byte[] ioCtrlBuf=new byte[MAX_SIZE_IOCTRL_BUF];
         int returnvalue = av.avRecvIOCtrl(avIndex, ioType,ioCtrlBuf, MAX_SIZE_IOCTRL_BUF, WAITTIMEOUT);
-        Log.e("TUTKClient", "start_timeradd stop");
-        if (returnvalue>0&&(ioType[0]==IOTYPE_BL_BOX_DO_LATER_RESP)) {
+        Log.e("TUTKClient", "start_timerdel returnvalue="+returnvalue);
+        if (returnvalue>=0&&(ioType[0]==IOTYPE_BL_BOX_DO_LATER_DEL_RESP)) {
+        	 Log.e("TUTKClient", "receive IOTYPE_BL_BOX_DO_LATER_DEL_RESP");
             return true;
         }
         return false;
@@ -800,7 +803,7 @@ public class TUTKClient {
 	public static byte[] int16ToByteArray(int value) {
 		byte[] b = new byte[2];
 		for (int i = 0; i < 2; i++) {
-			int offset = (1-i) * 8;
+			int offset = i * 8;
 			b[i] = (byte) ((value >>> offset) & 0xFF);
 		}
 		return b;

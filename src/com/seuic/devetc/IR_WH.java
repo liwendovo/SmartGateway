@@ -31,6 +31,8 @@ import com.seuic.smartgateway.TabControl;
 
 public class IR_WH extends Activity implements android.view.View.OnClickListener{
 	int devid;
+	int uidOn;
+	int uidOff;
 	final int buttonMaxNum=4;
 	ImageView button[]=new ImageView[buttonMaxNum];
 	boolean btnLearn[]=new boolean[buttonMaxNum];
@@ -118,14 +120,20 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 		}		
 		
 		Log.e("IR_WH","start insert Timer Table");
-		TabControl.mSQLHelper.insertTimer(TabControl.writeDB,mUid,devid);
-		Log.e("IR_WH","finish insert Timer Table");
+//		TabControl.mSQLHelper.insertTimer(TabControl.writeDB,mUid,devid);
+//		Log.e("IR_WH","finish insert Timer Table");
 		timerCursor=TabControl.mSQLHelper.seleteTimer(TabControl.writeDB,devid);
 		Log.e("leewoo", "cur: "+timerCursor.getCount());
 		if(timerCursor.getCount()>0){				 
 			
 			WhTimerOn = timerCursor.getString(2);
 			WhTimerOff = timerCursor.getString(3);
+//			timerCursor.getInt(uidOn)  getColumnIndex("WhUidOn");
+			uidOn = timerCursor.getInt(timerCursor.getColumnIndex("WhUidOn"));
+			uidOff = timerCursor.getInt(timerCursor.getColumnIndex("WhUidOff"));
+//			uidOff = timerCursor.getColumnIndex("WhUidOff");
+			Log.e("IR_WH","timerCursor uidOn="+uidOn);
+			Log.e("IR_WH","timerCursor uidOff="+uidOff);
 //			byte[] data = null;
 			byte[] data = new byte[2] ;
 			char[] prefix = null;
@@ -206,14 +214,24 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
              	} 
              	break;
              case R.id.button5:
+            	 if(learnCursor.getBlob(5)==null&&learnCursor.getBlob(6)==null)
+            	 {
+            		 CustomToast.showToast(getApplicationContext(),"please learn first", Toast.LENGTH_SHORT);	
+            		 break;
+            	 }
             	 Log.e("IR_WH","button5.isChecked()="+button5.isChecked());
             	 if (button5.isChecked()) {
             		button5.setBackgroundResource(R.drawable.rf_switch_yellow);
      			 } else {
      				button5.setBackgroundResource(R.drawable.rf_switch_blue);
      			 }
-            	 TUTKClient.timeradd(devid,(short)0x7f,onHour,onMinute,learnCursor.getBlob(5),true);
-            	 TUTKClient.timeradd(devid,(short)0x7f,offHour,offMinute,learnCursor.getBlob(6),true);
+            	 uidOn=(int)(Math.random()*100000);
+            	 uidOff=(int)(Math.random()*100000);
+            	 Log.e("IR_WH","random uidOn="+uidOn);
+     			 Log.e("IR_WH","random uidOff="+uidOff);
+            	 TUTKClient.timeradd(uidOn,(short)0x7f,onHour,onMinute,learnCursor.getBlob(5),true);
+            	 TUTKClient.timeradd(uidOff,(short)0x7f,offHour,offMinute,learnCursor.getBlob(6),true);
+            	 TabControl.mSQLHelper.updateWhUid(TabControl.writeDB, devid,uidOn,uidOff);
 //            	 timeradd(int uid,int bit_week, int hour, int min,byte[] data, boolean irflag);
              	break;
              case R.id.textOn:
@@ -269,10 +287,13 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 			        	  TabControl.mSQLHelper.updateWh(TabControl.writeDB, devid,WhTimerOn,WhTimerOff);
 			        	  button5.setChecked(false);
 			        	  button5.setBackgroundResource(R.drawable.rf_switch_blue);
-			        	  TUTKClient.timerdel(devid);
+			        	 
 		             }         
 
 		       },mHour,mMinute,true).show();
+		
+		 TUTKClient.timerdel(uidOn);
+		 TUTKClient.timerdel(uidOff);
 	}
 	
 

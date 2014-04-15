@@ -40,11 +40,15 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	private final static String SwitchTimerOff1= "switchtimeroff1";	
 	private final static String SwitchTimerOn2 = "switchtimeron2";
 	private final static String SwitchTimerOff2 =  "switchtimeroff2";
+	private final static String SwitchTimerOn3 = "switchtimeron3";
+	private final static String SwitchTimerOff3 =  "switchtimeroff3";
 	private final static String Week = "week";
 	private final static String DeferOnHour = "deferonhour";
 	private final static String DeferOnMin = "deferonmin";
 	private final static String DeferOffHour = "deferoffhour";
 	private final static String DeferOffMin = "deferoffmin";
+	private final static String WhUidOn = "WhUidOn";
+	private final static String WhUidOff = "WhUidOff";
 	
 	
 	
@@ -54,7 +58,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
     
     final String CREATE_TIMER_TABLE_SQL =
    		 "CREATE TABLE IF NOT EXISTS " + Table_Name_Timer + 
-   		  " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + WhTimerOn  + " VHARCHAR, "+ WhTimerOff + " VHARCHAR, "+ SwitchTimerOn1  + " VHARCHAR, "+ SwitchTimerOff1 + " VHARCHAR, "+SwitchTimerOn2  + " VHARCHAR, "+ SwitchTimerOff2 + " VHARCHAR, "+ Week  + " VHARCHAR, "+ DeferOnHour  + " INTEGER, " + DeferOnMin  + " INTEGER, "+DeferOffHour  + " INTEGER, " + DeferOffMin  + " INTEGER, "+ Auto + " INTEGER );";
+   		  " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + WhTimerOn  + " VHARCHAR, "+ WhTimerOff + " VHARCHAR, "+ SwitchTimerOn1  + " VHARCHAR, "+ SwitchTimerOff1 + " VHARCHAR, "+SwitchTimerOn2  + " VHARCHAR, "+ SwitchTimerOff2 + " VHARCHAR, "+SwitchTimerOn3  + " VHARCHAR, "+ SwitchTimerOff3 + " VHARCHAR, "+ Week  + " VHARCHAR, "+ DeferOnHour  + " INTEGER, " + DeferOnMin  + " INTEGER, "+DeferOffHour  + " INTEGER, " + DeferOffMin  + " INTEGER, "+WhUidOn  + " INTEGER, " + WhUidOff  + " INTEGER, "+ Auto + " INTEGER );";
   
 	final String CREATE_LIST_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_List + 
@@ -93,7 +97,7 @@ public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, S
 		Cursor ToReturn = db.rawQuery(str, null);
 		if(0==ToReturn.getCount())
 		{
-			String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',0,1,1,57);";
+			String sql = "INSERT INTO " + Table_Name_Setup + " Values(\'" + Tag_Uid + "\',\'" + Tag_Type + "\',\'" + Tag_Name + "\',0,1,63,57);";
 			db.execSQL(sql);
 			return true;
 		}else{
@@ -116,7 +120,7 @@ public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, S
 //	
 	public void insertTimer(SQLiteDatabase db, String Tag_Uid, int Tag_DevID) {
 		
-		String sql = "INSERT INTO " + Table_Name_Timer  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'0\',0,0,0,0,0);";
+		String sql = "INSERT INTO " + Table_Name_Timer  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'0\',0,0,0,0,0,0,0);";
 		db.execSQL(sql);
 	}
 	public void insertBtnName(SQLiteDatabase db, String Tag_Uid, int Tag_DevID) {
@@ -265,6 +269,18 @@ public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, S
 		//		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
 		//		db.execSQL(str);
 			}
+		
+		public void updateWhUid(SQLiteDatabase db,int Tag_DevID, int UidOn, int UidOff) {
+			
+			Log.e("Sqlite", "updateWh");
+			ContentValues values = new ContentValues();
+			values.put(WhUidOn,UidOn);
+			values.put(WhUidOff,UidOff);
+			db.update(Table_Name_Timer, values, DevID + "=\"" + Tag_DevID +"\"", null);
+	
+	//		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
+	//		db.execSQL(str);
+		}
 		public void updateSwitch(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID, String Tag_Name) {
 			
 			Log.e("Sqlite", "updateBtnName");

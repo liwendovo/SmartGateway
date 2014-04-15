@@ -74,6 +74,7 @@ public class SetupTime extends Activity implements android.view.View.OnClickList
 //                   tv.setTextSize(14.0f);
 //                   parent.setVisibility(View.VISIBLE);
             	  TabControl.mSQLHelper.updateTimezone(TabControl.writeDB,TabControl.mUid,postion);
+            	  Log.e("Setup Time","postion="+postion);
             	  String[] ss=new String[2];
             	  ss=selectedName.split("UTC"); 
             	  ss[1]=ss[1].replace("+",""); 
