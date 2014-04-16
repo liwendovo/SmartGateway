@@ -49,6 +49,12 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	private final static String DeferOffMin = "deferoffmin";
 	private final static String WhUidOn = "WhUidOn";
 	private final static String WhUidOff = "WhUidOff";
+	private final static String SwitchUidOn1 = "SwitchUidOn1";
+	private final static String SwitchUidOff1 = "SwitchUidOff1";
+	private final static String SwitchUidOn2 = "SwitchUidOn2";
+	private final static String SwitchUidOff2 = "SwitchUidOff2";
+	private final static String SwitchUidOn3 = "SwitchUidOn3";
+	private final static String SwitchUidOff3 = "SwitchUidOff3";
 	
 	
 	
@@ -58,7 +64,9 @@ public class SQLiteHelper extends SQLiteOpenHelper
     
     final String CREATE_TIMER_TABLE_SQL =
    		 "CREATE TABLE IF NOT EXISTS " + Table_Name_Timer + 
-   		  " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + WhTimerOn  + " VHARCHAR, "+ WhTimerOff + " VHARCHAR, "+ SwitchTimerOn1  + " VHARCHAR, "+ SwitchTimerOff1 + " VHARCHAR, "+SwitchTimerOn2  + " VHARCHAR, "+ SwitchTimerOff2 + " VHARCHAR, "+SwitchTimerOn3  + " VHARCHAR, "+ SwitchTimerOff3 + " VHARCHAR, "+ Week  + " VHARCHAR, "+ DeferOnHour  + " INTEGER, " + DeferOnMin  + " INTEGER, "+DeferOffHour  + " INTEGER, " + DeferOffMin  + " INTEGER, "+WhUidOn  + " INTEGER, " + WhUidOff  + " INTEGER, "+ Auto + " INTEGER );";
+   		  " ( "+  Uid +" VHARCHAR(20), " + DevID + " INTEGER, " + WhTimerOn  + " VHARCHAR, "+ WhTimerOff + " VHARCHAR, "+ SwitchTimerOn1  + " VHARCHAR, "+ SwitchTimerOff1 + " VHARCHAR, "+SwitchTimerOn2  + " VHARCHAR, "+ SwitchTimerOff2 + " VHARCHAR, "+SwitchTimerOn3  + " VHARCHAR, "+ SwitchTimerOff3 + " VHARCHAR, "+ 
+   		 Week  + " VHARCHAR, "+ DeferOnHour  + " INTEGER, " + DeferOnMin  + " INTEGER, "+DeferOffHour  + " INTEGER, " + DeferOffMin  + " INTEGER, "+
+   		 WhUidOn  + " INTEGER, " + WhUidOff  + " INTEGER, "+SwitchUidOn1  + " INTEGER, " + SwitchUidOff1  + " INTEGER, "+SwitchUidOn2  + " INTEGER, " + SwitchUidOff2  + " INTEGER, "+SwitchUidOn3  + " INTEGER, " + SwitchUidOff3  + " INTEGER, "+ Auto + " INTEGER );";
   
 	final String CREATE_LIST_TABLE_SQL =
 			 "CREATE TABLE IF NOT EXISTS " + Table_Name_List + 
@@ -120,7 +128,7 @@ public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, S
 //	
 	public void insertTimer(SQLiteDatabase db, String Tag_Uid, int Tag_DevID) {
 		
-		String sql = "INSERT INTO " + Table_Name_Timer  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'0\',0,0,0,0,0,0,0);";
+		String sql = "INSERT INTO " + Table_Name_Timer  + " Values( \'"+ Tag_Uid + "\',\'" +Tag_DevID+ "\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'00:00\',\'0\',0,0,0,0,0,0,0,0,0,0,0,0,0);";
 		db.execSQL(sql);
 	}
 	public void insertBtnName(SQLiteDatabase db, String Tag_Uid, int Tag_DevID) {
@@ -281,17 +289,37 @@ public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, S
 	//		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
 	//		db.execSQL(str);
 		}
-		public void updateSwitch(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID, String Tag_Name) {
+		public void updateSwitch(SQLiteDatabase db,int Tag_DevID, String Wh_On1, String Wh_Off1,String Wh_On2, String Wh_Off2,String Wh_On3, String Wh_Off3) {
 			
-			Log.e("Sqlite", "updateBtnName");
-			byte[] nameByte =Tag_Name.getBytes();
+			Log.e("Sqlite", "updateWh");
 			ContentValues values = new ContentValues();
-			values.put("button"+Tag_BtnID,nameByte);
-			db.update(Table_Name_Timer, values, DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"", null);
-		
-		//	String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
-		//	db.execSQL(str);
+			values.put(SwitchTimerOn1,Wh_On1);
+			values.put(SwitchTimerOff1,Wh_Off1);
+			values.put(SwitchTimerOn2,Wh_On2);
+			values.put(SwitchTimerOff2,Wh_Off2);
+			values.put(SwitchTimerOn3,Wh_On3);
+			values.put(SwitchTimerOff3,Wh_Off3);
+			db.update(Table_Name_Timer, values, DevID + "=\"" + Tag_DevID +"\"", null);
+	
+	//		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
+	//		db.execSQL(str);
 		}
+		
+		public void updateSwitchUid(SQLiteDatabase db,int Tag_DevID, int UidOn1, int UidOff1, int UidOn2, int UidOff2, int UidOn3, int UidOff3) {
+					
+					Log.e("Sqlite", "updateWh");
+					ContentValues values = new ContentValues();
+					values.put(SwitchUidOn1,UidOn1);
+					values.put(SwitchUidOff1,UidOff1);
+					values.put(SwitchUidOn2,UidOn2);
+					values.put(SwitchUidOff2,UidOff2);
+					values.put(SwitchUidOn3,UidOn3);
+					values.put(SwitchUidOff3,UidOff3);
+					db.update(Table_Name_Timer, values, DevID + "=\"" + Tag_DevID +"\"", null);
+			
+			//		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+nameByte+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"name\"";
+			//		db.execSQL(str);
+				}
 
 	public void updateBtnName(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID, String Tag_Name) {
 		

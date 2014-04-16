@@ -221,17 +221,20 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
             	 }
             	 Log.e("IR_WH","button5.isChecked()="+button5.isChecked());
             	 if (button5.isChecked()) {
-            		button5.setBackgroundResource(R.drawable.rf_switch_yellow);
+            		 button5.setBackgroundResource(R.drawable.rf_switch_yellow);
+            		 uidOn=(int)(Math.random()*100000);
+                	 uidOff=(int)(Math.random()*100000);
+                	 Log.e("IR_WH","random uidOn="+uidOn);
+         			 Log.e("IR_WH","random uidOff="+uidOff);
+                	 TUTKClient.timeradd(uidOn,(short)0x7f,onHour,onMinute,learnCursor.getBlob(5),true);
+                	 TUTKClient.timeradd(uidOff,(short)0x7f,offHour,offMinute,learnCursor.getBlob(6),true);
+                	 TabControl.mSQLHelper.updateWhUid(TabControl.writeDB, devid,uidOn,uidOff);
      			 } else {
      				button5.setBackgroundResource(R.drawable.rf_switch_blue);
+     				TUTKClient.timerdel(uidOn);
+     				TUTKClient.timerdel(uidOff);
      			 }
-            	 uidOn=(int)(Math.random()*100000);
-            	 uidOff=(int)(Math.random()*100000);
-            	 Log.e("IR_WH","random uidOn="+uidOn);
-     			 Log.e("IR_WH","random uidOff="+uidOff);
-            	 TUTKClient.timeradd(uidOn,(short)0x7f,onHour,onMinute,learnCursor.getBlob(5),true);
-            	 TUTKClient.timeradd(uidOff,(short)0x7f,offHour,offMinute,learnCursor.getBlob(6),true);
-            	 TabControl.mSQLHelper.updateWhUid(TabControl.writeDB, devid,uidOn,uidOff);
+            	
 //            	 timeradd(int uid,int bit_week, int hour, int min,byte[] data, boolean irflag);
              	break;
              case R.id.textOn:

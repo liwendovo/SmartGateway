@@ -111,12 +111,14 @@
             android:text="00:00">
         </TextView>
         
-        <ImageView
-        android:id="@+id/button5"
-        android:layout_gravity="right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/rf_switch_yellow" />
+         <ToggleButton
+	        android:id="@+id/togBtn1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textOn=" " 
+        	android:textOff=" "
+	        android:layout_gravity="right"
+	        android:background="@drawable/rf_switch_blue" />
         
     </TableRow>
     
@@ -161,12 +163,14 @@
             android:text="00:00">
         </TextView>
         
-        <ImageView
-        android:id="@+id/button8"
-        android:layout_gravity="right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/rf_switch_blue" />
+         <ToggleButton
+	        android:id="@+id/togBtn2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textOn=" " 
+        	android:textOff=" "
+	        android:layout_gravity="right"
+	        android:background="@drawable/rf_switch_blue" />
       
 
     </TableRow>
@@ -190,37 +194,37 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <ImageView
-            android:id="@+id/button9"
+            android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rf_switch_day" />
         <ImageView
-            android:id="@+id/button10"
+            android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rf_switch_day" />
         <ImageView
-            android:id="@+id/button11"
+            android:id="@+id/button5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rf_switch_day" />
         <ImageView
-            android:id="@+id/button12"
+            android:id="@+id/button6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rf_switch_day" />
         <ImageView
-            android:id="@+id/button13"
+            android:id="@+id/button7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rf_switch_day" />
          <ImageView
-            android:id="@+id/button14"
+            android:id="@+id/button8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rf_switch_day" />
         <ImageView
-            android:id="@+id/button15"
+            android:id="@+id/button9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rf_switch_day" />
@@ -248,17 +252,19 @@
        <TextView
             android:id="@+id/textOn3"
             android:layout_marginLeft="10dp"
-	        android:layout_marginRight="10dp"
             android:gravity="center"
             android:textSize="40px"
             android:text="00:00">
         </TextView>
        
-       <ImageView
-            android:id="@+id/button17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/rf_switch_yellow" />
+        <ToggleButton
+	        android:id="@+id/togBtn3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textOn=" " 
+        	android:textOff=" "
+	        android:layout_gravity="right"
+	        android:background="@drawable/rf_switch_blue" />
 </TableRow>
 
          <TableRow  
@@ -273,17 +279,19 @@
       <TextView
             android:id="@+id/textOff3"
             android:layout_marginLeft="10dp"
-	        android:layout_marginRight="10dp"
             android:gravity="center"
             android:textSize="40px"
             android:text="00:00">
         </TextView>
        
-       <ImageView
-            android:id="@+id/button20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/rf_switch_blue" />
+        <ToggleButton
+	        android:id="@+id/togBtn4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textOn=" " 
+        	android:textOff=" "
+	        android:layout_gravity="right"
+	        android:background="@drawable/rf_switch_blue" />
 </TableRow>
 </TableLayout>
 
