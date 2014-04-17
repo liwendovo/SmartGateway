@@ -340,6 +340,14 @@ public boolean insertSetup(SQLiteDatabase db, String Tag_Uid, String Tag_Type, S
 //		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+data+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"learn\"";
 //		db.execSQL(str);
 	}
+   public void updateBtn(SQLiteDatabase db,int Tag_DevID, int Tag_BtnID,int data) {	
+		
+		ContentValues values = new ContentValues();
+		values.put("button"+Tag_BtnID,data);
+		db.update(Table_Name_Btn, values, DevID + "=\"" + Tag_DevID +"\"", null);
+//		String str = "update " + Table_Name_Btn + " set  button"+Tag_BtnID+" ='"+data+"' where " + DevID + "=\"" + Tag_DevID +"\" AND "+Type +"=\"learn\"";
+//		db.execSQL(str);
+	}
 //	public void updateEtcStatus(SQLiteDatabase db, String Tag_ID) {
 //		String str = "update " + Table_Name_Etc + " set "+ Status+"='yes' where " + Uid + "=\"" + Tag_ID + "\"";
 //		db.execSQL(str);

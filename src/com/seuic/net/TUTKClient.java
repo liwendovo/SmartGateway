@@ -147,7 +147,8 @@ public class TUTKClient {
    	 //Êý¾Ý·¢ËÍ
        AVAPIs av = new AVAPIs();
 //       String str=new String(data);	
-
+       Log.e("TUTKClient send", "data="+bytes2HexString(data));
+       Log.e("TUTKClient send", "data length="+data.length);
        int ret = av.avSendIOCtrl(avIndex, irflag?IOTYPE_BL_BOX_SEND_IR_REQ:IOTYPE_BL_BOX_SEND_RF_REQ , data , data.length);
        if (ret < 0) {
            System.out.printf("send failed[%d]\n", ret); 
@@ -394,12 +395,12 @@ public class TUTKClient {
 	   	
 		
 ////	   	byte[] str = 
-//		Log.e("TUTKClient timeradd", "bOut="+bytes2HexString(bOut.toByteArray()));
+		Log.e("TUTKClient timeradd", "bOut="+bytes2HexString(bOut.toByteArray()));
 ////		bOut.toByteArray().
-//		Log.e("TUTKClient timeradd", "hour="+hour);
-//		Log.e("TUTKClient timeradd", "min="+min);
+		Log.e("TUTKClient timeradd", "hour="+hour);
+		Log.e("TUTKClient timeradd", "min="+min);
 //		
-//	   	Log.e("TUTKClient timeradd", "bOut.size()="+bOut.size());
+	   	Log.e("TUTKClient timeradd", "bOut.size()="+bOut.size());
          AVAPIs av = new AVAPIs();     
          int ret = av.avSendIOCtrl(avIndex, IOTYPE_BL_BOX_DO_LATER_REQ,bOut.toByteArray(), bOut.size());
          Log.e("TUTKClient", "start_timeradd "+ret);
@@ -794,7 +795,7 @@ public class TUTKClient {
     public static byte[] int32ToByteArray(int value) {
 		byte[] b = new byte[4];
 		for (int i = 0; i < 4; i++) {
-			int offset = (3-i) * 8;
+			int offset = i * 8;
 			b[i] = (byte) ((value >>> offset) & 0xFF);
 		}
 		return b;
