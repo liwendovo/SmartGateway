@@ -47,6 +47,7 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 	byte hour;
 	byte min;
 	byte onHour1, onMinute1, offHour1, offMinute1, onHour2,onMinute2,offHour2,offMinute2,onHour3,onMinute3,offHour3,offMinute3;
+	byte week;
 	int devid;
 	int uidOn1,uidOff1,uidOn2,uidOff2,uidOn3,uidOff3;
 	String mUid;
@@ -154,7 +155,9 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 			uidOff2 = timerCursor.getInt(timerCursor.getColumnIndex("SwitchUidOff2"));
 			uidOn3 = timerCursor.getInt(timerCursor.getColumnIndex("SwitchUidOn3"));
 			uidOff3 = timerCursor.getInt(timerCursor.getColumnIndex("SwitchUidOff3"));
-//			uidOff = timerCursor.getColumnIndex("WhUidOff");
+			week = (byte) timerCursor.getInt(timerCursor.getColumnIndex("week"));
+			
+			Log.e("RF_Switch","timerCursor week="+week);
 			Log.e("RF_Switch","timerCursor uidOn1="+uidOn1);
 			Log.e("RF_Switch","timerCursor uidOff1="+uidOff1);
 			Log.e("RF_Switch","timerCursor uidOn2="+uidOn2);
@@ -189,7 +192,7 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 			//未初始化
 			TabControl.mSQLHelper.insertTimer(TabControl.writeDB,mUid,devid);
 		}	
-		setbuttonstate();
+		allbuttonstate();
 		
     }
 
@@ -214,10 +217,7 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 	        		}
 	        	}else{
 	        		TabControl.mViewSelected.buttonClickRecover(leanrnBtn);
-	        		for(int i=0;i<buttonNum;i++){
-	    				if(btnLearn[i])	TabControl.mViewSelected.imageviewClickRecover(button[i]);
-	    		    	else TabControl.mViewSelected.imageviewClickGreyChanged(button[i]);
-	    			}    
+	        		learnbuttonstate();
 	        	}
 	        	break;
         	 case R.id.button1:             	
@@ -275,6 +275,11 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
             		 CustomToast.showToast(getApplicationContext(),"please learn first", Toast.LENGTH_SHORT);	
             		 break;
             	 }
+            	 if(week == 0)
+            	 {
+            		 CustomToast.showToast(getApplicationContext(),"please select which day", Toast.LENGTH_SHORT);
+            		 break;
+            	 }
             	 Log.e("RF_Switch","togBtn1.isChecked()="+togBtn1.isChecked());
             	 if (togBtn1.isChecked()) {
             		 togBtn1.setBackgroundResource(R.drawable.rf_switch_yellow);
@@ -282,8 +287,8 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
                 	 uidOff1=(int)(Math.random()*100000);
                 	 Log.e("RF_Switch","random uidOn1="+uidOn1);
          			 Log.e("RF_Switch","random uidOff1="+uidOff1);
-                	 TUTKClient.timeradd(uidOn1,(short)0x7f,onHour1,onMinute1,learnCursor.getBlob(3),false);
-                	 TUTKClient.timeradd(uidOff1,(short)0x7f,offHour1,offMinute1,learnCursor.getBlob(4),false);
+                	 TUTKClient.timeradd(uidOn1,(short)week,onHour1,onMinute1,learnCursor.getBlob(3),false);
+                	 TUTKClient.timeradd(uidOff1,(short)week,offHour1,offMinute1,learnCursor.getBlob(4),false);
                 	 TabControl.mSQLHelper.updateSwitchUid(TabControl.writeDB, devid,uidOn1,uidOff1,uidOn2,uidOff2,uidOn3,uidOff3);
      			 } else {
      				togBtn1.setBackgroundResource(R.drawable.rf_switch_blue);
@@ -298,6 +303,11 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
             		 CustomToast.showToast(getApplicationContext(),"please learn first", Toast.LENGTH_SHORT);	
             		 break;
             	 }
+            	 if(week == 0)
+            	 {
+            		 CustomToast.showToast(getApplicationContext(),"please select which day", Toast.LENGTH_SHORT);
+            		 break;
+            	 }
             	 Log.e("RF_Switch","togBtn2.isChecked()="+togBtn2.isChecked());
             	 if (togBtn2.isChecked()) {
             		 togBtn2.setBackgroundResource(R.drawable.rf_switch_yellow);
@@ -305,8 +315,8 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
                 	 uidOff2=(int)(Math.random()*100000);
                 	 Log.e("RF_Switch","random uidOn2="+uidOn2);
          			 Log.e("RF_Switch","random uidOff2="+uidOff2);
-                	 TUTKClient.timeradd(uidOn2,(short)0x7f,onHour2,onMinute2,learnCursor.getBlob(3),false);
-                	 TUTKClient.timeradd(uidOff2,(short)0x7f,offHour2,offMinute2,learnCursor.getBlob(4),false);
+                	 TUTKClient.timeradd(uidOn2,(short)week,onHour2,onMinute2,learnCursor.getBlob(3),false);
+                	 TUTKClient.timeradd(uidOff2,(short)week,offHour2,offMinute2,learnCursor.getBlob(4),false);
                 	 TabControl.mSQLHelper.updateSwitchUid(TabControl.writeDB, devid,uidOn1,uidOff1,uidOn2,uidOff2,uidOn3,uidOff3);
      			 } else {
      				togBtn2.setBackgroundResource(R.drawable.rf_switch_blue);
@@ -327,7 +337,7 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
             		 uidOn3=(int)(Math.random()*100000);
                 	 Log.e("RF_Switch","random uidOn3="+uidOn3);
          			 Log.e("RF_Switch","random uidOff3="+uidOff3);
-                	 TUTKClient.timeradd(uidOn3,(short)0x7f,onHour3,onMinute3,learnCursor.getBlob(3),false);
+                	 TUTKClient.timeradd(uidOn3,(short)week,onHour3,onMinute3,learnCursor.getBlob(3),false);
                 	 TabControl.mSQLHelper.updateSwitchUid(TabControl.writeDB, devid,uidOn1,uidOff1,uidOn2,uidOff2,uidOn3,uidOff3);
      			 } else {
      				togBtn3.setBackgroundResource(R.drawable.rf_switch_blue);
@@ -341,16 +351,16 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
             		 CustomToast.showToast(getApplicationContext(),"please learn first", Toast.LENGTH_SHORT);	
             		 break;
             	 }
-            	 Log.e("RF_Switch","togBtn3.isChecked()="+togBtn3.isChecked());
-            	 if (togBtn3.isChecked()) {
-            		 togBtn3.setBackgroundResource(R.drawable.rf_switch_yellow);
+            	 Log.e("RF_Switch","togBtn3.isChecked()="+togBtn4.isChecked());
+            	 if (togBtn4.isChecked()) {
+            		 togBtn4.setBackgroundResource(R.drawable.rf_switch_yellow);
             		 uidOff3=(int)(Math.random()*100000);
                 	 Log.e("RF_Switch","random uidOn3="+uidOn3);
          			 Log.e("RF_Switch","random uidOff3="+uidOff3);
-                	 TUTKClient.timeradd(uidOff3,(short)0x7f,offHour3,offMinute3,learnCursor.getBlob(4),false);
+                	 TUTKClient.timeradd(uidOff3,(short)week,offHour3,offMinute3,learnCursor.getBlob(4),false);
                 	 TabControl.mSQLHelper.updateSwitchUid(TabControl.writeDB, devid,uidOn1,uidOff1,uidOn2,uidOff2,uidOn3,uidOff3);
      			 } else {
-     				togBtn3.setBackgroundResource(R.drawable.rf_switch_blue);
+     				togBtn4.setBackgroundResource(R.drawable.rf_switch_blue);
       				 TUTKClient.timerdel(uidOff3);
      			 }
             	
@@ -629,25 +639,62 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 	        	}
 	            progressDialog.dismiss(); 
 	        }}; 
-		private void setbuttonstate()
+		private void learnbuttonstate()
 		{
-			for(int i=0;i<buttonMaxNum;i++){
+			for(int i=0;i<buttonNum;i++){
 				if(btnLearn[i])	TabControl.mViewSelected.imageviewClickRecover(button[i]);
 		    	else TabControl.mViewSelected.imageviewClickGreyChanged(button[i]);
+			}
+			
+		}
+		
+		private void allbuttonstate()
+		{
+			learnbuttonstate();
+			for(int i=buttonNum;i<buttonMaxNum;i++){
+				if(btnLearn[i])	TabControl.mViewSelected.imageviewClickRecover(button[i]);
+		    	else TabControl.mViewSelected.imageviewClickLearn(button[i]);
 			}
 		}
 		
 		private void weekbuttonstate(int curButton )
 		{
+			 byte b1 = 0x1;
 			 if(learnCursor.getInt(curButton+2) == 1)
         	 {
         		 TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,0);
-        		 TabControl.mViewSelected.imageviewClickGreyChanged(button[curButton-1]);
+        		 TabControl.mViewSelected.imageviewClickLearn(button[curButton-1]);
+        		 week &= ~( b1<<(curButton-3)); 
+        		 Log.e("RF_Switch","weekbuttonstate week="+week);
+        		 Log.e("RF_Switch","weekbuttonstate learnCursor=1");
         		 
         	 }else{
         		 TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,1);
         		 TabControl.mViewSelected.imageviewClickRecover(button[curButton-1]);
+        		 week |=  b1<<(curButton-3);
+        		 Log.e("RF_Switch","weekbuttonstate week="+week);
+        		 Log.e("RF_Switch","weekbuttonstate learnCursor=0");
         	 }
+//			 TabControl.writeDB.close();
+
+    		 TabControl.mSQLHelper.updateSwitchWeek(TabControl.writeDB, devid, week);
+			 learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);
+//				Log.e("leewoo", "cur: "+learnCursor.getCount());
+//				if(learnCursor.getCount()>0){				 
+//					//学习	
+////					for(int i=0;i<buttonNum;i++){
+////						btnLearn[i]=learnCursor.getBlob(i+3)!=null?true:false;
+////					}
+////					for(int i=buttonNum;i<buttonMaxNum;i++){
+////						btnLearn[i]=learnCursor.getInt(i+3) == 1?true:false;
+////					}
+//					Log.e("leewoo", "cur learn "+learnCursor.getCount());
+//				}else{
+//					Log.e("leewoo", "cur learn 初始化"+learnCursor.getCount());
+//					//未初始化
+//					TabControl.mSQLHelper.insertBtnLearn(TabControl.writeDB,mUid,devid);
+//				}		
 		}
+		
    
 }

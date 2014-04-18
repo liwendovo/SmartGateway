@@ -56,8 +56,6 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 	Button  backBtn,leanrnBtn;
 	LinearLayout back_ll,titleBtn_ll;
 	ImageView   devpic;
-	ImageView  button1,button2,
-			button3,button4;
 	ToggleButton button5;
 	TextView textOn,textOff;
 	
