@@ -32,6 +32,7 @@ import com.seuic.add.AddEtc;
 import com.seuic.devetc.IR_Custom1;
 import com.seuic.devetc.IR_Custom2;
 import com.seuic.devetc.RF_Curtain1;
+import com.seuic.devetc.RF_Curtain2;
 import com.seuic.devetc.RF_Lamp;
 import com.seuic.devetc.RF_Power;
 import com.seuic.devetc.RF_Switch;
@@ -96,8 +97,10 @@ public class TabRF extends Activity {
 					 intent = new Intent(TabRF.this,RF_WH.class);
 				 }else if(type.equals("Lamp")){
 					 intent = new Intent(TabRF.this,RF_Lamp.class);
-				 }else if(type.equals("Curtain")){
+				 }else if(type.equals("Curtain(Horizontal)")){
 					 intent = new Intent(TabRF.this,RF_Curtain1.class);
+				 }else if(type.equals("Curtain(Vertical)")){
+					 intent = new Intent(TabRF.this,RF_Curtain2.class);
 				 }else if(type.equals("Power")){
 					 intent = new Intent(TabRF.this,RF_Power.class);
 				 }else if(type.equals("CUSTOM1")){
@@ -218,10 +221,14 @@ public class TabRF extends Activity {
 				 listItem.put("icon", R.drawable.rf_logo_lamp);
 				 listItem.put("status2", R.drawable.rf_logo_on);
 				 listItem.put("status", R.drawable.rf_logo_off);
-			 }else if(type.equals("Curtain")){
-				 listItem.put("icon", R.drawable.rf_logo_curtain);
+			 }else if(type.equals("Curtain(Horizontal)")){
+				 listItem.put("icon", R.drawable.rf_logo_curtain1);
 				 listItem.put("status2", R.drawable.rf_logo_open);
 				 listItem.put("status", R.drawable.rf_logo_close);
+			 }else if(type.equals("Curtain(Vertical)")){
+				 listItem.put("icon", R.drawable.rf_logo_curtain2);
+				 listItem.put("status2", R.drawable.ir_logo_up);
+				 listItem.put("status", R.drawable.ir_logo_down);
 			 }else if(type.equals("Power")){
 				 listItem.put("icon", R.drawable.rf_logo_power);
 				 listItem.put("status2", R.drawable.rf_logo_on);

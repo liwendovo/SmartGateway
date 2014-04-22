@@ -33,12 +33,14 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 	LinearLayout back_ll,titleBtn_ll;
 	ImageView   devpic;
 	TextView textOn1,textOff1,textOn2,textOff2,textOn3,textOff3;
-	ToggleButton togBtn1,togBtn2,togBtn3,togBtn4;
 	Calendar calendar=Calendar.getInstance(TimeZone.getDefault());
+	final int allButtonNum=13;
 	final int buttonMaxNum=9;
 	final int buttonNum=2;
+	final int togButtonNum=4;
 	ImageView button[]=new ImageView[buttonMaxNum];
-	boolean btnLearn[]=new boolean[buttonMaxNum];
+	ToggleButton togBtn[]=new ToggleButton[togButtonNum];
+	boolean btnLearn[]=new boolean[allButtonNum];
 	int curButton=-1;
 	byte ioCtrlBuf[]=new byte[TUTKClient.MAX_SIZE_IOCTRL_BUF]; 
 	private ProgressDialog progressDialog;  
@@ -74,10 +76,10 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 		button[6]=(ImageView)findViewById(R.id.button7);		
 		button[7]=(ImageView)findViewById(R.id.button8);
 		button[8]=(ImageView)findViewById(R.id.button9);
-		togBtn1=(ToggleButton)findViewById(R.id.togBtn1);
-		togBtn2=(ToggleButton)findViewById(R.id.togBtn2);
-		togBtn3=(ToggleButton)findViewById(R.id.togBtn3);
-		togBtn4=(ToggleButton)findViewById(R.id.togBtn4);
+		togBtn[0]=(ToggleButton)findViewById(R.id.togBtn1);
+		togBtn[1]=(ToggleButton)findViewById(R.id.togBtn2);
+		togBtn[2]=(ToggleButton)findViewById(R.id.togBtn3);
+		togBtn[3]=(ToggleButton)findViewById(R.id.togBtn4);
 		textOn1=(TextView)findViewById(R.id.textOn1);
 		textOff1=(TextView)findViewById(R.id.textOff1);
 		textOn2=(TextView)findViewById(R.id.textOn2);
@@ -91,10 +93,10 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 		textOff2.setOnClickListener(this);
 		textOn3.setOnClickListener(this); 
 		textOff3.setOnClickListener(this);
-		togBtn1.setOnClickListener(this); 
-		togBtn2.setOnClickListener(this);
-		togBtn3.setOnClickListener(this); 
-		togBtn4.setOnClickListener(this);
+		togBtn[0].setOnClickListener(this); 
+		togBtn[1].setOnClickListener(this);
+		togBtn[2].setOnClickListener(this); 
+		togBtn[3].setOnClickListener(this);
 		backBtn.setOnClickListener(this); 
 		leanrnBtn.setOnClickListener(this); 
 		back_ll.setOnClickListener(this); 
@@ -128,7 +130,7 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 			for(int i=0;i<buttonNum;i++){
 				btnLearn[i]=learnCursor.getBlob(i+3)!=null?true:false;
 			}
-			for(int i=buttonNum;i<buttonMaxNum;i++){
+			for(int i=buttonNum;i<allButtonNum;i++){
 				btnLearn[i]=learnCursor.getInt(i+3) == 1?true:false;
 			}
 		}else{
@@ -164,22 +166,23 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 			Log.e("RF_Switch","timerCursor uidOff2="+uidOff2);
 			Log.e("RF_Switch","timerCursor uidOn3="+uidOn3);
 			Log.e("RF_Switch","timerCursor uidOff3="+uidOff3);
-////			timerCursor.getInt(uidOn)  getColumnIndex("WhUidOn");
-//			uidOn = timerCursor.getInt(timerCursor.getColumnIndex("WhUidOn"));
-//			uidOff = timerCursor.getInt(timerCursor.getColumnIndex("WhUidOff"));
-////			uidOff = timerCursor.getColumnIndex("WhUidOff");
-//			Log.e("RF_Switch","timerCursor uidOn="+uidOn);
-//			Log.e("RF_Switch","timerCursor uidOff="+uidOff);
-////			byte[] data = null;
-//			byte[] data = new byte[2] ;
-//			char[] prefix = null;
-//			prefix = new char[2];
-//			WhTimerOn.getChars(0, 2, prefix, 0);
-////			WhTimerOn.getChars(3, 4, prefix, 0);
-//			String tmp = new String(prefix);
-//			data[0] = (byte)Integer.parseInt(tmp);
-//			onHour = data[0];
-////			offHour = 
+
+			onHour1 = getswitchtime(WhTimerOn1,0);
+			onMinute1 = getswitchtime(WhTimerOn1,3);
+			offHour1 = getswitchtime(WhTimerOff1,0);
+			offMinute1 = getswitchtime(WhTimerOff1,3);
+		    Log.e("IR_WH","timerCursor onHour="+onHour1+"  onMinute="+onMinute1+"  offHour="+offHour1+"  offMinute="+offMinute1);
+		    onHour2 = getswitchtime(WhTimerOn2,0);
+			onMinute2 = getswitchtime(WhTimerOn2,3);
+			offHour2 = getswitchtime(WhTimerOff2,0);
+			offMinute2 = getswitchtime(WhTimerOff2,3);
+		    Log.e("IR_WH","timerCursor onHour="+onHour2+"  onMinute="+onMinute2+"  offHour="+offHour2+"  offMinute="+offMinute2);
+		    onHour3 = getswitchtime(WhTimerOn3,0);
+			onMinute3 = getswitchtime(WhTimerOn3,3);
+			offHour3 = getswitchtime(WhTimerOff3,0);
+			offMinute3 = getswitchtime(WhTimerOff3,3);
+		    Log.e("IR_WH","timerCursor onHour="+onHour3+"  onMinute="+onMinute3+"  offHour="+offHour3+"  offMinute="+offMinute3);
+		    
 			textOn1.setText(WhTimerOn1);
 			textOff1.setText(WhTimerOff1);
 			textOn2.setText(WhTimerOn2);
@@ -270,6 +273,7 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
             	 weekbuttonstate(curButton);
               	break;
              case R.id.togBtn1:
+            	 curButton = 10;
             	 if(learnCursor.getBlob(3)==null&&learnCursor.getBlob(4)==null)
             	 {
             		 CustomToast.showToast(getApplicationContext(),"please learn first", Toast.LENGTH_SHORT);	
@@ -280,24 +284,27 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
             		 CustomToast.showToast(getApplicationContext(),"please select which day", Toast.LENGTH_SHORT);
             		 break;
             	 }
-            	 Log.e("RF_Switch","togBtn1.isChecked()="+togBtn1.isChecked());
-            	 if (togBtn1.isChecked()) {
-            		 togBtn1.setBackgroundResource(R.drawable.rf_switch_yellow);
+            	 Log.e("RF_Switch","togBtn[0].isChecked()="+togBtn[0].isChecked());
+            	 if (togBtn[0].isChecked()) {
+            		 togBtn[0].setBackgroundResource(R.drawable.rf_switch_yellow);
             		 uidOn1=(int)(Math.random()*100000);
                 	 uidOff1=(int)(Math.random()*100000);
                 	 Log.e("RF_Switch","random uidOn1="+uidOn1);
          			 Log.e("RF_Switch","random uidOff1="+uidOff1);
                 	 TUTKClient.timeradd(uidOn1,(short)week,onHour1,onMinute1,learnCursor.getBlob(3),false);
                 	 TUTKClient.timeradd(uidOff1,(short)week,offHour1,offMinute1,learnCursor.getBlob(4),false);
+                	 TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,1);
                 	 TabControl.mSQLHelper.updateSwitchUid(TabControl.writeDB, devid,uidOn1,uidOff1,uidOn2,uidOff2,uidOn3,uidOff3);
      			 } else {
-     				togBtn1.setBackgroundResource(R.drawable.rf_switch_blue);
+     				togBtn[0].setBackgroundResource(R.drawable.rf_switch_blue);
      	            TUTKClient.timerdel(uidOn1);
      				TUTKClient.timerdel(uidOff1);
+     				TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,0);
      			 }
             	 
              	break;
              case R.id.togBtn2:
+            	 curButton = 11;
             	 if(learnCursor.getBlob(3)==null&&learnCursor.getBlob(4)==null)
             	 {
             		 CustomToast.showToast(getApplicationContext(),"please learn first", Toast.LENGTH_SHORT);	
@@ -308,60 +315,68 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
             		 CustomToast.showToast(getApplicationContext(),"please select which day", Toast.LENGTH_SHORT);
             		 break;
             	 }
-            	 Log.e("RF_Switch","togBtn2.isChecked()="+togBtn2.isChecked());
-            	 if (togBtn2.isChecked()) {
-            		 togBtn2.setBackgroundResource(R.drawable.rf_switch_yellow);
+            	 Log.e("RF_Switch","togBtn[1].isChecked()="+togBtn[1].isChecked());
+            	 if (togBtn[1].isChecked()) {
+            		 togBtn[1].setBackgroundResource(R.drawable.rf_switch_yellow);
             		 uidOn2=(int)(Math.random()*100000);
                 	 uidOff2=(int)(Math.random()*100000);
                 	 Log.e("RF_Switch","random uidOn2="+uidOn2);
          			 Log.e("RF_Switch","random uidOff2="+uidOff2);
                 	 TUTKClient.timeradd(uidOn2,(short)week,onHour2,onMinute2,learnCursor.getBlob(3),false);
                 	 TUTKClient.timeradd(uidOff2,(short)week,offHour2,offMinute2,learnCursor.getBlob(4),false);
+                	 TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,1);
                 	 TabControl.mSQLHelper.updateSwitchUid(TabControl.writeDB, devid,uidOn1,uidOff1,uidOn2,uidOff2,uidOn3,uidOff3);
      			 } else {
-     				togBtn2.setBackgroundResource(R.drawable.rf_switch_blue);
+     				togBtn[1].setBackgroundResource(R.drawable.rf_switch_blue);
      				TUTKClient.timerdel(uidOn2);
       				TUTKClient.timerdel(uidOff2);
+      				TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,0);
      			 }
             	
              	break;
              case R.id.togBtn3:
+            	 curButton = 12;
             	 if(learnCursor.getBlob(3)==null&&learnCursor.getBlob(4)==null)
             	 {
             		 CustomToast.showToast(getApplicationContext(),"please learn first", Toast.LENGTH_SHORT);	
             		 break;
             	 }
-            	 Log.e("RF_Switch","togBtn3.isChecked()="+togBtn3.isChecked());
-            	 if (togBtn3.isChecked()) {
-            		 togBtn3.setBackgroundResource(R.drawable.rf_switch_yellow);
+            	 Log.e("RF_Switch","togBtn[2].isChecked()="+togBtn[2].isChecked());
+            	 if (togBtn[2].isChecked()) {
+            		 togBtn[2].setBackgroundResource(R.drawable.rf_switch_yellow);
             		 uidOn3=(int)(Math.random()*100000);
                 	 Log.e("RF_Switch","random uidOn3="+uidOn3);
          			 Log.e("RF_Switch","random uidOff3="+uidOff3);
                 	 TUTKClient.timeradd(uidOn3,(short)week,onHour3,onMinute3,learnCursor.getBlob(3),false);
+                	 TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,1);
                 	 TabControl.mSQLHelper.updateSwitchUid(TabControl.writeDB, devid,uidOn1,uidOff1,uidOn2,uidOff2,uidOn3,uidOff3);
      			 } else {
-     				togBtn3.setBackgroundResource(R.drawable.rf_switch_blue);
+     				togBtn[2].setBackgroundResource(R.drawable.rf_switch_blue);
      				 TUTKClient.timerdel(uidOn3);
+     				TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,0);
      			 }
             	
              	break;
              case R.id.togBtn4:
+            	 curButton = 13;
             	 if(learnCursor.getBlob(3)==null&&learnCursor.getBlob(4)==null)
             	 {
             		 CustomToast.showToast(getApplicationContext(),"please learn first", Toast.LENGTH_SHORT);	
             		 break;
             	 }
-            	 Log.e("RF_Switch","togBtn3.isChecked()="+togBtn4.isChecked());
-            	 if (togBtn4.isChecked()) {
-            		 togBtn4.setBackgroundResource(R.drawable.rf_switch_yellow);
+            	 Log.e("RF_Switch","togBtn[3].isChecked()="+togBtn[3].isChecked());
+            	 if (togBtn[3].isChecked()) {
+            		 togBtn[3].setBackgroundResource(R.drawable.rf_switch_yellow);
             		 uidOff3=(int)(Math.random()*100000);
                 	 Log.e("RF_Switch","random uidOn3="+uidOn3);
          			 Log.e("RF_Switch","random uidOff3="+uidOff3);
                 	 TUTKClient.timeradd(uidOff3,(short)week,offHour3,offMinute3,learnCursor.getBlob(4),false);
+                	 TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,1);
                 	 TabControl.mSQLHelper.updateSwitchUid(TabControl.writeDB, devid,uidOn1,uidOff1,uidOn2,uidOff2,uidOn3,uidOff3);
      			 } else {
-     				togBtn4.setBackgroundResource(R.drawable.rf_switch_blue);
+     				togBtn[3].setBackgroundResource(R.drawable.rf_switch_blue);
       				 TUTKClient.timerdel(uidOff3);
+      				TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,0);
      			 }
             	
              	break;
@@ -370,10 +385,11 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 //            	 onHour1 = hour;
 //	   	       	 onMinute1 = min;
 //	   	       	 WhTimerOn1 = str;
+            	 TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, 10,0);
                  TUTKClient.timerdel(uidOn1);
 	   			 TUTKClient.timerdel(uidOff1);
-	   			 togBtn1.setChecked(false);
-	   			 togBtn1.setBackgroundResource(R.drawable.rf_switch_blue);
+	   			togBtn[0].setChecked(false);
+	   			togBtn[0].setBackgroundResource(R.drawable.rf_switch_blue);
 //	   			 TabControl.mSQLHelper.updateSwitch(TabControl.writeDB, devid,WhTimerOn1,WhTimerOff1,WhTimerOn2,WhTimerOff2,WhTimerOn3,WhTimerOff3);
 //	   	   		 Log.e("RF_Switch","WhTimerOn1:"+WhTimerOn1);
               	break;
@@ -382,10 +398,11 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 //            	  offHour1 = hour;
 //    	       	  offMinute1 = min;
 //    	   		  WhTimerOff1 = str;
+            	  TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, 10,0);
     	   		  TUTKClient.timerdel(uidOn1);
     			  TUTKClient.timerdel(uidOff1);
-    			  togBtn1.setChecked(false);
-    			  togBtn1.setBackgroundResource(R.drawable.rf_switch_blue);
+    			  togBtn[0].setChecked(false);
+    			  togBtn[0].setBackgroundResource(R.drawable.rf_switch_blue);
 //    			  TabControl.mSQLHelper.updateSwitch(TabControl.writeDB, devid,WhTimerOn1,WhTimerOff1,WhTimerOn2,WhTimerOff2,WhTimerOn3,WhTimerOff3);
 //    	   		  Log.e("RF_Switch","WhTimerOff1:"+WhTimerOff1);
               	break;
@@ -394,10 +411,11 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 //             	 onHour2 = hour;
 //  	       	     onMinute2 = min;
 //  	   		     WhTimerOn2 = str;
+             	TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, 11,0);
   	   		     TUTKClient.timerdel(uidOn2);
   			     TUTKClient.timerdel(uidOff2);
-  			     togBtn2.setChecked(false);
-  			     togBtn2.setBackgroundResource(R.drawable.rf_switch_blue);
+  			     togBtn[1].setChecked(false);
+  			     togBtn[1].setBackgroundResource(R.drawable.rf_switch_blue);
 //  			   TabControl.mSQLHelper.updateSwitch(TabControl.writeDB, devid,WhTimerOn1,WhTimerOff1,WhTimerOn2,WhTimerOff2,WhTimerOn3,WhTimerOff3);
 //  	   		     Log.e("RF_Switch","WhTimerOn2:"+WhTimerOn2);
                	break;
@@ -406,10 +424,11 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 //             	  offHour2 = hour;
 //	   	       	  offMinute2 = min;
 //	   	   		  WhTimerOff2 = str;
+             	 TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, 11,0);
 	   	   		  TUTKClient.timerdel(uidOn2);
 	   			  TUTKClient.timerdel(uidOff2);
-	   			  togBtn2.setChecked(false);
-	   			  togBtn2.setBackgroundResource(R.drawable.rf_switch_blue);
+	   			  togBtn[1].setChecked(false);
+	   			  togBtn[1].setBackgroundResource(R.drawable.rf_switch_blue);
 //	   			 TabControl.mSQLHelper.updateSwitch(TabControl.writeDB, devid,WhTimerOn1,WhTimerOff1,WhTimerOn2,WhTimerOff2,WhTimerOn3,WhTimerOff3);
 //	   	   		  Log.e("RF_Switch","WhTimerOff2:"+WhTimerOff2);
                	break;
@@ -418,9 +437,10 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 //                  onHour3 = hour;
 //	  	       	  onMinute3 = min;
 //	  	   		  WhTimerOn3 = str;
+              	TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, 12,0);
 	  	   		  TUTKClient.timerdel(uidOn3);
-	  			  togBtn3.setChecked(false);
-	  			  togBtn3.setBackgroundResource(R.drawable.rf_switch_blue);
+	  	   		  togBtn[2].setChecked(false);
+	  	   		  togBtn[2].setBackgroundResource(R.drawable.rf_switch_blue);
 //	  			 TabControl.mSQLHelper.updateSwitch(TabControl.writeDB, devid,WhTimerOn1,WhTimerOff1,WhTimerOn2,WhTimerOff2,WhTimerOn3,WhTimerOff3);
 //	  	   		  Log.e("RF_Switch","WhTimerOn3:"+WhTimerOn3);
 //                break;
@@ -429,9 +449,10 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 //              	  offHour3 = hour;
 //	   	       	  offMinute3 = min;
 //	   	   		  WhTimerOff3 = str;
+              	TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, 13,0);
 	   	   		  TUTKClient.timerdel(uidOff3);
-	   			  togBtn4.setChecked(false);
-	   			  togBtn4.setBackgroundResource(R.drawable.rf_switch_blue);
+	   	          togBtn[3].setChecked(false);
+	   	          togBtn[3].setBackgroundResource(R.drawable.rf_switch_blue);
 //	   			 TabControl.mSQLHelper.updateSwitch(TabControl.writeDB, devid,WhTimerOn1,WhTimerOff1,WhTimerOn2,WhTimerOff2,WhTimerOn3,WhTimerOff3);
 //	   	   		  Log.e("RF_Switch","WhTimerOff3:"+WhTimerOff3);
                  break;
@@ -655,6 +676,13 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 				if(btnLearn[i])	TabControl.mViewSelected.imageviewClickRecover(button[i]);
 		    	else TabControl.mViewSelected.imageviewClickLearn(button[i]);
 			}
+			for(int i=buttonMaxNum;i<allButtonNum;i++){
+				if(btnLearn[i])	
+				{    togBtn[i-9].setChecked(true);
+				     togBtn[i-9].setBackgroundResource(R.drawable.rf_switch_yellow);
+	   			}
+//				else togBtn[i-9].setChecked(false);
+			}
 		}
 		
 		private void weekbuttonstate(int curButton )
@@ -675,26 +703,20 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
         		 Log.e("RF_Switch","weekbuttonstate week="+week);
         		 Log.e("RF_Switch","weekbuttonstate learnCursor=0");
         	 }
-//			 TabControl.writeDB.close();
 
     		 TabControl.mSQLHelper.updateSwitchWeek(TabControl.writeDB, devid, week);
 			 learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);
-//				Log.e("leewoo", "cur: "+learnCursor.getCount());
-//				if(learnCursor.getCount()>0){				 
-//					//学习	
-////					for(int i=0;i<buttonNum;i++){
-////						btnLearn[i]=learnCursor.getBlob(i+3)!=null?true:false;
-////					}
-////					for(int i=buttonNum;i<buttonMaxNum;i++){
-////						btnLearn[i]=learnCursor.getInt(i+3) == 1?true:false;
-////					}
-//					Log.e("leewoo", "cur learn "+learnCursor.getCount());
-//				}else{
-//					Log.e("leewoo", "cur learn 初始化"+learnCursor.getCount());
-//					//未初始化
-//					TabControl.mSQLHelper.insertBtnLearn(TabControl.writeDB,mUid,devid);
-//				}		
+
 		}
+		
+		private byte getswitchtime(String str,int i)
+		 {
+			    char[] prefix = new char[2];
+				str.getChars(i, i+2, prefix, 0);
+				String tmp= new String(prefix);
+				byte time = (byte)Integer.parseInt(tmp);
+				return time;
+		 }
 		
    
 }

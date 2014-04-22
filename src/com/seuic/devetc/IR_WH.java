@@ -34,8 +34,9 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 	int uidOn;
 	int uidOff;
 	final int buttonMaxNum=4;
+	final int allButtonNum=5;
 	ImageView button[]=new ImageView[buttonMaxNum];
-	boolean btnLearn[]=new boolean[buttonMaxNum];
+	boolean btnLearn[]=new boolean[allButtonNum];
 	int curButton=-1;
 	byte ioCtrlBuf[]=new byte[TUTKClient.MAX_SIZE_IOCTRL_BUF]; 
 	private ProgressDialog progressDialog;  
@@ -111,6 +112,7 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 			for(int i=0;i<buttonMaxNum;i++){
 				btnLearn[i]=learnCursor.getBlob(i+3)!=null?true:false;
 			}
+			btnLearn[buttonMaxNum]=learnCursor.getInt(buttonMaxNum+3) == 1?true:false;
 		}else{
 			Log.e("leewoo", "cur learn 初始化"+learnCursor.getCount());
 			//未初始化
@@ -126,22 +128,26 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 			
 			WhTimerOn = timerCursor.getString(2);
 			WhTimerOff = timerCursor.getString(3);
-//			timerCursor.getInt(uidOn)  getColumnIndex("WhUidOn");
 			uidOn = timerCursor.getInt(timerCursor.getColumnIndex("WhUidOn"));
 			uidOff = timerCursor.getInt(timerCursor.getColumnIndex("WhUidOff"));
-//			uidOff = timerCursor.getColumnIndex("WhUidOff");
 			Log.e("IR_WH","timerCursor uidOn="+uidOn);
 			Log.e("IR_WH","timerCursor uidOff="+uidOff);
-//			byte[] data = null;
-			byte[] data = new byte[2] ;
-			char[] prefix = null;
-			prefix = new char[2];
-			WhTimerOn.getChars(0, 2, prefix, 0);
-//			WhTimerOn.getChars(3, 4, prefix, 0);
-			String tmp = new String(prefix);
-			data[0] = (byte)Integer.parseInt(tmp);
-			onHour = data[0];
-//			offHour = 
+			
+//			char[] prefix1 = new char[2];
+//			char[] prefix2 = new char[2];
+//			WhTimerOn.getChars(0, 2, prefix1, 0);
+//			WhTimerOn.getChars(3, 5, prefix2, 0);
+//			String tmp1 = new String(prefix1);
+//			String tmp2 = new String(prefix2);
+//			onHour = (byte)Integer.parseInt(tmp1);
+//			offHour = (byte)Integer.parseInt(tmp2);
+			
+			onHour = getwhtime(WhTimerOn,0);
+			onMinute = getwhtime(WhTimerOn,3);
+			offHour = getwhtime(WhTimerOff,0);
+			offMinute = getwhtime(WhTimerOff,3);
+		    Log.e("IR_WH","timerCursor onHour="+onHour+"  onMinute="+onMinute+"  offHour="+offHour+"  offMinute="+offMinute);
+			
 			textOn.setText(WhTimerOn);
 			textOff.setText(WhTimerOff);
 			
@@ -212,6 +218,7 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
              	} 
              	break;
              case R.id.button5:
+            	 curButton=5;
             	 if(learnCursor.getBlob(5)==null&&learnCursor.getBlob(6)==null)
             	 {
             		 CustomToast.showToast(getApplicationContext(),"please learn first", Toast.LENGTH_SHORT);	
@@ -226,11 +233,13 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
          			 Log.e("IR_WH","random uidOff="+uidOff);
                 	 TUTKClient.timeradd(uidOn,(short)0x7f,onHour,onMinute,learnCursor.getBlob(5),true);
                 	 TUTKClient.timeradd(uidOff,(short)0x7f,offHour,offMinute,learnCursor.getBlob(6),true);
+                	 TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,1);
                 	 TabControl.mSQLHelper.updateWhUid(TabControl.writeDB, devid,uidOn,uidOff);
      			 } else {
      				button5.setBackgroundResource(R.drawable.rf_switch_blue);
      				TUTKClient.timerdel(uidOn);
      				TUTKClient.timerdel(uidOff);
+     				TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,0);
      			 }
             	
 //            	 timeradd(int uid,int bit_week, int hour, int min,byte[] data, boolean irflag);
@@ -286,6 +295,7 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 				        	  Log.e("IR_WH","WhTimerOff:"+WhTimerOff);
 			        	  }
 			        	  TabControl.mSQLHelper.updateWh(TabControl.writeDB, devid,WhTimerOn,WhTimerOff);
+			        	  TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, 5,0);
 			        	  button5.setChecked(false);
 			        	  button5.setBackgroundResource(R.drawable.rf_switch_blue);
 			        	 
@@ -387,7 +397,19 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 				if(btnLearn[i])	TabControl.mViewSelected.imageviewClickRecover(button[i]);
 		    	else TabControl.mViewSelected.imageviewClickGreyChanged(button[i]);
 			}
+			if(btnLearn[allButtonNum-1])	
+			{    button5.setChecked(true);
+			     button5.setBackgroundResource(R.drawable.rf_switch_yellow);
+   			}
 		}
 	 
+	 private byte getwhtime(String str,int i)
+	 {
+		    char[] prefix = new char[2];
+			str.getChars(i, i+2, prefix, 0);
+			String tmp= new String(prefix);
+			byte time = (byte)Integer.parseInt(tmp);
+			return time;
+	 }
 
 }

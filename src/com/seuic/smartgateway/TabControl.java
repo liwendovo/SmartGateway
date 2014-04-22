@@ -33,7 +33,7 @@ import com.seuic.sqlite.SQLiteHelper;
 @SuppressWarnings("deprecation")
 public class TabControl extends ActivityGroup {
 	public final static String[] itemsIR = {"TV", "AC","MEDIA","STU","WH", "DVD","FAN","CUSTOM1","CUSTOM2"}; 
-	public final static String[] itemsRF = {"Switch", "Lamp", "Curtain","Power","CUSTOM1","CUSTOM2"}; 	
+	public final static String[] itemsRF = {"Switch", "Lamp","Curtain(Horizontal)","Curtain(Vertical)","Power","CUSTOM1","CUSTOM2"}; 	
 
 //	public static boolean tempmode = true;
 	public static TabHost host = null;

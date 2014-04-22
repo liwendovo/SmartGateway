@@ -196,37 +196,37 @@
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/rf_switch_day" />
+            android:src="@drawable/rf_switch_sun" />
         <ImageView
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/rf_switch_day" />
+            android:src="@drawable/rf_switch_mon" />
         <ImageView
             android:id="@+id/button5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/rf_switch_day" />
+            android:src="@drawable/rf_switch_tue" />
         <ImageView
             android:id="@+id/button6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/rf_switch_day" />
+            android:src="@drawable/rf_switch_wen" />
         <ImageView
             android:id="@+id/button7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/rf_switch_day" />
+            android:src="@drawable/rf_switch_thu" />
          <ImageView
             android:id="@+id/button8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/rf_switch_day" />
+            android:src="@drawable/rf_switch_fri" />
         <ImageView
             android:id="@+id/button9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/rf_switch_day" />
+            android:src="@drawable/rf_switch_sat" />
      
 
     </TableRow>
