@@ -347,7 +347,7 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
             		 uidOn3=(int)(Math.random()*100000);
                 	 Log.e("RF_Switch","random uidOn3="+uidOn3);
          			 Log.e("RF_Switch","random uidOff3="+uidOff3);
-                	 TUTKClient.timeradd(uidOn3,(short)week,onHour3,onMinute3,learnCursor.getBlob(3),false);
+                	 TUTKClient.timeradd(uidOn3,(short)0,onHour3,onMinute3,learnCursor.getBlob(3),false);
                 	 TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,1);
                 	 TabControl.mSQLHelper.updateSwitchUid(TabControl.writeDB, devid,uidOn1,uidOff1,uidOn2,uidOff2,uidOn3,uidOff3);
      			 } else {
@@ -370,7 +370,7 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
             		 uidOff3=(int)(Math.random()*100000);
                 	 Log.e("RF_Switch","random uidOn3="+uidOn3);
          			 Log.e("RF_Switch","random uidOff3="+uidOff3);
-                	 TUTKClient.timeradd(uidOff3,(short)week,offHour3,offMinute3,learnCursor.getBlob(4),false);
+                	 TUTKClient.timeradd(uidOff3,(short)0,offHour3,offMinute3,learnCursor.getBlob(4),false);
                 	 TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,1);
                 	 TabControl.mSQLHelper.updateSwitchUid(TabControl.writeDB, devid,uidOn1,uidOff1,uidOn2,uidOff2,uidOn3,uidOff3);
      			 } else {
@@ -706,6 +706,24 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
 
     		 TabControl.mSQLHelper.updateSwitchWeek(TabControl.writeDB, devid, week);
 			 learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,devid);
+			 
+			 if (togBtn[0].isChecked())
+			 {
+				  TUTKClient.timerdel(uidOn1);
+				  TUTKClient.timerdel(uidOff1);
+				  togBtn[0].setChecked(false);
+				  togBtn[0].setBackgroundResource(R.drawable.rf_switch_blue);
+			 }
+			 
+			 if (togBtn[1].isChecked())
+			 {
+				  TUTKClient.timerdel(uidOn2);
+				  TUTKClient.timerdel(uidOff2);
+				  togBtn[1].setChecked(false);
+				  togBtn[1].setBackgroundResource(R.drawable.rf_switch_blue);
+			 }
+			 
+			 
 
 		}
 		

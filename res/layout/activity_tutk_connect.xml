@@ -23,23 +23,33 @@ android:layout_marginTop="1dp"
 android:padding="10dp" 
 android:textSize="16sp" 
 android:gravity="center_horizontal" 
-android:text="Press OK to exit app" /> 
+android:text="App will connect autoly in 60s" /> 
+
 <LinearLayout 
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content" 
 android:layout_marginTop="20dp" 
 android:layout_marginBottom="8dp" 
 > 
-<Button 
-android:id="@+id/exitBtn0" 
-android:layout_width="110dp" 
-android:layout_height="wrap_content" 
-android:text="OK" 
-android:textSize="16sp" 
-android:textColor="#fff" 
-android:gravity="center" 
-android:onClick="exitbutton0" 
-/> 
+
+<Button
+    android:id="@+id/exitBtn0"
+    android:layout_width="124dp"
+    android:layout_height="wrap_content"
+    android:onClick="exitbutton0"
+    android:text="Cancle"
+    android:textColor="#fff"
+    android:textSize="16sp" />
+
+<Button
+    android:id="@+id/exitBtn1"
+    android:layout_width="124dp"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp" 
+    android:onClick="exitbutton1"
+    android:text="Connect Now"
+    android:textColor="#fff"
+    android:textSize="16sp" />
 
 </LinearLayout> 
 </LinearLayout>  

@@ -668,7 +668,7 @@ public class TUTKClient {
                 else if (ret == IOTCAPIs.IOTC_ER_REMOTE_TIMEOUT_DISCONNECT) {
                     System.out.printf("[%s] IOTC_ER_REMOTE_TIMEOUT_DISCONNECT\n",
                             Thread.currentThread().getName());
-                    TabControl.mUid="NULL";
+//                    TabControl.mUid="NULL";
                     
 // 
            		Message learnMsg=new Message();
