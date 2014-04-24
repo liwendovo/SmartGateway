@@ -361,7 +361,7 @@ public class TUTKClient {
     }
 	
 	
-	public static boolean timeradd(int uid,short i, byte hour, byte min,byte[] data, boolean irflag) { 
+	public static boolean timeradd(int uid,short week, byte hour, byte min,byte[] data, boolean irflag) { 
      	 //数据发送
    	    Log.e("TUTKClient", "timeradd");
 	   	 if (!isConnect) {
@@ -378,7 +378,7 @@ public class TUTKClient {
 			e.printStackTrace();
 		}
 	   	try {
-			bOut.write(int16ToByteArray(i));
+			bOut.write(int16ToByteArray(week));
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

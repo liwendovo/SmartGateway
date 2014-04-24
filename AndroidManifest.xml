@@ -177,9 +177,15 @@
         </activity>
         <activity
             android:name="com.seuic.smartgateway.TutkConnectActivity"
-            android:label="@string/title_activity_tutk_connect" 
+            android:label="@string/title_activity_tutk_connect"
             android:screenOrientation="portrait"
             android:theme="@style/MyDialogStyle" >
+        </activity>
+        <activity
+            android:name="com.seuic.smartgateway.LoginProgressActivity"
+            android:label="@string/title_activity_login_progress" 
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
     </application>
 

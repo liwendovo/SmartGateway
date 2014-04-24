@@ -32,5 +32,6 @@
     <string name="studyfailed">Study Unsuccessful, Please Try Again!</string>
     <string name="networkunconnect">network unconnect, Please check network!</string>
     <string name="title_activity_tutk_connect">TutkConnectActivity</string>
+    <string name="title_activity_login_progress">LoginProgressActivity</string>
 
 </resources>

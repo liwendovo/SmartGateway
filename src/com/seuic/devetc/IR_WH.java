@@ -133,14 +133,6 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 			Log.e("IR_WH","timerCursor uidOn="+uidOn);
 			Log.e("IR_WH","timerCursor uidOff="+uidOff);
 			
-//			char[] prefix1 = new char[2];
-//			char[] prefix2 = new char[2];
-//			WhTimerOn.getChars(0, 2, prefix1, 0);
-//			WhTimerOn.getChars(3, 5, prefix2, 0);
-//			String tmp1 = new String(prefix1);
-//			String tmp2 = new String(prefix2);
-//			onHour = (byte)Integer.parseInt(tmp1);
-//			offHour = (byte)Integer.parseInt(tmp2);
 			
 			onHour = getwhtime(WhTimerOn,0);
 			onMinute = getwhtime(WhTimerOn,3);
@@ -231,15 +223,13 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
                 	 uidOff=(int)(Math.random()*100000);
                 	 Log.e("IR_WH","random uidOn="+uidOn);
          			 Log.e("IR_WH","random uidOff="+uidOff);
-                	 TUTKClient.timeradd(uidOn,(short)0x7f,onHour,onMinute,learnCursor.getBlob(5),true);
-                	 TUTKClient.timeradd(uidOff,(short)0x7f,offHour,offMinute,learnCursor.getBlob(6),true);
                 	 TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,1);
                 	 TabControl.mSQLHelper.updateWhUid(TabControl.writeDB, devid,uidOn,uidOff);
+         			 whtimeradd(uidOff,uidOn,(short)0x7f,onHour,onMinute,offHour,offMinute,learnCursor.getBlob(5),learnCursor.getBlob(6),true);
      			 } else {
      				button5.setBackgroundResource(R.drawable.rf_switch_blue);
-     				TUTKClient.timerdel(uidOn);
-     				TUTKClient.timerdel(uidOff);
      				TabControl.mSQLHelper.updateBtn(TabControl.writeDB, devid, curButton,0);
+     				whtimerdel(uidOn,uidOff);
      			 }
             	
 //            	 timeradd(int uid,int bit_week, int hour, int min,byte[] data, boolean irflag);
@@ -303,8 +293,8 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 
 		       },mHour,mMinute,true).show();
 		
-		 TUTKClient.timerdel(uidOn);
-		 TUTKClient.timerdel(uidOff);
+		 
+		 whtimerdel(uidOn,uidOff);
 	}
 	
 
@@ -374,6 +364,40 @@ public class IR_WH extends Activity implements android.view.View.OnClickListener
 	        	}
 	            progressDialog.dismiss(); 
 	        }}; 
+	        
+	        
+//	        whtimeradd(uidOn,(short)0x7f,onHour,onMinute,learnCursor.getBlob(5),true);
+//			 whtimeradd(uidOff,(short)0x7f,offHour,offMinute,learnCursor.getBlob(6),true);
+	        private void whtimeradd(final int uidon,final int uidoff,final short week, final byte onHour, final byte onMinute,final byte offHour, final byte offMinute,final byte[] data1,final byte[] data2, final boolean irflag){  
+				 new Thread(){        
+				     @Override  
+				     public void run() {  
+				    	 TUTKClient.timeradd(uidon, week, onHour, onMinute, data1, irflag);
+				    	 TUTKClient.timeradd(uidoff, week, offHour, offMinute, data2, irflag);
+				     }}.start();      
+				 }    
+		    
+			        
+	        private void whtimerdel(final int uidon, final int uidoff){  
+				 new Thread(){        
+				     @Override  
+				     public void run() {  
+				    	 if(uidon != -1)
+				    	 {
+				    		 TUTKClient.timerdel(uidon); 
+				    		 Log.e("RF_Switch","delete tomeron");
+				    	 }
+				    	 
+				    	 if(uidoff != -1)
+				    	 {
+				    		 TUTKClient.timerdel(uidoff); 
+				    		 Log.e("RF_Switch","delete tomeroff");
+				    	 }
+
+				     }}.start();      
+				 }
+	        
+	        
 	 private void send(final int btnid){  
 //		 progressDialog = ProgressDialog.show(IR_TV.this, "", "", true, false); 
 		 new Thread(){        
