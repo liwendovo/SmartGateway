@@ -21,23 +21,6 @@ public class TabTH extends Activity {
 	ImageView titlePic;
 	TextView  temp,humi;
 	
-	
-//	Handler mhandler=new Handler(){
-//	     public void handleMessage(Message msg){
-//	         System.out.println("mhandler");
-//	         int[] th=new int[4];
-//	         TUTKClient.cancellearn(false);
-//	 		 TUTKClient.getTH(th);
-//	 		 if(th[2]>=0){
-//		 		humi.setText(th[2]+"%");
-//		 		if(!TabControl.tempmode) temp.setText(th[0]+"℃");
-//		 		else temp.setText(th[0]+"℉");
-//	 		 }
-//	         Log.e("TabTH", "end onResume");
-//   	    }
-//    };
-	
-	
 	 private Handler handler = new Handler();
 	    private Runnable runnable = new Runnable() {
 	        public void run() {
@@ -74,53 +57,12 @@ public class TabTH extends Activity {
     	titleBtn.setBackgroundResource(R.drawable.title_chart);
     	Log.e("TabTH", "TabTH init " ); 
     	
-    	
-
-    	
-    	
-//    	 Log.e("TabTH", "start onCreate");
-//         int[] th=new int[4];
-// 		 TUTKClient.getTH(th);
-// 		 if(th[2]>=0){
-//	 		humi.setText(th[2]+"%");
-//	 		if(!TabControl.tempmode) temp.setText(th[0]+"℃");
-//	 		else temp.setText(th[0]+"℉");
-// 		 }
-//         Log.e("TabTH", "end onCreate");
-//    	
-    	
-    	
-    	
-//    	final Handler handler = new Handler();  
-//        Runnable runnable = new Runnable(){  
-//            @Override  
-//            public void run() {  
-//                // TODO Auto-generated method stub  
-//                // 在此处添加执行的代码  
-//            	
-//            	int[] th=new int[4];
-//        		TUTKClient.getTH(th);
-//        		humi.setText(th[2]+"."+th[2]+"%");
-//        		temp.setText(th[0]+"."+th[1]+"C");
-//        		
-//        		Log.e("TabTH", "TabTH end" ); 
-//                handler.postDelayed(this, 1000);// 50是延时时长  
-//            }   
-//        };   
-//        handler.postDelayed(runnable, 1000);// 打开定时器，执行操作  
-//        handler.removeCallbacks((Runnable) this);// 关闭定时器处理 
-    	
-
+ 
 		
     	titleBtn.setOnClickListener(new OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-//			int[] th=new int[4];
-//			TUTKClient.getTH(th);
-//			temp.setText(th[0]+"."+th[1]+"%");
-//			humi.setText(th[2]+"."+th[3]+"C");
 			
 		}
 	});
@@ -133,16 +75,7 @@ public class TabTH extends Activity {
 	 
 		  super.onResume();	 
 		  handler.postDelayed(runnable, 10);// 打开定时器，执行操作  
-  
-//		         new Thread(){        
-//				     @Override  
-//				     public void run() {  
-//				    	 Message learnMsg=new Message();
-//				    	 Log.e("TabTH", "start thread");
-//				    	 mhandler.sendMessage(learnMsg);  
-//				     }}.start();      
-				
-		         
+          
 	 }
 	 
 	 @Override

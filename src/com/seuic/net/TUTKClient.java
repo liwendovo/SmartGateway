@@ -670,20 +670,11 @@ public class TUTKClient {
                             Thread.currentThread().getName());
 //                    TabControl.mUid="NULL";
                     
-// 
+ 
            		Message learnMsg=new Message();
            		learnMsg.what = 0xff01;
            		TabControl.instance.tutkHandler.sendMessage(learnMsg); 
-                    
-//                     Runnable runnable = new Runnable() {
-//            	        public void run() {
-//            	            
-//            	            handler.postDelayed(this, 1000 * 5);// º‰∏Ù5√Î
-//            	        }
-//
-//                    }
-                    
-//                    CustomToast.showToast(Context, "it has disconnected with the device ", Toast.LENGTH_LONG); 
+
                     break;
                 }
 

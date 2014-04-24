@@ -25,8 +25,9 @@ public class LoginProgressActivity extends Activity {
 		setContentView(R.layout.activity_login_progress);
 		showProgressDialog(TabControl.mUid);
 	}
+	
 
-	 public void showProgressDialog(final String uid){  
+	private void showProgressDialog(final String uid){  
 		 progressDialog = ProgressDialog.show(this,"" , "Connecting...", true, false); 
 		 new Thread(){        
 		     @Override  

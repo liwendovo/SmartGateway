@@ -55,27 +55,14 @@ public class TabControl extends ActivityGroup {
         @Override  
         public void handleMessage(Message msg) {  
           if(0xff01==msg.what){
-        	  Log.e("TabControl","receive handler message");
-//	          AlertDialog.Builder builder = new Builder(TabControl.this); 
-//	          builder.setMessage("Are you sure you want to exit?") 
-//	                 .setCancelable(false) 
-//	                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() { 
-//	                     public void onClick(DialogInterface dialog, int id) { 
-	                  	 
-	                  	   Intent intent = new Intent();
-	                  	   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
-	                  	   intent.setClass(TabControl.this, TutkConnectActivity.class);
-	                  	   startActivity(intent);
-	                  	   
-//	                    	 host.setCurrentTab(4);
+        	   Log.e("TabControl","receive handler message");
+	      	   Intent intent = new Intent();
+	      	   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
+	      	   intent.setClass(TabControl.this, TutkConnectActivity.class);
+	      	   startActivity(intent);
 	                  	   
 	                     }
-	         
-//	                 }); 
-//	          AlertDialog alert = builder.create(); 
-//	          alert.getWindow().setType((WindowManager.LayoutParams.TYPE_SYSTEM_ALERT));
-//	          alert.show();
-//          }
+
         }
 	};
 	

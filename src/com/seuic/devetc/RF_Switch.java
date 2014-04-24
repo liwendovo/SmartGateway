@@ -244,9 +244,6 @@ public class RF_Switch extends Activity implements android.view.View.OnClickList
              case R.id.button3:
             	 curButton = 3;
             	 weekbuttonstate(curButton);
-            	 
-//		        	btnLearn[curButton-1]=true;	  
-//		        	curButton=-1;
               	break;
              case R.id.button4:
             	 curButton = 4;
