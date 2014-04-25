@@ -54,7 +54,7 @@ public class TutkConnectActivity extends Activity {
 		    	learnMsg.what=0xf0f1ff00;	
 		    	sendHandler.sendMessage(learnMsg);  
 		    	Log.e("TutkConnect","Timer start");
-			    this.cancel();}},30000);//60√Î
+			    this.cancel();}},60000);//60√Î
 		
 	 } 
 	
