@@ -18,58 +18,61 @@ public class TutkConnectActivity extends Activity {
 	
 	
 	public TutkConnectActivity instance = null;
+	private Timer timer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_tutk_connect); 
-		LinearLayout layout = (LinearLayout)findViewById(R.id.exit_layout); 
-		instance = this;
-		layout.setOnClickListener(new OnClickListener() { 
-		@Override 
-			public void onClick(View v) { 
-			// TODO Auto-generated method stub 
+			super.onCreate(savedInstanceState);
+			setContentView(R.layout.activity_tutk_connect); 
+			LinearLayout layout = (LinearLayout)findViewById(R.id.exit_layout); 
+			instance = this;
+			layout.setOnClickListener(new OnClickListener() { 
+			@Override 
+				public void onClick(View v) { 
+				// TODO Auto-generated method stub 
+				
+				} 
 			
-			} 
+			}); 
+			
+			
+			final Handler sendHandler = new Handler(){ 
+		        @Override  
+		        public void handleMessage(Message msg) {  
+		        	if(0xf0f1ff00==msg.what){
+		        		Intent intent = new Intent(instance, LoginProgressActivity.class);
+		    	    	startActivity(intent);
+		    	    	finish(); 		        
+		        	}
+		        }}; 
+			
+			
+			timer=new Timer();//实例化Timer类
+			timer.schedule(new TimerTask(){
+			public void run(){
+				Message learnMsg=new Message();
+		    	learnMsg.what=0xf0f1ff00;	
+		    	sendHandler.sendMessage(learnMsg);  
+		    	Log.e("TutkConnect","Timer start");
+			    this.cancel();}},30000);//60秒
 		
-		}); 
-		
-		
-		final Handler sendHandler = new Handler(){ 
-	        @Override  
-	        public void handleMessage(Message msg) {  
-	        	if(0xfff1==msg.what){
-	        		Intent intent = new Intent(instance, LoginProgressActivity.class);
-	    	    	startActivity(intent);
-	    	    	finish(); 		        
-	        	}
-	        }}; 
-		
-		
-		Timer timer=new Timer();//实例化Timer类
-		timer.schedule(new TimerTask(){
-		public void run(){
-			Message learnMsg=new Message();
-	    	learnMsg.what=0xfff1;	
-	    	sendHandler.sendMessage(learnMsg);  
-		    this.cancel();}},60000);//五百毫秒
-		
-	    } 
+	 } 
 	
 
-	    public void exitbutton0(View v) { 
-	    	Log.e("TutkConnectActivity", "TUTKCONNECT-exitbutton0-finish");	
-	    	TabControl.mUid="NULL";
-	    	finish();
-	   } 
-	    
-	    public void exitbutton1(View v) { 
-	    	Log.e("TutkConnectActivity", "TUTKCONNECT-exitbutton1-start");
-	    	Intent intent = new Intent(this,LoginProgressActivity.class);
-	    	startActivity(intent);
-	    	finish();
+    public void exitbutton0(View v) { 
+    	Log.e("TutkConnectActivity", "TUTKCONNECT-exitbutton0-finish");	
+    	TabControl.mUid="NULL";
+    	finish();
+    } 
+    
+    public void exitbutton1(View v) { 
+    	Log.e("TutkConnectActivity", "TUTKCONNECT-exitbutton1-start");
+    	Intent intent = new Intent(this,LoginProgressActivity.class);
+    	startActivity(intent);
+    	timer.cancel();
+    	finish();
 
-		} 
+	} 
 	    
 	   		
 } 
