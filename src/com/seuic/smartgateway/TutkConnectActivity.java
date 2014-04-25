@@ -62,6 +62,7 @@ public class TutkConnectActivity extends Activity {
     public void exitbutton0(View v) { 
     	Log.e("TutkConnectActivity", "TUTKCONNECT-exitbutton0-finish");	
     	TabControl.mUid="NULL";
+    	timer.cancel();
     	finish();
     } 
     
