@@ -154,9 +154,9 @@ public class TabControl extends ActivityGroup {
 				NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI); 
 				if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) { 
 				Log.e("connectionReceiver", "unconnect"); 
-				CustomToast.showToast(getApplicationContext(),getResources().getString(R.string.networkunconnect), Toast.LENGTH_SHORT);	
-				mUid="NULL";	//   所有device重置为OFFLINE状态
-				host.setCurrentTab(4);
+//				CustomToast.showToast(getApplicationContext(),getResources().getString(R.string.networkunconnect), Toast.LENGTH_SHORT);	
+//				mUid="NULL";	//   所有device重置为OFFLINE状态
+//				host.setCurrentTab(4);
 				// unconnect network 
 				}else if (mobNetInfo.isConnected() || wifiNetInfo.isConnected())  { 
 				// connect network 
