@@ -209,8 +209,8 @@ public class TabSET extends Activity {
                          mExitTime = System.currentTimeMillis();
 
                  } else {
-                	 finish();
-//                	 System.exit(0);
+//                	 finish();
+                	 System.exit(0);
                  }
                  return true;
          }

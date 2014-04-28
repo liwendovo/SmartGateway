@@ -83,11 +83,19 @@ public class TabTH extends Activity {
 	        handler.removeCallbacks(runnable); //停止刷新
 	        super.onPause();
 	    }
+	 
+	 
+	 @Override
+	protected void onDestroy() {
+		 Log.i("TabTH", "onDestroy");
+		// TODO 自动生成的方法存根
+		super.onDestroy();
+	}
 
-	 
-	 
-	 
-	 private long mExitTime;
+
+
+
+	private long mExitTime;
 		public boolean onKeyDown(int keyCode, KeyEvent event) {
 			 Log.e("TabControl","get the keyback");
 	       if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -98,8 +106,9 @@ public class TabTH extends Activity {
 	                       mExitTime = System.currentTimeMillis();
 
 	               } else {
-	              	 finish();
-//	              	System.exit(0);
+//	              	 finish();
+//	              	onDestroy();
+	              	System.exit(0);
 	               }
 	               return true;
 	       }

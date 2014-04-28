@@ -3,6 +3,7 @@ package com.seuic.net;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Currency;
 
 import android.R.string;
 import android.app.AlertDialog;
@@ -551,8 +552,15 @@ public class TUTKClient {
 	         IOTCAPIs.IOTC_Session_Close(sid);
 	         System.out.printf("IOTC_Session_Close OK\n");
 //	 		 AVAPIs.avDeInitialize();
-	 		 IOTCAPIs.IOTC_DeInitialize();
-	         System.out.printf("StreamClient exit...\n");
+	         long curtime = System.currentTimeMillis();
+	         Log.i("StreamClient exit", "curtime = "+curtime);
+	         System.out.printf("StreamClient exit...  curtime = "+curtime);
+	 		 int ret = IOTCAPIs.IOTC_DeInitialize();
+	 		 long nexttime = System.currentTimeMillis();
+	 		 Log.i("StreamClient exit", "nexttime = "+nexttime + "ret = "+ ret);
+	 		Log.i("StreamClient exit", "cost time  = "+(nexttime - curtime));
+	 		System.out.printf("StreamClient exit...  nexttime = "+nexttime);
+	         System.out.printf("StreamClient exit...  time = "+(nexttime-curtime));
 	        sid=-1;
 	   	    avIndex=-1;
     	}
