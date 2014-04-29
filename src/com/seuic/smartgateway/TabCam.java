@@ -3,6 +3,8 @@ package com.seuic.smartgateway ;
 import java.util.List;
 import java.util.Map;
 
+import com.seuic.net.TUTKClient;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,6 +48,7 @@ public class TabCam extends Activity {
 
                } else {
 //              	 finish();
+            	 TUTKClient.stoptutk();
               	 System.exit(0);
                }
                return true;

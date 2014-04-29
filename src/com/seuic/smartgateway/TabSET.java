@@ -210,6 +210,7 @@ public class TabSET extends Activity {
 
                  } else {
 //                	 finish();
+                	 TUTKClient.stoptutk();
                 	 System.exit(0);
                  }
                  return true;

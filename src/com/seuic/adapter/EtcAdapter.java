@@ -45,6 +45,7 @@ public class EtcAdapter extends BaseAdapter {
     int btnOn;
     int btnOff;
     String irflag;
+    String type;
   
     public EtcAdapter(Context context, List<Map<String, Object>> data) {
         this.context = context;
@@ -87,7 +88,7 @@ public class EtcAdapter extends BaseAdapter {
 		Log.e("EtcAdapter","position="+position);
         final ViewHolder holder;
         learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,(Integer) item.get("devid"));
-        String type=(String) item.get("type");
+        type=(String) item.get("type");
         irflag=(String) item.get("irflag");
 		
         if (convertView == null) {
@@ -135,14 +136,20 @@ public class EtcAdapter extends BaseAdapter {
        }
         
         
-     holder.quickBtn2.setOnClickListener(new OnClickListener() {
-				
+       holder.quickBtn2.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 //					Toast.makeText(context,	"Btn2 onclick", Toast.LENGTH_SHORT).show();
 					learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,(Integer) item.get("devid"));
-					Log.e("EtcAdapter", "devid:"+(Integer) item.get("devid"));
+					type=(String) item.get("type");
+			        irflag=(String) item.get("irflag");
+			        SetBtn();
+			        
+			        Log.e("EtcAdapter", "devid:"+(Integer) item.get("devid"));
+					Log.e("EtcAdapter", "irflag: "+item.get("irflag"));
+					Log.e("EtcAdapter", "type: "+item.get("type"));
+					Log.e("EtcAdapter", "btnOn="+btnOn+"btnOff="+btnOff);
 					Log.e("EtcAdapter", "learnCursor.getBlob(btnOn+3):"+(learnCursor.getBlob(btnOn+3)));
 					if(irflag.equals("rf"))	TUTKClient.send(learnCursor.getBlob(btnOn+3),false);
 					else TUTKClient.send(learnCursor.getBlob(btnOn+3),true);
@@ -150,76 +157,41 @@ public class EtcAdapter extends BaseAdapter {
 					
 				
 				}
-			});
+	   });
        
        
      
         holder.quickBtn1.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 //				Toast.makeText(context,	"Btn1 onclick", Toast.LENGTH_SHORT).show();if(irflag.equals("rf"))if(irflag.equals("rf"))
 				learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,(Integer) item.get("devid"));
+
+		        type=(String) item.get("type");
+		        irflag=(String) item.get("irflag");
+		        SetBtn();
 				Log.e("EtcAdapter", "devid:"+(Integer) item.get("devid"));
-				 Log.e("TUTKClient", "learnCursor.getBlob(btnOff+3):"+(learnCursor.getBlob(btnOff+3)));
-					if(irflag.equals("rf"))	TUTKClient.send(learnCursor.getBlob(btnOff+3),false);
-					else TUTKClient.send(learnCursor.getBlob(btnOff+3),true);
-					Log.e("EtcAdapter", "quickBtn2 onclick");
+				Log.e("EtcAdapter", "irflag: "+item.get("irflag"));
+				Log.e("EtcAdapter", "type: "+item.get("type"));
+				Log.e("TUTKClient", "learnCursor.getBlob(btnOff+3):"+(learnCursor.getBlob(btnOff+3)));
+				 Log.e("EtcAdapter", "btnOn"+btnOn+"btnOff"+btnOff);
+				if(irflag.equals("rf"))	TUTKClient.send(learnCursor.getBlob(btnOff+3),false);
+				else TUTKClient.send(learnCursor.getBlob(btnOff+3),true);
+				Log.e("EtcAdapter", "quickBtn2 onclick");
 				
 			}
 		});
         
         
        
-    	Log.e("EtcAdapter","devid="+(Integer) item.get("devid"));
-		Log.e("EtcAdapter", "cur: "+learnCursor.getCount());
-		Log.e("EtcAdapter", "type: "+item.get("type"));
+    	
 		if(learnCursor.getCount()>0){				 
 			//ѧϰ	
 			
-			  if(irflag.equals("rf")){
-					 if(type.equals("CUSTOM1")){
-						 btnOn=9;
-						 btnOff=1;
-					 }else if(type.equals("CUSTOM2")){
-						 btnOn=2;
-						 btnOff=4;
-					 }else{
-						 btnOn=0;
-						 btnOff=1;
-					 }
-					 
-				
-				 
-			  }else{
-				  
-				  if(type.equals("TV")){
-					     btnOn=12;
-					 }else if(type.equals("AC")){
-						 btnOn=9;
-						 btnOff=10;
-					 }else if(type.equals("MEDIA")){//media
-						 btnOn=8;
-					 }else if(type.equals("STU")){
-						 btnOn=12;	
-					 }else if(type.equals("WH")){
-						 btnOn=2;
-						 btnOff=3;
-					 }else if(type.equals("DVD")){
-						 btnOn=12;
-					 }else if(type.equals("FAN")){
-						 btnOn=3;
-					 }else if(type.equals("CUSTOM1")){
-						 btnOn=9;
-						 btnOff=1;
-					 }else {
-						 btnOn=2;
-						 btnOff=4;
-					 }	
-				  
-				  
-			  }
+			 
+			  SetBtn();
+			  Log.e("EtcAdapter", "btnOn"+btnOn+"btnOff"+btnOff);
 				
 			  if(learnCursor.getBlob(btnOn+3)!=null)
 				  TabControl.mViewSelected.imageviewClickRecover(holder.quickBtn2);
@@ -240,6 +212,49 @@ public class EtcAdapter extends BaseAdapter {
         ImageView icon;
         ImageView quickBtn1;
         ImageView quickBtn2;
+    }
+    
+    private void SetBtn()
+    {
+    	
+    	
+    	 if(irflag.equals("rf")){
+			 if(type.equals("CUSTOM1")){
+				 btnOff=9;
+			 }else if(type.equals("CUSTOM2")){
+				 btnOn=2;
+				 btnOff=4;
+			 }else{
+				 btnOn=0;
+				 btnOff=1;
+			 }
+			 
+	  }else{
+		  
+		  if(type.equals("TV")){
+			     btnOff=12;
+			 }else if(type.equals("AC")){
+				 btnOn=9;
+				 btnOff=10;
+			 }else if(type.equals("MEDIA")){//media
+				 btnOff=8;
+			 }else if(type.equals("STU")){
+				 btnOff=12;	
+			 }else if(type.equals("WH")){
+				 btnOn=2;
+				 btnOff=3;
+			 }else if(type.equals("DVD")){
+				 btnOff=12;
+			 }else if(type.equals("FAN")){
+				 btnOff=3;
+			 }else if(type.equals("CUSTOM1")){
+				 btnOff=9;
+			 }else {
+				 btnOn=2;
+				 btnOff=4;
+			 }	
+		  Log.e("EtcAdapter", "btnOn= "+btnOn+" btnOff= "+btnOff);
+	  }
     }
     
 }

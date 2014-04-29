@@ -37,6 +37,7 @@ import com.seuic.devetc.RF_Lamp;
 import com.seuic.devetc.RF_Power;
 import com.seuic.devetc.RF_Switch;
 import com.seuic.devetc.RF_WH;
+import com.seuic.net.TUTKClient;
 
 
 public class TabRF extends Activity {
@@ -235,8 +236,7 @@ public class TabRF extends Activity {
 				 listItem.put("status", R.drawable.rf_logo_off);
 			 }else if(type.equals("CUSTOM1")){
 				 listItem.put("icon",R.drawable.ir_logo_custom );
-				 listItem.put("status2", R.drawable.rf_logo_on);
-				 listItem.put("status", R.drawable.rf_logo_off);
+				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else {
 				 listItem.put("icon",R.drawable.ir_logo_custom );
 				 listItem.put("status2", R.drawable.rf_logo_on);
@@ -262,6 +262,7 @@ public class TabRF extends Activity {
 
                } else {
 //              	 finish();
+            	 TUTKClient.stoptutk();
               	 System.exit(0);
                }
                return true;

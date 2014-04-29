@@ -565,6 +565,20 @@ public class TUTKClient {
 	   	    avIndex=-1;
     	}
     }
+    
+    public static void stoptutk() {
+    	Log.e("TUTKClient", "stop()->begin to stop...........");
+    	if(isConnect) {
+    		Log.e("TUTKClient", "stop()->stopping.............");
+	    	isConnect=false;
+	    	 AVAPIs.avClientStop(avIndex);
+	         System.out.printf("avClientStop OK\n");
+	         IOTCAPIs.IOTC_Session_Close(sid);
+	         System.out.printf("IOTC_Session_Close OK\n");
+	         sid=-1;
+	   	     avIndex=-1;
+    	}
+    }
     public static boolean restart(String uid) {   
 		AVAPIs.avClientStop(avIndex);
 	    System.out.printf("avClientStop OK\n");
@@ -809,14 +823,5 @@ public class TUTKClient {
 		return b;
 	}
     
-    public static class avIoctrlDoLater{
-    	
-    	private int uid;
-    	private short bit_week;
-    	private char hour;
-    	private char min;
-    	private int request_command;
-    	private byte command_data[] = new byte[1001];
-    	
-    }
+   
 }

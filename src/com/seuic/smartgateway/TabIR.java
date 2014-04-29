@@ -251,8 +251,8 @@ public class TabIR extends Activity {
 				 listItem.put("status", R.drawable.ir_logo_close);			
 			 }else if(type.equals("WH")){
 				 listItem.put("icon",R.drawable.ir_logo_wh );
-				 listItem.put("status2", R.drawable.ir_logo_up);
-				 listItem.put("status", R.drawable.ir_logo_down);
+				 listItem.put("status2", R.drawable.rf_logo_on);
+				 listItem.put("status", R.drawable.rf_logo_off);
 			 }else if(type.equals("DVD")){
 				 listItem.put("icon", R.drawable.ir_logo_dvd);
 				 listItem.put("status", R.drawable.ir_logo_close);
@@ -264,7 +264,8 @@ public class TabIR extends Activity {
 				 listItem.put("status", R.drawable.ir_logo_close);
 			 }else {
 				 listItem.put("icon",R.drawable.ir_logo_custom);
-				 listItem.put("status", R.drawable.ir_logo_close);
+				 listItem.put("status2", R.drawable.rf_logo_on);
+				 listItem.put("status", R.drawable.rf_logo_off);
 			 }	
 			listItem.put("devid", cur.getInt(1));
 			listItemsIR.add(listItem);
@@ -298,6 +299,7 @@ public class TabIR extends Activity {
 
                 } else {
 //               	 finish();
+                TUTKClient.stoptutk();
                	System.exit(0);
                 }
                 return true;

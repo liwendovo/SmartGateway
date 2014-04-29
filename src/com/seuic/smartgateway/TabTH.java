@@ -108,6 +108,7 @@ public class TabTH extends Activity {
 	               } else {
 //	              	 finish();
 //	              	onDestroy();
+	            	TUTKClient.stoptutk();
 	              	System.exit(0);
 	               }
 	               return true;
