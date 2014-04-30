@@ -369,7 +369,13 @@ public class IR_Custom1 extends Activity implements android.view.View.OnClickLis
 	            	 new Thread(){        
 	    			     @Override  
 	    			     public void run() {  
-	    			     TUTKClient.cancellearn(true);
+		    			    if(devType.equals("ir"))
+		    			    {
+		    			    	TUTKClient.cancellearn(true);
+		    			    }else{
+		    			    	TUTKClient.cancellearn(false);
+		    			    }
+	    			     
 	    			     }}.start(); 
 	    			     dialog.cancel();
 	    			     Log.e("IR_Custom1", "in the progressDialog.setButton");
