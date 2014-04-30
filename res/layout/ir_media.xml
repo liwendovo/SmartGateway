@@ -49,13 +49,11 @@
             </TableRow>
         </TableLayout>
 
-        <RelativeLayout
+       <RelativeLayout
             android:layout_width="185dp"
-           android:layout_height="wrap_content"
+            android:layout_height="185dp"
             android:layout_gravity="center"
-            android:layout_centerHorizontal="true"  
             android:layout_marginTop="5dp"
-            android:layout_weight="0.64"
             android:background="@drawable/ir_round_full" >
 
             <ImageView
