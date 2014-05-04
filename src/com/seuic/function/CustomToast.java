@@ -1,4 +1,4 @@
-package com.seuic.adapter;
+package com.seuic.function;
 
 import android.content.Context;
 import android.os.Handler;

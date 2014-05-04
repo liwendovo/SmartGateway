@@ -25,9 +25,10 @@ import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.Toast;
 
-import com.seuic.adapter.CustomToast;
-import com.seuic.adapter.ViewSelected;
+import com.seuic.function.CustomToast;
+import com.seuic.function.ViewSelected;
 import com.seuic.net.TUTKClient;
+import com.seuic.net.TutkConnectActivity;
 import com.seuic.sqlite.SQLiteHelper;
 
 @SuppressWarnings("deprecation")
@@ -187,8 +188,6 @@ public class TabControl extends ActivityGroup {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		Log.e("leewoo", "TabControl---onDestroy");	
-//		editor.putString("uid","NULL");
-//		editor.commit();
 		mUid="NULL";
 		TUTKClient.stop();
 		writeDB.close();

@@ -32,6 +32,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.seuic.function.ContinuousClick;
 import com.seuic.net.TUTKClient;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
@@ -116,19 +117,7 @@ public class EtcAdapter extends BaseAdapter {
 	        holder.quickBtn2.setVisibility(View.VISIBLE);
 	        holder.quickBtn2.setImageResource((Integer) item.get("status2"));   
 	        TabControl.mViewSelected.imageviewClickGreyChanged(holder.quickBtn2);
-	        
-//	        if(learnCursor.getCount()>0){				 
-//				//学习		 
-//				 if(learnCursor.getBlob(btnOff+3)!=null){
-//					holder.quickBtn2.setImageResource((Integer) item.get("status2")); 
-//				 }
-//				
-//			}else{
-//				Log.e("leewoo", "cur learn 初始化"+learnCursor.getCount());
-//				//未初始化
-//				TabControl.mSQLHelper.insertBtnLearn(TabControl.writeDB,TabControl.mUid,(Integer) item.get("devid"));
-//			}		
-//	        
+
         }else{
         	
        	 holder.quickBtn2.setVisibility(View.INVISIBLE);
@@ -140,7 +129,9 @@ public class EtcAdapter extends BaseAdapter {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-//					Toast.makeText(context,	"Btn2 onclick", Toast.LENGTH_SHORT).show();
+					if (ContinuousClick.isFastDoubleClick()) {  
+				        return;  
+				    }
 					learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,(Integer) item.get("devid"));
 					type=(String) item.get("type");
 			        irflag=(String) item.get("irflag");
@@ -151,8 +142,7 @@ public class EtcAdapter extends BaseAdapter {
 					Log.e("EtcAdapter", "type: "+item.get("type"));
 					Log.e("EtcAdapter", "btnOn="+btnOn+"btnOff="+btnOff);
 					Log.e("EtcAdapter", "learnCursor.getBlob(btnOn+3):"+(learnCursor.getBlob(btnOn+3)));
-					if(irflag.equals("rf"))	TUTKClient.send(learnCursor.getBlob(btnOn+3),false);
-					else TUTKClient.send(learnCursor.getBlob(btnOn+3),true);
+					send(btnOn);
 					Log.e("EtcAdapter", "quickBtn1 onclick");
 					
 				
@@ -166,6 +156,9 @@ public class EtcAdapter extends BaseAdapter {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 //				Toast.makeText(context,	"Btn1 onclick", Toast.LENGTH_SHORT).show();if(irflag.equals("rf"))if(irflag.equals("rf"))
+				 if (ContinuousClick.isFastDoubleClick()) {  
+				        return;  
+				    }  
 				learnCursor=TabControl.mSQLHelper.seleteBtnLearn(TabControl.writeDB,(Integer) item.get("devid"));
 
 		        type=(String) item.get("type");
@@ -175,9 +168,8 @@ public class EtcAdapter extends BaseAdapter {
 				Log.e("EtcAdapter", "irflag: "+item.get("irflag"));
 				Log.e("EtcAdapter", "type: "+item.get("type"));
 				Log.e("TUTKClient", "learnCursor.getBlob(btnOff+3):"+(learnCursor.getBlob(btnOff+3)));
-				 Log.e("EtcAdapter", "btnOn"+btnOn+"btnOff"+btnOff);
-				if(irflag.equals("rf"))	TUTKClient.send(learnCursor.getBlob(btnOff+3),false);
-				else TUTKClient.send(learnCursor.getBlob(btnOff+3),true);
+				Log.e("EtcAdapter", "btnOn"+btnOn+"btnOff"+btnOff);
+				send(btnOff);
 				Log.e("EtcAdapter", "quickBtn2 onclick");
 				
 			}
@@ -213,6 +205,16 @@ public class EtcAdapter extends BaseAdapter {
         ImageView quickBtn1;
         ImageView quickBtn2;
     }
+    
+    private void send(final int btnid){  
+		 new Thread(){        
+		     @Override  
+		     public void run() {  
+				if(irflag.equals("rf"))	TUTKClient.send(learnCursor.getBlob(btnid+3),false);
+				else TUTKClient.send(learnCursor.getBlob(btnid+3),true);
+		     }}.start();      
+		 }
+    
     
     private void SetBtn()
     {

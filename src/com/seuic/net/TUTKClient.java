@@ -16,7 +16,7 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.seuic.adapter.CustomToast;
+import com.seuic.function.CustomToast;
 import com.seuic.smartgateway.TabControl;
 import com.seuic.smartgateway.TabSET;
 import com.tutk.IOTC.AVAPIs;

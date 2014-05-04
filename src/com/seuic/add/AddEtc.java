@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.seuic.adapter.CustomToast;
+import com.seuic.function.CustomToast;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;
 

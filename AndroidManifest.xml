@@ -176,7 +176,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.seuic.smartgateway.TutkConnectActivity"
+            android:name="com.seuic.net.TutkConnectActivity"
             android:label="@string/title_activity_tutk_connect"
             android:screenOrientation="portrait"
             android:theme="@style/MyDialogStyle" >

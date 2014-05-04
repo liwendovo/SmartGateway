@@ -38,7 +38,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.seuic.adapter.CustomToast;
+import com.seuic.function.CustomToast;
 import com.seuic.net.FTPUtil;
 import com.seuic.net.NetConfig;
 import com.seuic.smartgateway.R;

@@ -29,7 +29,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.seuic.adapter.CustomToast;
 import com.seuic.adapter.DevChoiceAdapter;
 import com.seuic.adapter.EtcAdapter;
 import com.seuic.add.AddEtc;
@@ -42,6 +41,7 @@ import com.seuic.devetc.IR_Media;
 import com.seuic.devetc.IR_STU;
 import com.seuic.devetc.IR_TV;
 import com.seuic.devetc.IR_WH;
+import com.seuic.function.CustomToast;
 import com.seuic.net.TUTKClient;
 
 public class TabIR extends Activity {

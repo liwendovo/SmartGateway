@@ -23,7 +23,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.seuic.adapter.CustomToast;
+import com.seuic.function.CustomToast;
 import com.seuic.net.TUTKClient;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.TabControl;

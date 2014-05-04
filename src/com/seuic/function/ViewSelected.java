@@ -1,4 +1,4 @@
-package com.seuic.adapter;
+package com.seuic.function;
 
 import android.graphics.ColorMatrixColorFilter;
 import android.util.Log;

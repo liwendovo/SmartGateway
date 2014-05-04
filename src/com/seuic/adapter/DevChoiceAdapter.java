@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.seuic.function.CustomToast;
 import com.seuic.net.TUTKClient;
 import com.seuic.smartgateway.R;
 import com.seuic.smartgateway.SetupDev;

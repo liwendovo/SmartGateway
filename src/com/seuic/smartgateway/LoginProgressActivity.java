@@ -1,7 +1,7 @@
 package com.seuic.smartgateway;
 
-import com.seuic.adapter.CustomToast;
 import com.seuic.adapter.DevChoiceAdapter;
+import com.seuic.function.CustomToast;
 import com.seuic.net.TUTKClient;
 
 import android.os.Bundle;

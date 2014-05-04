@@ -1,9 +1,14 @@
-package com.seuic.smartgateway;
+package com.seuic.net;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.seuic.smartgateway.LoginProgressActivity;
 import com.seuic.smartgateway.R;
+import com.seuic.smartgateway.TabControl;
+import com.seuic.smartgateway.R.id;
+import com.seuic.smartgateway.R.layout;
+
 import android.app.Activity; 
 import android.os.Bundle; 
 import android.os.Handler;

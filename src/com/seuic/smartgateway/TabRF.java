@@ -26,7 +26,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.seuic.adapter.CustomToast;
 import com.seuic.adapter.EtcAdapter;
 import com.seuic.add.AddEtc;
 import com.seuic.devetc.IR_Custom1;
@@ -37,6 +36,7 @@ import com.seuic.devetc.RF_Lamp;
 import com.seuic.devetc.RF_Power;
 import com.seuic.devetc.RF_Switch;
 import com.seuic.devetc.RF_WH;
+import com.seuic.function.CustomToast;
 import com.seuic.net.TUTKClient;
 
 
